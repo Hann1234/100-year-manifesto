@@ -15,7 +15,7 @@ const coreValuesRouter = require('.routes/coreValues.router');
 const forGoodRouter = require('.routes/forGood.router');
 const lifeGoalsRouter = require('.routes/lifeGoals.router');
 const guidingPrinciplesRouter = require('.routes/guidingPrinciples.router');
-
+const biggestChallengeRouter = require('.routes/biggestChallenge.router');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
