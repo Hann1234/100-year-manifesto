@@ -15,7 +15,11 @@ const coreValuesRouter = require('.routes/coreValues.router');
 const forGoodRouter = require('.routes/forGood.router');
 const lifeGoalsRouter = require('.routes/lifeGoals.router');
 const guidingPrinciplesRouter = require('.routes/guidingPrinciples.router');
-const biggestChallengeRouter = require('.routes/biggestChallenge.router');
+const additionalQuestionsRouter = require('.routes/additionalQuestions.router');
+const trackVideoRouter = require('.routes/trackVideo.router');
+const adminEditFormRouter = require('.routes/adminEditForm.router');
+
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,7 +39,9 @@ app.use('/api/coreValues', coreValuesRouter );
 app.use('/api/forGood', forGoodRouter );
 app.use('/api/lifeGoals', lifeGoalsRouter );
 app.use('/api/guidingPrinciples', guidingPrinciplesRouter);
-app.use('/api/biggestChallenge', biggestChallengeRouter);
+app.use('/api/additionalQuestions', additionalQuestionsRouter);
+app.use('/api/trackVideo', trackVideoRouter);
+app.use('/api/adminEditForm', adminEditFormRouter);
 
 // Serve static files
 app.use(express.static('build'));
