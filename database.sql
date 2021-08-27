@@ -5,12 +5,6 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-
-CREATE TABLE "user" (
 	"id" serial NOT NULL,
 	"name" varchar(31),
 	"email" varchar(80) NOT NULL UNIQUE,
@@ -90,7 +84,7 @@ CREATE TABLE "track_video" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"title" varchar(255) NOT NULL,
-	"last_activity" TIMESTAMP NOT NULL,
+	"last_activity" TIMESTAMP NOT NULL DEFAULT NOW(),
 	"complete" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT "track_video_pk" PRIMARY KEY ("id")
 ) WITH (
