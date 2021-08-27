@@ -16,4 +16,20 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
+/**
+ * DELETE route template
+ */
+ router.delete('/', (req, res) => {
+  // DELETE route code here
+});
+
+/**
+ * PUT route template
+ */
+ router.put('/', (req, res) => {
+  // PUT route code here
+});
+
+
+
 module.exports = router;

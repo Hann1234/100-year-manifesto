@@ -23,6 +23,13 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/missionStatement', );
+app.use('/api/mantras', );
+app.use('/api/coreValues', );
+app.use('/api/forGood', );
+app.use('/api/lifeGoals', );
+app.use('/api/guidingPrinciples', );
+
 
 // Serve static files
 app.use(express.static('build'));
