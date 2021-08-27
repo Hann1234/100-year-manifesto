@@ -35,7 +35,7 @@ app.use('/api/coreValues', coreValuesRouter );
 app.use('/api/forGood', forGoodRouter );
 app.use('/api/lifeGoals', lifeGoalsRouter );
 app.use('/api/guidingPrinciples', guidingPrinciplesRouter);
-
+app.use('/api/biggestChallenge', biggestChallengeRouter);
 
 // Serve static files
 app.use(express.static('build'));
