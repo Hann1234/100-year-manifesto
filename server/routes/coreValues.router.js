@@ -33,7 +33,8 @@ router.post('/', (req, res) => {
     `;
 
   pool.query(qText, [id, manifestoText])
-  .then(() => res.sendStatus(201))
+  .then(() => { res.sendStatus(201)
+  })
   .catch((error) => {
     console.log('Error POSTing coreValues', error);
     res.sendStatus(500);
@@ -43,8 +44,20 @@ router.post('/', (req, res) => {
 /**
  * DELETE route template
  */
- router.delete('/', (req, res) => {
-  // DELETE route code here
+ router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  const qText = `
+  DELETE FROM "core_values"
+  WHERE "id" = $1;
+  `;
+
+  pool.query( qText, [id])
+  .then(() => { res.sendStatus(201)
+  })
+  .catch((error) => {
+    console.log('Error DELETing coreValues', error);
+    res.sendStatus(500);
+  });
 });
 
 /**
