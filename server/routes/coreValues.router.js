@@ -25,7 +25,19 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+  const id = req.user.id;
+  const manifestoText = req.body
+  const qText = `
+    INSERT INTO "core_values" ("user_id", "manifesto_text")
+    VALUES ( '$1', '$2' );
+    `;
+
+  pool.query(qText, [id, manifestoText])
+  .then(() => res.sendStatus(201))
+  .catch((error) => {
+    console.log('Error POSTing coreValues', error);
+    res.sendStatus(500);
+  });
 });
 
 /**
