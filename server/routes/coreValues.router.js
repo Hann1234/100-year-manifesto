@@ -6,13 +6,13 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  const id = req.user.id;
+  const uId = req.user.id;
   const qText = `
     SELECT * FROM "core_values" 
     WHERE "user_id" = $1;
     `;
 
-  pool.query( qText, [id])
+  pool.query( qText, [uId])
   .then((response) => { res.send(response.rows)
   })
   .catch((error) => {
@@ -25,14 +25,14 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  const id = req.user.id;
+  const uId = req.user.id;
   const manifestoText = req.body
   const qText = `
     INSERT INTO "core_values" ("user_id", "manifesto_text")
     VALUES ( '$1', '$2' );
     `;
 
-  pool.query(qText, [id, manifestoText])
+  pool.query(qText, [uId, manifestoText])
   .then(() => { res.sendStatus(201)
   })
   .catch((error) => {
@@ -46,12 +46,13 @@ router.post('/', (req, res) => {
  */
  router.delete('/:id', (req, res) => {
   const id = req.params.id
+  const uId = req.user.id
   const qText = `
   DELETE FROM "core_values"
-  WHERE "id" = $1;
+  WHERE "id" = $1 AND "user_id" = $2;
   `;
 
-  pool.query( qText, [id])
+  pool.query( qText, [id, uId])
   .then(() => { res.sendStatus(201)
   })
   .catch((error) => {
