@@ -64,8 +64,22 @@ router.post('/', (req, res) => {
 /**
  * PUT route template
  */
- router.put('/', (req, res) => {
-  // PUT route code here
+ router.put('/:id', (req, res) => {
+  const id = req.params.id
+  const uId = req.user.id
+  const manifestoText = req.body
+  const qText = `
+    UPDATE "core_values" 
+    SET "manifesto_text" = $1
+    WHERE "id" = $2 AND "user_id" = $3; 
+    `;
+  pool.query(qText, [manifestoText, id, uId])
+  .then(() => { res.sendStatus(201)
+  })
+  .catch((error) => {
+    console.log('Error PUTing coreValues', error);
+    res.sendStatus(500);
+  });  
 });
 
 
