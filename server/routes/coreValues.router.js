@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route gets all coreValues for user
  */
 router.get('/', (req, res) => {
   const uId = req.user.id;
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST route adds a coreValues
  */
 router.post('/', (req, res) => {
   const uId = req.user.id;
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 });
 
 /**
- * DELETE route template
+ * DELETE route removes coreValues 
  */
  router.delete('/:id', (req, res) => {
   const id = req.params.id
@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
 });
 
 /**
- * PUT route template
+ * PUT route edits coreValues text
  */
  router.put('/:id', (req, res) => {
   const id = req.params.id
