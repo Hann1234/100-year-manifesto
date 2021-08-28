@@ -6,7 +6,19 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  const id = req.user.id;
+  const qText = `
+    SELECT * FROM "core_values" 
+    WHERE "user_id" = $1;
+    `;
+
+  pool.query( qText, [id])
+  .then((response) => { res.send(response.rows)
+  })
+  .catch((error) => {
+    console.log("Error GETting coreValues", error);
+    res.sendStatus(500);
+  });
 });
 
 /**
