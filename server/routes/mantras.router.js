@@ -24,9 +24,22 @@ const router = express.Router();
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+ router.post('/', rejectUnauthenticated, (req, res) => {
+    const uId = req.user.id;
+    const manifestoText = req.body
+    const qText = `
+      INSERT INTO "mantras" ("user_id", "manifesto_text")
+      VALUES ( $1, $2 );
+      `;
+  
+    pool.query(qText, [uId, manifestoText])
+    .then(() => { res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error POSTing mantras', error);
+      res.sendStatus(500);
+    });
+  });
 
 /**
  * DELETE route template
