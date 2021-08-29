@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -48,9 +50,9 @@ const router = express.Router();
     const id = req.params.id
     const uId = req.user.id
     const qText = `
-    DELETE FROM "mantras"
-    WHERE "id" = $1 AND "user_id" = $2;
-    `;
+        DELETE FROM "mantras"
+        WHERE "id" = $1 AND "user_id" = $2;
+        `;
   
     pool.query( qText, [id, uId])
     .then(() => { res.sendStatus(201);
