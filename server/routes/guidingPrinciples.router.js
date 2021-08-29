@@ -5,9 +5,21 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-  // GET route code here
-});
+ router.get('/',rejectUnauthenticated, (req, res) => {
+    const uId = req.user.id;
+    const qText = `
+      SELECT * FROM "guiding_principles" 
+      WHERE "user_id" = $1;
+      `;
+  
+    pool.query( qText, [uId])
+    .then((response) => { res.send(response.rows);
+    })
+    .catch((error) => {
+      console.log("Error GETting guidingPrinciples", error);
+      res.sendStatus(500);
+    });
+  });
 
 /**
  * POST route template
