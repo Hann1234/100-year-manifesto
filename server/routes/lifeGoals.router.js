@@ -46,7 +46,7 @@ const {rejectUnauthenticated,
 /**
  * DELETE route template
  */
- router.delete('/:id', (req, res) => {
+ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id
     const uId = req.user.id
     const qText = `
@@ -66,7 +66,7 @@ const {rejectUnauthenticated,
 /**
  * PUT route template
  */
- router.put('/:id', (req, res) => {
+ router.put('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id
     const uId = req.user.id
     const manifestoText = req.body
