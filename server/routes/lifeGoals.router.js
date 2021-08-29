@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -12,9 +14,22 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+ router.post('/', rejectUnauthenticated, (req, res) => {
+    const uId = req.user.id;
+    const manifestoText = req.body
+    const qText = `
+      INSERT INTO "life_goals" ("user_id", "manifesto_text")
+      VALUES ( $1, $2 );
+      `;
+  
+    pool.query(qText, [uId, manifestoText])
+    .then(() => { res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error POSTing lifeGoals', error);
+      res.sendStatus(500);
+    });
+  });
 
 /**
  * DELETE route template
