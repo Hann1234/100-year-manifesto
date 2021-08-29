@@ -44,9 +44,22 @@ const router = express.Router();
 /**
  * DELETE route template
  */
- router.delete('/', (req, res) => {
-  // DELETE route code here
-});
+ router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    const id = req.params.id
+    const uId = req.user.id
+    const qText = `
+    DELETE FROM "mantras"
+    WHERE "id" = $1 AND "user_id" = $2;
+    `;
+  
+    pool.query( qText, [id, uId])
+    .then(() => { res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error DELETing mantras', error);
+      res.sendStatus(500);
+    });
+  });
 
 /**
  * PUT route template
