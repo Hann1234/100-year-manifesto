@@ -21,7 +21,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
-
+import MissionStatement from '../MissionStatement/MissionStatement';
 
 import './App.css';
 
@@ -69,6 +69,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/missionStatement"
+          >
+            <MissionStatement />
           </ProtectedRoute>
 
           <Route
