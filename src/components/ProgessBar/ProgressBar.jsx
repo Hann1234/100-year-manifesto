@@ -39,7 +39,7 @@ function getStepContent(step) {
   }
 }
 
-export default function HorizontalNonLinearStepper() {
+function ProgressBar() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
@@ -142,3 +142,5 @@ export default function HorizontalNonLinearStepper() {
     </div>
   );
 }
+
+export default ProgressBar;
