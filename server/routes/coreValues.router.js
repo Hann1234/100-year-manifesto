@@ -1,11 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route gets all coreValues for user
  */
-router.get('/', (req, res) => {
+router.get('/',rejectUnauthenticated, (req, res) => {
   const uId = req.user.id;
   const qText = `
     SELECT * FROM "core_values" 
@@ -24,7 +27,7 @@ router.get('/', (req, res) => {
 /**
  * POST route adds a coreValues
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const uId = req.user.id;
   const manifestoText = req.body
   const qText = `
@@ -44,7 +47,7 @@ router.post('/', (req, res) => {
 /**
  * DELETE route removes coreValues 
  */
- router.delete('/:id', (req, res) => {
+ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id
   const uId = req.user.id
   const qText = `
@@ -64,7 +67,7 @@ router.post('/', (req, res) => {
 /**
  * PUT route edits coreValues text
  */
- router.put('/:id', (req, res) => {
+ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id
   const uId = req.user.id
   const manifestoText = req.body
