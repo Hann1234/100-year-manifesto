@@ -24,9 +24,23 @@ const router = express.Router();
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+ router.post('/', rejectUnauthenticated, (req, res) => {
+    const uId = req.user.id;
+    const manifestoText = req.body.manifestoText;
+    const source = req.body.source;
+    const qText = `
+    INSERT INTO "guiding_principles" ("user_id", "source", "manifesto_text")
+    VALUES ( $1, $2, $3 );
+      `;
+  
+    pool.query(qText, [uId, source, manifestoText])
+    .then(() => { res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error POSTing guidingPrinciples', error);
+      res.sendStatus(500);
+    });
+  });
 
 /**
  * DELETE route template
