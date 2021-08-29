@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     `;
 
   pool.query( qText, [uId])
-  .then((response) => { res.send(response.rows)
+  .then((response) => { res.send(response.rows);
   })
   .catch((error) => {
     console.log("Error GETting coreValues", error);
@@ -29,11 +29,11 @@ router.post('/', (req, res) => {
   const manifestoText = req.body
   const qText = `
     INSERT INTO "core_values" ("user_id", "manifesto_text")
-    VALUES ( '$1', '$2' );
+    VALUES ( $1, $2 );
     `;
 
   pool.query(qText, [uId, manifestoText])
-  .then(() => { res.sendStatus(201)
+  .then(() => { res.sendStatus(201);
   })
   .catch((error) => {
     console.log('Error POSTing coreValues', error);
@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
   `;
 
   pool.query( qText, [id, uId])
-  .then(() => { res.sendStatus(201)
+  .then(() => { res.sendStatus(201);
   })
   .catch((error) => {
     console.log('Error DELETing coreValues', error);
@@ -74,7 +74,7 @@ router.post('/', (req, res) => {
     WHERE "id" = $2 AND "user_id" = $3; 
     `;
   pool.query(qText, [manifestoText, id, uId])
-  .then(() => { res.sendStatus(201)
+  .then(() => { res.sendStatus(201);
   })
   .catch((error) => {
     console.log('Error PUTing coreValues', error);

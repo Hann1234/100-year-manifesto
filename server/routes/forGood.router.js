@@ -13,7 +13,7 @@ const router = express.Router();
       `;
   
     pool.query( qText, [uId])
-    .then((response) => { res.send(response.rows)
+    .then((response) => { res.send(response.rows);
     })
     .catch((error) => {
       console.log("Error GETting forGood", error);
@@ -24,9 +24,22 @@ const router = express.Router();
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+ outer.post('/', (req, res) => {
+    const uId = req.user.id;
+    const manifestoText = req.body
+    const qText = `
+      INSERT INTO "for_good" ("user_id", "manifesto_text")
+      VALUES ( $1, $2 );
+      `;
+  
+    pool.query(qText, [uId, manifestoText])
+    .then(() => { res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error POSTing forGood', error);
+      res.sendStatus(500);
+    });
+  });
 
 /**
  * DELETE route template
