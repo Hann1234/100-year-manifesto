@@ -64,9 +64,23 @@ const router = express.Router();
 /**
  * PUT route template
  */
- router.put('/', (req, res) => {
-  // PUT route code here
-});
+ router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const uId = req.user.id
+    const manifestoText = req.body
+    const qText = `
+      UPDATE "for_good" 
+      SET "manifesto_text" = $1
+      WHERE "id" = $2 AND "user_id" = $3; 
+      `;
+    pool.query(qText, [manifestoText, id, uId])
+    .then(() => { res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error PUTing forGood', error);
+      res.sendStatus(500);
+    });  
+  });
 
 
 
