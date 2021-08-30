@@ -5,8 +5,20 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-  // GET route code here
+ router.get('/',rejectUnauthenticated, (req, res) => {
+  const uId = req.user.id;
+  const qText = `
+    SELECT * FROM "additional_questions" 
+    WHERE "user_id" = $1;
+    `;
+
+  pool.query( qText, [uId])
+  .then((response) => { res.send(response.rows);
+  })
+  .catch((error) => {
+    console.log("Error GETting additionalQuestions", error);
+    res.sendStatus(500);
+  });
 });
 
 /**
