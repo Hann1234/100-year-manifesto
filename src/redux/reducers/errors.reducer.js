@@ -32,10 +32,20 @@ const registrationMessage = (state = '', action) => {
   }
 };
 
+const missionMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_MISSION_ERROR':
+      return "Oops! Something went wrong adding the mission statement"
+    default:
+      return state;
+  }
+}; 
+
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
 // state.errors.loginMessage and state.errors.registrationMessage
 export default combineReducers({
   loginMessage,
   registrationMessage,
+  missionMessage,
 });
