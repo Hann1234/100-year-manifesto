@@ -65,8 +65,25 @@ const router = express.Router();
 /**
  * PUT route template
  */
- router.put('/', (req, res) => {
-  // PUT route code here
+ router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const id = req.params.id
+  const uId = req.user.id
+  const manifestoText = req.body.manifestoText;
+  const question = req.body.question;
+  const qText = `
+  UPDATE "additional_questions" 
+  SET "question" = $1, 
+  "manifesto_text" = $2
+  WHERE "id" = $3 AND "user_id" = $4; 
+    `;
+
+  pool.query(qText, [question, manifestoText, id, uId])
+  .then(() => { res.sendStatus(201);
+  })
+  .catch((error) => {
+    console.log('Error PUTing additional_questions', error);
+    res.sendStatus(500);
+  });  
 });
 
 
