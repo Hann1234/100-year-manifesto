@@ -64,3 +64,5 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+//Refer to login.saga.js to see where data is being sent to.
