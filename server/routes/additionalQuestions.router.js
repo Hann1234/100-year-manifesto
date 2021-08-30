@@ -45,8 +45,21 @@ const router = express.Router();
 /**
  * DELETE route template
  */
- router.delete('/', (req, res) => {
-  // DELETE route code here
+ router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const id = req.params.id
+  const uId = req.user.id
+  const qText = `
+  DELETE FROM "additional_questions"
+  WHERE "id" = $1 AND "user_id" = $2;
+  `;
+
+  pool.query( qText, [id, uId])
+  .then(() => { res.sendStatus(201);
+  })
+  .catch((error) => {
+    console.log('Error DELETing additionalQuestions', error);
+    res.sendStatus(500);
+  });
 });
 
 /**
