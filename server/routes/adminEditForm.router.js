@@ -10,7 +10,7 @@ const router = express.Router();
   console.log("in GET admin_edit_form table");
   
   // NOT YET 100% SURE IF THE BEST MOVE IS TO (1) POPULATE REDUCER WITH DATA FOR ALL FORM PAGES
-  // OR (2) GRAB TEXT FOR EACH PAGE ON PAGE LOAD - I LEAN TOWARDS THE (2)
+  // OR (2) GRAB TEXT FOR EACH PAGE ON PAGE LOAD - I LEAN TOWARDS (2)
 
   // GET DATA FOR ALL FORM PAGES
   // const getQueryText = `
