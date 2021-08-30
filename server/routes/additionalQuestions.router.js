@@ -24,8 +24,22 @@ const router = express.Router();
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
+ outer.post('/', rejectUnauthenticated, (req, res) => {
+  const uId = req.user.id;
+  const manifestoText = req.body.manifestoText;
+  const question = req.body.question;
+  const qText = `
+  INSERT INTO "additional_questions" ("user_id", "question", "manifesto_text")
+  VALUES ( $1, $2, $3 );
+    `;
+
+  pool.query(qText, [uId, question, manifestoText])
+  .then(() => { res.sendStatus(201);
+  })
+  .catch((error) => {
+    console.log('Error POSTing additionalQuestions', error);
+    res.sendStatus(500);
+  });
 });
 
 /**
