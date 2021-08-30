@@ -5,7 +5,7 @@ const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+ * GET route for mission_statement
  */
  router.get('/',rejectUnauthenticated, (req, res) => {
   const uId = req.user.id;
@@ -24,7 +24,7 @@ const {rejectUnauthenticated,
 });
 
 /**
- * POST route template
+ * POST route for mission_statement
  */
  router.post('/', rejectUnauthenticated, (req, res) => {
   const uId = req.user.id;
@@ -44,7 +44,7 @@ const {rejectUnauthenticated,
 });
 
 /**
- * DELETE route template
+ * DELETE route for mission_statement
  */
  router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id
@@ -64,7 +64,7 @@ const {rejectUnauthenticated,
 });
 
 /**
- * PUT route template
+ * PUT route for mission_statement
  */
  router.put('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id

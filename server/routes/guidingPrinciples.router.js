@@ -5,7 +5,7 @@ const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+ * GET route for guiding_principles
  */
  router.get('/',rejectUnauthenticated, (req, res) => {
     const uId = req.user.id;
@@ -24,7 +24,7 @@ const {rejectUnauthenticated,
   });
 
 /**
- * POST route template
+ * POST route for guiding_principles
  */
  router.post('/', rejectUnauthenticated, (req, res) => {
     const uId = req.user.id;
@@ -45,7 +45,7 @@ const {rejectUnauthenticated,
   });
 
 /**
- * DELETE route template
+ * DELETE route for guiding_principles
  */
  router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id
@@ -65,7 +65,7 @@ const {rejectUnauthenticated,
   });
 
 /**
- * PUT route template
+ * PUT route for guiding_principles
  */
  router.put('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id

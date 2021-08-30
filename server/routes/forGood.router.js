@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route for for_good
  */
  router.get('/', (req, res) => {
     const uId = req.user.id;
@@ -22,7 +22,7 @@ const router = express.Router();
   });
 
 /**
- * POST route template
+ * POST route for for_good
  */
  outer.post('/', (req, res) => {
     const uId = req.user.id;
@@ -42,7 +42,7 @@ const router = express.Router();
   });
 
 /**
- * DELETE route template
+ * DELETE route for for_good
  */
  router.delete('/:id', (req, res) => {
     const id = req.params.id
@@ -62,7 +62,7 @@ const router = express.Router();
   });
 
 /**
- * PUT route template
+ * PUT route for for_good
  */
  router.put('/:id', (req, res) => {
     const id = req.params.id
