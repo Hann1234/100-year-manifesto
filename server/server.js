@@ -9,15 +9,15 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const missionStatementRouter = require('.routes/missionStatement.router');
-const mantrasRouter = require('.routes/mantras.router');
-const coreValuesRouter = require('.routes/coreValues.router');
-const forGoodRouter = require('.routes/forGood.router');
-const lifeGoalsRouter = require('.routes/lifeGoals.router');
-const guidingPrinciplesRouter = require('.routes/guidingPrinciples.router');
-const additionalQuestionsRouter = require('.routes/additionalQuestions.router');
-const trackVideoRouter = require('.routes/trackVideo.router');
-const adminEditFormRouter = require('.routes/adminEditForm.router');
+const missionStatementRouter = require('./routes/missionStatement.router');
+const mantrasRouter = require('./routes/mantras.router');
+const coreValuesRouter = require('./routes/coreValues.router');
+const forGoodRouter = require('./routes/forGood.router');
+const lifeGoalsRouter = require('./routes/lifeGoals.router');
+const guidingPrinciplesRouter = require('./routes/guidingPrinciples.router');
+const additionalQuestionsRouter = require('./routes/additionalQuestions.router');
+const trackVideoRouter = require('./routes/trackVideo.router');
+const adminEditFormRouter = require('./routes/adminEditForm.router');
 
 
 // Body parser middleware
