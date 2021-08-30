@@ -7,7 +7,7 @@ function HomePage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h1>Welcome, {user.username}! Start your journey here!</h1>
+      <h1>Welcome, {user.email}! Start your journey here!</h1>
       <h3>Intro: Your 100 Year Manifesto</h3>
       <h3>Mission Statement</h3>
       <h3>Words to Live By</h3>
