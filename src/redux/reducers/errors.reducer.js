@@ -36,6 +36,12 @@ const missionMessage = (state = '', action) => {
   switch (action.type) {
     case 'ADD_MISSION_ERROR':
       return "Oops! Something went wrong adding the mission statement"
+    case 'FETCH_MISSION_ERROR':
+      return "Oops! Something went wrong getting the mission statement"
+    case 'UPDATE_MISSION_ERROR':
+      return "Oops! Something went wrong updating the mission statement"
+    case 'DELETE_MISSION_ERROR':
+      return "Oops! Something went wrong delete the mission statement"
     default:
       return state;
   }

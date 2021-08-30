@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-// for saving new car
+// Stores mission text
 const mission = (state = {}, action) => {
   switch (action.type) {
     case 'CLEAR_MISSION':
