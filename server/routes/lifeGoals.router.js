@@ -28,7 +28,7 @@ const {rejectUnauthenticated,
  */
  router.post('/', rejectUnauthenticated, (req, res) => {
     const uId = req.user.id;
-    const manifestoText = req.body
+    const manifestoText = req.body.manifestoText
     const qText = `
       INSERT INTO "life_goals" ("user_id", "manifesto_text")
       VALUES ( $1, $2 );
@@ -69,7 +69,7 @@ const {rejectUnauthenticated,
  router.put('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id
     const uId = req.user.id
-    const manifestoText = req.body
+    const manifestoText = req.body.manifestoText
     const qText = `
       UPDATE "life_goals" 
       SET "manifesto_text" = $1
