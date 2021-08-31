@@ -26,7 +26,7 @@ const router = express.Router();
  */
  router.post('/', (req, res) => {
     const uId = req.user.id;
-    const manifestoText = req.body
+    const manifestoText = req.body.manifestoText
     const qText = `
       INSERT INTO "for_good" ("user_id", "manifesto_text")
       VALUES ( $1, $2 );
@@ -67,7 +67,7 @@ const router = express.Router();
  router.put('/:id', (req, res) => {
     const id = req.params.id
     const uId = req.user.id
-    const manifestoText = req.body
+    const manifestoText = req.body.manifestoText
     const qText = `
       UPDATE "for_good" 
       SET "manifesto_text" = $1
