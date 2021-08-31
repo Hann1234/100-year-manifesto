@@ -121,16 +121,23 @@ const editName = (event) => {
                             onChange={(event) => setName(event.target.value)}
                             placeholder="Please enter preferred name"
                         />
+                        <button className="nameButton" type="submit">SAVE</button>
                     </form>
                   </Paper>
                 </Grid>
               </Grid>
               <Grid item xs={12}>
                 <Paper className={classes.paper4}>
-                  <h2>
-                    More Text put your inputs here tada this is could be our
-                    general layout
-                  </h2>
+                <center>
+                  <h4>Questions? Send us an email at team@100yearmanifesto.com</h4>
+                  <br></br>
+                  <h4>When you complete the course, you’ll receive your own frame worthy 100 Year Manifesto.</h4>
+                  <br></br>
+                  <h4>You can also post it on Facebook, Twitter, Instagram, & LinkedIn.  Use the hashtag #my100yearmanifesto</h4>
+                  <br></br>
+                  <h4>It’s time to start living your 100 Year Manifesto!</h4>
+                  <button className="nextButton" onClick={() => history.push('/missionStatement')}>NEXT</button>
+                </center>
                 </Paper>
               </Grid>
             </Paper>
