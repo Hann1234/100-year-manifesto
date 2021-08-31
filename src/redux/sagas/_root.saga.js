@@ -7,6 +7,7 @@ import mantrasSaga from './mantrasSaga';
 import coreValuesSaga from './coreValuesSaga';
 import lifeGoalsSaga from './lifeGoalsSaga';
 import forGoodSaga from './forGoodSaga';
+import guidingPrinciplesSaga from './guidingPrinciplesSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     coreValuesSaga(),
     lifeGoalsSaga(),
     forGoodSaga(),
+    guidingPrinciplesSaga(),
   ]);
 }

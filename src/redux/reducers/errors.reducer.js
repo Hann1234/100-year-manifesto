@@ -107,6 +107,21 @@ const forGoodMessage = (state = '', action) => {
   }
 }; 
 
+const guidingPrinciplesMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_GUIDING_PRINCIPLE_ERROR':
+      return "Oops! Something went wrong adding the guiding principle"
+    case 'FETCH_GUIDING_PRINCIPLES_ERROR':
+      return "Oops! Something went wrong getting the guiding principles"
+    case 'UPDATE_GUIDING_PRINCIPLE_ERROR':
+      return "Oops! Something went wrong updating the guiding principle"
+    case 'DELETE_GUIDING_PRINCIPLE_ERROR':
+      return "Oops! Something went wrong deleting the guiding principle"
+    default:
+      return state;
+  }
+}; 
+
 
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
@@ -119,4 +134,5 @@ export default combineReducers({
   coreValuesMessage,
   lifeGoalsMessage,
   forGoodMessage,
+  guidingPrinciplesMessage,
 });
