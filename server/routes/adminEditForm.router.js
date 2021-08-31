@@ -20,9 +20,10 @@ const router = express.Router();
             "page_id",
             "page_name",
             "html_id",
-            "form_text",
+            "html_type",
+            "html_content",
             "edit_date",
-            ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id"
+            ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id", "html_type"
                                   ORDER BY "edit_date" DESC) AS "rank"
         FROM "admin_edit_form")
     SELECT *
@@ -61,9 +62,10 @@ const router = express.Router();
               "page_id",
               "page_name",
               "html_id",
-              "form_text",
+              "html_type",
+              "html_content",
               "edit_date",
-              ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id"
+              ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id", "html_type"
                                     ORDER BY "edit_date" DESC) AS "rank"
           FROM "admin_edit_form"
           WHERE "edit_date" >  $1)
@@ -96,12 +98,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   if (req.user.role === "admin") {
 
     const postQueryText = `
-      INSERT INTO "admin_edit_form" ("user_id", "page_id", "page_name", "html_id", "form_text")
-      VALUES ($1, $2, $3, $4, $5);
+      INSERT INTO "admin_edit_form" ("user_id", "page_id", "page_name", "html_id", "html_type", "html_content")
+      VALUES ($1, $2, $3, $4, $5, $6);
     `;
 
     pool
-      .query(postQueryText, [req.user.id, req.body.page_id, req.body.page_name, req.body.html_id, req.body.form_text])
+      .query(postQueryText, [req.user.id, req.body.page_id, req.body.page_name, req.body.html_id, req.body.html_type, req.body.html_content])
       .then((response) => {
         res.send(response.rows);
       })
