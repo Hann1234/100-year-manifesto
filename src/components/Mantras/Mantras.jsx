@@ -69,7 +69,7 @@ function Mantras(props) {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <Paper className={classes.paper}>
+            
               
               <Grid container spacing={1}>
                 <Grid item xs={6}>
@@ -101,14 +101,20 @@ src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/f
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-                <Paper className={classes.paper4}>
-                  <h2>
-                    More Text put your inputs here tada this is could be our
-                    general layout
-                  </h2>
-                </Paper>
+                <section>
+                    <h3>Here are some of our favorites: Own your ugly
+                         Zip-a-dee-do-dah Make it a Masterpiece Live. Laugh. Love. Simplify. Simplify. Love unconditionally Embrace the uncertainty</h3>
+                  <p>
+
+                  </p>
+                  </section>
               </Grid>
-            </Paper>
+              <Grid item xs={12}>
+                <section>
+                    <h3>What are meaningful words that provide a framework for your decisions & your life? </h3>
+                  <h3>List 5-10 words & phrases you live by:</h3>
+                  </section>
+              </Grid>
           </Grid>
         </Grid>
       </div>

@@ -1,6 +1,14 @@
 .rightOfVideo {
     padding-left: 2%;
+    padding-right: 2%;
     background-color: #475473;
     color: #fff;
     font-size: 18px;
+    text-align: center;
+}
+h3 {
+    color: #fff;
+}
+section {
+    background-color: #475473; 
 }
