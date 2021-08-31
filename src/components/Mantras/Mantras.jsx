@@ -31,8 +31,8 @@ function Mantras(props) {
   useEffect(() => {
       dispatch({ type: 'FETCH_MANTRAS'})
   })
-  
-  const store = useSelector((store) => store);
+  const mantras = [1,2,3,4,5,6,7,8,9,10];
+//   const mantras = useSelector((store) => store.mantrasReducer);
   const [manifestoText, setManifestoText] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -106,7 +106,7 @@ function Mantras(props) {
                 <h3>List 5-10 words & phrases you live by:</h3>
               </section>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} container spacing={1}>
               <section>
               <TextField
           required
@@ -126,6 +126,9 @@ function Mantras(props) {
         ADD
       </Button>
               </section>
+                {mantras.map((mantra, index) => {
+                    return(<Grid id={index} item xs={4}>{mantra}</Grid>)
+                })}
             </Grid>
           </Grid>
         </Grid>
