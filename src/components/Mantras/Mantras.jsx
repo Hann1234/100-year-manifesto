@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   paper2: {
-    height: "24vh",
+    height: "28vh",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   paper3: {
-    height: "24vh",
+    height: "28vh",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   paper4: {
-    height: "62vh",
+    height: "60vh",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -58,6 +58,7 @@ function Mantras(props) {
   return (
     <section>
       <div>
+          {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid xs={4}>
             <Paper className={classes.paper}>
