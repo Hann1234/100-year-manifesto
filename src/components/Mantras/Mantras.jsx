@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-
 import Grid from "@material-ui/core/Grid";
+import './Mantras.css'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
+    color: "#132411",
   },
   paper2: {
     height: "32vh",
@@ -80,15 +80,18 @@ src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/f
                   
                 </Grid>
                 <Grid item xs={6}>
-                  <Paper className={classes.paper3}>
-                    Having a framework for decisions is critical to living a
-                    life on purpose. Guiding principles set forth through “Words
-                    to Live By.” When life brings uncertainty through events,
-                    circumstances, & difficult moments having a compass to guide
-                    your decisions is necessary. These are one, two, or three
-                    word sentences or phrases.
-                    <h2>text stuff here</h2>
-                  </Paper>
+                 
+                    <section class='rightOfVideo'>
+                        <p>
+                            Having a framework for decisions is critical to living a
+                            life on purpose. Guiding principles set forth through “Words
+                            to Live By.” When life brings uncertainty through events,
+                            circumstances, & difficult moments having a compass to guide
+                            your decisions is necessary. These are one, two, or three
+                            word sentences or phrases. Simple concepts that really resonate to your core.
+                        </p>
+                    </section>
+                   
                 </Grid>
               </Grid>
               <Grid item xs={12}>
