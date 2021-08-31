@@ -92,6 +92,21 @@ const lifeGoalsMessage = (state = '', action) => {
   }
 }; 
 
+const forGoodMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong adding the for good"
+    case 'FETCH_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong getting the for good"
+    case 'UPDATE_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong updating the for good"
+    case 'DELETE_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong deleting the for good"
+    default:
+      return state;
+  }
+}; 
+
 
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
@@ -103,4 +118,5 @@ export default combineReducers({
   mantrasMessage,
   coreValuesMessage,
   lifeGoalsMessage,
+  forGoodMessage,
 });
