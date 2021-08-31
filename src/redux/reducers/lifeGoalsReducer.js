@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-// Stores all mantras
-const mantras = (state = [], action) => {
+// Stores all life goals
+const lifeGoals = (state = [], action) => {
   switch (action.type) {
-    case 'CLEAR_MANTRAS':
+    case 'CLEAR_LIFE_GOALS':
       return [];
-    case 'SET_MANTRAS':
+    case 'SET_LIFE_GOALS':
         return action.payload
     default:
       return state;
@@ -13,5 +13,5 @@ const mantras = (state = [], action) => {
 };
 
 export default combineReducers({
-  mantras
+  lifeGoals
 });

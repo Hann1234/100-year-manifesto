@@ -4,6 +4,7 @@ import user from './user.reducer';
 import missionReducer from './missionReducer';
 import mantrasReducer from './mantrasReducer';
 import coreValuesReducer from './coreValuesReducer';
+import lifeGoalsReducer from './lifeGoalsReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   missionReducer,
   mantrasReducer,
   coreValuesReducer,
+  lifeGoalsReducer,
 });
 
 export default rootReducer;

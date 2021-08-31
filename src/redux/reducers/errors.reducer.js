@@ -77,6 +77,21 @@ const coreValuesMessage = (state = '', action) => {
   }
 }; 
 
+const lifeGoalsMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_LIFE_GOAL_ERROR':
+      return "Oops! Something went wrong adding the life goal"
+    case 'FETCH_LIFE_GOALS_ERROR':
+      return "Oops! Something went wrong getting the life goals"
+    case 'UPDATE_LIFE_GOAL_ERROR':
+      return "Oops! Something went wrong updating the life goal"
+    case 'DELETE_LIFE_GOAL_ERROR':
+      return "Oops! Something went wrong deleting the life goal"
+    default:
+      return state;
+  }
+}; 
+
 
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
@@ -87,4 +102,5 @@ export default combineReducers({
   missionMessage,
   mantrasMessage,
   coreValuesMessage,
+  lifeGoalsMessage,
 });

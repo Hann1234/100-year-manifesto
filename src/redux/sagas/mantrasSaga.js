@@ -5,7 +5,6 @@ import axios from 'axios';
 function* addMantra(action) {
   try {
     yield axios.post('/api/mantras', action.payload); 
-    yield put({type: 'CLEAR_MANTRAS'}); //Clears reducer
     yield put({ type: 'FETCH_MANTRAS'}); //Loads the mantras into reducer
   } catch (error) {
     console.log('Error adding mantra:', error);
@@ -16,8 +15,8 @@ function* addMantra(action) {
 //Get mantras statement
 function* fetchMantras() {
   try {
-    const mission = yield axios.get('/api/mantras');
-    yield put({type: 'SET_MANTRAS', payload: mission.data}) //Loads mantras into reducer
+    const lifeGoals = yield axios.get('/api/mantras');
+    yield put({type: 'SET_MANTRAS', payload: lifeGoals.data}) //Loads mantras into reducer
   } catch (error) {
     console.log('Error getting mantras:', error);
     yield put({ type: 'FETCH_MANTRAS_ERROR' });
