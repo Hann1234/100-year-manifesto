@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
@@ -29,8 +29,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Mantras(props) {
   const store = useSelector((store) => store);
-  const [mantra, setMantra] = useState("");
+  const [manifestoText, setManifestoText] = useState("");
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const addMantra = () => {
+    dispatch({type: 'ADD_MANTRA', payload: manifestoText})
+  }
 
   return (
     <section>
@@ -103,13 +108,13 @@ function Mantras(props) {
           label="Add Mantra"
           variant="outlined"
           color='#fff'
-          onchange={(evt) => setMantra(evt.target.value)}
+          onchange={(evt) => setManifestoText(evt.target.value)}
         />
         <Button
         type="submit"
         style={{ height: "56px", backgroundColor: "#bec9bc", color: "#132411" }}
         variant="contained"
-        color="primary"
+        color="#1c4bd9"
         onClick={() => addMantra()}
       >
         ADD
