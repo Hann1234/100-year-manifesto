@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -6,28 +7,32 @@ const router = express.Router();
 /**
  * GET route for admin_edit_form table
  */
- router.get('/:page_name', (req, res) => {
+ router.get('/:page_id', (req, res) => {
   console.log("in GET admin_edit_form table");
   
-  // NOT YET 100% SURE IF THE BEST MOVE IS TO (1) POPULATE REDUCER WITH DATA FOR ALL FORM PAGES
-  // OR (2) GRAB TEXT FOR EACH PAGE ON PAGE LOAD - I LEAN TOWARDS (2)
-
-  // GET DATA FOR ALL FORM PAGES
-  // const getQueryText = `
-  //   SELECT "page_name", ARRAY_AGG('[' || "id" || ',' || "html_id" || ',' || "form_text" || ']') AS "page_data"
-  //   FROM "admin_edit_form"
-  //   GROUP BY "page_name";
-  // `;
-  
-  // GET DATA FOR CURRENT PAGE
+  // group by page_id and html_id
+  // get the most recent row from each group
+  // then grab only the values for the current page_id
   const getQueryText = `
-    SELECT "user_id", "page_name", "html_id", "form_text"
-    FROM "admin_edit_form"
-    WHERE "page_name" = $1;
+    WITH "page_data" AS (
+      SELECT "id", 
+            "user_id", 
+            "page_id",
+            "page_name",
+            "html_id",
+            "html_type",
+            "html_content",
+            "edit_date",
+            ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id", "html_type"
+                                  ORDER BY "edit_date" DESC) AS "rank"
+        FROM "admin_edit_form")
+    SELECT *
+      FROM "page_data"
+    WHERE "rank" = 1 AND "page_id" = $1;
   `;
 
   pool
-    .query(getQueryText, [req.params.page_name])
+    .query(getQueryText, [req.params.page_id])
     .then((response) => {
       res.send(response.rows);
     })
@@ -35,6 +40,53 @@ const router = express.Router();
       console.log('GET admin_edit_form table failed: ', err);
       res.sendStatus(500);
     });
+});
+
+/**
+ * GET route for admin_edit_form table
+ * returns what the page content looked like as a specific date and time
+ */
+ router.get('/page_on_date/:page_id', rejectUnauthenticated, (req, res) => {
+  console.log("in GET admin_edit_form table");
+  
+  if (req.user.role === "admin") {
+
+    // filter out results that are more recent than req.body.edit_date
+    // group by page_id and html_id
+    // get the most recent row from each group
+    // then grab only the values for the current page_id
+    const getQueryText = `
+      WITH "page_data" AS (
+        SELECT "id", 
+              "user_id", 
+              "page_id",
+              "page_name",
+              "html_id",
+              "html_type",
+              "html_content",
+              "edit_date",
+              ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id", "html_type"
+                                    ORDER BY "edit_date" DESC) AS "rank"
+          FROM "admin_edit_form"
+          WHERE "edit_date" >  $1)
+      SELECT *
+        FROM "page_data"
+      WHERE "rank" = 1 AND "page_id" = $2;
+    `;
+
+    pool
+      .query(getQueryText, [req.params.edit_date, req.params.page_id])
+      .then((response) => {
+        res.send(response.rows);
+      })
+      .catch((err) => {
+        console.log('GET admin_edit_form table failed: ', err);
+        res.sendStatus(500);
+      });
+  } else {
+    console.log('POST admin_edit_form permission denied: ', err);
+    res.sendStatus(403);
+  }
 });
 
 /**
@@ -46,12 +98,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   if (req.user.role === "admin") {
 
     const postQueryText = `
-      INSERT INTO "admin_edit_form" ("user_id", "page_name", "html_id", "form_text")
-      VALUES ($1, $2, $3, $4);
+      INSERT INTO "admin_edit_form" ("user_id", "page_id", "page_name", "html_id", "html_type", "html_content")
+      VALUES ($1, $2, $3, $4, $5, $6);
     `;
 
     pool
-      .query(postQueryText, [req.user.id, req.body.page_name, req.body.html_id, req.body.form_text])
+      .query(postQueryText, [req.user.id, req.body.page_id, req.body.page_name, req.body.html_id, req.body.html_type, req.body.html_content])
       .then((response) => {
         res.send(response.rows);
       })
@@ -92,35 +144,5 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(403);
   }
 });
-
-/**
- * PUT route for admin_edit_form table
- */
- router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log("in PUT admin_edit_form table");
-
-  if (req.user.role === "admin") {
-
-    const putQueryText = `
-      UPDATE "admin_edit_form"
-      SET "user_id" = $1, "page_name" = $2, "html_id" = $3, "form_text" = $4
-      WHERE "id" = $5;
-    `;
-
-    pool
-      .query(putQueryText, [req.user.id, req.body.page_name, req.body.html_id, req.body.form_text, req.params.id])
-      .then((response) => {
-        res.send(response.rows);
-      })
-      .catch((err) => {
-        console.log('PUT admin_edit_form table failed: ', err);
-        res.sendStatus(500);
-      });  
-  } else {
-    console.log('PUT admin_edit_form permission denied: ', err);
-    res.sendStatus(403);
-  }
-});
-
 
 module.exports = router;

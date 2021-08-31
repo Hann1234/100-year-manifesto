@@ -18,6 +18,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Mantras from '../Mantras/Mantras'
 
 
 //Project specific routes
@@ -86,6 +87,14 @@ function App() {
             path="/missionStatement"
           >
             <MissionStatement />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/mantras"
+          >
+            <Mantras />
           </ProtectedRoute>
 
           <Route

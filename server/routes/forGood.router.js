@@ -24,7 +24,7 @@ const router = express.Router();
 /**
  * POST route for for_good
  */
- outer.post('/', (req, res) => {
+ router.post('/', (req, res) => {
     const uId = req.user.id;
     const manifestoText = req.body
     const qText = `

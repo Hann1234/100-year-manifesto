@@ -26,7 +26,7 @@ const {rejectUnauthenticated,
 /**
  * POST route for additional_questions
  */
- outer.post('/', rejectUnauthenticated, (req, res) => {
+ router.post('/', rejectUnauthenticated, (req, res) => {
   const uId = req.user.id;
   const manifestoText = req.body.manifestoText;
   const question = req.body.question;
