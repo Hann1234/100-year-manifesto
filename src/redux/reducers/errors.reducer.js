@@ -41,7 +41,22 @@ const missionMessage = (state = '', action) => {
     case 'UPDATE_MISSION_ERROR':
       return "Oops! Something went wrong updating the mission statement"
     case 'DELETE_MISSION_ERROR':
-      return "Oops! Something went wrong delete the mission statement"
+      return "Oops! Something went wrong deleting the mission statement"
+    default:
+      return state;
+  }
+}; 
+
+const mantrasMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_MANTRA_ERROR':
+      return "Oops! Something went wrong adding the mantra"
+    case 'FETCH_MANTRAS_ERROR':
+      return "Oops! Something went wrong getting the mantra"
+    case 'UPDATE_MANTRA_ERROR':
+      return "Oops! Something went wrong updating the mantra"
+    case 'DELETE_MANTRA_ERROR':
+      return "Oops! Something went wrong deleting the mantra"
     default:
       return state;
   }
@@ -54,4 +69,5 @@ export default combineReducers({
   loginMessage,
   registrationMessage,
   missionMessage,
+  mantrasMessage,
 });
