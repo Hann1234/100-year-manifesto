@@ -59,11 +59,13 @@ function Mantras(props) {
           <Grid item xs={8}>
             <Grid container spacing={1}>
               <Grid item xs={6}>
+              <div class="videoWrapper">
                 <iframe
                   width="512"
                   height="288"
                   src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/fD1gQrdtQNaNhyn5lHE8_100_-_DIY_-_Words_to_Live_By_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143745Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c2281cd22f2b0ecc903ec64e00a4287b979f846ef4a69449bba6a1cfb5f6698b"
                 ></iframe>
+                </div>
               </Grid>
               <Grid item xs={6}>
                 <section class="rightOfVideo">
