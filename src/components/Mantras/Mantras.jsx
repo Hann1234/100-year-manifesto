@@ -115,6 +115,17 @@ src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/f
                   <h3>List 5-10 words & phrases you live by:</h3>
                   </section>
               </Grid>
+              <Grid item xs={12}>
+                <section>
+                <TextField
+          required
+          id="filled-required"
+          label="Required"
+          defaultValue="Hello World"
+          variant="filled"
+        />
+                  </section>
+              </Grid>
           </Grid>
         </Grid>
       </div>
