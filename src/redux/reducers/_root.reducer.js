@@ -7,6 +7,7 @@ import coreValuesReducer from './coreValuesReducer';
 import lifeGoalsReducer from './lifeGoalsReducer';
 import forGoodReducer from './forGoodReducer';
 import guidingPrinciplesReducer from  './guidingPrinciplesReducer';
+import additionalQuestionsReducer from './additionalQuestionsReducer';
 import adminEditFormReducer from './adminEditForm.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   lifeGoalsReducer,
   forGoodReducer,
   guidingPrinciplesReducer,
+  additionalQuestionsReducer,
   adminEditFormReducer,
 });
 

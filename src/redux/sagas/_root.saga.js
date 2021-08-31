@@ -8,6 +8,7 @@ import coreValuesSaga from './coreValuesSaga';
 import lifeGoalsSaga from './lifeGoalsSaga';
 import forGoodSaga from './forGoodSaga';
 import guidingPrinciplesSaga from './guidingPrinciplesSaga';
+import additionalQuestionsSaga from './additionalQuestionsSaga';
 import adminEditFormSaga from './adminEditForm.saga';
 
 // rootSaga is the primary saga.
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     lifeGoalsSaga(),
     forGoodSaga(),
     guidingPrinciplesSaga(),
+    additionalQuestionsSaga(),
     adminEditFormSaga(),
   ]);
 }

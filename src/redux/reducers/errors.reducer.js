@@ -137,6 +137,21 @@ const adminEditFormMessage = (state = '', action) => {
   }
 }; 
 
+const additionalQuestionsMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_ADDITIONAL_QUESTION_ERROR':
+      return "Oops! Something went wrong adding the additional question"
+    case 'FETCH_ADDITIONAL_QUESTIONS_ERROR':
+      return "Oops! Something went wrong getting the additional questions"
+    case 'UPDATE_ADDITIONAL_QUESTION_ERROR':
+      return "Oops! Something went wrong updating the additional question"
+    case 'DELETE_ADDITIONAL_QUESTION_ERROR':
+      return "Oops! Something went wrong deleting the additional question"
+    default:
+      return state;
+  }
+}; 
+
 
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
@@ -150,5 +165,6 @@ export default combineReducers({
   lifeGoalsMessage,
   forGoodMessage,
   guidingPrinciplesMessage,
+  additionalQuestionsMessage,
   adminEditFormMessage,
 });
