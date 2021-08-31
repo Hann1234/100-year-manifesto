@@ -32,10 +32,107 @@ const registrationMessage = (state = '', action) => {
   }
 };
 
+const missionMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_MISSION_ERROR':
+      return "Oops! Something went wrong adding the mission statement"
+    case 'FETCH_MISSION_ERROR':
+      return "Oops! Something went wrong getting the mission statement"
+    case 'UPDATE_MISSION_ERROR':
+      return "Oops! Something went wrong updating the mission statement"
+    case 'DELETE_MISSION_ERROR':
+      return "Oops! Something went wrong deleting the mission statement"
+    default:
+      return state;
+  }
+}; 
+
+const mantrasMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_MANTRA_ERROR':
+      return "Oops! Something went wrong adding the mantra"
+    case 'FETCH_MANTRAS_ERROR':
+      return "Oops! Something went wrong getting the mantras"
+    case 'UPDATE_MANTRA_ERROR':
+      return "Oops! Something went wrong updating the mantra"
+    case 'DELETE_MANTRA_ERROR':
+      return "Oops! Something went wrong deleting the mantra"
+    default:
+      return state;
+  }
+}; 
+
+const coreValuesMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_CORE_VALUE_ERROR':
+      return "Oops! Something went wrong adding the core value"
+    case 'FETCH_CORE_VALUES_ERROR':
+      return "Oops! Something went wrong getting the core values"
+    case 'UPDATE_CORE_VALUE_ERROR':
+      return "Oops! Something went wrong updating the core value"
+    case 'DELETE_CORE_VALUE_ERROR':
+      return "Oops! Something went wrong deleting the core value"
+    default:
+      return state;
+  }
+}; 
+
+const lifeGoalsMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_LIFE_GOAL_ERROR':
+      return "Oops! Something went wrong adding the life goal"
+    case 'FETCH_LIFE_GOALS_ERROR':
+      return "Oops! Something went wrong getting the life goals"
+    case 'UPDATE_LIFE_GOAL_ERROR':
+      return "Oops! Something went wrong updating the life goal"
+    case 'DELETE_LIFE_GOAL_ERROR':
+      return "Oops! Something went wrong deleting the life goal"
+    default:
+      return state;
+  }
+}; 
+
+const forGoodMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong adding the for good"
+    case 'FETCH_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong getting the for good"
+    case 'UPDATE_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong updating the for good"
+    case 'DELETE_FOR_GOOD_ERROR':
+      return "Oops! Something went wrong deleting the for good"
+    default:
+      return state;
+  }
+}; 
+
+const guidingPrinciplesMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_GUIDING_PRINCIPLE_ERROR':
+      return "Oops! Something went wrong adding the guiding principle"
+    case 'FETCH_GUIDING_PRINCIPLES_ERROR':
+      return "Oops! Something went wrong getting the guiding principles"
+    case 'UPDATE_GUIDING_PRINCIPLE_ERROR':
+      return "Oops! Something went wrong updating the guiding principle"
+    case 'DELETE_GUIDING_PRINCIPLE_ERROR':
+      return "Oops! Something went wrong deleting the guiding principle"
+    default:
+      return state;
+  }
+}; 
+
+
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
 // state.errors.loginMessage and state.errors.registrationMessage
 export default combineReducers({
   loginMessage,
   registrationMessage,
+  missionMessage,
+  mantrasMessage,
+  coreValuesMessage,
+  lifeGoalsMessage,
+  forGoodMessage,
+  guidingPrinciplesMessage,
 });
