@@ -20,9 +20,11 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Mantras from '../Mantras/Mantras'
 
+
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
 import MissionStatement from '../MissionStatement/MissionStatement';
+import IntroPage from '../IntroPage/IntroPage';
 
 import './App.css';
 
@@ -62,6 +64,13 @@ function App() {
             path="/homepage"
           >
             <HomePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/intro"
+          >
+            <IntroPage />
           </ProtectedRoute>
 
           <ProtectedRoute
