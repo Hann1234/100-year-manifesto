@@ -94,9 +94,12 @@ CREATE TABLE "track_video" (
 CREATE TABLE "admin_edit_form" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
+    "page_id" integer NOT NULL,
 	"page_name" varchar(255) NOT NULL,
 	"html_id" varchar(255) NOT NULL,
-	"form_text" TEXT,
+	"html_type" varchar(63) NOT NULL DEFAULT 'text',
+	"html_content" TEXT,
+    "edit_date" TIMESTAMP NOT NULL DEFAULT NOW(),
 	CONSTRAINT "admin_edit_form_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

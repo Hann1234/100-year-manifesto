@@ -7,7 +7,7 @@ const {rejectUnauthenticated,
 /**
  * GET route gets all coreValues for user
  */
-router.get('/',rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   const uId = req.user.id;
   const qText = `
     SELECT * FROM "core_values" 
@@ -28,7 +28,7 @@ router.get('/',rejectUnauthenticated, (req, res) => {
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
   const uId = req.user.id;
-  const manifestoText = req.body
+  const manifestoText = req.body.manifestoText
   const qText = `
     INSERT INTO "core_values" ("user_id", "manifesto_text")
     VALUES ( $1, $2 );
@@ -47,8 +47,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  * DELETE route removes coreValues 
  */
  router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  const id = req.params.id
-  const uId = req.user.id
+  const id = req.params.id;
+  const uId = req.user.id;
   const qText = `
   DELETE FROM "core_values"
   WHERE "id" = $1 AND "user_id" = $2;
@@ -69,7 +69,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  router.put('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id
   const uId = req.user.id
-  const manifestoText = req.body
+  const manifestoText = req.body.manifestoText
   const qText = `
     UPDATE "core_values" 
     SET "manifesto_text" = $1
