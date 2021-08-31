@@ -87,8 +87,14 @@ src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/f
                             life on purpose. Guiding principles set forth through “Words
                             to Live By.” When life brings uncertainty through events,
                             circumstances, & difficult moments having a compass to guide
-                            your decisions is necessary. These are one, two, or three
+                            your decisions is necessary. 
+                        </p>
+                        <p>
+                        These are one, two, or three
                             word sentences or phrases. Simple concepts that really resonate to your core.
+                        </p>
+                        <p>
+                        This framework might include quotes from some of the lessons you learned growing up, simple mantras you’ve picked up along the way, or phrases you repeat to yourself throughout the day.
                         </p>
                     </section>
                    
