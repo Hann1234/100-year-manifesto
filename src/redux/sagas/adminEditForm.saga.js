@@ -8,7 +8,7 @@ function* fetchPageEdits(action) {
         yield put({type: 'SET_PAGE_EDITS', payload: pageEdits.data}) // Loads page edits into reducer
     } catch (error) {
         console.log('Error getting pageEdits:', error);
-        // yield put({ type: 'FETCH_PAGE_EDITS_ERROR' });
+        yield put({ type: 'FETCH_PAGE_EDITS_ERROR' });
     }
 }
 
@@ -19,7 +19,7 @@ function* fetchPageEditsOnDate(action) {
         yield put({type: 'SET_PAGE_EDITS_ON_DATE', payload: pageEditsOnDate.data}) // Loads page edits on date into reducer
     } catch (error) {
         console.log('Error getting pageEditsOnDate:', error);
-        // yield put({ type: 'FETCH_PAGE_EDITS_ON_DATE_ERROR' });
+        yield put({ type: 'FETCH_PAGE_EDITS_ON_DATE_ERROR' });
     }
 }
 
@@ -31,7 +31,7 @@ function* addPageEdits(action) {
         yield put({ type: 'FETCH_PAGE_EDITS'}); // Loads the updated page edits into reducer
     } catch (error) {
         console.log('Error adding pageEdits:', error);
-        // yield put({ type: 'ADD_PAGE_EDIT_ERROR' });
+        yield put({ type: 'ADD_PAGE_EDIT_ERROR' });
     }
 }
 
@@ -43,7 +43,7 @@ function* deletePageEdits(action) {
         yield put({ type: 'FETCH_PAGE_EDITS'}); // Reloads page edits
     } catch (error) {
         console.log('Error deleting pageEdits:', error);
-        // yield put({ type: 'DELETE_PAGE_EDIT_ERROR' });
+        yield put({ type: 'DELETE_PAGE_EDIT_ERROR' });
     }
 }
 
