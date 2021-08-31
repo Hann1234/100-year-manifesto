@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
+    backgroundColor: "#bdbfbf",
   },
   divider: {
     margin: theme.spacing(2, 0),
