@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -28,10 +28,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Mantras(props) {
+  useEffect(() => {
+      dispatch({ type: 'FETCH_MANTRAS'})
+  })
+  
   const store = useSelector((store) => store);
   const [manifestoText, setManifestoText] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
+
+
 
   const addMantra = () => {
     dispatch({type: 'ADD_MANTRA', payload: manifestoText})
