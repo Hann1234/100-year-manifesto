@@ -27,7 +27,7 @@ function* fetchMission() {
 //Update mission statement
 function* updateMission(action) {
   try {
-    yield axios.put(`/api/missionStatement/${action.payload.id}`, action.payload.manifesto_text);
+    yield axios.put(`/api/missionStatement/${action.payload.id}`, action.payload.manifestoText);
     yield put({ type: 'FETCH_MISSION'}); //Reloads mission
   } catch (error) {
     console.log('Error updating mission:', error);

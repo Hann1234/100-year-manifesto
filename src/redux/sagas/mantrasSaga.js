@@ -27,7 +27,7 @@ function* fetchMantras() {
 //Update mantra statement
 function* updateMantra(action) {
   try {
-    yield axios.put(`/api/mantras/${action.payload.id}`, action.payload.manifesto_text);
+    yield axios.put(`/api/mantras/${action.payload.id}`, action.payload.manifestoText);
     yield put({ type: 'FETCH_MANTRAS'}); //Reloads mantras
   } catch (error) {
     console.log('Error updating mantras:', error);

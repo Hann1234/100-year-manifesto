@@ -52,7 +52,7 @@ const mantrasMessage = (state = '', action) => {
     case 'ADD_MANTRA_ERROR':
       return "Oops! Something went wrong adding the mantra"
     case 'FETCH_MANTRAS_ERROR':
-      return "Oops! Something went wrong getting the mantra"
+      return "Oops! Something went wrong getting the mantras"
     case 'UPDATE_MANTRA_ERROR':
       return "Oops! Something went wrong updating the mantra"
     case 'DELETE_MANTRA_ERROR':
@@ -62,6 +62,22 @@ const mantrasMessage = (state = '', action) => {
   }
 }; 
 
+const coreValuesMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_CORE_VALUE_ERROR':
+      return "Oops! Something went wrong adding the core value"
+    case 'FETCH_CORE_VALUES_ERROR':
+      return "Oops! Something went wrong getting the core values"
+    case 'UPDATE_CORE_VALUE_ERROR':
+      return "Oops! Something went wrong updating the core value"
+    case 'DELETE_CORE_VALUE_ERROR':
+      return "Oops! Something went wrong deleting the core value"
+    default:
+      return state;
+  }
+}; 
+
+
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
 // state.errors.loginMessage and state.errors.registrationMessage
@@ -70,4 +86,5 @@ export default combineReducers({
   registrationMessage,
   missionMessage,
   mantrasMessage,
+  coreValuesMessage,
 });
