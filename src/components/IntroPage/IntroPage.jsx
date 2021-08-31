@@ -57,6 +57,17 @@ function Intro() {
   const dispatch = useDispatch ();
   const classes = useStyles();
 
+  useEffect(() => {
+    //need to retrieve video, image, and page details
+}, [])
+
+//Need handleSubmit
+const editName = (event) => {
+    event.preventDefault();
+    //Need to verify what the dispatch will be for this
+    dispatch({ type: "SET_NAME", payload: name });
+    };
+
   return (
     <section>
       <div>
@@ -72,22 +83,45 @@ function Intro() {
           </Grid>
           <Grid item xs={8}>
             <Paper className={classes.paper}>
-              <h1>Mantras</h1>
+            <center>
+              <h1>Intro: Your 100 Year Manifesto</h1>
+                <h2>Welcome to The 100 Year Manifesto.  We are so glad you’re here.</h2>
+                <br></br>
+                <h2>Your 100 Year Manifesto is your framework for living.</h2>
+                <br></br>
+                <h2>For living with intentionality.  For living the life worthy of the calling you received.</h2>
+            </center>
               <Grid container spacing={1}>
                 <Grid item xs={6}>
-                  <Paper className={classes.paper2}>
+                  <Paper className={classes.paper2}> 
+                  {/* under the video we will include Micks information add another Grid component for Micks info?*/}
                     <h2>The video will go here</h2>
+                    <br></br>
+                    <h3>Instructor: Mick White</h3>
+                    <br></br>
+                    <h4>Founder - 100 Year Manifesto</h4>
+                    <br></br>
+                    <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/3152123/settings_images/FtJgiPhtTE6KMfcyTFIC_120903065_10158492341299373_1571312014878542166_o.jpg" alt="Mick White" />
+                    <h4>"To live with intentionality. A framework for living. A commitment to be who you are capable of being. A commitment to live a better life. Your life on purpose. Your business. Your life. For good.”</h4>
                   </Paper>
                 </Grid>
                 <Grid item xs={6}>
                   <Paper className={classes.paper3}>
-                    Having a framework for decisions is critical to living a
-                    life on purpose. Guiding principles set forth through “Words
-                    to Live By.” When life brings uncertainty through events,
-                    circumstances, & difficult moments having a compass to guide
-                    your decisions is necessary. These are one, two, or three
-                    word sentences or phrases.
-                    <h2>text stuff here</h2>
+                    <h3>Logistics for the course:</h3>
+                    <br></br>
+                    <h4>Each section of this course has a short video & a worksheet.</h4>
+                    <br></br>
+                    <h4>The video is the content for the section.  The overview and philosophy behind each topic.</h4>
+                    <br></br>
+                    <h4>The worksheets make the 100 Year Manifesto yours.  Spend some time filling out each worksheet.  Creating your own 100 Year Manifesto.  The deeper you go, the more meaningful the 100 Year Manifesto you create for your life.</h4>
+                    <form onSubmit={editName}>
+                        <input
+                            className="name"
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}
+                            placeholder="Please enter preferred name"
+                        />
+                    </form>
                   </Paper>
                 </Grid>
               </Grid>
