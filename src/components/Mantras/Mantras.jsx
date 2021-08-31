@@ -30,17 +30,18 @@ const useStyles = makeStyles((theme) => ({
 function Mantras(props) {
   useEffect(() => {
       dispatch({ type: 'FETCH_MANTRAS'})
-  })
-  const mantras = [1,2,3,4,5,6,7,8,9,10];
-//   const mantras = useSelector((store) => store.mantrasReducer);
+  },[])
+  const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
+  console.log('text so i can see',mantras);
 
 
 
   const addMantra = () => {
-    dispatch({type: 'ADD_MANTRA', payload: manifestoText})
+    dispatch({type: 'ADD_MANTRA', payload: {manifestoText: manifestoText}})
+    setManifestoText('');
   }
 
   return (
@@ -48,7 +49,7 @@ function Mantras(props) {
       <div>
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
-          <Grid xs={4}>
+          <Grid item xs={4}>
             <Paper className={classes.paper}>
               this is where the manifesto goes I do not know if we thought about
               this but almost all of our pages are going to follw a vary
@@ -59,7 +60,7 @@ function Mantras(props) {
           <Grid item xs={8}>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-              <div class="videoWrapper">
+              <div className="videoWrapper">
                 <iframe
                   width="512"
                   height="288"
@@ -68,7 +69,7 @@ function Mantras(props) {
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <section class="rightOfVideo">
+                <section className="rightOfVideo">
                   <p>
                     Having a framework for decisions is critical to living a
                     life on purpose. Guiding principles set forth through “Words
@@ -114,23 +115,35 @@ function Mantras(props) {
           required
           id="outlined-required"
           label="Add Mantra"
+          value={manifestoText}
           variant="outlined"
-          color='#fff'
-          onchange={(evt) => setManifestoText(evt.target.value)}
+          onChange={(evt) => setManifestoText(evt.target.value)}
         />
         <Button
         type="submit"
         style={{ height: "56px", backgroundColor: "#bec9bc", color: "#132411" }}
         variant="contained"
-        color="#1c4bd9"
         onClick={() => addMantra()}
       >
         ADD
       </Button>
               </section>
+             {/* { mantras === true ? (<>
                 {mantras.map((mantra, index) => {
-                    return(<Grid id={index} item xs={4}>{mantra}</Grid>)
+                  console.log('ther text so i can see, mantra',mantra);
+                    return(<Grid key={index} item xs={4}><p>{mantra.manifesto_text}</p></Grid>)
                 })}
+                </> ): (<></>)} */}
+                {/* <section>
+                  { mantras.id && ( <> {mantras.map((mantra) => {
+                      return(<Grid key={mantra.id} item xs={4}><p>{mantra.id}</p></Grid>)
+                  })}</>)}
+                </section> */}
+                
+                  {mantras.map((mantra) => {
+                        return(<Grid key={mantra.id} item xs={4}><p>{mantra.manifesto_text}</p></Grid>)
+                    })}
+                
             </Grid>
           </Grid>
         </Grid>
