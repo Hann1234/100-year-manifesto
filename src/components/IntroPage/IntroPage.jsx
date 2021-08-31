@@ -97,6 +97,7 @@ const editName = (event) => {
                   {/* under the video we will include Micks information add another Grid component for Micks info?*/}
                     <h2>The video will go here</h2>
                     <br></br>
+                    {/* make Mick's information a separate card with circled avatar pic */}
                     <h3>Instructor: Mick White</h3>
                     <br></br>
                     <h4>Founder - 100 Year Manifesto</h4>
