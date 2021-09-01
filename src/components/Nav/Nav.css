@@ -42,11 +42,6 @@
   background-color: #008183;
 }
 
-/* @font-face {
-  font-family: 'oswald-stencil-bold';
-  src: url('/src/components/font/Oswald-Stencil.ttf');
-} */
-
 @font-face {
   font-family: 'Oswald Stencil';
   src: local('Oswald Stencil Bold'), local('OswaldStencil-Bold'),

@@ -26,7 +26,7 @@ function* fetchLifeGoals() {
 //Update life goals statement
 function* updateLifeGoal(action) {
   try {
-    yield axios.put(`/api/lifeGoals/${action.payload.id}`, action.payload.manifestoText);
+    yield axios.put(`/api/lifeGoals/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_LIFE_GOALS'}); //Reloads life goals
   } catch (error) {
     console.log('Error updating life goal:', error);

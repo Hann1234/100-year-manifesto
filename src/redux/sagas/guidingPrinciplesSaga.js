@@ -26,7 +26,7 @@ function* fetchGuidingPrinciples() {
 //Update guidingPrinciple
 function* updateGuidingPrinciple(action) {
   try {
-    yield axios.put(`/api/guidingPrinciples/${action.payload.id}`, action.payload.manifestoText);
+    yield axios.put(`/api/guidingPrinciples/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_GUIDING_PRINCIPLES'}); //Reloads guidingPrinciples
   } catch (error) {
     console.log('Error updating guiding principle:', error);
