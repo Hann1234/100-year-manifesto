@@ -5,9 +5,8 @@
 /* Manifesto styles*/
 .manifestoContainer{
   width: var(--manifestoWidth);
-  max-height: var(--manifestoHeight);
-  transform: scale(50%) translateX(-46%) translateY(-50%);
-  position: absolute;
+  height: var(--manifestoHeight);
+  padding: 50px;
 }
 
 .manifesto{
