@@ -29,13 +29,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Mantras(props) {
-  const mantras = useSelector((store) => store.mantrasReducer.mantras);
+  const lifeGoal = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
   const [lifeGoalToEdit, setLifeGoalToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  console.log('this should be alife goal', lifeGoal);
 
   useEffect(() => {
     dispatch({ type: "FETCH_LIFEGOALS" });
@@ -137,10 +138,10 @@ function Mantras(props) {
             </Grid>
 
             <Grid item xs={12} container spacing={2}>
-              {mantras.map((lifeGoal) => {
+              {lifeGoal.map((lifeGoal) => {
                 if (lifeGoal.id === lifeGoalToEdit) {
                   return (
-                    <Grid key={lifeGoal.id} item xs={3}>
+                    <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
                         id="outlined-required"
                         placeholder={lifeGoal.manifesto_text}
@@ -167,11 +168,11 @@ function Mantras(props) {
                 }
                 if (lifeGoal.id != lifeGoalToEdit) {
                   return (
-                    <Grid key={lifeGoal.id} item xs={3}>
+                    <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
                         disabled
                         id="outlined-required"
-                        label="Your Mantras"
+                        label="Your Life Goal"
                         value={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
@@ -215,7 +216,7 @@ function Mantras(props) {
     variant="contained" 
     color="primary" 
     style={{ height: 40 }}
-    onClick={() => history.push('/corevalues')}
+    onClick={() => history.push('/guidingprinciples')}
   >
     Next
   </Button>
