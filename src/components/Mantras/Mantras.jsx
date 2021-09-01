@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import "./Mantras.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,28 +29,31 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
-    backgroundColor: "#475473", 
+    backgroundColor: "#475473",
   },
- TextField: {
-     color: "white",
-     fontcolor:'white'
- },
+  TextField: {
+    color: "white",
+    fontcolor: "white",
+  },
 }));
 
 function Mantras(props) {
   useEffect(() => {
-      dispatch({ type: 'FETCH_MANTRAS'})
-  },[])
+    dispatch({ type: "FETCH_MANTRAS" });
+  }, []);
   const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
+  const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
 
-
-
   const addMantra = () => {
-    dispatch({type: 'ADD_MANTRA', payload: {manifestoText: manifestoText}})
-    setManifestoText('');
+    dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
+    setManifestoText("");
+  };
+
+  const editMantra = (id) => {
+    console.log('this is id', id);
   }
 
   return (
@@ -69,12 +72,12 @@ function Mantras(props) {
           <Grid item xs={8}>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-              <div className="videoWrapper">
-                <iframe
-                  width="512"
-                  height="288"
-                  src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/fD1gQrdtQNaNhyn5lHE8_100_-_DIY_-_Words_to_Live_By_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143745Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c2281cd22f2b0ecc903ec64e00a4287b979f846ef4a69449bba6a1cfb5f6698b"
-                ></iframe>
+                <div className="videoWrapper">
+                  <iframe
+                    width="512"
+                    height="288"
+                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/fD1gQrdtQNaNhyn5lHE8_100_-_DIY_-_Words_to_Live_By_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143745Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c2281cd22f2b0ecc903ec64e00a4287b979f846ef4a69449bba6a1cfb5f6698b"
+                  ></iframe>
                 </div>
               </Grid>
               <Grid item xs={6}>
@@ -120,52 +123,98 @@ function Mantras(props) {
             </Grid>
             <Grid item xs={12} container spacing={2}>
               <section>
-              <TextField
-          required
-          id="outlined-required"
-          label="Add Mantra"
-          value={manifestoText}
-          variant="outlined"
-          onChange={(evt) => setManifestoText(evt.target.value)}
-        />
-        <Button
-        type="submit"
-        style={{ height: "56px", backgroundColor: "#bec9bc", color: "#132411" }}
-        variant="contained"
-        onClick={() => addMantra()}
-        
-      >
-        ADD
-      </Button>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Add Mantra"
+                  value={manifestoText}
+                  variant="outlined"
+                  onChange={(evt) => setManifestoText(evt.target.value)}
+                />
+                <Button
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#bec9bc",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMantra()}
+                >
+                  ADD
+                </Button>
               </section>
-              </Grid>
-              <Grid item xs={12} container spacing={2}>
-                  {mantras.map((mantra) => {
-                        return(<Grid key={mantra.id} item xs={3}>
-                          <Paper className={classes.paper2}>
-                          <span><h3>{mantra.manifesto_text}</h3></span>
-                          </Paper>
-                          <Button
-        type="submit"
-        style={{ height: "28px", backgroundColor: "#bec9bc", color: "#132411" }}
-        variant="contained"
-        padding={10}
-        onClick={() => addMantra()}
-      >
-        Edit
-      </Button>
-      <Button
-        type="submit"
-        style={{ height: "28px", backgroundColor: "#bec9bc", color: "#132411" }}
-        variant="contained"
-        onClick={() => addMantra()}
-      >
-        Remove
-      </Button>
-                          </Grid>)
-                    })}
-                
-                </Grid> 
+            </Grid>
+
+            <Grid item xs={12} container spacing={2}>
+              {mantras.map((mantra) => {
+                if ( mantra.id === mantraToEdit) {
+                  return (
+                    <Grid key={mantra.id} item xs={3}>
+                      <TextField
+                        
+                        id="outlined-required"
+                        label="Your Mantras"
+                        value={mantra.manifesto_text}
+                        variant="outlined"
+                        onChange={(evt) => setManifestoText(evt.target.value)}
+                      />
+                      <Button
+                      id={mantra.id}
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => editMantra(mantra.id)}
+                      >
+                        Save
+                      </Button>
+                      </Grid>
+                      )
+                }
+                if (mantra.id != mantraToEdit){
+                return (
+                  <Grid key={mantra.id} item xs={3}>
+                    <TextField
+                      disabled
+                      id="outlined-required"
+                      label="Your Mantras"
+                      value={mantra.manifesto_text}
+                      variant="outlined"
+                      onChange={(evt) => setManifestoText(evt.target.value)}
+                    />
+                    <Button
+                    id={mantra.id}
+                      type="submit"
+                      style={{
+                        height: "28px",
+                        backgroundColor: "#bec9bc",
+                        color: "#132411",
+                      }}
+                      variant="contained"
+                      onClick={() => setMantraToEdit(mantra.id)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      type="submit"
+                      style={{
+                        height: "28px",
+                        backgroundColor: "#bec9bc",
+                        color: "#132411",
+                      }}
+                      variant="contained"
+                      onClick={() => addMantra()}
+                    >
+                      Remove
+                    </Button>
+                  </Grid>
+                );
+}})}
+            </Grid>
           </Grid>
         </Grid>
       </div>
