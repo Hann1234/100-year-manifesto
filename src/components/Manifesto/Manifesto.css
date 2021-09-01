@@ -1,0 +1,70 @@
+:root{
+    --manifestoWidth: 8.8in;
+    --manifestoHeight: 11in;
+}
+/* Manifesto styles*/
+.manifestoContainer{
+  width: var(--manifestoWidth);
+  max-height: var(--manifestoHeight);
+}
+
+.manifesto{
+  background-color: #e7e7e7;
+  color: #4d5470;
+}
+.blueBar{
+  height: calc(var(--manifestoHeight) * .01818);
+  background-color: #8e9cd3;
+}
+/* .manifesto div{
+  border: 1px solid black;
+} */
+
+.title{
+  height: calc(var(--manifestoHeight) * .1818);
+  text-align: center;
+}
+
+.hundredYear{
+  /* font-size: 80px; */
+}
+.userName{
+  /* font-size: 60px; */
+}
+
+.smallColumn{
+  max-width: calc(var(--manifestoWidth) * .2272);
+  margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
+  text-align: center;
+}
+.mission{
+  background-color: #4d5470;
+  color:#e7e7e7;
+  /* font-size: 30px; */
+  padding: 8px;
+}
+.dotSeparation{
+  padding: 8px;
+}
+
+.bigColumn{
+  width: calc(var(--manifestoWidth) * .6818);
+  text-align: center;
+}
+
+.lifeGoalsTitle{
+  color:#e7e7e7;
+}
+
+.lifeGoalItem{
+  border-bottom: 1px solid black; 
+  padding: 4px 8px;
+}
+
+.principlesTitle{
+  padding: 16px 0;
+}
+
+.principleItem{
+  text-align: left;
+}
