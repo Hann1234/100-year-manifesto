@@ -27,6 +27,8 @@ import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
 
 import './App.css';
+import CoreValues from '../CoreValues/CoreValues';
+import ForGood from '../ForGood/ForGood';
 
 function App() {
   const dispatch = useDispatch();
@@ -103,6 +105,22 @@ function App() {
             path="/lifegoals"
           >
             <LifeGoals />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/corevalues"
+          >
+            <CoreValues />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/forgood"
+          >
+            <ForGood />
           </ProtectedRoute>
 
           <Route
