@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Intro() {
+function CoreValues() {
   const store = useSelector((store) => store);
   const [name, setName] = useState('');
   const dispatch = useDispatch ();
@@ -371,6 +371,7 @@ const editName = (event) => {
                             <li key={data.key}>
                                 <Chip
                                 label={data.label}
+                                value={data.label}
                                 className={classes.chip}
                                 clickable
                                 onClick={handleClick}
@@ -389,4 +390,4 @@ const editName = (event) => {
   );
 }
 
-export default Intro;
+export default CoreValues;
