@@ -19,7 +19,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Mantras from '../Mantras/Mantras'
-
+import LifeGoals from '../LifeGoals/LifeGoals';
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
