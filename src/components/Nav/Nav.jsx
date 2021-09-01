@@ -9,8 +9,9 @@ function Nav() {
 
   return (
     <div className="nav">
+      <link href="https://allfont.net/allfont.css?fonts=oswald-stencil-bold" rel="stylesheet" type="text/css" />
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">100 Year Manifesto</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -45,6 +46,3 @@ function Nav() {
 }
 
 export default Nav;
-
-
-//Duy

@@ -5,7 +5,7 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #00acb0;
+  background-color: #ffffff;
   overflow: hidden;
 }
 
@@ -16,15 +16,16 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: #f2f2f2;
+  color: #475473;
   padding-left: 10px;
   margin: 0;
+  font-family: 'Oswald Stencil';
 }
 
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #ffffff;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -39,4 +40,19 @@
 
 .navLink:hover {
   background-color: #008183;
+}
+
+/* @font-face {
+  font-family: 'oswald-stencil-bold';
+  src: url('/src/components/font/Oswald-Stencil.ttf');
+} */
+
+@font-face {
+  font-family: 'Oswald Stencil';
+  src: local('Oswald Stencil Bold'), local('OswaldStencil-Bold'),
+      url('/src/components/font/OswaldStencil-Bold.woff') format('woff'),
+      url('/src/components/font/OswaldStencil-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
