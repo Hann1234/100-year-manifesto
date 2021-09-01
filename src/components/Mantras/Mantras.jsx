@@ -73,6 +73,7 @@ function Mantras(props) {
             </Paper>
           </Grid>
           <Grid item xs={8}>
+            <center><h1>Words To Live By</h1></center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">

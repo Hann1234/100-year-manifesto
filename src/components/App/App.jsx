@@ -97,6 +97,14 @@ function App() {
             <Mantras />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/lifegoals"
+          >
+            <LifeGoals />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
