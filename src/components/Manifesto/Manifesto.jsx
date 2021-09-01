@@ -1,5 +1,6 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
+import { useSelector } from "react-redux";
 import './Manifesto.css'
 
 let mission = "Make the world a better place.";
@@ -51,6 +52,7 @@ let guidingPrinciples = [
 ]
 
 function Manifesto(){
+    const mantras = useSelector((store) => store.mantrasReducer.mantras);
     return(
         <div className="manifestoContainer" >
             <Grid className="manifesto" container direction="column">
@@ -67,7 +69,7 @@ function Manifesto(){
                         <div className="mantras">
                             <div>MANTRAS:</div>
                             {mantras.map(mantra => (
-                                <div>{mantra}</div>
+                                <div>{mantra.manifesto_text}</div>
                             ))}
                             <div className="dotSeparation"> ********** </div>
                         </div>
