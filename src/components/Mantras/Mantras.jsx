@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Box from '@material-ui/core/Box';
 import "./Mantras.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +22,15 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     color: "#132411",
   },
+  paper2: {
+    height: "56px",
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    whiteSpace: "wrap",
+    marginBottom: theme.spacing(1),
+    backgroundColor: "#475473", 
+  },
  TextField: {
      color: "white",
      fontcolor:'white'
@@ -35,7 +45,6 @@ function Mantras(props) {
   const [manifestoText, setManifestoText] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
-  console.log('text so i can see',mantras);
 
 
 
@@ -109,7 +118,7 @@ function Mantras(props) {
                 <h3>List 5-10 words & phrases you live by:</h3>
               </section>
             </Grid>
-            <Grid item xs={12} container spacing={1}>
+            <Grid item xs={12} container spacing={2}>
               <section>
               <TextField
           required
@@ -124,27 +133,39 @@ function Mantras(props) {
         style={{ height: "56px", backgroundColor: "#bec9bc", color: "#132411" }}
         variant="contained"
         onClick={() => addMantra()}
+        
       >
         ADD
       </Button>
               </section>
-             {/* { mantras === true ? (<>
-                {mantras.map((mantra, index) => {
-                  console.log('ther text so i can see, mantra',mantra);
-                    return(<Grid key={index} item xs={4}><p>{mantra.manifesto_text}</p></Grid>)
-                })}
-                </> ): (<></>)} */}
-                {/* <section>
-                  { mantras.id && ( <> {mantras.map((mantra) => {
-                      return(<Grid key={mantra.id} item xs={4}><p>{mantra.id}</p></Grid>)
-                  })}</>)}
-                </section> */}
-                
+              </Grid>
+              <Grid item xs={12} container spacing={2}>
                   {mantras.map((mantra) => {
-                        return(<Grid key={mantra.id} item xs={4}><p>{mantra.manifesto_text}</p></Grid>)
+                        return(<Grid key={mantra.id} item xs={3}>
+                          <Paper className={classes.paper2}>
+                          <span><h3>{mantra.manifesto_text}</h3></span>
+                          </Paper>
+                          <Button
+        type="submit"
+        style={{ height: "28px", backgroundColor: "#bec9bc", color: "#132411" }}
+        variant="contained"
+        padding={10}
+        onClick={() => addMantra()}
+      >
+        Edit
+      </Button>
+      <Button
+        type="submit"
+        style={{ height: "28px", backgroundColor: "#bec9bc", color: "#132411" }}
+        variant="contained"
+        onClick={() => addMantra()}
+      >
+        Remove
+      </Button>
+                          </Grid>)
                     })}
                 
-            </Grid>
+                </Grid> 
           </Grid>
         </Grid>
       </div>
