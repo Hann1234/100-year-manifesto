@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPlayer from "react-player";
+import { useHistory } from "react-router";
 
 import Grid from "@material-ui/core/Grid";
 import { CardMedia } from "@material-ui/core";
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 function MissionStatement() {
   const [mission, setMission] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory ();
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState("Functional Component");
 
