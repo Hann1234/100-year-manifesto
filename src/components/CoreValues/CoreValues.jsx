@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CoreValues() {
   const store = useSelector((store) => store);
-  const [name, setName] = useState('');
+  const [CoreValues, setCoreValues] = useState([]);
   const dispatch = useDispatch ();
   const classes = useStyles();
 
@@ -299,11 +299,11 @@ function CoreValues() {
   ]);
 
   useEffect(() => {
-    //need to retrieve video, image, and page details
+    //need to retrieve video and page details
 }, [])
 
 //Need handleSubmit
-const editName = (event) => {
+const handleClick = (value) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
     dispatch({ type: "SET_NAME", payload: name });
@@ -371,10 +371,9 @@ const editName = (event) => {
                             <li key={data.key}>
                                 <Chip
                                 label={data.label}
-                                value={data.label}
                                 className={classes.chip}
                                 clickable
-                                onClick={handleClick}
+                                onClick={() => handleClick(data.label)}
                                 color="primary"
                                 />
                             </li>
