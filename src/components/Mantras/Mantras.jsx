@@ -43,6 +43,7 @@ function Mantras(props) {
   }, []);
   const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
+  const [editManifestoText, setEditManifestoText] = useState('');
   const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -53,7 +54,13 @@ function Mantras(props) {
   };
 
   const editMantra = (id) => {
-    console.log('this is id', id);
+    console.log('this is id', editManifestoText);
+    dispatch({ 
+      type: 'UPDATE_MANTRA', 
+      payload:{ id: id, manifestoText: editManifestoText}
+    })
+    setEditManifestoText('');
+    setMantraToEdit(0);
   }
 
   return (
@@ -154,10 +161,9 @@ function Mantras(props) {
                       <TextField
                         
                         id="outlined-required"
-                        label="Your Mantras"
-                        value={mantra.manifesto_text}
+                        placeholder={mantra.manifesto_text}
                         variant="outlined"
-                        onChange={(evt) => setManifestoText(evt.target.value)}
+                        onChange={(evt) => setEditManifestoText(evt.target.value)}
                       />
                       <Button
                       id={mantra.id}
