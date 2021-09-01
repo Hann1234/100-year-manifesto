@@ -5,15 +5,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import "./Mantras.css";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "grid",
-    gridTemplateColumns: "repeat(12, 1fr)",
-    gridGap: theme.spacing(3),
-  },
   paper: {
     height: "100vh",
     padding: theme.spacing(2),
@@ -22,31 +16,19 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     color: "#132411",
   },
-  paper2: {
-    height: "56px",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-    backgroundColor: "#475473",
-  },
-  TextField: {
-    color: "white",
-    fontcolor: "white",
-  },
 }));
 
 function Mantras(props) {
-  useEffect(() => {
-    dispatch({ type: "FETCH_MANTRAS" });
-  }, []);
   const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
-  const [editManifestoText, setEditManifestoText] = useState('');
+  const [editManifestoText, setEditManifestoText] = useState("");
   const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_MANTRAS" });
+  }, []);
 
   const addMantra = () => {
     dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
@@ -54,18 +36,17 @@ function Mantras(props) {
   };
 
   const editMantra = (id) => {
-    console.log('this is id', editManifestoText);
-    dispatch({ 
-      type: 'UPDATE_MANTRA', 
-      payload:{ id: id, manifestoText: editManifestoText}
-    })
-    setEditManifestoText('');
+    dispatch({
+      type: "UPDATE_MANTRA",
+      payload: { id: id, manifestoText: editManifestoText },
+    });
+    setEditManifestoText("");
     setMantraToEdit(0);
-  }
+  };
 
   const deleteMantra = (id) => {
-    dispatch ({type: 'DELETE_MANTRA', payload: id })
-  }
+    dispatch({ type: "DELETE_MANTRA", payload: id });
+  };
 
   return (
     <section>
@@ -159,18 +140,19 @@ function Mantras(props) {
 
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
-                if ( mantra.id === mantraToEdit) {
+                if (mantra.id === mantraToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
                       <TextField
-                        
                         id="outlined-required"
                         placeholder={mantra.manifesto_text}
                         variant="outlined"
-                        onChange={(evt) => setEditManifestoText(evt.target.value)}
+                        onChange={(evt) =>
+                          setEditManifestoText(evt.target.value)
+                        }
                       />
                       <Button
-                      id={mantra.id}
+                        id={mantra.id}
                         type="submit"
                         style={{
                           height: "28px",
@@ -182,48 +164,49 @@ function Mantras(props) {
                       >
                         Save
                       </Button>
-                      </Grid>
-                      )
+                    </Grid>
+                  );
                 }
-                if (mantra.id != mantraToEdit){
-                return (
-                  <Grid key={mantra.id} item xs={3}>
-                    <TextField
-                      disabled
-                      id="outlined-required"
-                      label="Your Mantras"
-                      value={mantra.manifesto_text}
-                      variant="outlined"
-                      onChange={(evt) => setManifestoText(evt.target.value)}
-                    />
-                    <Button
-                    id={mantra.id}
-                      type="submit"
-                      style={{
-                        height: "28px",
-                        backgroundColor: "#bec9bc",
-                        color: "#132411",
-                      }}
-                      variant="contained"
-                      onClick={() => setMantraToEdit(mantra.id)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      type="submit"
-                      style={{
-                        height: "28px",
-                        backgroundColor: "#bec9bc",
-                        color: "#132411",
-                      }}
-                      variant="contained"
-                      onClick={() => deleteMantra(mantra.id)}
-                    >
-                      Remove
-                    </Button>
-                  </Grid>
-                );
-}})}
+                if (mantra.id != mantraToEdit) {
+                  return (
+                    <Grid key={mantra.id} item xs={3}>
+                      <TextField
+                        disabled
+                        id="outlined-required"
+                        label="Your Mantras"
+                        value={mantra.manifesto_text}
+                        variant="outlined"
+                        onChange={(evt) => setManifestoText(evt.target.value)}
+                      />
+                      <Button
+                        id={mantra.id}
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => setMantraToEdit(mantra.id)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => deleteMantra(mantra.id)}
+                      >
+                        Remove
+                      </Button>
+                    </Grid>
+                  );
+                }
+              })}
             </Grid>
           </Grid>
         </Grid>
