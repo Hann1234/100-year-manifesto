@@ -82,7 +82,7 @@ function ForGood(props) {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/Jz785ePrTo24qyAOemUE_100_-_DIY_-_FOR_GOODs_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143925Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0fcc5ae2c7f728127ffe9f159f7664101f7482fd55586a370d64cf3cb9853985"
+                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/DtXVl9Qy6ycB123K3yrg_100_-_DIY_-_For_Good_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143904Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d13c83c253e96ab9c2d6b7b146c42e9ae643a0c963b5135b4b34e9c948273087"
                   ></iframe>
                 </div>
               </Grid>
