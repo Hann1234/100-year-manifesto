@@ -26,7 +26,7 @@ function* fetchAdditionalQuestions() {
 //Update additionalQuestion statement
 function* updateAdditionalQuestion(action) {
   try {
-    yield axios.put(`/api/additionalQuestions/${action.payload.id}`, action.payload.manifestoText);
+    yield axios.put(`/api/additionalQuestions/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_ADDITIONAL_QUESTIONS'}); //Reloads additional questions
   } catch (error) {
     console.log('Error updating additional questions:', error);

@@ -26,7 +26,7 @@ function* fetchForGoods() {
 //Update for goods statement
 function* updateForGood(action) {
   try {
-    yield axios.put(`/api/forGoods/${action.payload.id}`, action.payload.manifestoText);
+    yield axios.put(`/api/forGoods/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_FOR_GOODS'}); //Reloads for goods
   } catch (error) {
     console.log('Error updating for good:', error);
