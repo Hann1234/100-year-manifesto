@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPlayer from "react-player";
+import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import { useHistory } from "react-router";
 
@@ -72,12 +74,14 @@ const useStyles = makeStyles((theme) => ({
 
 function MissionStatement() {
   const [missionText, setMissionText] = useState("");
-  const [editMissionText, setEditMissionText] = useState("");
+  const [editManifestoText, setEditManifestoText] = useState("");
+  const [editMissionText, setEditMissionText] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const missions = useSelector((store) => store.missionReducer.mission);
   const [heading, setHeading] = useState("Functional Component");
+  console.log(`What is missions store? `, missions);
 
   const classes = useStyles();
 
@@ -88,7 +92,7 @@ function MissionStatement() {
 
   //Need handleChange to setMission in input field
   const handleMissionChange = () => {
-    setMission(event.target.value);
+    setMissionText(event.target.value);
   };
 
   //Need handleSubmit
@@ -98,7 +102,7 @@ function MissionStatement() {
     //Need to verify what the dispatch will be for this
     dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });
     console.log(`What's the current state of mission?`, missionText);
-    setMission("");
+    setMissionText("");
   };
 
   const editMission = (id) => {
@@ -106,6 +110,8 @@ function MissionStatement() {
       type: "UPDATE_MISSION",
       payload: { id: id, manifestoText: editManifestoText },
     });
+    setEditManifestoText("");
+    setEditMissionText(0);
   };
 
   const deleteMission = (id) => {
@@ -140,7 +146,6 @@ function MissionStatement() {
                   <Paper className={classes.paper3}>
                     <div>
                       <h3>Mission Statement</h3>
-
                       <p>
                         Your 100 Year Manifesto starts with your mission
                         statement. There is no great gift you can give yourself
@@ -190,99 +195,110 @@ function MissionStatement() {
                         placeholder="Your Mission Statement"
                         required
                       />
-                      <button className="missionButton" type="submit">
-                        SAVE
-                      </button>
-                      <button
+                      <Button
+                        type="submit"
+                        style={{
+                          height: "56px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => addMission(event)}
+                      >
+                        ADD
+                      </Button>
+                      {/* <button className="searchButton" type="submit">
+                        ADD
+                      </button> */}
+                      <Button
                         className="nextButton"
+                        style={{
+                          height: "56px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
                         onClick={() => {
                           history.push("/mantras");
                         }}
                       >
                         NEXT
-                      </button>
+                      </Button>
                     </center>
                   </form>
                 </Paper>
               </Grid>
-              <Grid>
-                {/* Need to append data from mission DB here */}
-                <Grid item xs={12} container spacing={2}>
-                  {missions.map((mission) => {
-                    if (mission.id === missionToEdit) {
-                      return (
-                        <Paper className={classes.paper5}>
-                          <Grid key={mission.id} item xs={3}>
-                            <TextField
-                              id="outlined-required"
-                              placeholder={mission.manifesto_text}
-                              variant="outlined"
-                              onChange={(evt) =>
-                                setEditMissionText(evt.target.value)
-                              }
-                            />
-                            <Button
-                              id={mission.id}
-                              type="submit"
-                              style={{
-                                height: "28px",
-                                backgroundColor: "#bec9bc",
-                                color: "#132411",
-                              }}
-                              variant="contained"
-                              onClick={() => editMission(mission.id)}
-                            >
-                              Save
-                            </Button>
-                          </Grid>
-                        </Paper>
-                      );
-                    }
-                    if (mission.id != missionToEdit) {
-                      return (
-                        <Paper className={classes.paper5}>
-                          <Grid key={mission.id} item xs={3}>
-                            <TextField
-                              disabled
-                              id="outlined-required"
-                              label="Your Mantras"
-                              value={mission.manifesto_text}
-                              variant="outlined"
-                              onChange={(evt) =>
-                                setManifestoText(evt.target.value)
-                              }
-                            />
-                            <Button
-                              id={mission.id}
-                              type="submit"
-                              style={{
-                                height: "28px",
-                                backgroundColor: "#bec9bc",
-                                color: "#132411",
-                              }}
-                              variant="contained"
-                              onClick={() => setEditMissionText(mission.id)}
-                            >
-                              Edit
-                            </Button>
-                            <Button
-                              type="submit"
-                              style={{
-                                height: "28px",
-                                backgroundColor: "#bec9bc",
-                                color: "#132411",
-                              }}
-                              variant="contained"
-                              onClick={() => deleteMission(mission.id)}
-                            >
-                              Remove
-                            </Button>
-                          </Grid>
-                        </Paper>
-                      );
-                    }
-                  })}
-                </Grid>
+
+              {/* Need to append data from mission DB here */}
+              <Grid item xs={12} container spacing={2}>
+                {missions.map((mission) => {
+                  if (mission.id === editMissionText) {
+                    return (
+                      <Grid key={mission.id} item xs={3}>
+                        <TextField
+                          id="outlined-required"
+                          placeholder={mission.manifesto_text}
+                          variant="outlined"
+                          onChange={(evt) =>
+                            setEditManifestoText(evt.target.value)
+                          }
+                        />
+                        <Button
+                          id={mission.id}
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#bec9bc",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => editMission(mission.id)}
+                        >
+                          SAVE
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                  if (mission.id != editMission) {
+                    return (
+                      <Grid key={mission.id} item xs={3}>
+                        <TextField
+                          disabled
+                          id="outlined-required"
+                          label="Your Mission Statements"
+                          value={mission.manifesto_text}
+                          variant="outlined"
+                          onChange={(evt) => setMissionText(evt.target.value)}
+                        />
+                        <Button
+                          id={mission.id}
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#bec9bc",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => setEditMissionText(mission.id)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#bec9bc",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => deleteMission(mission.id)}
+                        >
+                          Remove
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                })}
               </Grid>
             </Paper>
           </Grid>
