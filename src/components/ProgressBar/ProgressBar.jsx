@@ -36,21 +36,21 @@ function getSteps() {
 
 function getStepContent(step) {
   switch (step) {
-    case 1:
+    case 0:
       return "Intro: Your 100 Year Manifesto";
-    case 2:
+    case 1:
       return "Mission Statement";
-    case 3:
+    case 2:
       return "Mantras";
-    case 4:
+    case 3:
       return "Core Values";
-    case 5:
+    case 4:
       return "For Good";
-    case 6:
+    case 5:
       return "Life Goals";
-    case 7:
+    case 6:
       return "Guiding Principles";
-    case 8:
+    case 7:
       return "Next Steps";
     default:
       return "Unknown step";
