@@ -78,10 +78,10 @@ function MissionStatement() {
   };
 
   //Need handleSubmit
-  const postMissionResults = (event) => {
+  const addMission = (event) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
-    dispatch({ type: "POST_MISSION", payload: mission });
+    dispatch({ type: "ADD_MISSION", payload: {manifestoText: mission} });
     console.log(`What's the current state of mission?`, mission);
   };
 
@@ -151,7 +151,7 @@ function MissionStatement() {
               </Grid>
               <Grid item xs={12}>
                 <Paper className={classes.paper4}>
-                  <form onSubmit={postMissionResults}>
+                  <form onSubmit={addMission}>
                     <center>
                       <h2>Mission Statement: </h2>
                       <input
@@ -188,139 +188,3 @@ function MissionStatement() {
 
 export default MissionStatement;
 
-// const store = useSelector((store) => store);
-// const [heading, setHeading] = useState("Functional Component");
-
-// const classes = useStyles();
-
-// return (
-//   <section>
-//     <div>
-//       {/* Prototype Grid layout */}
-//       <Grid container spacing={3}>
-//         <Grid xs={4}>
-//           <Paper className={classes.paper}>
-//             this is where the manifesto goes I do not know if we thought about
-//             this but almost all of our pages are going to follw a vary spacific
-//             grid layout so it should be atop priority to get that layout figured
-//             out so we can all have it for our pages
-//           </Paper>
-//         </Grid>
-//         <Grid item xs={8}>
-//           <Paper className={classes.paper}>
-//             <h1>Mantras</h1>
-//             <Grid container spacing={1}>
-//               <Grid item xs={6}>
-//                 <Paper className={classes.paper2}>
-//                   <h2>The video will go here</h2>
-//                 </Paper>
-//               </Grid>
-//               <Grid item xs={6}>
-//                 <Paper className={classes.paper3}>
-//                   <div>
-//                     <h1>Mission Statement</h1>
-
-//                     <p>
-//                       Your 100 Year Manifesto starts with your mission
-//                       statement. There is no great gift you can give yourself
-//                       than a defining purpose. A mission statement. To live with
-//                       intentionality for the cause which you were created.
-//                     </p>
-//                     <p>
-//                       Your life is worthy of a noble motive. What is it?
-//                       Dedicating your life to a cause greater than yourself is a
-//                       game-changer. A personal mission statement is a powerful
-//                       tool because it provides a path for success. Just as
-//                       important, it gives you permission to stay no to the
-//                       things that are distractions. What's your cause.
-//                     </p>
-//                     <p>For me, my mission: "Help others live better."</p>
-//                     <p>
-//                       My mission in life is to make people happy." Walt Disney's
-//                       mission statement.
-//                     </p>
-//                     <p>
-//                       "To be a teacher. And to be known for inspiring my
-//                       students to be more than they thought they could be."
-//                       Oprah Winfrey's mission statement.
-//                     </p>
-//                     <p>
-//                       Your mission statement. Make it yours. Write it however
-//                       you want. Keep it brief. Keep it meaningful. Keep it
-//                       yours. What were you born to do? Who are you called to be?
-//                     </p>
-//                   </div>
-//                   <h2>text stuff here</h2>
-//                 </Paper>
-//               </Grid>
-//             </Grid>
-//             <Grid item xs={12}>
-//               <Paper className={classes.paper4}>
-//                 <h2>
-//                   More Text put your inputs here tada this is could be our
-//                   general layout
-//                 </h2>
-//               </Paper>
-//             </Grid>
-//           </Paper>
-//         </Grid>
-//       </Grid>
-//     </div>
-//   </section>
-// );
-
-// return (
-//   //need to imbed video for Mission Statement
-//   <div>
-//     <h1>Mission Statement</h1>
-//     <p>
-//       Your 100 Year Manifesto starts with your mission statement. There is no
-//       great gift you can give yourself than a defining purpose. A mission
-//       statement. To live with intentionality for the cause which you were
-//       created.
-//     </p>
-//     <p>
-//       Your life is worthy of a noble motive. What is it? Dedicating your life to
-//       a cause greater than yourself is a game-changer. A personal mission
-//       statement is a powerful tool because it provides a path for success. Just
-//       as important, it gives you permission to stay no to the things that are
-//       distractions. What's your cause.
-//     </p>
-//     <p>For me, my mission: "Help others live better."</p>
-//     <p>
-//       My mission in life is to make people happy." Walt Disney's mission
-//       statement.
-//     </p>
-//     <p>
-//       "To be a teacher. And to be known for inspiring my students to be more
-//       than they thought they could be." Oprah Winfrey's mission statement.
-//     </p>
-//     <p>
-//       Your mission statement. Make it yours. Write it however you want. Keep it
-//       brief. Keep it meaningful. Keep it yours. What were you born to do? Who
-//       are you called to be?
-//     </p>
-//     <form onSubmit={getMissionResults}>
-//       <center>
-//         <input
-//           className="mission"
-//           value={mission}
-//           onChange={(event) => handleMissionChange(event.target.value)}
-//           placeholder="Enter Mission Statement"
-//         />
-//         required
-//         <button className="missionButton" type="submit">
-//           SAVE
-//         </button>
-//         <button
-//           className="nextButton"
-//           onClick={() => {
-//             history.push("/mantras");
-//           }}
-//         >
-//           NEXT
-//         </button>
-//       </center>
-//     </form>
-//   </div>
-// );
