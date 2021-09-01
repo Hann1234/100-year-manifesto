@@ -89,16 +89,14 @@ function ForGood(props) {
               <Grid item xs={6}>
                 <section className="rightOfVideo2">
                   <p>
-                  This is a place for your goals. These goals may or may not be goals you can measure. Think about what you want to accomplish in your life. Think about who you want to be. Think about what you can do.
-                  </p>
-                  <p>
-                  10 Goals for You. For your life.
-                  </p>
-                  <p>For me, they include:</p>
-                  <p>
-                  “Be the man, father, & husband God created me to be.“
-“Build a business allowing for remore work anywhere in the world.“
-“Raise healthy boys who love themselves, their family, & their God: who serve others, lead by example, & do their best every single day of their lives. “
+                  FOR GOOD
+For a long time I heard the phrase,
+by older & wiser folks. It puzzled me. I
+never really understood it. And, I was too embarrassed to ask what it meant. The older & wiser I get the more the phrase resonates.
+Living in a big city, I see a lot of people from all walks of life. Some of them are heading to sporting events & concerts, some are working at the restaurants & hotels, some are corporate suits, but it’s the ones on the corner asking for change – those are the ones I really think about.
+While they may be homeless – they are also somebody’s brother – somebody’s sister – somebody’s father – somebodys daughter. They are real people. I’ve never heard a grade schooler answer the question “what do you want to be when you grow up?” with the answer “homeless, missing a few teeth, out of touch with those I love the most, begging for money, & wearing the same clothes I wore for the past week.”
+One of the ladies in particular catches my attention. I’m not sure what it is about her, but she reminds me of my Mom. Yes, my Mom. One of my heroes. One of the people who loved me the most in life. And, I think to myself – had Mom been in a big city versus the small, rural community of Galesburg, Illinois – had she been in a big city when she was going through her dark days, would she too be on the corner – would she too be digging in the trash looking for a treasure – would she too be one of “those” people.
+Somebody’s Brother is a cause I’m passionate about. It’s something greater
                   </p>
                 </section>
               </Grid>
