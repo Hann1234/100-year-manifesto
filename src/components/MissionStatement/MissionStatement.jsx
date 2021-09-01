@@ -83,6 +83,7 @@ function MissionStatement() {
     //Need to verify what the dispatch will be for this
     dispatch({ type: "ADD_MISSION", payload: {manifestoText: mission} });
     console.log(`What's the current state of mission?`, mission);
+    setMission('');
   };
 
   return (
