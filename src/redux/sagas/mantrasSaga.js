@@ -15,8 +15,8 @@ function* addMantra(action) {
 //Get mantras statement
 function* fetchMantras() {
   try {
-    const lifeGoals = yield axios.get('/api/mantras');
-    yield put({type: 'SET_MANTRAS', payload: lifeGoals.data}) //Loads mantras into reducer
+    const mantras = yield axios.get('/api/mantras');
+    yield put({type: 'SET_MANTRAS', payload: mantras.data}) //Loads mantras into reducer
   } catch (error) {
     console.log('Error getting mantras:', error);
     yield put({ type: 'FETCH_MANTRAS_ERROR' });

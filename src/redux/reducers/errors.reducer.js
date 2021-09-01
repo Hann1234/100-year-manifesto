@@ -120,6 +120,36 @@ const guidingPrinciplesMessage = (state = '', action) => {
     default:
       return state;
   }
+};
+
+const adminEditFormMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'FETCH_PAGE_EDITS_ERROR':
+      return "Oops! Something went wrong retrieving the latest edits for that page"
+    case 'FETCH_PAGE_EDITS_ON_DATE_ERROR':
+      return "Oops! Something went wrong retrieving a previous version of the edits for that page"
+    case 'ADD_PAGE_EDIT_ERROR':
+      return "Oops! Something went wrong posting a new edit for that page"
+    case 'DELETE_PAGE_EDIT_ERROR':
+      return "Oops! Something went wrong deleting an edit for that page"
+    default:
+      return state;
+  }
+}; 
+
+const additionalQuestionsMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_ADDITIONAL_QUESTION_ERROR':
+      return "Oops! Something went wrong adding the additional question"
+    case 'FETCH_ADDITIONAL_QUESTIONS_ERROR':
+      return "Oops! Something went wrong getting the additional questions"
+    case 'UPDATE_ADDITIONAL_QUESTION_ERROR':
+      return "Oops! Something went wrong updating the additional question"
+    case 'DELETE_ADDITIONAL_QUESTION_ERROR':
+      return "Oops! Something went wrong deleting the additional question"
+    default:
+      return state;
+  }
 }; 
 
 
@@ -135,4 +165,6 @@ export default combineReducers({
   lifeGoalsMessage,
   forGoodMessage,
   guidingPrinciplesMessage,
+  additionalQuestionsMessage,
+  adminEditFormMessage,
 });
