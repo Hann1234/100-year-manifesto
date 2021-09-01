@@ -7,7 +7,6 @@ import ReactPlayer from "react-player";
 
 import { useHistory } from "react-router";
 
-
 import Grid from "@material-ui/core/Grid";
 import { CardMedia } from "@material-ui/core";
 
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridGap: theme.spacing(3),
   },
-  //paper will be for Manifesto display. 
+  //paper will be for Manifesto display.
   paper: {
     height: "100vh",
     padding: theme.spacing(2),
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
-    backgroundColor: "#475473", 
+    backgroundColor: "#475473",
   },
   //paper2 is for the video
   paper2: {
@@ -38,13 +37,15 @@ const useStyles = makeStyles((theme) => ({
   },
   //paper3 is where all the main text will be displayed.
   paper3: {
-    height: "60vh",
+    // height: "60vh",
+    maxHeight: "60vh",
+    overflow: "auto",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
-    backgroundColor: "#475473", 
+    backgroundColor: "#475473",
   },
   //paper4 is where the input field is.
   paper4: {
@@ -56,24 +57,33 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     backgroundColor: "#bdbfbf",
   },
+  paper5: {
+    height: "48vh",
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    whiteSpace: "wrap",
+    marginBottom: theme.spacing(1),
+  },
   divider: {
     margin: theme.spacing(2, 0),
   },
 }));
 
 function MissionStatement() {
-  const [mission, setMission] = useState("");
+  const [missionText, setMissionText] = useState("");
+  const [editMissionText, setEditMissionText] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const history = useHistory ();
-
-  const store = useSelector((store) => store);
+  const missions = useSelector((store) => store.missionReducer.mission);
   const [heading, setHeading] = useState("Functional Component");
 
   const classes = useStyles();
 
   useEffect(() => {
-    //Need a dispatch to load the static part of page
+    //Need a dispatch to load the static part of page and activate GET to pull in DB data for MissionStatement.
+    dispatch({ type: "FETCH_MISSION" });
   }, []);
 
   //Need handleChange to setMission in input field
@@ -86,10 +96,20 @@ function MissionStatement() {
   const addMission = (event) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
-    dispatch({ type: "ADD_MISSION", payload: {manifestoText: mission} });
-    console.log(`What's the current state of mission?`, mission);
-    setMission('');
+    dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });
+    console.log(`What's the current state of mission?`, missionText);
+    setMission("");
+  };
 
+  const editMission = (id) => {
+    dispatch({
+      type: "UPDATE_MISSION",
+      payload: { id: id, manifestoText: editManifestoText },
+    });
+  };
+
+  const deleteMission = (id) => {
+    dispatch({ type: "DELETE_MISSION", payload: id });
   };
 
   return (
@@ -158,14 +178,12 @@ function MissionStatement() {
               </Grid>
               <Grid item xs={12}>
                 <Paper className={classes.paper4}>
-
                   <form onSubmit={addMission}>
-
                     <center>
                       <h2>Mission Statement: </h2>
                       <input
-                        className="mission"
-                        value={mission}
+                        className="missionText"
+                        value={missionText}
                         onChange={(event) =>
                           handleMissionChange(event.target.value)
                         }
@@ -187,6 +205,85 @@ function MissionStatement() {
                   </form>
                 </Paper>
               </Grid>
+              <Grid>
+                {/* Need to append data from mission DB here */}
+                <Grid item xs={12} container spacing={2}>
+                  {missions.map((mission) => {
+                    if (mission.id === missionToEdit) {
+                      return (
+                        <Paper className={classes.paper5}>
+                          <Grid key={mission.id} item xs={3}>
+                            <TextField
+                              id="outlined-required"
+                              placeholder={mission.manifesto_text}
+                              variant="outlined"
+                              onChange={(evt) =>
+                                setEditMissionText(evt.target.value)
+                              }
+                            />
+                            <Button
+                              id={mission.id}
+                              type="submit"
+                              style={{
+                                height: "28px",
+                                backgroundColor: "#bec9bc",
+                                color: "#132411",
+                              }}
+                              variant="contained"
+                              onClick={() => editMission(mission.id)}
+                            >
+                              Save
+                            </Button>
+                          </Grid>
+                        </Paper>
+                      );
+                    }
+                    if (mission.id != missionToEdit) {
+                      return (
+                        <Paper className={classes.paper5}>
+                          <Grid key={mission.id} item xs={3}>
+                            <TextField
+                              disabled
+                              id="outlined-required"
+                              label="Your Mantras"
+                              value={mission.manifesto_text}
+                              variant="outlined"
+                              onChange={(evt) =>
+                                setManifestoText(evt.target.value)
+                              }
+                            />
+                            <Button
+                              id={mission.id}
+                              type="submit"
+                              style={{
+                                height: "28px",
+                                backgroundColor: "#bec9bc",
+                                color: "#132411",
+                              }}
+                              variant="contained"
+                              onClick={() => setEditMissionText(mission.id)}
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              type="submit"
+                              style={{
+                                height: "28px",
+                                backgroundColor: "#bec9bc",
+                                color: "#132411",
+                              }}
+                              variant="contained"
+                              onClick={() => deleteMission(mission.id)}
+                            >
+                              Remove
+                            </Button>
+                          </Grid>
+                        </Paper>
+                      );
+                    }
+                  })}
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
         </Grid>
@@ -196,4 +293,3 @@ function MissionStatement() {
 }
 
 export default MissionStatement;
-
