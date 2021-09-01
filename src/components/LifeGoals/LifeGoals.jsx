@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "flex-end"
   }
+
 }));
 
 function Mantras(props) {
@@ -39,7 +40,7 @@ function Mantras(props) {
   console.log('this should be alife goal', lifeGoal);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_LIFEGOALS" });
+    dispatch({ type: "FETCH_LIFE_GOALS" });
   }, []);
 
   const addLifeGoal = () => {
@@ -152,6 +153,7 @@ function Mantras(props) {
                       />
                       <Button
                         id={lifeGoal.id}
+                        style = {{width: 450}}
                         type="submit"
                         style={{
                           height: "28px",
@@ -159,7 +161,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => editLifeGoal(mantra.id)}
+                        onClick={() => editLifeGoal(lifeGoal.id)}
                       >
                         Save
                       </Button>
@@ -173,6 +175,7 @@ function Mantras(props) {
                         disabled
                         id="outlined-required"
                         label="Your Life Goal"
+                        style = {{width: '100%'}}
                         value={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
@@ -186,7 +189,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => setLifeGoalToEdit(mantra.id)}
+                        onClick={() => setLifeGoalToEdit(lifeGoal.id)}
                       >
                         Edit
                       </Button>
@@ -198,7 +201,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => deleteLifeGoal(mantra.id)}
+                        onClick={() => deleteLifeGoal(lifeGoal.id)}
                       >
                         Remove
                       </Button>
