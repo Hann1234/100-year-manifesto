@@ -63,6 +63,10 @@ function Mantras(props) {
     setMantraToEdit(0);
   }
 
+  const deleteMantra = (id) => {
+    dispatch ({type: 'DELETE_MANTRA', payload: id })
+  }
+
   return (
     <section>
       <div>
@@ -213,7 +217,7 @@ function Mantras(props) {
                         color: "#132411",
                       }}
                       variant="contained"
-                      onClick={() => addMantra()}
+                      onClick={() => deleteMantra(mantra.id)}
                     >
                       Remove
                     </Button>
