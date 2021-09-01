@@ -32,31 +32,31 @@ function Mantras(props) {
   const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [mantraToEdit, setMantraToEdit] = useState(0);
+  const [lifeGoalToEdit, setLifeGoalToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: "FETCH_MANTRAS" });
+    dispatch({ type: "FETCH_LIFEGOALS" });
   }, []);
 
-  const addMantra = () => {
-    dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
+  const addLifeGoal = () => {
+    dispatch({ type: "ADD_LIFE_GOAL", payload: { manifestoText: manifestoText } });
     setManifestoText("");
   };
 
-  const editMantra = (id) => {
+  const editLifeGoal = (id) => {
     dispatch({
-      type: "UPDATE_MANTRA",
+      type: "UPDATE_LIFE_GOAL",
       payload: { id: id, manifestoText: editManifestoText },
     });
     setEditManifestoText("");
-    setMantraToEdit(0);
+    setLifeGoalToEdit(0);
   };
 
-  const deleteMantra = (id) => {
-    dispatch({ type: "DELETE_MANTRA", payload: id });
+  const deleteLifeGoal = (id) => {
+    dispatch({ type: "DELETE_LIFE_GOAL", payload: id });
   };
 
   return (
@@ -116,7 +116,7 @@ function Mantras(props) {
                 <TextField
                   required
                   id="outlined-required"
-                  label="Add Mantra"
+                  label="Add lifeGoal"
                   value={manifestoText}
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
@@ -129,7 +129,7 @@ function Mantras(props) {
                     color: "#132411",
                   }}
                   variant="contained"
-                  onClick={() => addMantra()}
+                  onClick={() => addLifeGoal()}
                 >
                   ADD
                 </Button>
@@ -137,20 +137,20 @@ function Mantras(props) {
             </Grid>
 
             <Grid item xs={12} container spacing={2}>
-              {mantras.map((mantra) => {
-                if (mantra.id === mantraToEdit) {
+              {mantras.map((lifeGoal) => {
+                if (lifeGoal.id === lifeGoalToEdit) {
                   return (
-                    <Grid key={mantra.id} item xs={3}>
+                    <Grid key={lifeGoal.id} item xs={3}>
                       <TextField
                         id="outlined-required"
-                        placeholder={mantra.manifesto_text}
+                        placeholder={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) =>
                           setEditManifestoText(evt.target.value)
                         }
                       />
                       <Button
-                        id={mantra.id}
+                        id={lifeGoal.id}
                         type="submit"
                         style={{
                           height: "28px",
@@ -158,26 +158,26 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => editMantra(mantra.id)}
+                        onClick={() => editLifeGoal(mantra.id)}
                       >
                         Save
                       </Button>
                     </Grid>
                   );
                 }
-                if (mantra.id != mantraToEdit) {
+                if (lifeGoal.id != lifeGoalToEdit) {
                   return (
-                    <Grid key={mantra.id} item xs={3}>
+                    <Grid key={lifeGoal.id} item xs={3}>
                       <TextField
                         disabled
                         id="outlined-required"
                         label="Your Mantras"
-                        value={mantra.manifesto_text}
+                        value={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
                       />
                       <Button
-                        id={mantra.id}
+                        id={lifeGoal.id}
                         type="submit"
                         style={{
                           height: "28px",
@@ -185,7 +185,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => setMantraToEdit(mantra.id)}
+                        onClick={() => setLifeGoalToEdit(mantra.id)}
                       >
                         Edit
                       </Button>
@@ -197,7 +197,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => deleteMantra(mantra.id)}
+                        onClick={() => deleteLifeGoal(mantra.id)}
                       >
                         Remove
                       </Button>
