@@ -6,10 +6,8 @@
 .manifestoContainer{
   width: var(--manifestoWidth);
   max-height: var(--manifestoHeight);
-  transform: scale(50%) translateX(-48%) translateY(-50%);
-  
-  float: left;
-
+  transform: scale(50%) translateX(-46%) translateY(-50%);
+  position: absolute;
 }
 
 .manifesto{
