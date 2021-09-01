@@ -7,11 +7,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import "./Mantras.css";
-<<<<<<< HEAD
 import Manifesto from "../Manifesto/Manifesto";
-=======
 import { useHistory } from "react-router-dom";
->>>>>>> 9e5cd9479a5b6e99ec73e4acec70dacded02c986
 
 const useStyles = makeStyles((theme) => ({
   paper: {
