@@ -82,7 +82,7 @@ function Mantras(props) {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/fD1gQrdtQNaNhyn5lHE8_100_-_DIY_-_Words_to_Live_By_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143745Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c2281cd22f2b0ecc903ec64e00a4287b979f846ef4a69449bba6a1cfb5f6698b"
+                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/Jz785ePrTo24qyAOemUE_100_-_DIY_-_Life_Goals_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143925Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0fcc5ae2c7f728127ffe9f159f7664101f7482fd55586a370d64cf3cb9853985"
                   ></iframe>
                 </div>
               </Grid>
@@ -113,10 +113,11 @@ function Mantras(props) {
             <Grid item xs={12}>
               
             </Grid>
-            <Grid item xs={12} container spacing={2}>
+            <Grid item xs={12} >
               <section>
                 <TextField
                   required
+                  style = {{width: '48%'}}
                   id="outlined-required"
                   label="Add lifeGoal"
                   value={manifestoText}
@@ -145,6 +146,7 @@ function Mantras(props) {
                     <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
                         id="outlined-required"
+                        style = {{width: '100%'}}
                         placeholder={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) =>
