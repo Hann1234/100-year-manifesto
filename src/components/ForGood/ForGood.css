@@ -1,0 +1,10 @@
+.rightOfVideo2 {
+    height: 90%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #475473;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    overflow: scroll;
+}

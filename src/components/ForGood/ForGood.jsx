@@ -82,12 +82,12 @@ function ForGood(props) {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/DtXVl9Qy6ycB123K3yrg_100_-_DIY_-_For_Good_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143904Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d13c83c253e96ab9c2d6b7b146c42e9ae643a0c963b5135b4b34e9c948273087"
+                    src=""
                   ></iframe>
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <section className="rightOfVideo">
+                <section className="rightOfVideo2">
                   <p>
                   This is a place for your goals. These goals may or may not be goals you can measure. Think about what you want to accomplish in your life. Think about who you want to be. Think about what you can do.
                   </p>
