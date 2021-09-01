@@ -1,20 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepButton from '@material-ui/core/StepButton';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepButton from "@material-ui/core/StepButton";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
   },
   button: {
     marginRight: theme.spacing(1),
   },
   completed: {
-    display: 'inline-block',
+    display: "inline-block",
   },
   instructions: {
     marginTop: theme.spacing(1),
@@ -23,19 +23,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return [
+    "Intro: Your 100 Year Manifesto",
+    "Mission Statement",
+    "Mantras",
+    "Core Values",
+    "For Good",
+    "Life Goals",
+    "Next Step",
+  ];
 }
 
 function getStepContent(step) {
   switch (step) {
-    case 0:
-      return 'Step 1: Select campaign settings...';
     case 1:
-      return 'Step 2: What is an ad group anyways?';
+      return "Intro: Your 100 Year Manifesto";
     case 2:
-      return 'Step 3: This is the bit I really care about!';
+      return "Mission Statement";
+    case 3:
+      return "Mantras";
+    case 4:
+      return "Core Values";
+    case 5:
+      return "For Good";
+    case 6:
+      return "Life Goals";
+    case 7:
+      return "Guiding Principles";
+    case 8:
+      return "Next Steps";
     default:
-      return 'Unknown step';
+      return "Unknown step";
   }
 }
 
@@ -96,7 +114,10 @@ function ProgressBar() {
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label}>
-            <StepButton onClick={handleStep(index)} completed={completed[index]}>
+            <StepButton
+              onClick={handleStep(index)}
+              completed={completed[index]}
+            >
               {label}
             </StepButton>
           </Step>
@@ -112,9 +133,15 @@ function ProgressBar() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
               <Button
@@ -131,8 +158,14 @@ function ProgressBar() {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button variant="contained" color="primary" onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleComplete}
+                  >
+                    {completedSteps() === totalSteps() - 1
+                      ? "Finish"
+                      : "Complete Step"}
                   </Button>
                 ))}
             </div>
