@@ -6,6 +6,10 @@
 .manifestoContainer{
   width: var(--manifestoWidth);
   max-height: var(--manifestoHeight);
+  transform: scale(50%) translateX(-48%) translateY(-50%);
+  
+  float: left;
+
 }
 
 .manifesto{
@@ -24,12 +28,15 @@
   height: calc(var(--manifestoHeight) * .1818);
   text-align: center;
 }
+.title:hover{
+    cursor: pointer;
+}
 
 .hundredYear{
-  /* font-size: 80px; */
+  font-size: 80px;
 }
 .userName{
-  /* font-size: 60px; */
+  font-size: 60px;
 }
 
 .smallColumn{
@@ -40,7 +47,7 @@
 .mission{
   background-color: #4d5470;
   color:#e7e7e7;
-  /* font-size: 30px; */
+  font-size: 30px;
   padding: 8px;
 }
 .dotSeparation{

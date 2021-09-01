@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "./Mantras.css";
+import Manifesto from "../Manifesto/Manifesto";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -54,12 +55,7 @@ function Mantras(props) {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Paper className={classes.paper}>
-              this is where the manifesto goes I do not know if we thought about
-              this but almost all of our pages are going to follw a vary
-              spacific grid layout so it should be atop priority to get that
-              layout figured out so we can all have it for our pages
-            </Paper>
+            <Manifesto/>
           </Grid>
           <Grid item xs={8}>
             <Grid container spacing={1}>
