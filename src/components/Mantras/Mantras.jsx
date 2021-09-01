@@ -5,7 +5,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Box from '@material-ui/core/Box';
 import "./Mantras.css";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -16,6 +18,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     color: "#132411",
   },
+  box: {
+    display: "flex",
+    padding: 8
+  },
+  bottomBox: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end"
+  }
 }));
 
 function Mantras(props) {
@@ -24,6 +34,7 @@ function Mantras(props) {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -208,6 +219,20 @@ function Mantras(props) {
                 }
               })}
             </Grid>
+            <Box
+  component="span"
+  m={1} //margin
+  className={`${classes.bottomBox} ${classes.box}`}
+>
+  <Button 
+    variant="contained" 
+    color="primary" 
+    style={{ height: 40 }}
+    onClick={() => history.push('/corevalues')}
+  >
+    Next
+  </Button>
+</Box>
           </Grid>
         </Grid>
       </div>

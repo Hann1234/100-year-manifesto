@@ -26,7 +26,7 @@ function* fetchCoreValues() {
 //Update core value
 function* updateCoreValues(action) {
   try {
-    yield axios.put(`/api/coreValues/${action.payload.id}`, action.payload.manifestoText);
+    yield axios.put(`/api/coreValues/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_CORE_VALUES'}); //Reloads core values
   } catch (error) {
     console.log('Error updating core values:', error);
