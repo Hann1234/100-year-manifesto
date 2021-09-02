@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import "./ForGood.css";
 import { useHistory } from "react-router-dom";
 
@@ -25,19 +26,22 @@ const useStyles = makeStyles((theme) => ({
   bottomBox: {
     justifyContent: "flex-end",
     alignItems: "flex-end"
+  },
+  textfield:{
+    height: '30vh'
   }
 
 }));
 
 function ForGood() {
-  const ForGood = useSelector((store) => store.forGoodReducer.forGood);
+  const ForGood = useSelector((store) => store.forGoodReducer);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
   const [forGoodToEdit, setForGoodToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log('this should be alife goal', ForGood);
+  console.log('this should be forGood', ForGood);
 
   useEffect(() => {
     dispatch({ type: "FETCH_FOR_GOODS" });
@@ -121,20 +125,24 @@ a greater impact in the world. Not more for himself, but for the greater good.</
             </Grid>
             <Grid item xs={12} >
               <section>
-                <TextField
-                  required
-                  style = {{width: '48%'}}
-                  id="outlined-required"
-                  label="Add ForGood"
-                  value={manifestoText}
-                  variant="outlined"
-                  onChange={(evt) => setManifestoText(evt.target.value)}
-                />
+              <TextareaAutosize
+      required
+      style = {{ height: '40vh'}}
+      id="outlined-required"
+      placeholder="Add For Good"
+      value={manifestoText}
+      multiline= {true}
+      variant="outlined"
+      onChange={(evt) => setManifestoText(evt.target.value)}
+    
+    />
+ 
+                
                 <Button
                   type="submit"
                   style={{
                     height: "56px",
-                    backgroundColor: "#bec9bc",
+                    backgroundColor: "#1c4bd9",
                     color: "#132411",
                   }}
                   variant="contained"
@@ -146,11 +154,11 @@ a greater impact in the world. Not more for himself, but for the greater good.</
             </Grid>
 
             <Grid item xs={12} container spacing={2}>
-              {ForGood.map((ForGood) => {
+              {/* {ForGood.map((ForGood) => {
                 if (ForGood.id === forGoodToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={6}>
-                      <TextField
+                      <TextField 
                         id="outlined-required"
                         style = {{width: '100%'}}
                         placeholder={ForGood.manifesto_text}
@@ -165,7 +173,7 @@ a greater impact in the world. Not more for himself, but for the greater good.</
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#1c4bd9",
                           color: "#132411",
                         }}
                         variant="contained"
@@ -216,7 +224,7 @@ a greater impact in the world. Not more for himself, but for the greater good.</
                     </Grid>
                   );
                 }
-              })}
+              })} */}
             </Grid>
             <Box
   component="span"
