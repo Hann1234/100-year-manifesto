@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import AdminEdits from '../AdminEdits/AdminEdits';
 
 // This is one of our simplest components
@@ -7,16 +8,24 @@ import AdminEdits from '../AdminEdits/AdminEdits';
 // or even care what the redux state is'
 
 function AboutPage() {
+  const dispatch = useDispatch ();
+  const page_id = 9;
+
+  useEffect(() => {
+      dispatch({ type: 'FETCH_USER' });
+      dispatch({ type: 'FETCH_PAGE_EDITS', payload: {page_id: page_id} });
+      // dispatch({ type: 'FETCH_PAGE_EDITS_ON_DATE', payload: {page_id: page_id, edit_date: '2021-09-01 16:10:32'} });
+  }, []);
 
   return (
     <div className="container">
       <div>
         <p>This about page is for anyone to read!</p>
-        <p><AdminEdits page_id={9} html_id={"about_text"} default_value={"This about page is for anyone to read!"}/></p>
-        <AdminEdits page_id={9} html_id={"test0"} default_value={"test text 0"}/>
-        <AdminEdits page_id={9} html_id={"test1"} default_value={"test text 1"}/>
+        <p><AdminEdits page_id={page_id} html_id={"about_text"} default_value={"This about page is for anyone to read!"}/></p>
+        <AdminEdits page_id={page_id} html_id={"test0"} default_value={"test text 0"}/>
+        <AdminEdits page_id={page_id} html_id={"test1"} default_value={"test text 1"}/>
         <div>
-          <AdminEdits page_id={9} html_id={"test2"} default_value={"test text 2"}/>
+          <AdminEdits page_id={page_id} html_id={"test2"} default_value={"test text 2"}/>
         </div>
       </div>
     </div>

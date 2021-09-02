@@ -33,23 +33,12 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
     const [value, setValue] = useState(initialValue);
     const [date, setDate] = useState(false);
 
-
-
     useEffect(() => {
-        dispatch({ type: 'FETCH_USER' });
-        // FETCH_PAGE_EDITS should be moved into each page
-        // so that it only runs once per page rather than once per editable element
-        // for now: if the reducer is empty or if the page_id passed in doesn't match the page id in the reducer, call FETCH_PAGE_EDITS for the current page
-        if (adminEditFormReducer.pageEdits.length === 0 || (adminEditFormReducer.pageEdits.page_id && adminEditFormReducer.pageEdits.page_id !== page_id)) {
-            dispatch({ type: 'FETCH_PAGE_EDITS', payload: {page_id: page_id} });
-            // dispatch({ type: 'FETCH_PAGE_EDITS_ON_DATE', payload: {page_id: page_id, edit_date: '2021-09-01 16:10:32'} });
-        }
-    }, []);
+        setValue(initialValue);
+    }, [adminEditFormReducer]);
 
     // construct html element
     const renderHtmlElement = () => {
-        let htmlElement = '';
-        
 
     } // end renderHtmlElement
 
@@ -92,7 +81,7 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
             <>{
                 edit ?
                 // edit mode
-                <>{value}<CancelOutlinedIcon onClick={() => setEdit(false), setValue(initialValue)}/><SaveIcon /><ScheduleIcon /></> :
+                <>{value}<CancelOutlinedIcon onClick={() => {setEdit(false); setValue(initialValue);}}/><SaveIcon /><ScheduleIcon /></> :
                 // display mode (edit is false)
                 <>{value}<EditIcon onClick={() => setEdit(true)}/></>
             }</>
