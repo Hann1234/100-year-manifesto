@@ -4,9 +4,10 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPlayer from "react-player";
+import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import { useHistory } from "react-router";
-
 
 import Grid from "@material-ui/core/Grid";
 import { CardMedia } from "@material-ui/core";
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridGap: theme.spacing(3),
   },
-  //paper will be for Manifesto display. 
+  //paper will be for Manifesto display.
   paper: {
     height: "100vh",
     padding: theme.spacing(2),
@@ -25,11 +26,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
-    backgroundColor: "#475473", 
+    backgroundColor: "#475473",
   },
   //paper2 is for the video
   paper2: {
-    height: "12vh",
+    height: "14vh",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -38,13 +39,15 @@ const useStyles = makeStyles((theme) => ({
   },
   //paper3 is where all the main text will be displayed.
   paper3: {
-    height: "60vh",
+    // height: "60vh",
+    maxHeight: "60vh",
+    overflow: "auto",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
-    backgroundColor: "#475473", 
+    backgroundColor: "#475473",
   },
   //paper4 is where the input field is.
   paper4: {
@@ -56,29 +59,41 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     backgroundColor: "#bdbfbf",
   },
+  paper5: {
+    maxHeight: "46vh",
+    overflow: "auto",
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    whiteSpace: "wrap",
+    marginBottom: theme.spacing(1),
+  },
   divider: {
     margin: theme.spacing(2, 0),
   },
 }));
 
 function MissionStatement() {
-  const [mission, setMission] = useState("");
+  const [missionText, setMissionText] = useState("");
+  const [editManifestoText, setEditManifestoText] = useState("");
+  const [editMissionText, setEditMissionText] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const history = useHistory ();
-
-  const store = useSelector((store) => store);
+  const missions = useSelector((store) => store.missionReducer.mission);
   const [heading, setHeading] = useState("Functional Component");
+  console.log(`What is missions store? `, missions);
 
   const classes = useStyles();
 
   useEffect(() => {
-    //Need a dispatch to load the static part of page
+    //Need a dispatch to load the static part of page and activate GET to pull in DB data for MissionStatement.
+    dispatch({ type: "FETCH_MISSION" });
   }, []);
 
   //Need handleChange to setMission in input field
   const handleMissionChange = () => {
-    setMission(event.target.value);
+    setMissionText(event.target.value);
   };
 
   //Need handleSubmit
@@ -86,10 +101,22 @@ function MissionStatement() {
   const addMission = (event) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
-    dispatch({ type: "ADD_MISSION", payload: {manifestoText: mission} });
-    console.log(`What's the current state of mission?`, mission);
-    setMission('');
+    dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });
+    console.log(`What's the current state of mission?`, missionText);
+    setMissionText("");
+  };
 
+  const editMission = (id) => {
+    dispatch({
+      type: "UPDATE_MISSION",
+      payload: { id: id, manifestoText: editManifestoText },
+    });
+    setEditManifestoText("");
+    setEditMissionText(0);
+  };
+
+  const deleteMission = (id) => {
+    dispatch({ type: "DELETE_MISSION", payload: id });
   };
 
   return (
@@ -120,7 +147,6 @@ function MissionStatement() {
                   <Paper className={classes.paper3}>
                     <div>
                       <h3>Mission Statement</h3>
-
                       <p>
                         Your 100 Year Manifesto starts with your mission
                         statement. There is no great gift you can give yourself
@@ -158,33 +184,123 @@ function MissionStatement() {
               </Grid>
               <Grid item xs={12}>
                 <Paper className={classes.paper4}>
-
                   <form onSubmit={addMission}>
-
                     <center>
                       <h2>Mission Statement: </h2>
                       <input
-                        className="mission"
-                        value={mission}
+                        className="missionText"
+                        value={missionText}
                         onChange={(event) =>
                           handleMissionChange(event.target.value)
                         }
                         placeholder="Your Mission Statement"
                         required
                       />
-                      <button className="missionButton" type="submit">
-                        SAVE
-                      </button>
-                      <button
+                      <Button
+                        type="submit"
+                        style={{
+                          height: "56px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => addMission(event)}
+                      >
+                        ADD
+                      </Button>
+                      {/* <button className="searchButton" type="submit">
+                        ADD
+                      </button> */}
+                      <Button
                         className="nextButton"
+                        style={{
+                          height: "56px",
+                          backgroundColor: "#bec9bc",
+                          color: "#132411",
+                        }}
+                        variant="contained"
                         onClick={() => {
                           history.push("/mantras");
                         }}
                       >
                         NEXT
-                      </button>
+                      </Button>
                     </center>
                   </form>
+                </Paper>
+              </Grid>
+
+              {/* Need to append data from mission DB here */}
+              <Grid item xs={12} container spacing={2}>
+              <Paper className={classes.paper5}>
+                {missions.map((mission) => {
+                  if (mission.id === editMissionText) {
+                    return (
+                      <Grid key={mission.id} item xs={3}>
+                        <TextField
+                          id="outlined-required"
+                          placeholder={mission.manifesto_text}
+                          variant="outlined"
+                          onChange={(evt) =>
+                            setEditManifestoText(evt.target.value)
+                          }
+                        />
+                        <Button
+                          id={mission.id}
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#bec9bc",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => editMission(mission.id)}
+                        >
+                          SAVE
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                  if (mission.id != editMission) {
+                    return (
+                      <Grid key={mission.id} item xs={3}>
+                        <TextField
+                          disabled
+                          id="outlined-required"
+                          label="Your Mission Statements"
+                          value={mission.manifesto_text}
+                          variant="outlined"
+                          onChange={(evt) => setMissionText(evt.target.value)}
+                        />
+                        <Button
+                          id={mission.id}
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#bec9bc",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => setEditMissionText(mission.id)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#bec9bc",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => deleteMission(mission.id)}
+                        >
+                          Remove
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                })}
                 </Paper>
               </Grid>
             </Paper>
@@ -196,4 +312,3 @@ function MissionStatement() {
 }
 
 export default MissionStatement;
-

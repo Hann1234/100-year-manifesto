@@ -19,7 +19,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Mantras from '../Mantras/Mantras'
-import LifeGoals from '../LifeGoals/LifeGoals';
+
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
@@ -99,29 +99,6 @@ function App() {
             <Mantras />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/lifegoals"
-          >
-            <LifeGoals />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/corevalues"
-          >
-            <CoreValues />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/forgood"
-          >
-            <ForGood />
-          </ProtectedRoute>
 
           <Route
             exact
