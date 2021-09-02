@@ -36,11 +36,10 @@ function ForGood() {
   const ForGood = useSelector((store) => store.forGoodReducer.forGood);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [forGoodToEdit, setForGoodToEdit] = useState(0);
+  const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log("this should be forGood", ForGood);
 
   useEffect(() => {
     dispatch({ type: "FETCH_FOR_GOODS" });
@@ -54,19 +53,20 @@ function ForGood() {
     setManifestoText("");
   };
 
+
+  const startEdit = (itemToEdit) => {
+    setEditManifestoText(itemToEdit.manifesto_text)
+    setItemToEdit(itemToEdit.id)
+}
+
   const editForGood = (id) => {
     dispatch({
       type: "UPDATE_FOR_GOOD",
       payload: { id: id, manifestoText: editManifestoText },
     });
     setEditManifestoText("");
-    setForGoodToEdit(0);
+    setItemToEdit(0);
   };
-
-  const startEdit = (forGood) => {
-      setEditManifestoText(forGood.manifesto_text)
-      setForGoodToEdit(forGood.id)
-  }
 
   const deleteForGood = (id) => {
     dispatch({ type: "DELETE_FOR_GOOD", payload: id });
@@ -195,7 +195,7 @@ function ForGood() {
 
             <Grid item xs={12} container spacing={2}>
               {ForGood.map((ForGood) => {
-                if (ForGood.id === forGoodToEdit) {
+                if (ForGood.id === itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
                       <TextareaAutosize
@@ -226,7 +226,7 @@ function ForGood() {
                     </Grid>
                   );
                 }
-                if (ForGood.id != forGoodToEdit) {
+                if (ForGood.id != itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
                       <TextareaAutosize
