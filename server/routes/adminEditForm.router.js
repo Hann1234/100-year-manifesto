@@ -47,7 +47,7 @@ const router = express.Router();
  * returns what the page content looked like as a specific date and time
  */
  router.get('/page_on_date/:page_id', rejectUnauthenticated, (req, res) => {
-  console.log("in GET admin_edit_form table");
+  console.log("in GET admin_edit_form table on date");
   
   if (req.user.role === "admin") {
 

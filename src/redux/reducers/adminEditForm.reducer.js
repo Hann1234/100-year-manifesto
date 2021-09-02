@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 // Stores pageEdits
-const pageEdits = (state = {}, action) => {
+const pageEdits = (state = [], action) => {
   switch (action.type) {
     case 'CLEAR_PAGE_EDITS':
       return {};
@@ -13,7 +13,7 @@ const pageEdits = (state = {}, action) => {
 };
 
 // Stores pageEditsOnDate
-const pageEditsOnDate = (state = {}, action) => {
+const pageEditsOnDate = (state = [], action) => {
     switch (action.type) {
       case 'SET_PAGE_EDITS_ON_DATE':
           return action.payload;
