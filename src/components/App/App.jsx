@@ -27,6 +27,8 @@ import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
 
 import './App.css';
+import CoreValues from '../CoreValues/CoreValues';
+import ForGood from '../ForGood/ForGood';
 
 function App() {
   const dispatch = useDispatch();
@@ -96,6 +98,7 @@ function App() {
           >
             <Mantras />
           </ProtectedRoute>
+
 
           <Route
             exact
