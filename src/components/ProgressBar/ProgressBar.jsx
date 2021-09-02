@@ -5,6 +5,8 @@ import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,34 +36,59 @@ function getSteps() {
   ];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return "Intro: Your 100 Year Manifesto";
-    case 1:
-      return "Mission Statement";
-    case 2:
-      return "Mantras";
-    case 3:
-      return "Core Values";
-    case 4:
-      return "For Good";
-    case 5:
-      return "Life Goals";
-    case 6:
-      return "Guiding Principles";
-    case 7:
-      return "Next Steps";
-    default:
-      return "Unknown step";
-  }
-}
+//This just displays the name of the page we're on.
+// function getStepContent(step) {
+//   switch (step) {
+//     case 0:
+//       return "Intro: Your 100 Year Manifesto";
+//     case 1:
+//       return history.push("/missionStatement");
+//     case 2:
+//       return history.push("/mantras");
+//     case 3:
+//       return "Core Values";
+//     case 4:
+//       return "For Good";
+//     case 5:
+//       return "Life Goals";
+//     case 6:
+//       return "Guiding Principles";
+//     case 7:
+//       return "Next Steps";
+//     default:
+//       return "Unknown step";
+//   }
+// }
 
 function ProgressBar() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
+  const history = useHistory();
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return history.push("/homepage");
+      case 1:
+        return history.push("/missionStatement");
+      case 2:
+        return history.push("/mantras");
+      case 3:
+        return history.push("/coreValues");
+      case 4:
+        return history.push("/forGood");
+      case 5:
+        return history.push("/lifeGoals");
+      case 6:
+        return history.push("/guidingPrinciples");
+      case 7:
+        return history.push("/nextSteps");
+      default:
+        return "Unknown step";
+    }
+  }
 
   const totalSteps = () => {
     return steps.length;
@@ -93,8 +120,10 @@ function ProgressBar() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  //I think this is where we can put some logic to push user to the page they want to be onClick
   const handleStep = (step) => () => {
     setActiveStep(step);
+    getStepContent(step);
   };
 
   const handleComplete = () => {
