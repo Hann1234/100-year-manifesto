@@ -62,7 +62,7 @@ function getSteps() {
 
 function ProgressBar() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(-1);
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
   const history = useHistory();
