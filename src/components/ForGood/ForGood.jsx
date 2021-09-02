@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ForGood() {
-  const ForGood = useSelector((store) => store.forGoodReducer);
+  const ForGood = useSelector((store) => store.forGoodReducer.forGood);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
   const [forGoodToEdit, setForGoodToEdit] = useState(0);
@@ -127,7 +127,7 @@ a greater impact in the world. Not more for himself, but for the greater good.</
               <section>
               <TextareaAutosize
       required
-      style = {{ height: '40vh'}}
+      style = {{ height: '30vh'}}
       id="outlined-required"
       placeholder="Add For Good"
       value={manifestoText}
@@ -154,15 +154,17 @@ a greater impact in the world. Not more for himself, but for the greater good.</
             </Grid>
 
             <Grid item xs={12} container spacing={2}>
-              {/* {ForGood.map((ForGood) => {
+              {ForGood.map((ForGood) => {
                 if (ForGood.id === forGoodToEdit) {
                   return (
-                    <Grid key={ForGood.id} item xs={6}>
-                      <TextField 
-                        id="outlined-required"
-                        style = {{width: '100%'}}
-                        placeholder={ForGood.manifesto_text}
-                        variant="outlined"
+                    <Grid key={ForGood.id} item xs={3}>
+                      <TextareaAutosize
+      required
+      style = {{ height: '30vh'}}
+      id="outlined-required"
+      value={ForGood.manifest_text}
+      multiline= {true}
+      variant="outlined"
                         onChange={(evt) =>
                           setEditManifestoText(evt.target.value)
                         }
@@ -186,14 +188,15 @@ a greater impact in the world. Not more for himself, but for the greater good.</
                 }
                 if (ForGood.id != forGoodToEdit) {
                   return (
-                    <Grid key={ForGood.id} item xs={6}>
-                      <TextField
-                        disabled
-                        id="outlined-required"
-                        label="Your Life Goal"
-                        style = {{width: '100%'}}
-                        value={ForGood.manifesto_text}
-                        variant="outlined"
+                    <Grid key={ForGood.id} item xs={3}>
+                      <TextareaAutosize
+
+      disabled
+      style = {{ height: '30vh'}}
+      id="outlined-required"
+      value={ForGood.manifesto_text}
+      multiline= {true}
+      variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
                       />
                       <Button
@@ -224,7 +227,7 @@ a greater impact in the world. Not more for himself, but for the greater good.</
                     </Grid>
                   );
                 }
-              })} */}
+              })}
             </Grid>
             <Box
   component="span"
