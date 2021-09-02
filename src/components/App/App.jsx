@@ -18,15 +18,13 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Mantras from '../Mantras/Mantras'
 
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
 import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
-import Mantras from '../Mantras/Mantras';
-import LifeGoals from '../LifeGoals/LifeGoals';
-import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 
 import './App.css';
 
@@ -97,22 +95,6 @@ function App() {
             path="/mantras"
           >
             <Mantras />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/lifegoals"
-          >
-            <LifeGoals />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/guidingPrinciples"
-          >
-            <GuidingPrinciples />
           </ProtectedRoute>
 
           <Route
