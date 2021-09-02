@@ -33,7 +33,7 @@ function Mantras(props) {
   const lifeGoal = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [lifeGoalToEdit, setLifeGoalToEdit] = useState(0);
+  const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,13 +48,18 @@ function Mantras(props) {
     setManifestoText("");
   };
 
+  const startEdit = (itemToEdit) => {
+    setEditManifestoText(itemToEdit.manifesto_text)
+    setItemToEdit(itemToEdit.id)
+}
+
   const editLifeGoal = (id) => {
     dispatch({
       type: "UPDATE_LIFE_GOAL",
       payload: { id: id, manifestoText: editManifestoText },
     });
     setEditManifestoText("");
-    setLifeGoalToEdit(0);
+    setItemToEdit(0);
   };
 
   const deleteLifeGoal = (id) => {
@@ -141,7 +146,7 @@ function Mantras(props) {
 
             <Grid item xs={12} container spacing={2}>
               {lifeGoal.map((lifeGoal) => {
-                if (lifeGoal.id === lifeGoalToEdit) {
+                if (lifeGoal.id === itemToEdit) {
                   return (
                     <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
@@ -170,7 +175,7 @@ function Mantras(props) {
                     </Grid>
                   );
                 }
-                if (lifeGoal.id != lifeGoalToEdit) {
+                if (lifeGoal.id != itemToEdit) {
                   return (
                     <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
@@ -191,7 +196,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => setLifeGoalToEdit(lifeGoal.id)}
+                        onClick={() => startEdit(lifeGoal)}
                       >
                         Edit
                       </Button>
