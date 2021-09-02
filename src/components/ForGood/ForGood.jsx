@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function ForGood(props) {
+function ForGood() {
   const ForGood = useSelector((store) => store.forGoodReducer.forGood);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
@@ -82,7 +82,7 @@ function ForGood(props) {
                   <iframe
                     width="512"
                     height="288"
-                    src=""
+                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/DtXVl9Qy6ycB123K3yrg_100_-_DIY_-_For_Good_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143904Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d13c83c253e96ab9c2d6b7b146c42e9ae643a0c963b5135b4b34e9c948273087"
                   ></iframe>
                 </div>
               </Grid>
@@ -96,20 +96,28 @@ never really understood it. And, I was too embarrassed to ask what it meant. The
 Living in a big city, I see a lot of people from all walks of life. Some of them are heading to sporting events & concerts, some are working at the restaurants & hotels, some are corporate suits, but it’s the ones on the corner asking for change – those are the ones I really think about.
 While they may be homeless – they are also somebody’s brother – somebody’s sister – somebody’s father – somebodys daughter. They are real people. I’ve never heard a grade schooler answer the question “what do you want to be when you grow up?” with the answer “homeless, missing a few teeth, out of touch with those I love the most, begging for money, & wearing the same clothes I wore for the past week.”
 One of the ladies in particular catches my attention. I’m not sure what it is about her, but she reminds me of my Mom. Yes, my Mom. One of my heroes. One of the people who loved me the most in life. And, I think to myself – had Mom been in a big city versus the small, rural community of Galesburg, Illinois – had she been in a big city when she was going through her dark days, would she too be on the corner – would she too be digging in the trash looking for a treasure – would she too be one of “those” people.
-Somebody’s Brother is a cause I’m passionate about. It’s something greater
+Somebody’s Brother is a cause I’m passionate about. It’s something greater than myself. It’s something that makes me feel alive. Real impact on real people. Jesus talked about, “Whatever you do unto the least of these, you do unto me.” I like to think, Somebody’s Brother is doing good unto the least of these.
                   </p>
                 </section>
               </Grid>
             </Grid>
+            
+            <Grid item xs={12}>
+              
+            </Grid>
+            <Grid item xs={12} container spacing={2}>
+                <center className='rightOfVideo'><p>Whether you volunteer at the local rescue mission, build houses with Habitat for Humanity, or volunteer at the animal shelter – find a cause worth serving. Find something bigger than yourself.
+At the end of Schindler’s List, the Oscar Schindler is fleeing for his life. He had just saved the lives of 1,000 Jews. There are more descendants alive today from those 1,000 Jews than were alive in Poland at the end
+of World War II. He’s ready to leave & all the people he saved show up to say goodbye. Oscar Schindler looks down at his lapel &
+at his ring – he stammers – I could have done more. 2 more people. I could have done more. He’s filled with regret for not having
+a greater impact in the world. Not more for himself, but for the greater good.</p></center>
+            </Grid>
             <Grid item xs={12}>
               <section>
                 <h3>
-                WHAT ARE YOU LIFE GOALS?
+                What’s you’re greater good? What are 2-3-4 causes you’re passionate about. For Good
                 </h3>
               </section>
-            </Grid>
-            <Grid item xs={12}>
-              
             </Grid>
             <Grid item xs={12} >
               <section>
