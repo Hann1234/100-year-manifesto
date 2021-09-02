@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   //paper2 is for the video
   paper2: {
-    height: "12vh",
+    height: "14vh",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -60,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#bdbfbf",
   },
   paper5: {
-    height: "48vh",
+    maxHeight: "46vh",
+    overflow: "auto",
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
@@ -231,6 +232,7 @@ function MissionStatement() {
 
               {/* Need to append data from mission DB here */}
               <Grid item xs={12} container spacing={2}>
+              <Paper className={classes.paper5}>
                 {missions.map((mission) => {
                   if (mission.id === editMissionText) {
                     return (
@@ -299,6 +301,7 @@ function MissionStatement() {
                     );
                   }
                 })}
+                </Paper>
               </Grid>
             </Paper>
           </Grid>
