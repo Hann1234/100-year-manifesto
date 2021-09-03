@@ -36,7 +36,7 @@ app.use('/api/user', userRouter);
 app.use('/api/missionStatement', missionStatementRouter );
 app.use('/api/mantras', mantrasRouter );
 app.use('/api/coreValues', coreValuesRouter );
-app.use('/api/forGood', forGoodRouter );
+app.use('/api/forGoods', forGoodRouter );
 app.use('/api/lifeGoals', lifeGoalsRouter );
 app.use('/api/guidingPrinciples', guidingPrinciplesRouter);
 app.use('/api/additionalQuestions', additionalQuestionsRouter);
