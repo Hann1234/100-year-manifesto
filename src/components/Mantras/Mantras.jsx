@@ -72,15 +72,17 @@ function Mantras(props) {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <Paper className={classes.paper}>
-              this is where the manifesto goes I do not know if we thought about
-              this but almost all of our pages are going to follw a vary
-              spacific grid layout so it should be atop priority to get that
-              layout figured out so we can all have it for our pages
+              <Typography>
+                this is where the manifesto goes I do not know if we thought about
+                this but almost all of our pages are going to follw a vary
+                spacific grid layout so it should be atop priority to get that
+                layout figured out so we can all have it for our pages
+              </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={8}>
-            <center><h1>Words To Live By</h1></center>
-            <Grid container spacing={1}>
+          <Grid item container xs={8}>
+            <center><Typography variant="h1">Words To Live By</Typography></center>
+            <Grid item container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
                   <iframe
@@ -231,9 +233,9 @@ function Mantras(props) {
   m={1} //margin
   className={`${classes.bottomBox} ${classes.box}`}
 >
-  <Button 
-    variant="contained" 
-    color="primary" 
+  <Button
+    variant="contained"
+    color="primary"
     style={{ height: 40 }}
     onClick={() => history.push('/corevalues')}
   >

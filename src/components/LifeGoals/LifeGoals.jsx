@@ -1,69 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
-import "./LifeGoals.css";
-import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import './LifeGoals.css';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    height: "100vh",
+    height: '100vh',
     padding: theme.spacing(2),
-    textAlign: "center",
-    whiteSpace: "wrap",
+    textAlign: 'center',
+    whiteSpace: 'wrap',
     marginBottom: theme.spacing(1),
-    color: "#132411",
+    color: '#132411',
   },
   box: {
-    display: "flex",
-    padding: 8
+    display: 'flex',
+    padding: 8,
   },
   bottomBox: {
-    justifyContent: "flex-end",
-    alignItems: "flex-end"
-  }
-
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
 }));
 
 function Mantras(props) {
   const lifeGoal = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
-  const [manifestoText, setManifestoText] = useState("");
-  const [editManifestoText, setEditManifestoText] = useState("");
+  const [manifestoText, setManifestoText] = useState('');
+  const [editManifestoText, setEditManifestoText] = useState('');
   const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  // TODO: Clean up console logs
   console.log('this should be alife goal', lifeGoal);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_LIFE_GOALS" });
+    dispatch({ type: 'FETCH_LIFE_GOALS' });
   }, []);
 
   const addLifeGoal = () => {
-    dispatch({ type: "ADD_LIFE_GOAL", payload: { manifestoText: manifestoText } });
-    setManifestoText("");
+    dispatch({
+      type: 'ADD_LIFE_GOAL',
+      payload: { manifestoText: manifestoText },
+    });
+    setManifestoText('');
   };
 
   const startEdit = (itemToEdit) => {
-    setEditManifestoText(itemToEdit.manifesto_text)
-    setItemToEdit(itemToEdit.id)
-}
+    setEditManifestoText(itemToEdit.manifesto_text);
+    setItemToEdit(itemToEdit.id);
+  };
 
   const editLifeGoal = (id) => {
     dispatch({
-      type: "UPDATE_LIFE_GOAL",
+      type: 'UPDATE_LIFE_GOAL',
       payload: { id: id, manifestoText: editManifestoText },
     });
-    setEditManifestoText("");
+    setEditManifestoText('');
     setItemToEdit(0);
   };
 
   const deleteLifeGoal = (id) => {
-    dispatch({ type: "DELETE_LIFE_GOAL", payload: id });
+    dispatch({ type: 'DELETE_LIFE_GOAL', payload: id });
   };
 
   return (
@@ -80,8 +83,10 @@ function Mantras(props) {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <center><h1>Life Goals</h1></center>
-            <Grid container spacing={1}>
+            <center>
+              <h1>Life Goals</h1>
+            </center>
+            <Grid item container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
                   <iframe
@@ -94,35 +99,35 @@ function Mantras(props) {
               <Grid item xs={6}>
                 <section className="rightOfVideo">
                   <p>
-                  This is a place for your goals. These goals may or may not be goals you can measure. Think about what you want to accomplish in your life. Think about who you want to be. Think about what you can do.
+                    This is a place for your goals. These goals may or may not
+                    be goals you can measure. Think about what you want to
+                    accomplish in your life. Think about who you want to be.
+                    Think about what you can do.
                   </p>
-                  <p>
-                  10 Goals for You. For your life.
-                  </p>
+                  <p>10 Goals for You. For your life.</p>
                   <p>For me, they include:</p>
                   <p>
-                  “Be the man, father, & husband God created me to be.“
-“Build a business allowing for remore work anywhere in the world.“
-“Raise healthy boys who love themselves, their family, & their God: who serve others, lead by example, & do their best every single day of their lives. “
+                    “Be the man, father, & husband God created me to be.“ “Build
+                    a business allowing for remore work anywhere in the world.“
+                    “Raise healthy boys who love themselves, their family, &
+                    their God: who serve others, lead by example, & do their
+                    best every single day of their lives. “
                   </p>
                 </section>
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <section>
-                <h3>
-                WHAT ARE YOU LIFE GOALS?
-                </h3>
+                {/* TODO: Change <h3> element to <Typography variant="h3"> */}
+                <h3>WHAT ARE YOU LIFE GOALS?</h3>
               </section>
             </Grid>
+            <Grid item xs={12}></Grid>
             <Grid item xs={12}>
-              
-            </Grid>
-            <Grid item xs={12} >
               <section>
                 <TextField
                   required
-                  style = {{width: '48%'}}
+                  style={{ width: '48%' }}
                   id="outlined-required"
                   label="Add lifeGoal"
                   value={manifestoText}
@@ -132,9 +137,9 @@ function Mantras(props) {
                 <Button
                   type="submit"
                   style={{
-                    height: "56px",
-                    backgroundColor: "#bec9bc",
-                    color: "#132411",
+                    height: '56px',
+                    backgroundColor: '#bec9bc',
+                    color: '#132411',
                   }}
                   variant="contained"
                   onClick={() => addLifeGoal()}
@@ -151,7 +156,7 @@ function Mantras(props) {
                     <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
                         id="outlined-required"
-                        style = {{width: '100%'}}
+                        style={{ width: '100%' }}
                         placeholder={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) =>
@@ -160,12 +165,12 @@ function Mantras(props) {
                       />
                       <Button
                         id={lifeGoal.id}
-                        style = {{width: 450}}
+                        style={{ width: 450 }}
                         type="submit"
                         style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          height: '28px',
+                          backgroundColor: '#bec9bc',
+                          color: '#132411',
                         }}
                         variant="contained"
                         onClick={() => editLifeGoal(lifeGoal.id)}
@@ -182,7 +187,7 @@ function Mantras(props) {
                         disabled
                         id="outlined-required"
                         label="Your Life Goal"
-                        style = {{width: '100%'}}
+                        style={{ width: '100%' }}
                         value={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
@@ -191,9 +196,9 @@ function Mantras(props) {
                         id={lifeGoal.id}
                         type="submit"
                         style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          height: '28px',
+                          backgroundColor: '#bec9bc',
+                          color: '#132411',
                         }}
                         variant="contained"
                         onClick={() => startEdit(lifeGoal)}
@@ -203,9 +208,9 @@ function Mantras(props) {
                       <Button
                         type="submit"
                         style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          height: '28px',
+                          backgroundColor: '#bec9bc',
+                          color: '#132411',
                         }}
                         variant="contained"
                         onClick={() => deleteLifeGoal(lifeGoal.id)}
@@ -218,19 +223,19 @@ function Mantras(props) {
               })}
             </Grid>
             <Box
-  component="span"
-  m={1} //margin
-  className={`${classes.bottomBox} ${classes.box}`}
->
-  <Button 
-    variant="contained" 
-    color="primary" 
-    style={{ height: 40 }}
-    onClick={() => history.push('/guidingprinciples')}
-  >
-    Next
-  </Button>
-</Box>
+              component="span"
+              m={1} //margin
+              className={`${classes.bottomBox} ${classes.box}`}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ height: 40 }}
+                onClick={() => history.push('/guidingprinciples')}
+              >
+                Next
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </div>

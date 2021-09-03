@@ -56,19 +56,19 @@ function GuidingPrinciples(props) {
 
   const addGuidingPrinciple = () => {
     dispatch({
-        type: 'ADD_GUIDING_PRINCIPLE', 
+        type: 'ADD_GUIDING_PRINCIPLE',
         payload: {
             manifestoText: manifestoText
-        }});
+        },
+      });
 
         // setManifestoText(''); - Moved to useEffect
-
   };
 
   const editGuidingPrinciple = (id) => {
     dispatch({
         type: 'UPDATE_GUIDING_PRINCIPLE',
-        payload: { 
+        payload: {
             id: id,
             manifestoText: editManifestoText
         },
@@ -81,7 +81,7 @@ function GuidingPrinciples(props) {
 
   const deleteGuidingPrinciple = (id) => {
     dispatch({
-        type: 'DELETE_GUIDING_PRINCIPLE', 
+        type: 'DELETE_GUIDING_PRINCIPLE',
         payload: id
     });
   };
@@ -106,7 +106,7 @@ function GuidingPrinciples(props) {
                 <h3>Meaningful quotes, poetry, song lyrics, or Scriptures that guide your life.</h3>
                 <h3>What are yours?</h3>
             </center>
-            <Grid container spacing={1}>
+            <Grid item container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
                   <iframe
@@ -151,7 +151,7 @@ function GuidingPrinciples(props) {
                   label="Add Guiding Principle"
                   value={manifestoText}
                   variant="outlined"
-                  onChange={(event) => 
+                  onChange={(event) =>
                     setManifestoText(event.target.value)
                     }
                 />
@@ -245,9 +245,9 @@ function GuidingPrinciples(props) {
                 m={1} //margin
                 className={`${classes.bottomBox} ${classes.box}`}
                 >
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
+                    <Button
+                        variant="contained"
+                        color="primary"
                         style={{ height: 40 }}
                         onClick={() => history.push('/nextSteps')}
                     >
