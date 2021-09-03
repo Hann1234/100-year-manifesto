@@ -6,8 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Chip from '@material-ui/core/Chip';
-
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -61,11 +63,20 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     margin: theme.spacing(0.5),
   },
+  box: {
+    display: "flex",
+    padding: 8
+  },
+  bottomBox: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end"
+  }
 }));
 
 function CoreValues() {
-  const store = useSelector((store) => store);
-  const [CoreValues, setCoreValues] = useState([]);
+
+  const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
+  const [CoreValuesToEdit, setCoreValuesToEdit] = useState(0);
   const dispatch = useDispatch ();
   const classes = useStyles();
 
@@ -330,9 +341,13 @@ const handleClick = (value) => {
             </center>
               <Grid container spacing={1}>
                 <Grid item xs={6}>
-                  <Paper className={classes.paper2}> 
-                    <h2>The video will go here</h2>
-                  </Paper>
+                <div className="videoWrapper">
+                  <iframe
+                    width="512"
+                    height="288"
+                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/kMypT3S5iPDUWJ6hioaw_100_-_DIY_-_Core_Values_v3.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143843Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d809bb4dae9bc46f54e78f51db053875963aeb5c9fad1a1a573dc6a0f327054a"
+                  ></iframe>
+                </div>
                 </Grid>
                 <Grid item xs={6}>
                   <Paper className={classes.paper3}>
