@@ -22,11 +22,12 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
-// import MissionStatement from '../MissionStatement/MissionStatement';
+import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
 import Mantras from '../Mantras/Mantras';
 import LifeGoals from '../LifeGoals/LifeGoals';
 import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
+import NextSteps from '../NextSteps/NextSteps';
 
 import './App.css';
 
@@ -83,13 +84,13 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          {/* <ProtectedRoute
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/missionStatement"
           >
             <MissionStatement />
-          </ProtectedRoute> */}
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -115,6 +116,13 @@ function App() {
             <GuidingPrinciples />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/nextSteps"
+          >
+            <NextSteps />
+          </ProtectedRoute>
           <Route
             exact
             path="/login"
