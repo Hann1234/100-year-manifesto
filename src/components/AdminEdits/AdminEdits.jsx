@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import CheckIcon from '@material-ui/icons/Check';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: '25ch',
+        width: '100%',
       },
     },
   }));
@@ -45,23 +46,29 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
     const [date, setDate] = useState(new Date());
     const [editDate, setEditDate] = useState(false);
 
+    // if editDate is true, use values in pageEditsOnDate reducer; else, use pageEdits reducer
     // if current html_id is in the pageEdits reducer, use value from db; else, use default
+    // initial value is an object, {value: , id: }, with id = -1 if we're using the default value instead of a database value
     const initialValue = editDate ?
         (adminEditFormReducer.pageEditsOnDate.length !== 0 ? 
         adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id) ?
-            adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content :
-            default_value : default_value) :
+            {value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content,
+            id: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).id} :
+            {value: default_value, id: -1} : {value: default_value, id: -1}) :
         (adminEditFormReducer.pageEdits.length !== 0 ? 
         adminEditFormReducer.pageEdits.find(row => row.html_id === html_id) ?
-            adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content :
-            default_value : default_value);
+            {value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content,
+            id: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).id} :
+            {value: default_value, id: -1} : {value: default_value, id: -1});
     
     const [edit, setEdit] = useState(false);
-    const [value, setValue] = useState(initialValue);
+    const [value, setValue] = useState(initialValue.value);
+    const [confirmDelete, setConfirmDelete] = useState(false);
+
 
     // once adminEdiForm reducer is populated, update value useState
     useEffect(() => {
-        setValue(initialValue);
+        setValue(initialValue.value);
     }, [adminEditFormReducer, editDate]);
 
 
@@ -84,6 +91,19 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
             });
         }
     } // end saveChangesToDb
+
+    // delete change from the database
+    const deleteChangeFromDb = () => {
+        if (initialValue.id >= 0 && page_id) { // make sure id & page_id are defined before deleting
+            dispatch({
+                type: 'DELETE_PAGE_EDIT',
+                payload: {
+                    id: initialValue.id,
+                    page_id: page_id
+                } 
+            });
+        }
+    } // end deleteChangeFromDb
 
     // function to format date into a string the database will accept
     function toIsoString(date) {
@@ -133,7 +153,7 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
                         value={value}
                         onChange={handleChange}
                     />
-                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setValue(initialValue);}}/>
+                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setValue(initialValue.value);}}/>
                     <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
                     <ScheduleIcon onClick={() => setEditDate(!editDate)}/>
                     {
@@ -144,6 +164,18 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
                                 onChange={setDate}
                                 value={date}
                             />
+                            {
+                                initialValue.id >= 0 ?
+                                    confirmDelete ?
+                                    <>
+                                        <br/>
+                                        Are you sure you want to delete this value from the database?
+                                        <CancelOutlinedIcon onClick={() => setConfirmDelete(false)}/>
+                                        <CheckIcon onClick={() => {deleteChangeFromDb(); setConfirmDelete(false);}}/>
+                                    </> :
+                                    <><DeleteIcon onClick={() => setConfirmDelete(true)}/></> :
+                                    <></>
+                            }
                         </> :
                         <></>
                     }
