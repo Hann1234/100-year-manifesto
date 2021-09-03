@@ -6,8 +6,10 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import HistoryIcon from '@material-ui/icons/History';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import DateTimePicker from 'react-datetime-picker';
 
 // list of page_ids and corresponding page_names
 const pageNames = {
@@ -40,38 +42,34 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
 
     const adminEditFormReducer = useSelector((store) => store.adminEditFormReducer);
 
+    const [date, setDate] = useState(new Date());
+    const [editDate, setEditDate] = useState(false);
+
     // if current html_id is in the pageEdits reducer, use value from db; else, use default
-    const initialValue = adminEditFormReducer.pageEdits.length !== 0 ? 
+    const initialValue = editDate ?
+        (adminEditFormReducer.pageEditsOnDate.length !== 0 ? 
+        adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id) ?
+            adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content :
+            default_value : default_value) :
+        (adminEditFormReducer.pageEdits.length !== 0 ? 
         adminEditFormReducer.pageEdits.find(row => row.html_id === html_id) ?
             adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content :
-            default_value : default_value;
+            default_value : default_value);
     
-    // useStates
     const [edit, setEdit] = useState(false);
     const [value, setValue] = useState(initialValue);
-    const [date, setDate] = useState(false);
 
     // once adminEdiForm reducer is populated, update value useState
     useEffect(() => {
         setValue(initialValue);
-    }, [adminEditFormReducer]);
+    }, [adminEditFormReducer, editDate]);
 
 
     const handleChange = (event) => {
         setValue(event.target.value);
     }; // end handleChange
-    
-    // construct html element
-    const renderHtmlElement = () => {
 
-    } // end renderHtmlElement
-
-    // show what html element looked like on a certain date
-    const renderHtmlElementByDate = () => {
-
-    } // end renderHtmlElementByDate
-
-    // post a change to the database
+    // save change to the database
     const saveChangesToDb = () => {
         if (page_id && html_id) { // make sure page_id & html_id are defined before posting
             dispatch({
@@ -85,9 +83,39 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
                 } 
             });
         }
-        
     } // end saveChangesToDb
 
+    // function to format date into a string the database will accept
+    function toIsoString(date) {
+        var tzo = -date.getTimezoneOffset(),
+            dif = tzo >= 0 ? '+' : '-',
+            pad = function(num) {
+                var norm = Math.floor(Math.abs(num));
+                return (norm < 10 ? '0' : '') + norm;
+            };
+      
+        return date.getFullYear() +
+            '-' + pad(date.getMonth() + 1) +
+            '-' + pad(date.getDate()) +
+            'T' + pad(date.getHours()) +
+            ':' + pad(date.getMinutes()) +
+            ':' + pad(date.getSeconds()) +
+            dif + pad(tzo / 60) +
+            ':' + pad(tzo % 60);
+      } // end toIsoString
+
+    // get database settings
+    const pullSettingsByDate = () => {
+        console.log("date", date);
+        dispatch({
+            type: 'FETCH_PAGE_EDITS_ON_DATE',
+            payload: {
+                page_id: page_id,
+                edit_date: toIsoString(date)
+            } 
+        });
+    } // end pullSettingsByDate
+console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
             user.role !== "admin" ?
@@ -104,9 +132,20 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
                         value={value}
                         onChange={handleChange}
                     />
-                    <CancelOutlinedIcon onClick={() => {setEdit(false); setValue(initialValue);}}/>
+                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setValue(initialValue);}}/>
                     <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
-                    <ScheduleIcon />
+                    <ScheduleIcon onClick={() => setEditDate(!editDate)}/>
+                    {
+                        editDate ?
+                        <>
+                            <HistoryIcon onClick={() => pullSettingsByDate()}/>
+                            <DateTimePicker
+                                onChange={setDate}
+                                value={date}
+                            />
+                        </> :
+                        <></>
+                    }
                 </> :
                 // display mode (edit is false)
                 <>

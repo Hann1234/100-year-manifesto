@@ -48,8 +48,10 @@ const router = express.Router();
  */
  router.get('/page_on_date/:page_id', rejectUnauthenticated, (req, res) => {
   console.log("in GET admin_edit_form table on date");
-  
+
   if (req.user.role === "admin") {
+    const edit_date = decodeURIComponent(req.query.edit_date);
+    console.log('edit_date', edit_date);
 
     // filter out results that are more recent than req.body.edit_date
     // group by page_id and html_id
@@ -68,14 +70,14 @@ const router = express.Router();
               ROW_NUMBER() OVER(PARTITION BY "page_id", "html_id", "html_type"
                                     ORDER BY "edit_date" DESC) AS "rank"
           FROM "admin_edit_form"
-          WHERE "edit_date" >  $1)
+          WHERE "edit_date" <  $1)
       SELECT *
         FROM "page_data"
       WHERE "rank" = 1 AND "page_id" = $2;
     `;
 
     pool
-      .query(getQueryText, [req.params.edit_date, req.params.page_id])
+      .query(getQueryText, [edit_date, req.params.page_id])
       .then((response) => {
         res.send(response.rows);
       })
