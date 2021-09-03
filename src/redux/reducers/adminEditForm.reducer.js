@@ -3,8 +3,6 @@ import { combineReducers } from 'redux';
 // Stores pageEdits
 const pageEdits = (state = [], action) => {
   switch (action.type) {
-    case 'CLEAR_PAGE_EDITS':
-      return {};
     case 'SET_PAGE_EDITS':
         return action.payload;
     default:

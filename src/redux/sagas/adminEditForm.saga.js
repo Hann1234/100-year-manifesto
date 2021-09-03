@@ -27,8 +27,7 @@ function* fetchPageEditsOnDate(action) {
 function* addPageEdits(action) {
     try {
         yield axios.post('/api/adminEditForm', action.payload); 
-        yield put({type: 'CLEAR_PAGE_EDITS'}); // Clears reducer
-        yield put({ type: 'FETCH_PAGE_EDITS'}); // Loads the updated page edits into reducer
+        yield put({ type: 'FETCH_PAGE_EDITS', payload: {page_id: action.payload.page_id} }); // Loads the updated page edits into reducer
     } catch (error) {
         console.log('Error adding pageEdits:', error);
         yield put({ type: 'ADD_PAGE_EDIT_ERROR' });
@@ -40,7 +39,7 @@ function* deletePageEdits(action) {
     try {
         console.log(action);
         yield axios.delete(`/api/adminEditForm/${action.payload.id}`);
-        yield put({ type: 'FETCH_PAGE_EDITS'}); // Reloads page edits
+        yield put({ type: 'FETCH_PAGE_EDITS', payload: {page_id: action.payload.page_id} }); // Reloads page edits
     } catch (error) {
         console.log('Error deleting pageEdits:', error);
         yield put({ type: 'DELETE_PAGE_EDIT_ERROR' });

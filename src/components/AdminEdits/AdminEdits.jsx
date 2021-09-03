@@ -6,6 +6,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 // list of page_ids and corresponding page_names
 const pageNames = {
@@ -21,22 +23,44 @@ const pageNames = {
     9: 'about'
 }
 
+// material-ui styles
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
+  }));
+
 function AdminEdits( {page_id, html_id, html_type, default_value}) {
     const user = useSelector((store) => store.user);
-    const adminEditFormReducer = useSelector((store) => store.adminEditFormReducer);
-    // if current html_id is in the pageEdits reducer, use value from db; else, use default
-    const initialValue = adminEditFormReducer.pageEdits.find(row => row.html_id === html_id) ?
-        adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content :
-        default_value;
     const dispatch = useDispatch ();
+    const classes = useStyles();
+
+    const adminEditFormReducer = useSelector((store) => store.adminEditFormReducer);
+
+    // if current html_id is in the pageEdits reducer, use value from db; else, use default
+    const initialValue = adminEditFormReducer.pageEdits.length !== 0 ? 
+        adminEditFormReducer.pageEdits.find(row => row.html_id === html_id) ?
+            adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content :
+            default_value : default_value;
+    
+    // useStates
     const [edit, setEdit] = useState(false);
     const [value, setValue] = useState(initialValue);
     const [date, setDate] = useState(false);
 
+    // once adminEdiForm reducer is populated, update value useState
     useEffect(() => {
         setValue(initialValue);
     }, [adminEditFormReducer]);
 
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    }; // end handleChange
+    
     // construct html element
     const renderHtmlElement = () => {
 
@@ -48,7 +72,7 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
     } // end renderHtmlElementByDate
 
     // post a change to the database
-    const postChangesToDb = () => {
+    const saveChangesToDb = () => {
         if (page_id && html_id) { // make sure page_id & html_id are defined before posting
             dispatch({
                 type: 'ADD_PAGE_EDIT',
@@ -62,16 +86,8 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
             });
         }
         
-    } // end postChangesToDb
+    } // end saveChangesToDb
 
-    console.log("user in AdminEdits:", user);
-    console.log("adminEditFormReducer in AdminEdits:", adminEditFormReducer);
-    console.log("initialValue", initialValue);
-    console.log("html_id", html_id);
-    if (adminEditFormReducer.pageEdits.length > 0){
-        console.log("adminEditFormReducer.pageEdits[0].html_id", adminEditFormReducer.pageEdits[0].html_id);
-    }
-    console.log("value", value);
     return (
         <>{
             user.role !== "admin" ?
@@ -81,9 +97,22 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
             <>{
                 edit ?
                 // edit mode
-                <>{value}<CancelOutlinedIcon onClick={() => {setEdit(false); setValue(initialValue);}}/><SaveIcon /><ScheduleIcon /></> :
+                <>
+                    <TextField
+                        label="Multiline"
+                        multiline
+                        value={value}
+                        onChange={handleChange}
+                    />
+                    <CancelOutlinedIcon onClick={() => {setEdit(false); setValue(initialValue);}}/>
+                    <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
+                    <ScheduleIcon />
+                </> :
                 // display mode (edit is false)
-                <>{value}<EditIcon onClick={() => setEdit(true)}/></>
+                <>
+                    {value}
+                    <EditIcon onClick={() => setEdit(true)}/>
+                </>
             }</>
         }</>
     );
