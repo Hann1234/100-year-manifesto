@@ -1,108 +1,80 @@
-import { Grid } from "@material-ui/core";
-import React from "react";
-import { useSelector } from "react-redux";
-import './Manifesto.css'
-
-let mission = "Make the world a better place.";
-
-let mantras = [
-    "FAMILY, FITNESS, FREEDOM.",
-    "DISCIPLINE EQUALS FREEDOM",
-    "BE OBSESSIVELY GRATEFUL",
-    "THE OBSTACLE IS THE WAY",
-    "LIVE.LOVE.LEARN LEGACY",
-    "BETTER EVERY DAY",
-    "HELL YES... OR NO.",
-    "REMEMBER TO ENJOY THE DANCE",
-    "MEMENTO MORI"
-];
-
-let coreValues = [
-    "Exploration",
-    "FAMILY",
-    "FREEDOM",
-    "GROWTH",
-    "PEACE",
-    "PURPOSE"
-];
-
-let forGood = [
-    "PURSUING A CURE FOR CANCER",
-    "SUPPORTING A HEALTHY PLANET",
-    "ENTREPRENEURSHIP FOR GOOD",
-    "ELIMINATE PREVENTABLE DEATHS"
-];
-
-let lifeGoals = [
-    "Be the man, father, & friend God created me to be",
-    "Inner Peace",
-    "Live a life full of diversity in events, people and opportunities.",
-    "Take actions with a large impact on the world.",
-    "Be a great father and role model for my daughters.",
-    "Be a great husband",
-    "Maintain close and rewarding friendships with the people who are important to me",
-    "Empower entrepreneurs to change the world.",
-    "Actualize lifetime wish list into reality",
-]
-
-let guidingPrinciples = [
-    `Life should not be a journey to the grave with the intention of arriving safely in a pretty and well preserved body,
-     but rather to skid in broadside in a cloud of smoke, thoroughly used up, totally worn out, and loudly proclaiming "Wow! what a Ride!"
-     Hunter S. THOMPSON`
-]
+import { Grid, Typography } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import './Manifesto.css';
+import useFitText from "use-fit-text";
+import TextFit from "react-textfit";
+import DynamicFont from 'react-dynamic-font';
 
 function Manifesto(){
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch({
+            type: 'FETCH_MANIFESTO_TEXT'
+        })
+      },[]);
+    const mission = useSelector((store) => store.mantrasReducer.mission);
     const mantras = useSelector((store) => store.mantrasReducer.mantras);
+    const coreValues = useSelector((store) => store.mantrasReducer.coreValues);
+    const forGood = useSelector((store) => store.mantrasReducer.forGood);
+    const lifeGoals = useSelector((store) => store.mantrasReducer.lifeGoals);
+    const guidingPrinciples = useSelector((store) => store.mantrasReducer.guidingPrinciples);
+
+    const { fontSize, ref } = useFitText();
     return(
         <div className="manifestoContainer" >
             <Grid className="manifesto" container direction="column">
-                <Grid>
+                <Grid item>
                     <div className="blueBar"></div>
                 </Grid>
-                <Grid className="title">
+                <Grid item className="titleSection">
                     <div className="hundredYear">100 YEAR MANIFESTO</div>
                     <div className="userName">JOSE RUBIO</div>
                 </Grid>
-                <Grid className="content" container direction="row" justifyContent="center">
-                    <Grid className="smallColumn" container direction="column">
+                <Grid className="content" item container direction="row" justifyContent="center">
+                    <Grid className="smallColumn" item >
                         <div className="mission">MISSION: {mission}</div>
                         <div className="mantras">
-                            <div>MANTRAS:</div>
-                            {mantras.map(mantra => (
-                                <div>{mantra.manifesto_text}</div>
-                            ))}
+                            <div><Typography>MANTRAS:</Typography></div>
+                            {mantras ? mantras.map(mantra => (
+                                <div className="mantraElement" >
+                                    <TextFit mode="single" max={28}>
+                                        {mantra.manifesto_text}
+                                    </TextFit>
+                                </div>
+                            )):<div className="emptyMantras"></div>}
                             <div className="dotSeparation"> ********** </div>
                         </div>
                         <div className="coreValues">
                             <div>CORE VALUES:</div>
-                            {coreValues.map(value => (
+                            {coreValues && coreValues.map(value => (
                                     <div>{value}</div>
                             ))}
                             <div className="dotSeparation"> ********** </div>
                         </div>
                         <div className="forGood">
                             <div>FOR GOOD:</div>
-                            {forGood.map(text => (
+                            {forGood && forGood.map(text => (
                                 <div>{text}</div>
                             ))}
                         </div>
                     </Grid>
-                    <Grid className="bigColumn">
+                    <Grid className="bigColumn" item>
                         <div className="lifeGoalsTitle blueBar">LIFE GOALS</div>
                         <div className="lifeGoals">
-                            {lifeGoals.map(textItem => (
+                            {lifeGoals && lifeGoals.map(textItem => (
                                 <div className="lifeGoalItem">{textItem}</div>
                             ))}
                         </div>
                         <div className="principlesTitle"> ////////////////////////////          Guiding Principles          ////////////////////////////</div>
                         <div className="principles">
-                            {guidingPrinciples.map(textItem => (
+                            {guidingPrinciples &&guidingPrinciples.map(textItem => (
                                 <div className="principleItem">{textItem}</div>
                             ))}
                         </div>
                     </Grid>
                 </Grid>
-                <Grid>
+                <Grid item>
                     <div className="blueBar"></div>
                 </Grid>
             </Grid>

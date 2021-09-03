@@ -7,6 +7,7 @@
   width: var(--manifestoWidth);
   height: var(--manifestoHeight);
   padding: 50px;
+  display: flex;
 }
 
 .manifesto{
@@ -21,24 +22,26 @@
   border: 1px solid black;
 } */
 
-.title{
+.titleSection{
   height: calc(var(--manifestoHeight) * .1818);
   text-align: center;
 }
-.title:hover{
-    cursor: pointer;
-}
 
 .hundredYear{
+  font-family: 'Oswald Stencil';
   font-size: 80px;
 }
 .userName{
   font-size: 60px;
 }
+.userName:hover{
+  cursor: pointer;
+}
 
 .smallColumn{
   max-width: calc(var(--manifestoWidth) * .2272);
   margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
+  height: calc(var(--manifestoHeight) * .7813);
   text-align: center;
 }
 .mission{
@@ -47,8 +50,20 @@
   font-size: 30px;
   padding: 8px;
 }
+.mantras{
+  min-height: 60px;
+}
+.mantraElement{
+  /* transform: scale(2,1); */
+  max-width: calc(var(--manifestoWidth) * .2272);
+  text-transform: uppercase;
+  text-align: center;
+  position: inherit;
+  line-height: normal;
+  font-size: 32px;
+}
 .dotSeparation{
-  padding: 8px;
+  padding: 4px 0;
 }
 
 .bigColumn{
