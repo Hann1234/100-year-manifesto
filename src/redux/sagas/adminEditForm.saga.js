@@ -13,13 +13,13 @@ function* fetchPageEdits(action) {
 }
 
 // Get page edits from admin_edit_form on a certain date
-function* fetchPageEditsOnDate(action) {
+function* fetchEditOnDate(action) {
     try {
-        const pageEditsOnDate = yield axios.get(`/api/adminEditForm/page_on_date/${action.payload.page_id}/?edit_date=${encodeURIComponent(action.payload.edit_date)}&html_id=${encodeURIComponent(action.payload.html_id)}`);
-        yield put({type: 'SET_PAGE_EDITS_ON_DATE', payload: pageEditsOnDate.data[0]}) // Loads page edits on date into reducer
+        const editOnDate = yield axios.get(`/api/adminEditForm/edit_on_date/${action.payload.page_id}/?edit_date=${encodeURIComponent(action.payload.edit_date)}&html_id=${encodeURIComponent(action.payload.html_id)}`);
+        yield put({type: 'SET_EDIT_ON_DATE', payload: editOnDate.data[0]}) // Loads page edits on date into reducer
     } catch (error) {
-        console.log('Error getting pageEditsOnDate:', error);
-        yield put({ type: 'FETCH_PAGE_EDITS_ON_DATE_ERROR' });
+        console.log('Error getting editOnDate:', error);
+        yield put({ type: 'FETCH_EDIT_ON_DATE_ERROR' });
     }
 }
 
@@ -48,7 +48,7 @@ function* deletePageEdits(action) {
 
 function* adminEditSaga() {
   yield takeLatest('FETCH_PAGE_EDITS', fetchPageEdits);
-  yield takeLatest('FETCH_PAGE_EDITS_ON_DATE', fetchPageEditsOnDate);
+  yield takeLatest('FETCH_EDIT_ON_DATE', fetchEditOnDate);
   yield takeLatest('ADD_PAGE_EDIT', addPageEdits);
   yield takeLatest('DELETE_PAGE_EDIT', deletePageEdits);
 }

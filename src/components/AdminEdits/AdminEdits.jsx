@@ -105,18 +105,18 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
       } // end toIsoString
 
     // get database settings
-    const pullSettingsByDate = () => {
+    const pullEditByDate = () => {
         console.log("date", date);
         dispatch({
-            type: 'FETCH_PAGE_EDITS_ON_DATE',
+            type: 'FETCH_EDIT_ON_DATE',
             payload: {
                 page_id: page_id,
                 html_id: html_id,
                 edit_date: toIsoString(date)
             } 
         });
-    } // end pullSettingsByDate
-console.log("adminEditFormReducer", adminEditFormReducer);
+    } // end pullEditByDate
+    console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
             user.role !== "admin" ?
@@ -139,7 +139,7 @@ console.log("adminEditFormReducer", adminEditFormReducer);
                     {
                         editDate ?
                         <>
-                            <HistoryIcon onClick={() => pullSettingsByDate()}/>
+                            <HistoryIcon onClick={() => pullEditByDate()}/>
                             <DateTimePicker
                                 onChange={setDate}
                                 value={date}

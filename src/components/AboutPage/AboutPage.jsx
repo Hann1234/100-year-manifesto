@@ -6,7 +6,6 @@ import AdminEdits from '../AdminEdits/AdminEdits';
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is'
-
 function AboutPage() {
   const dispatch = useDispatch ();
   const page_id = 9;
@@ -14,7 +13,6 @@ function AboutPage() {
   useEffect(() => {
       dispatch({ type: 'FETCH_USER' });
       dispatch({ type: 'FETCH_PAGE_EDITS', payload: {page_id: page_id} });
-      // dispatch({ type: 'FETCH_PAGE_EDITS_ON_DATE', payload: {page_id: page_id, edit_date: '2021-09-01 16:10:32'} });
   }, []);
 
   return (

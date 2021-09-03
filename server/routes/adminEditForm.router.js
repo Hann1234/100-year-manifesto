@@ -44,9 +44,9 @@ const router = express.Router();
 
 /**
  * GET route for admin_edit_form table
- * returns what the page content looked like as a specific date and time
+ * returns single row showing what an html element looked like at a specific date and time
  */
- router.get('/page_on_date/:page_id', rejectUnauthenticated, (req, res) => {
+ router.get('/edit_on_date/:page_id', rejectUnauthenticated, (req, res) => {
   console.log("in GET admin_edit_form table on date");
 
   if (req.user.role === "admin") {
@@ -57,7 +57,7 @@ const router = express.Router();
     // filter out results that are more recent than req.body.edit_date
     // group by page_id and html_id
     // get the most recent row from each group
-    // then grab only the values for the current page_id
+    // then grab only the values for the current page_id and html_id
     const getQueryText = `
       WITH "page_data" AS (
         SELECT "id", 
@@ -83,11 +83,11 @@ const router = express.Router();
         res.send(response.rows);
       })
       .catch((err) => {
-        console.log('GET admin_edit_form table failed: ', err);
+        console.log('GET edit_on_date failed: ', err);
         res.sendStatus(500);
       });
   } else {
-    console.log('POST admin_edit_form permission denied: ', err);
+    console.log('GET edit_on_date permission denied: ', err);
     res.sendStatus(403);
   }
 });

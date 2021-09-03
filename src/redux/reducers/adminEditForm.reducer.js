@@ -13,7 +13,7 @@ const pageEdits = (state = [], action) => {
 // Stores pageEditsOnDate
 const pageEditsOnDate = (state = [], action) => {
     switch (action.type) {
-      case 'SET_PAGE_EDITS_ON_DATE':
+      case 'SET_EDIT_ON_DATE':
           // return action.payload;
           if (state.length !== 0 && state.findIndex(row => row.html_id === action.payload.html_id && row.page_id === action.payload.page_id) >= 0) {
             // if a row with matching html_id and page_id are already in the table, update it
