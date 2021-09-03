@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
-import './GuidingPrinciples.css';
+import './NextSteps.css';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -112,7 +112,7 @@ function NextSteps(props) {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/ZQvfuDoSbe8TegN04BRL_100_-_DIY_-_Next_Steps_v3.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T144500Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=eb3a30b0232720e1c70eda502ae7bde5229db06e00f8effa963ceefb63b5454d"
+                    src="https://drive.google.com/file/d/1TcjPbkkMzZ8SFpTLGeXi8iObR_WThaXm/view"
                   ></iframe>
                 </div>
               </Grid>

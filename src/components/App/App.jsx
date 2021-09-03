@@ -123,6 +123,7 @@ function App() {
           >
             <NextSteps />
           </ProtectedRoute>
+          
           <Route
             exact
             path="/login"

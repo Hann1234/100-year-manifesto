@@ -32,7 +32,7 @@ function Mantras(props) {
   const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [mantraToEdit, setMantraToEdit] = useState(0);
+  const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,13 +46,19 @@ function Mantras(props) {
     setManifestoText("");
   };
 
+
+  const startEdit = (itemToEdit) => {
+    setEditManifestoText(itemToEdit.manifesto_text)
+    setItemToEdit(itemToEdit.id)
+}
+
   const editMantra = (id) => {
     dispatch({
       type: "UPDATE_MANTRA",
       payload: { id: id, manifestoText: editManifestoText },
     });
     setEditManifestoText("");
-    setMantraToEdit(0);
+    setItemToEdit(0);
   };
 
   const deleteMantra = (id) => {
@@ -152,7 +158,7 @@ function Mantras(props) {
 
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
-                if (mantra.id === mantraToEdit) {
+                if (mantra.id === itemToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
                       <TextField
@@ -179,7 +185,7 @@ function Mantras(props) {
                     </Grid>
                   );
                 }
-                if (mantra.id != mantraToEdit) {
+                if (mantra.id != itemToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
                       <TextField
@@ -199,7 +205,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => setMantraToEdit(mantra.id)}
+                        onClick={() => startEdit(mantra)}
                       >
                         Edit
                       </Button>
