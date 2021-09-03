@@ -86,7 +86,7 @@ function ProgressBar() {
       case 7:
         return history.push("/nextSteps");
       default:
-        return 'Unknown step';
+        return '';
     }
   }
 
