@@ -111,6 +111,7 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
             type: 'FETCH_PAGE_EDITS_ON_DATE',
             payload: {
                 page_id: page_id,
+                html_id: html_id,
                 edit_date: toIsoString(date)
             } 
         });

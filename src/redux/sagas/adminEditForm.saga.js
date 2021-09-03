@@ -15,8 +15,8 @@ function* fetchPageEdits(action) {
 // Get page edits from admin_edit_form on a certain date
 function* fetchPageEditsOnDate(action) {
     try {
-        const pageEditsOnDate = yield axios.get(`/api/adminEditForm/page_on_date/${action.payload.page_id}/?edit_date=${encodeURIComponent(action.payload.edit_date)}`);
-        yield put({type: 'SET_PAGE_EDITS_ON_DATE', payload: pageEditsOnDate.data}) // Loads page edits on date into reducer
+        const pageEditsOnDate = yield axios.get(`/api/adminEditForm/page_on_date/${action.payload.page_id}/?edit_date=${encodeURIComponent(action.payload.edit_date)}&html_id=${encodeURIComponent(action.payload.html_id)}`);
+        yield put({type: 'SET_PAGE_EDITS_ON_DATE', payload: pageEditsOnDate.data[0]}) // Loads page edits on date into reducer
     } catch (error) {
         console.log('Error getting pageEditsOnDate:', error);
         yield put({ type: 'FETCH_PAGE_EDITS_ON_DATE_ERROR' });

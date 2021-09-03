@@ -51,6 +51,7 @@ const router = express.Router();
 
   if (req.user.role === "admin") {
     const edit_date = decodeURIComponent(req.query.edit_date);
+    const html_id = decodeURIComponent(req.query.html_id);
     console.log('edit_date', edit_date);
 
     // filter out results that are more recent than req.body.edit_date
@@ -73,11 +74,11 @@ const router = express.Router();
           WHERE "edit_date" <  $1)
       SELECT *
         FROM "page_data"
-      WHERE "rank" = 1 AND "page_id" = $2;
+      WHERE "rank" = 1 AND "page_id" = $2 AND "html_id" = $3;
     `;
 
     pool
-      .query(getQueryText, [edit_date, req.params.page_id])
+      .query(getQueryText, [edit_date, req.params.page_id, html_id])
       .then((response) => {
         res.send(response.rows);
       })
