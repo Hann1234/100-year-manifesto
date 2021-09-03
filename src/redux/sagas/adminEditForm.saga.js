@@ -39,7 +39,7 @@ function* deletePageEdits(action) {
     try {
         console.log(action);
         yield axios.delete(`/api/adminEditForm/${action.payload.id}`);
-        yield put({ type: 'FETCH_PAGE_EDITS', payload: {page_id: action.payload.page_id} }); // Reloads page edits
+        yield put({ type: 'FETCH_EDIT_ON_DATE', payload: action.payload }); // Reload edit
     } catch (error) {
         console.log('Error deleting pageEdits:', error);
         yield put({ type: 'DELETE_PAGE_EDIT_ERROR' });

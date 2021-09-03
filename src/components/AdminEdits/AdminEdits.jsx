@@ -92,19 +92,6 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
         }
     } // end saveChangesToDb
 
-    // delete change from the database
-    const deleteChangeFromDb = () => {
-        if (initialValue.id >= 0 && page_id) { // make sure id & page_id are defined before deleting
-            dispatch({
-                type: 'DELETE_PAGE_EDIT',
-                payload: {
-                    id: initialValue.id,
-                    page_id: page_id
-                } 
-            });
-        }
-    } // end deleteChangeFromDb
-
     // function to format date into a string the database will accept
     function toIsoString(date) {
         var tzo = -date.getTimezoneOffset(),
@@ -136,6 +123,22 @@ function AdminEdits( {page_id, html_id, html_type, default_value}) {
             } 
         });
     } // end pullEditByDate
+
+    // delete change from the database
+    const deleteChangeFromDb = () => {
+        if (initialValue.id >= 0 && page_id) { // make sure id & page_id are defined before deleting
+            dispatch({
+                type: 'DELETE_PAGE_EDIT',
+                payload: {
+                    id: initialValue.id,
+                    page_id: page_id,
+                    html_id: html_id,
+                    edit_date: toIsoString(date)
+                } 
+            });
+        }
+    } // end deleteChangeFromDb
+
     console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
