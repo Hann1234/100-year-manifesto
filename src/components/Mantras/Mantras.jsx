@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import "./Mantras.css";
 import { useHistory } from "react-router-dom";
+import NextButton from "../NextButton/NextButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -231,14 +232,15 @@ function Mantras(props) {
   m={1} //margin
   className={`${classes.bottomBox} ${classes.box}`}
 >
-  <Button 
+  {/* <Button 
     variant="contained" 
     color="primary" 
     style={{ height: 40 }}
     onClick={() => history.push('/corevalues')}
   >
     Next
-  </Button>
+  </Button> */}
+  <NextButton/>
 </Box>
           </Grid>
         </Grid>

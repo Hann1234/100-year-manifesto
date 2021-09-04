@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,15 +39,18 @@ const useStyles = makeStyles((theme) => ({
 
 function NextButton() {
     const classes = useStyles();
-    
-    const [activeStep, setActiveStep] = React.useState(0);
+    const activeStep = useSelector((store) => store.nextButtonReducer.nextButton);
+    // const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState({});
     const steps = getSteps();
     const history = useHistory();
     const dispatch = useDispatch();
 
+    // useEffect(() => {
+    // dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep});
+    // }, [])
     //Need a dispatch to send page index to nextButtonReducer
-    dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep});
+    // dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep});
   
     // function getStepContent(step) {
     //   switch (step) {
@@ -94,8 +98,7 @@ function NextButton() {
           // find the first step that has been completed
           steps.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
-    setActiveStep(newActiveStep);
-    dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep });
+    dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
 
   };
   
