@@ -49,10 +49,10 @@ function ProgressBar() {
   const steps = getSteps();
   const history = useHistory();
   
-  // useEffect(() => {
-  //   setActiveStep(reducerActiveStep);
-  //   // console.log(activeStep);
-  // }, [reducerActiveStep])
+  useEffect(() => {
+    setActiveStep(activeStep);
+    // console.log(activeStep);
+  }, [activeStep])
   
   console.log(`What is activeStep store value?`, activeStep);
 
@@ -108,8 +108,8 @@ function ProgressBar() {
   };
 
   const handleBack = () => {
-    // setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    // dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
   };
 
   //I think this is where we can put some logic to push user to the page they want to be onClick
@@ -166,7 +166,7 @@ function ProgressBar() {
               >
                 Back
               </Button>
-              {/* <NextButton/> */}
+              <NextButton/>
               {/* <Button
                 variant="contained"
                 color="primary"
