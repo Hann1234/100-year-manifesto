@@ -2,9 +2,6 @@ import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './Manifesto.css';
-import useFitText from "use-fit-text";
-import TextFit from "react-textfit";
-import DynamicFont from 'react-dynamic-font';
 
 function Manifesto(){
     const dispatch = useDispatch();
@@ -23,7 +20,6 @@ function Manifesto(){
     const lifeGoals = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
     const guidingPrinciples = useSelector((store) => store.guidingPrinciplesReducer.guidingPrinciples);
 
-    const { fontSize, ref } = useFitText();
     return(
         <div className="manifestoContainer" >
             <Grid className="manifesto" container direction="column">
@@ -39,22 +35,20 @@ function Manifesto(){
                         <div className="mission">MISSION: {mission ? mission.manifesto_text : "null"}</div>
                         <div className="mantras">
                             <div><Typography>MANTRAS:</Typography></div>
-                            {mantras.length !==0 ? mantras.map(mantra => (
-                                <div className="mantraElement" >
-                                    {/* <TextFit mode="single" max={28}>
-                                        {mantra.manifesto_text}
-                                    </TextFit> */}
-                                        <svg  width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" 
-                                        viewBox="0 0 190 100%"  preserveAspectRatio="none">
-                                            <text x="1" y="18" textLength="190"
-                                            fontFamily="Verdana"
-                                            fill="#4d5470"
-                                            lengthAdjust="spacingAndGlyphs">
-                                                {mantra.manifesto_text}
-                                            </text>
-                                        </svg>
-                                </div>
-                            )):<div className="emptyMantras"></div>}
+                            {mantras.length !==0 ? mantras.map(mantra => {
+                                let variableFontSize = 300/mantra.manifesto_text.length;
+                                
+                                return(<div className="mantraElement" >
+                                    <svg width="190" height={variableFontSize*.75} xmlns="http://www.w3.org/2000/svg">
+                                        <text y="99%" textLength="190"
+                                        fontSize={variableFontSize}
+                                        fill="#4d5470"
+                                        lengthAdjust="spacingAndGlyphs">
+                                            {mantra.manifesto_text}
+                                        </text>
+                                    </svg>
+                                </div>)
+                            }):<div className="emptyMantras"></div>}
                             <div className="dotSeparation"> ********** </div>
                         </div>
                         <div className="coreValues">
