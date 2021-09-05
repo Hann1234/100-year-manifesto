@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
+function getSteps(activeStep) {
   return [
     "Intro: Your 100 Year Manifesto",
     "Mission Statement",
@@ -46,7 +46,7 @@ function ProgressBar() {
   const activeStep = useSelector((store) => store.nextButtonReducer.nextButton);
   const [oldActiveStep, setActiveStep] = React.useState();
   const [completed, setCompleted] = React.useState({});
-  const steps = getSteps();
+  const steps = getSteps(activeStep);
   const history = useHistory();
   
   useEffect(() => {
@@ -95,20 +95,20 @@ function ProgressBar() {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
-    dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
+  // const handleNext = () => {
+  //   const newActiveStep =
+  //     isLastStep() && !allStepsCompleted()
+  //       ? // It's the last step, but not all steps have been completed,
+  //         // find the first step that has been completed
+  //         steps.findIndex((step, i) => !(i in completed))
+  //       : activeStep + 1;
+  //   setActiveStep(newActiveStep);
+  //   dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
 
-  };
+  // };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // setActiveStep((prevActiveStep) => prevActiveStep - 1);
     dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
   };
 
@@ -116,7 +116,7 @@ function ProgressBar() {
   const handleStep = (step) => () => {
     setActiveStep(step);
     getStepContent(step);
-    
+    dispatch({ type: "SET_NEXT_BUTTON", payload: step });
   };
 
   const handleComplete = () => {

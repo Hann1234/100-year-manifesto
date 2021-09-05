@@ -43,37 +43,7 @@ function NextButton() {
     // const [activeStep, setActiveStep] = React.useState(0);
     const [completed, setCompleted] = React.useState({});
     const steps = getSteps();
-    const history = useHistory();
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    // dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep});
-    // }, [])
-    //Need a dispatch to send page index to nextButtonReducer
-    // dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep});
-  
-    // function getStepContent(step) {
-    //   switch (step) {
-    //     case 0:
-    //       return history.push("/homepage");
-    //     case 1:
-    //       return history.push("/missionStatement");
-    //     case 2:
-    //       return history.push("/mantras");
-    //     case 3:
-    //       return history.push("/coreValues");
-    //     case 4:
-    //       return history.push("/forGood");
-    //     case 5:
-    //       return history.push("/lifeGoals");
-    //     case 6:
-    //       return history.push("/guidingPrinciples");
-    //     case 7:
-    //       return history.push("/nextSteps");
-    //     default:
-    //       return 'Unknown step';
-    //   }
-    // }
   
     const totalSteps = () => {
       return steps.length;
@@ -125,20 +95,7 @@ function NextButton() {
     };
   
     return (
-      <div className={classes.root}>
-        {/* <Stepper nonLinear activeStep={activeStep}>
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepButton
-                onClick={handleStep(index)}
-                completed={completed[index]}
-              >
-                {label}
-              </StepButton>
-            </Step>
-          ))}
-        </Stepper> */}
-        <div>
+        <div className={classes.root}>
           {allStepsCompleted() ? (
             <div>
               <Typography className={classes.instructions}>
@@ -147,10 +104,10 @@ function NextButton() {
               <Button onClick={handleReset}>Reset</Button>
             </div>
           ) : (
-            <div>
-              {/* <Typography className={classes.instructions}>
-                {getStepContent(activeStep)}
-              </Typography> */}
+            // <div>
+            //   <Typography className={classes.instructions}>
+            //     {getStepContent(activeStep)}
+            //   </Typography>
               <div>
                 {/* <Button
                   disabled={activeStep === 0}
@@ -168,7 +125,7 @@ function NextButton() {
                 >
                   Next
                 </Button>
-                {activeStep !== steps.length &&
+                {/* {activeStep !== steps.length &&
                   (completed[activeStep] ? (
                     <Typography variant="caption" className={classes.completed}>
                       Step {activeStep + 1} already completed
@@ -183,12 +140,11 @@ function NextButton() {
                         ? "Finish"
                         : "Complete Step"}
                     </Button>
-                  ))}
+                  ))} */}
               </div>
-            </div>
+            // </div>
           )}
         </div>
-      </div>
     );
   }
 
