@@ -39,7 +39,7 @@
 }
 
 .smallColumn{
-  max-width: calc(var(--manifestoWidth) * .2272);
+  width: calc(var(--manifestoWidth) * .2272);
   margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
   height: calc(var(--manifestoHeight) * .7813);
   text-align: center;
@@ -54,13 +54,16 @@
   min-height: 60px;
 }
 .mantraElement{
-  /* transform: scale(2,1); */
   max-width: calc(var(--manifestoWidth) * .2272);
+  max-height: calc(var(--manifestoHeight) * .025);
+  color: #4d5470;
   text-transform: uppercase;
-  text-align: center;
-  position: inherit;
-  line-height: normal;
-  font-size: 32px;
+  border: 1px solid black;
+  font-size: 20px;
+}
+.emptyMantras{
+  height: 100%;
+  background-color: aqua;
 }
 .dotSeparation{
   padding: 4px 0;

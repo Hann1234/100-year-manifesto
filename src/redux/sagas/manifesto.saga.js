@@ -5,7 +5,7 @@ function* fetchManifestoText(action) {
   try {
     yield put({ type: 'FETCH_MISSION'});
     yield put({ type: 'FETCH_MANTRAS'});
-    yield put({ type: 'FETCH_FOR_GOOD'});
+    yield put({ type: 'FETCH_FOR_GOODS'});
     yield put({ type: 'FETCH_GUIDING_PRINCIPLES'});
     yield put({ type: 'FETCH_CORE_VALUES'});
     yield put({ type: 'FETCH_LIFE_GOALS'});
