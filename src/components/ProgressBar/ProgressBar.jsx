@@ -95,17 +95,17 @@ function ProgressBar() {
     return completedSteps() === totalSteps();
   };
 
-  // const handleNext = () => {
-  //   const newActiveStep =
-  //     isLastStep() && !allStepsCompleted()
-  //       ? // It's the last step, but not all steps have been completed,
-  //         // find the first step that has been completed
-  //         steps.findIndex((step, i) => !(i in completed))
-  //       : activeStep + 1;
-  //   setActiveStep(newActiveStep);
-  //   dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
+  const handleNext = () => {
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
+    setActiveStep(newActiveStep);
+    dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
 
-  // };
+  };
 
   const handleBack = () => {
     // setActiveStep((prevActiveStep) => prevActiveStep - 1);
