@@ -22,13 +22,14 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
-import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
+import MissionStatement from '../MissionStatement/MissionStatement';
 import Mantras from '../Mantras/Mantras';
+import CoreValues from '../CoreValues/CoreValues';
+import ForGood from '../ForGood/ForGood';
 import LifeGoals from '../LifeGoals/LifeGoals';
 import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 import NextSteps from '../NextSteps/NextSteps';
-
 import './App.css';
 
 function App() {
@@ -115,6 +116,14 @@ function App() {
           >
             <GuidingPrinciples />
           </ProtectedRoute>
+
+          {/* <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/coreValues"
+          >
+            <CoreValues />
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
