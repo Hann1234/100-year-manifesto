@@ -1,18 +1,20 @@
 import React, { useEffect, useState, Component } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+//**Clean up unused components!! */
+
+//Material UI styling components
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import ReactPlayer from "react-player";
-import { TextField } from "@material-ui/core";
-import { Button } from "@material-ui/core";
-
-import { useHistory } from "react-router";
-
+import { CardMedia, TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import { CardMedia } from "@material-ui/core";
+import ReactPlayer from "react-player";
+
+//Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -210,25 +212,9 @@ function MissionStatement() {
                       >
                         ADD
                       </Button>
-                      {/* <button className="searchButton" type="submit">
-                        ADD
-                      </button> */}
-                      {/* <Button
-                        className="nextButton"
-                        style={{
-                          height: "56px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
-                        }}
-                        variant="contained"
-                        onClick={() => {
-                          history.push("/mantras");
-                        }}
-                      >
-                        NEXT
-                      </Button> */}
                       <NextButton/>
                       <BackButton/>
+                      <CompleteButton/>
                     </center>
                   </form>
                 </Paper>

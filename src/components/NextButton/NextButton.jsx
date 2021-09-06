@@ -43,8 +43,16 @@ function NextButton() {
     return steps.length;
   };
 
+  const completedSteps = () => {
+    return Object.keys(completed).length;
+  };
+
   const isLastStep = () => {
     return activeStep === totalSteps() - 1;
+  };
+
+  const allStepsCompleted = () => {
+    return completedSteps() === totalSteps();
   };
 
   const handleNext = () => {
