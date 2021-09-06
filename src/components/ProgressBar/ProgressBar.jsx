@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -6,6 +6,10 @@ import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
+import NextButton from "../NextButton/NextButton";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import BackButton from "../BackButton/BackButton";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
+function getSteps(activeStep) {
   return [
     "Intro: Your 100 Year Manifesto",
     "Mission Statement",
@@ -36,36 +40,22 @@ function getSteps() {
   ];
 }
 
-//This just displays the name of the page we're on.
-// function getStepContent(step) {
-//   switch (step) {
-//     case 0:
-//       return "Intro: Your 100 Year Manifesto";
-//     case 1:
-//       return history.push("/missionStatement");
-//     case 2:
-//       return history.push("/mantras");
-//     case 3:
-//       return "Core Values";
-//     case 4:
-//       return "For Good";
-//     case 5:
-//       return "Life Goals";
-//     case 6:
-//       return "Guiding Principles";
-//     case 7:
-//       return "Next Steps";
-//     default:
-//       return "Unknown step";
-//   }
-// }
 
 function ProgressBar() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(-1);
+  const dispatch = useDispatch();
+  const activeStep = useSelector((store) => store.nextButtonReducer.nextButton);
+  const [oldActiveStep, setActiveStep] = React.useState();
   const [completed, setCompleted] = React.useState({});
-  const steps = getSteps();
+  const steps = getSteps(activeStep);
   const history = useHistory();
+  
+  useEffect(() => {
+    setActiveStep(activeStep);
+    // console.log(activeStep);
+  }, [activeStep])
+  
+  console.log(`What is activeStep store value?`, activeStep);
 
   function getStepContent(step) {
     switch (step) {
@@ -86,7 +76,7 @@ function ProgressBar() {
       case 7:
         return history.push("/nextSteps");
       default:
-        return 'Unknown step';
+        return '';
     }
   }
 
@@ -114,16 +104,20 @@ function ProgressBar() {
           steps.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
+    dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
+
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  // const handleBack = () => {
+  //   // setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  //   dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
+  // };
 
   //I think this is where we can put some logic to push user to the page they want to be onClick
   const handleStep = (step) => () => {
     setActiveStep(step);
     getStepContent(step);
+    dispatch({ type: "SET_NEXT_BUTTON", payload: step });
   };
 
   const handleComplete = () => {
@@ -166,21 +160,23 @@ function ProgressBar() {
               {getStepContent(activeStep)}
             </Typography>
             <div>
-              <Button
+              <BackButton/>
+              {/* <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.button}
               >
                 Back
-              </Button>
-              <Button
+              </Button> */}
+              <NextButton/>
+              {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >
                 Next
-              </Button>
+              </Button> */}
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
                   <Typography variant="caption" className={classes.completed}>

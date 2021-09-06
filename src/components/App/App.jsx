@@ -18,18 +18,19 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Mantras from '../Mantras/Mantras'
 
 
 //Project specific routes
 import HomePage from '../HomePage/HomePage';
-import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
-import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
-
-import './App.css';
+import MissionStatement from '../MissionStatement/MissionStatement';
+import Mantras from '../Mantras/Mantras';
 import CoreValues from '../CoreValues/CoreValues';
 import ForGood from '../ForGood/ForGood';
+import LifeGoals from '../LifeGoals/LifeGoals';
+import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
+import NextSteps from '../NextSteps/NextSteps';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -103,9 +104,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/coreValues"
+            path="/lifegoals"
           >
-            <CoreValues />
+            <LifeGoals />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -116,7 +117,22 @@ function App() {
             <GuidingPrinciples />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/coreValues"
+          >
+            <CoreValues />
+          </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/nextSteps"
+          >
+            <NextSteps />
+          </ProtectedRoute>
+          
           <Route
             exact
             path="/login"

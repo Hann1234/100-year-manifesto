@@ -11,6 +11,8 @@ import { useHistory } from "react-router";
 
 import Grid from "@material-ui/core/Grid";
 import { CardMedia } from "@material-ui/core";
+import NextButton from "../NextButton/NextButton";
+import BackButton from "../BackButton/BackButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -211,7 +213,7 @@ function MissionStatement() {
                       {/* <button className="searchButton" type="submit">
                         ADD
                       </button> */}
-                      <Button
+                      {/* <Button
                         className="nextButton"
                         style={{
                           height: "56px",
@@ -224,7 +226,9 @@ function MissionStatement() {
                         }}
                       >
                         NEXT
-                      </Button>
+                      </Button> */}
+                      <NextButton/>
+                      <BackButton/>
                     </center>
                   </form>
                 </Paper>
