@@ -76,7 +76,10 @@ const useStyles = makeStyles((theme) => ({
 function CoreValues() {
 
   const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
-  const [CoreValuesToEdit, setCoreValuesToEdit] = useState(0);
+
+  const [manifestoText, setManifestoText] = useState('');
+  const [editManifestoText, setEditManifestoText] = useState('');
+  const [CoreValueToEdit, setCoreValueToEdit] = useState(0);
   const dispatch = useDispatch ();
   const classes = useStyles();
 
@@ -310,8 +313,40 @@ function CoreValues() {
   ]);
 
   useEffect(() => {
-    //need to retrieve video and page details
-}, [])
+    dispatch({
+        type: 'FETCH_CORE_VALUES'
+    });
+
+    setManifestoText('');
+    setEditManifestoText('');
+    setCoreValueToEdit(0);
+
+  }, []);
+
+  const addCoreValue = () => {
+    dispatch({
+        type: 'ADD_CORE_VALUE', 
+        payload: {
+            manifestoText: manifestoText
+        }});
+  };
+
+  const editCoreValue = (id) => {
+    dispatch({
+        type: 'UPDATE_CORE_VALUE',
+        payload: { 
+            id: id,
+            manifestoText: editManifestoText
+        },
+    });
+  };
+
+  const deleteCoreValue = (id) => {
+    dispatch({
+        type: 'DELETE_CORE_VALUE', 
+        payload: id
+    });
+  };
 
 //Need handleSubmit
 const handleClick = (value) => {
