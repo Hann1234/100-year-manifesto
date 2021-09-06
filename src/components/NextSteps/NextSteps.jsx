@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function NextSteps(props) {
+function NextSteps() {
 
   const additionalQuestions = useSelector((store) => store.additionalQuestionsReducer.additionalQuestions);
 
