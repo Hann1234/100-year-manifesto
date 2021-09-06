@@ -25,6 +25,7 @@ import Mantras from '../Mantras/Mantras'
 import HomePage from '../HomePage/HomePage';
 import MissionStatement from '../MissionStatement/MissionStatement';
 import IntroPage from '../IntroPage/IntroPage';
+import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 
 import './App.css';
 import CoreValues from '../CoreValues/CoreValues';
@@ -105,6 +106,14 @@ function App() {
             path="/coreValues"
           >
             <CoreValues />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/guidingPrinciples"
+          >
+            <GuidingPrinciples />
           </ProtectedRoute>
 
 
