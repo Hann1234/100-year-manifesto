@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import NextButton from "../NextButton/NextButton";
 import { useDispatch, useSelector, useStore } from "react-redux";
+import BackButton from "../BackButton/BackButton";
 
 
 
@@ -107,10 +108,10 @@ function ProgressBar() {
 
   };
 
-  const handleBack = () => {
-    // setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
-  };
+  // const handleBack = () => {
+  //   // setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  //   dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
+  // };
 
   //I think this is where we can put some logic to push user to the page they want to be onClick
   const handleStep = (step) => () => {
@@ -159,13 +160,14 @@ function ProgressBar() {
               {getStepContent(activeStep)}
             </Typography>
             <div>
-              <Button
+              <BackButton/>
+              {/* <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.button}
               >
                 Back
-              </Button>
+              </Button> */}
               <NextButton/>
               {/* <Button
                 variant="contained"

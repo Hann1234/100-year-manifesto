@@ -12,6 +12,7 @@ import { useHistory } from "react-router";
 import Grid from "@material-ui/core/Grid";
 import { CardMedia } from "@material-ui/core";
 import NextButton from "../NextButton/NextButton";
+import BackButton from "../BackButton/BackButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -227,6 +228,7 @@ function MissionStatement() {
                         NEXT
                       </Button> */}
                       <NextButton/>
+                      <BackButton/>
                     </center>
                   </form>
                 </Paper>
