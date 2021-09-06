@@ -2,7 +2,6 @@ import { Button, makeStyles } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -47,12 +46,10 @@ function BackButton() {
   };
 
   const handleBack = () => {
-    // activeStep((prevActiveStep) => prevActiveStep - 1);
-    const newActiveStep =
-    isLastStep() ?
-        steps.findIndex((step, i) => !(i in completed))
+    const newActiveStep = isLastStep()
+      ? steps.findIndex((step, i) => !(i in completed))
       : activeStep - 1;
-  dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep })
+    dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
   };
 
   return (
