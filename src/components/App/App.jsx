@@ -112,7 +112,7 @@ function App() {
             exact
             path="/forGood"
           >
-            <CoreValues />
+            <ForGood />
           </ProtectedRoute>
 
           <ProtectedRoute
