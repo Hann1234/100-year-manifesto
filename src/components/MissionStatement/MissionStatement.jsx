@@ -32,46 +32,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     backgroundColor: "#475473",
   },
-  //paper2 is for the video
-  paper2: {
-    height: "14vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
-  //paper3 is where all the main text will be displayed.
-  paper3: {
-    // height: "60vh",
-    maxHeight: "60vh",
-    overflow: "auto",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-    backgroundColor: "#475473",
-  },
-  //paper4 is where the input field is.
-  paper4: {
-    height: "30vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-    backgroundColor: "#bdbfbf",
-  },
-  paper5: {
-    maxHeight: "46vh",
-    overflow: "auto",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
+  
   divider: {
     margin: theme.spacing(2, 0),
   },
@@ -134,21 +95,20 @@ function MissionStatement() {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <Paper className={classes.paper}>
+            
               <h1>Mission Statement</h1>
               <Grid container spacing={1}>
+              <Grid item xs={6}>
+                <div className="videoWrapper">
+                  <iframe
+                    width="512"
+                    height="288"
+                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/Jz785ePrTo24qyAOemUE_100_-_DIY_-_Life_Goals_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143925Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0fcc5ae2c7f728127ffe9f159f7664101f7482fd55586a370d64cf3cb9853985"
+                  ></iframe>
+                </div>
+              </Grid>
                 <Grid item xs={6}>
-                  <Paper className={classes.paper2}>
-                    <CardMedia
-                      component="iframe"
-                      height="140"
-                      image="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/ya1H0DGQTSCgIZ2mQ9xf_100_-_DIY_-_Mission_Statement_v3.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143655Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=37e8277b03bfac4c944b72dddb4c3eeb86a5d365c79f76a35123a51a6fce6f71"
-                      title="Contemplative Reptile"
-                    />
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper className={classes.paper3}>
+                  
                     <div>
                       <h3>Mission Statement</h3>
                       <p>
@@ -183,11 +143,11 @@ function MissionStatement() {
                         be?
                       </p>
                     </div>
-                  </Paper>
+                  
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-                <Paper className={classes.paper4}>
+                
                   <form onSubmit={addMission}>
                     <center>
                       <h2>Mission Statement: </h2>
@@ -217,12 +177,12 @@ function MissionStatement() {
                       <CompleteButton/>
                     </center>
                   </form>
-                </Paper>
+                
               </Grid>
 
               {/* Need to append data from mission DB here */}
               <Grid item xs={12} container spacing={2}>
-              <Paper className={classes.paper5}>
+              
                 {missions.map((mission) => {
                   if (mission.id === editMissionText) {
                     return (
@@ -291,9 +251,9 @@ function MissionStatement() {
                     );
                   }
                 })}
-                </Paper>
+                
               </Grid>
-            </Paper>
+            
           </Grid>
         </Grid>
       </div>
