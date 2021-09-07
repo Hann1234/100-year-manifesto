@@ -9,6 +9,9 @@ import Box from "@material-ui/core/Box";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import "./ForGood.css";
 import { useHistory } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,11 +56,10 @@ function ForGood() {
     setManifestoText("");
   };
 
-
   const startEdit = (itemToEdit) => {
-    setEditManifestoText(itemToEdit.manifesto_text)
-    setItemToEdit(itemToEdit.id)
-}
+    setEditManifestoText(itemToEdit.manifesto_text);
+    setItemToEdit(itemToEdit.id);
+  };
 
   const editForGood = (id) => {
     dispatch({
@@ -95,7 +97,7 @@ function ForGood() {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/DtXVl9Qy6ycB123K3yrg_100_-_DIY_-_For_Good_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143904Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d13c83c253e96ab9c2d6b7b146c42e9ae643a0c963b5135b4b34e9c948273087"
+                    src="https://player.vimeo.com/video/599579107?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=ca6854132e"
                   ></iframe>
                 </div>
               </Grid>
@@ -273,14 +275,9 @@ function ForGood() {
               m={1} //margin
               className={`${classes.bottomBox} ${classes.box}`}
             >
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ height: 40 }}
-                onClick={() => history.push("/guidingprinciples")}
-              >
-                Next
-              </Button>
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
             </Box>
           </Grid>
         </Grid>
