@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+//Imports for Material UI styling 
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { useHistory } from "react-router-dom";
-import NextButton from "../NextButton/NextButton";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import BackButton from "../BackButton/BackButton";
-import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +34,7 @@ function getSteps(activeStep) {
     "Core Values",
     "For Good",
     "Life Goals",
+    "Guiding Principles",
     "Next Step",
   ];
 }
@@ -138,11 +138,6 @@ function ProgressBar() {
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-            <div>
-              <BackButton />
-              <NextButton />
-              <CompleteButton />
-            </div>
           </div>
         )}
       </div>
