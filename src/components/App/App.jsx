@@ -30,8 +30,6 @@ import ForGood from '../ForGood/ForGood';
 import LifeGoals from '../LifeGoals/LifeGoals';
 import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 import NextSteps from '../NextSteps/NextSteps';
-import CoreValues from '../CoreValues/CoreValues';
-
 import './App.css';
 
 function App() {
@@ -106,7 +104,15 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/lifegoals"
+            path="/coreValues"
+          >
+            <CoreValues />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/lifeGoals"
           >
             <LifeGoals />
           </ProtectedRoute>
@@ -117,14 +123,6 @@ function App() {
             path="/guidingPrinciples"
           >
             <GuidingPrinciples />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/coreValues"
-          >
-            <CoreValues />
           </ProtectedRoute>
 
           <ProtectedRoute
