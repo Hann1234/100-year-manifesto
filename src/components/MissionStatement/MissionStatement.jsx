@@ -136,9 +136,10 @@ function MissionStatement() {
                   <Paper className={classes.paper2}>
                     <CardMedia
                       component="iframe"
-                      height="140"
-                      image="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/ya1H0DGQTSCgIZ2mQ9xf_100_-_DIY_-_Mission_Statement_v3.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143655Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=37e8277b03bfac4c944b72dddb4c3eeb86a5d365c79f76a35123a51a6fce6f71"
-                      title="Contemplative Reptile"
+                      height="100%"
+                      width="100%"
+                      image="https://player.vimeo.com/video/599580839?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a6d13d3de0"
+                      title="100YM_DIY_Mission_Statement_v3.mp4"
                     />
                   </Paper>
                 </Grid>
