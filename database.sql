@@ -122,3 +122,55 @@ ALTER TABLE "guiding_principles" ADD CONSTRAINT "guiding_principles_fk0" FOREIGN
 ALTER TABLE "track_video" ADD CONSTRAINT "track_video_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
 
 ALTER TABLE "additional_questions" ADD CONSTRAINT "additional_questions_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
+
+
+-- the number in this queries has to be replaced with the user id that you are currently working on
+insert into  mission(user_id, manifesto_text)
+	values('9','Make the world a better place.');
+
+insert into mantras(user_id, manifesto_text)
+	values('9','FAMILY. FITNESS. FREEDOM.'),
+	('9','DISCIPLINE EQUALS FREEDOM.'),
+	('9','BE OBSESSIVELY GRATEFUL'),
+	('9','KNOWLEDGE IS POWER.'),
+	('9','THE OBSTACLE IS THE WAY.'),
+	('9','LIVE. LOVE. LEARN. LEGACY.'),
+	('9','BETTER EVERY DAY.'),
+	('9','HELL YES...OR NO.'),
+	('9','REMEMBER TO ENJOY THE DANCE.'),
+	('9','MEMENTO MORI.');
+	
+insert into core_values(user_id, manifesto_text)
+	values('9','EXPLORATION'),
+	('9','FAMILY'),
+	('9','FREEDOM'),
+	('9','GROWTH'),
+	('9','PEACE'),
+	('9','PURPOSE');
+	
+insert into for_good(user_id, manifesto_text)
+	values('9','PURSUING A CURE FOR CANCER'),
+	('9','SUPPORTING A HEALTHY PLANET'),
+	('9','ENTREPRENEURSHIP FOR GOOD'),
+	('9','ELIMINATE PREVENTABLE DEATHS');
+
+insert into life_goals(user_id, manifesto_text)
+	values('9','Inner peace.'),
+	('9','Live a life full of diversity in events, people, and opportunities.'),
+	('9','Take actions with a large impact on the world.'),
+	('9','Protect my family and friends.'),
+	('9','Be a great father and role model for my daughters.'),
+	('9','Be a great husband.'),
+	('9','Maintain close and rewarding friendships with the people who are important to me.'),
+	('9','Empower entrepreneurs to change the world.'),
+	('9','Actualize lifetime wish list into reality.');
+	
+insert into guiding_principles(user_id,source, manifesto_text)
+	values('9','MAHATMA GANDHI','I cried because I had no shoes, then I met a man who had no feet.'),
+	('9','PHIL KNIGHT','The cowards never started and the weak died along the way. That leaves us, ladies and gentlemen. Us.'),
+	('9','BRENE BROWN','Those who have the greatest capacity fordiscomfort rise the fastest.'),
+	('9','RICHARD BRANSON','Train people well enough so they can leave,treat them well enough so they do not want to.'),
+	('9','ALBERT EINSTEIN','Try not to become a man of success but rather try
+to become a man of value.'),
+	('9','SENECA','If aman knows not to which port he sails, no wind
+is favorable.');

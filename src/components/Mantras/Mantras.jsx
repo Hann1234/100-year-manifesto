@@ -77,7 +77,7 @@ function Mantras(props) {
               <Manifesto/>
             </AutoScale>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8}  className="scrollableDiv">
             <center><h1>Words To Live By</h1></center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
