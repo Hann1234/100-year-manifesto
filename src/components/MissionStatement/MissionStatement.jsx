@@ -9,8 +9,8 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import ReactPlayer from "react-player";
-
+import Box from "@material-ui/core/Box";
+import './MissionStatement.css'
 //Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
     backgroundColor: "#475473",
   },
-  
+
   divider: {
     margin: theme.spacing(2, 0),
   },
@@ -95,9 +95,8 @@ function MissionStatement() {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            
-              <h1>Mission Statement</h1>
-              <Grid container spacing={1}>
+            <h1>Mission Statement</h1>
+            <Grid container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
                   <iframe
@@ -107,123 +106,113 @@ function MissionStatement() {
                   ></iframe>
                 </div>
               </Grid>
-                <Grid item xs={6}>
-                  
+              <Grid item xs={6}>
                 <section className="rightOfVideo">
-                      <p>
-                        Your 100 Year Manifesto starts with your mission
-                        statement. There is no great gift you can give yourself
-                        than a defining purpose. A mission statement. To live
-                        with intentionality for the cause which you were
-                        created.
-                      </p>
-                      <p>
-                        Your life is worthy of a noble motive. What is it?
-                        Dedicating your life to a cause greater than yourself is
-                        a game-changer. A personal mission statement is a
-                        powerful tool because it provides a path for success.
-                        Just as important, it gives you permission to stay no to
-                        the things that are distractions. What's your cause.
-                      </p>
-                      
-                    </section>
-                  
-                </Grid>
+                  <p>
+                    Your 100 Year Manifesto starts with your mission statement.
+                    There is no great gift you can give yourself than a defining
+                    purpose. A mission statement. To live with intentionality
+                    for the cause which you were created.
+                  </p>
+                  <p>
+                    Your life is worthy of a noble motive. What is it?
+                    Dedicating your life to a cause greater than yourself is a
+                    game-changer. A personal mission statement is a powerful
+                    tool because it provides a path for success. Just as
+                    important, it gives you permission to stay no to the things
+                    that are distractions. What's your cause.
+                  </p>
+                </section>
               </Grid>
-              <Grid item xs={12}>
-              <section>
-              <p>For me, my mission: "Help others live better."</p>
-                      <p>
-                        My mission in life is to make people happy." Walt
-                        Disney's mission statement.
-                      </p>
-                      <p>
-                        "To be a teacher. And to be known for inspiring my
-                        students to be more than they thought they could be."
-                        Oprah Winfrey's mission statement.
-                      </p>
-                      <p>
-                        Your mission statement. Make it yours. Write it however
-                        you want. Keep it brief. Keep it meaningful. Keep it
-                        yours. What were you born to do? Who are you called to
-                        be?
-                      </p>
+            </Grid>
+            <Grid item xs={12}>
+              <section className="BottomText">
+                <p>For me, my mission: "Help others live better."</p>
+                <p>
+                  My mission in life is to make people happy." Walt Disney's
+                  mission statement.
+                </p>
+                <p>
+                  "To be a teacher. And to be known for inspiring my students to
+                  be more than they thought they could be." Oprah Winfrey's
+                  mission statement.
+                </p>
+                <p>
+                  Your mission statement. Make it yours. Write it however you
+                  want. Keep it brief. Keep it meaningful. Keep it yours. What
+                  were you born to do? Who are you called to be?
+                </p>
               </section>
             </Grid>
-              <Grid item xs={12}>
-                
-                  <form onSubmit={addMission}>
-                    <center>
-                      <h2>Mission Statement: </h2>
-                      <input
-                        className="missionText"
-                        value={missionText}
-                        onChange={(event) =>
-                          handleMissionChange(event.target.value)
+            <Grid item xs={12}>
+              <form onSubmit={addMission}>
+                <center>
+                  <TextField
+                    id="outlined-required"
+                    label="Your Mission Statement "
+                    style={{ width: "66%" }}
+                    value={missionText}
+                    variant="outlined"
+                    onChange={(evt) => setMissionText(evt.target.value)}
+                  />
+                  <Button
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#bec9bc",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addMission(event)}
+                  >
+                    ADD
+                  </Button>
+                </center>
+              </form>
+            </Grid>
+
+            {/* Need to append data from mission DB here */}
+            <Grid item xs={12} container spacing={2}>
+              {missions.map((mission) => {
+                if (mission.id === editMissionText) {
+                  return (
+                    <Grid key={mission.id} item xs={12}>
+                      <TextField
+                        id="outlined-required"
+                        placeholder={mission.manifesto_text}
+                        variant="outlined"
+                        style={{ width: "66%" }}
+                        onChange={(evt) =>
+                          setEditManifestoText(evt.target.value)
                         }
-                        placeholder="Your Mission Statement"
-                        required
                       />
                       <Button
+                        id={mission.id}
                         type="submit"
                         style={{
-                          height: "56px",
+                          height: "28px",
                           backgroundColor: "#bec9bc",
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => addMission(event)}
+                        onClick={() => editMission(mission.id)}
                       >
-                        ADD
+                        SAVE
                       </Button>
-                      <NextButton/>
-                      <BackButton/>
-                      <CompleteButton/>
-                    </center>
-                  </form>
-                
-              </Grid>
-
-              {/* Need to append data from mission DB here */}
-              <Grid item xs={12} container spacing={2}>
-              
-                {missions.map((mission) => {
-                  if (mission.id === editMissionText) {
-                    return (
-                      <Grid key={mission.id} item xs={3}>
-                        <TextField
-                          id="outlined-required"
-                          placeholder={mission.manifesto_text}
-                          variant="outlined"
-                          onChange={(evt) =>
-                            setEditManifestoText(evt.target.value)
-                          }
-                        />
-                        <Button
-                          id={mission.id}
-                          type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#bec9bc",
-                            color: "#132411",
-                          }}
-                          variant="contained"
-                          onClick={() => editMission(mission.id)}
-                        >
-                          SAVE
-                        </Button>
-                      </Grid>
-                    );
-                  }
-                  if (mission.id != editMission) {
-                    return (
-                      <Grid key={mission.id} item xs={3}>
+                    </Grid>
+                  );
+                }
+                if (mission.id != editMission) {
+                  return (
+                    <Grid key={mission.id} item xs={12}>
+                      <center>
                         <TextField
                           disabled
                           id="outlined-required"
                           label="Your Mission Statements"
                           value={mission.manifesto_text}
                           variant="outlined"
+                          style={{ width: "66%" }}
                           onChange={(evt) => setMissionText(evt.target.value)}
                         />
                         <Button
@@ -251,13 +240,21 @@ function MissionStatement() {
                         >
                           Remove
                         </Button>
-                      </Grid>
-                    );
-                  }
-                })}
-                
-              </Grid>
-            
+                      </center>
+                    </Grid>
+                  );
+                }
+              })}
+            </Grid>
+            <Box
+              component="span"
+              m={1} //margin
+              className={`${classes.bottomBox} ${classes.box}`}
+            >
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
+            </Box>
           </Grid>
         </Grid>
       </div>

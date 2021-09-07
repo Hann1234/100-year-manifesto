@@ -9,6 +9,9 @@ import Box from "@material-ui/core/Box";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import "./ForGood.css";
 import { useHistory } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -269,19 +272,14 @@ function ForGood() {
               })}
             </Grid>
             <Box
-              component="span"
-              m={1} //margin
-              className={`${classes.bottomBox} ${classes.box}`}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ height: 40 }}
-                onClick={() => history.push("/guidingprinciples")}
-              >
-                Next
-              </Button>
-            </Box>
+  component="span"
+  m={1} //margin
+  className={`${classes.bottomBox} ${classes.box}`}
+>
+<BackButton/>
+<NextButton/>
+<CompleteButton/>
+</Box>
           </Grid>
         </Grid>
       </div>

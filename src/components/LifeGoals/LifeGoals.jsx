@@ -8,6 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import "./LifeGoals.css";
 import { useHistory } from "react-router-dom";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Mantras(props) {
+function Mantras() {
   const lifeGoal = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
@@ -37,7 +40,6 @@ function Mantras(props) {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log('this should be alife goal', lifeGoal);
 
   useEffect(() => {
     dispatch({ type: "FETCH_LIFE_GOALS" });
@@ -143,7 +145,7 @@ function Mantras(props) {
                 </Button>
               </section>
             </Grid>
-
+                    <br />
             <Grid item xs={12} container spacing={2}>
               {lifeGoal.map((lifeGoal) => {
                 if (lifeGoal.id === itemToEdit) {
@@ -222,14 +224,9 @@ function Mantras(props) {
   m={1} //margin
   className={`${classes.bottomBox} ${classes.box}`}
 >
-  <Button 
-    variant="contained" 
-    color="primary" 
-    style={{ height: 40 }}
-    onClick={() => history.push('/guidingprinciples')}
-  >
-    Next
-  </Button>
+<BackButton/>
+<NextButton/>
+<CompleteButton/>
 </Box>
           </Grid>
         </Grid>

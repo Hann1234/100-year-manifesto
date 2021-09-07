@@ -8,6 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./Mantras.css";
 import { useHistory } from "react-router-dom";
+import CompleteButton from "../CompleteButton/CompleteButton";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -108,10 +111,10 @@ function Mantras(props) {
                 </section>
               </Grid>
             </Grid>
-            
+
             <Grid item xs={12}>
-              <section className='BottomText'>
-              <p>
+              <section className="BottomText">
+                <p>
                   Here are some of our favorites: Own your ugly Zip-a-dee-do-dah
                   Make it a Masterpiece Live. Laugh. Love. Simplify. Simplify.
                   Love unconditionally Embrace the uncertainty
@@ -223,14 +226,9 @@ function Mantras(props) {
               m={1} //margin
               className={`${classes.bottomBox} ${classes.box}`}
             >
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ height: 40 }}
-                onClick={() => history.push("/corevalues")}
-              >
-                Next
-              </Button>
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
             </Box>
           </Grid>
         </Grid>

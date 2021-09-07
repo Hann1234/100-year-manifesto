@@ -10,6 +10,9 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import './GuidingPrinciples.css';
+import BackButton from '../BackButton/BackButton';
+import NextButton from '../NextButton/NextButton';
+import CompleteButton from '../CompleteButton/CompleteButton';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -102,9 +105,6 @@ function GuidingPrinciples(props) {
           <Grid item xs={8}>
             <center>
                 <h1>Guiding Principles</h1>
-                <h3>Living your 100 Year Manifesto requires having Guiding Principles.</h3>
-                <h3>Meaningful quotes, poetry, song lyrics, or Scriptures that guide your life.</h3>
-                <h3>What are yours?</h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
@@ -117,29 +117,26 @@ function GuidingPrinciples(props) {
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <section className="rightOfVideo">
+                <section className="rightOfVideo2">
+                <p>Living your 100 Year Manifesto requires having Guiding Principles.</p>
+                <p>Meaningful quotes, poetry, song lyrics, or Scriptures that guide your life.</p>
+                <p>What are yours?</p>
                   <p>Different than the Words to Live By, this section is a place for guiding principles, meaningful Scriptures, or passages from your favorite books that significantly guide your life.</p>
                   <p>This framework might include quotes from famous people, like:</p>
                   <p>“Do all the good you can. By all the means you can. In all the ways you can. In all the places you can. At all the times you can. To all the people you can. As long as ever you can.” - John Wesley, Theologian</p>
-                  <p>They might include quotes like:</p>
-                  <p>“You can never go wrong doing the right thing.”</p>
-                  <p>They might also include a handful of Scriptures, such as:</p>
-                  <p>“To whom much is given, much is demanded.” Luke 12:48</p>
+                  
                 </section>
               </Grid>
             </Grid>
             <Grid item xs={12}>
             <center>
-              <section>
-                <h3>For me, I put 10 scriptures that really touch my soul.</h3>
-                <p></p>
-              </section>
-            </center>
-            </Grid>
-            <Grid item xs={12}>
-            <center>
-              <section>
-                <h3>If you’re not into scriptures, there are quotes. Power phrases. Things your parents said. Things you say. Passages from books.</h3>
+              <section className="BottomText">
+              <p>They might include quotes like:
+                  “You can never go wrong doing the right thing.”</p>
+                  <p>They might also include a handful of Scriptures, such as:
+                  “To whom much is given, much is demanded.” Luke 12:48</p>
+                <p>For me, I put 10 scriptures that really touch my soul.</p>
+                <p>If you’re not into scriptures, there are quotes. Power phrases. Things your parents said. Things you say. Passages from books.</p>
               </section>
             </center>
             </Grid>
@@ -169,7 +166,10 @@ function GuidingPrinciples(props) {
                 </Button>
               </section>
             </Grid>
-
+            
+              <br />
+              <br />
+            
             <Grid item xs={12} container spacing={2}>
               {guidingPrinciples.map((principle) => {
                 if (principle.id === guidingPrincipleToEdit) {
@@ -241,18 +241,13 @@ function GuidingPrinciples(props) {
               })}
             </Grid>
             <Box
-                component="span"
-                m={1} //margin
-                className={`${classes.bottomBox} ${classes.box}`}
-                >
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
-                        style={{ height: 40 }}
-                        onClick={() => history.push('/nextSteps')}
-                    >
-                        Next
-                    </Button>
+              component="span"
+              m={1} //margin
+              className={`${classes.bottomBox} ${classes.box}`}
+            >
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
             </Box>
           </Grid>
         </Grid>
