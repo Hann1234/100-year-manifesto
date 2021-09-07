@@ -77,7 +77,7 @@ function CoreValues() {
 
   const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
 
-  const [manifestoText, setManifestoText] = useState('');
+  // const [manifestoText, setManifestoText] = useState('');
   const [editManifestoText, setEditManifestoText] = useState('');
   const [CoreValueToEdit, setCoreValueToEdit] = useState(0);
   const dispatch = useDispatch ();
@@ -317,13 +317,13 @@ function CoreValues() {
         type: 'FETCH_CORE_VALUES'
     });
 
-    setManifestoText('');
+    // setManifestoText('');
     setEditManifestoText('');
     setCoreValueToEdit(0);
 
-  }, []);
+  }, []); // when value inside square bracket is updated, useEffect is rerun
 
-  const addCoreValue = () => {
+  const addCoreValue = (manifestoText) => {
     dispatch({
         type: 'ADD_CORE_VALUE', 
         payload: {
@@ -349,13 +349,23 @@ function CoreValues() {
   };
 
 //Need handleSubmit
-const handleClick = (value) => {
+const handleAddCoreValue = (value) => {
 
     event.preventDefault();
 
-    console.log('You clicked', value);
+    // setManifestoText(value);
+
+    addCoreValue(value);
 
     };
+
+const handleDeleteCoreValue = (id) => {
+
+  event.preventDefault();
+
+  deleteCoreValue(id);
+
+  };
 
   return (
     <section>
@@ -403,17 +413,30 @@ const handleClick = (value) => {
                 </center>
                 <Paper component="ul" className={classes.root}>
                     {chipData.map((data) => {
-                        return (
+                      for (const value of coreValues) {
+                        if (data.label === value.manifesto_text) {
+                          return (
                             <li key={data.key}>
-                                <Chip
-                                label={data.label}
-                                className={classes.chip}
-                                clickable
-                                onClick={() => handleClick(data.label)}
-                                color="primary"
-                                />
+                            <Chip
+                            label={data.label}
+                            className={classes.chip}
+                            clickable
+                            onClick={() => handleDeleteCoreValue(value.id)}
+                            color="secondary"
+                            />
                             </li>
-                        );
+                          )}}
+                        return (
+                          <li key={data.key}>
+                          <Chip
+                          label={data.label}
+                          className={classes.chip}
+                          clickable
+                          onClick={() => handleAddCoreValue(data.label)}
+                          color="primary"
+                          />
+                          </li>
+                        )
                     })}
                 </Paper>
               </Grid>
@@ -422,6 +445,9 @@ const handleClick = (value) => {
         </Grid>
     </section>
   );
-}
+};
 
 export default CoreValues;
+
+// if chip is in the database then we will return the chip map will appear green, appear before other chips, 2nd handle click to delete
+// if data.label === for of loop of coreValues.manifesto_text
