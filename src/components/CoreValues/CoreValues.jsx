@@ -415,18 +415,18 @@ const handleClick = (value) => {
                             color="secondary"
                             />
                             </li>
-                          )} else {
-                            return (
-                              <li key={data.key}>
-                              <Chip
-                              label={data.label}
-                              className={classes.chip}
-                              clickable
-                              onClick={() => handleAddCoreValue(data.label)}
-                              color="primary"
-                              />
-                          </li>
                           )}}
+                        return (
+                          <li key={data.key}>
+                          <Chip
+                          label={data.label}
+                          className={classes.chip}
+                          clickable
+                          onClick={() => handleAddCoreValue(data.label)}
+                          color="primary"
+                          />
+                          </li>
+                        )
                     })}
                 </Paper>
               </Grid>
