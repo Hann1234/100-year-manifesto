@@ -30,6 +30,8 @@ import ForGood from '../ForGood/ForGood';
 import LifeGoals from '../LifeGoals/LifeGoals';
 import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 import NextSteps from '../NextSteps/NextSteps';
+import CoreValues from '../CoreValues/CoreValues';
+
 import './App.css';
 
 function App() {
