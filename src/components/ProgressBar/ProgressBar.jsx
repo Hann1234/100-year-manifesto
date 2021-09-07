@@ -30,7 +30,7 @@ function getSteps(activeStep) {
   return [
     "Intro: Your 100 Year Manifesto",
     "Mission Statement",
-    "Mantras",
+    "Words to Live By",
     "Core Values",
     "For Good",
     "Life Goals",
@@ -68,7 +68,7 @@ function ProgressBar() {
       case 1:
         return history.push("/missionStatement");
       case 2:
-        return history.push("/mantras");
+        return history.push("/wordsToLiveBy");
       case 3:
         return history.push("/coreValues");
       case 4:
