@@ -404,18 +404,20 @@ const handleClick = (value) => {
                 <Paper component="ul" className={classes.root}>
                     {chipData.map((data) => {
                       for (const value of coreValues) {
-                        return (data.label === value.manifesto_text ?
+                        if (data.label === value.manifesto_text) {
+                          return (
                             <li key={data.key}>
-                                <Chip
-                                label={data.label}
-                                className={classes.chip}
-                                clickable
-                                onClick={() => handleDelete(data.label)}
-                                color="secondary"
-                                />
+                            <Chip
+                            label={data.label}
+                            className={classes.chip}
+                            clickable
+                            onClick={() => handleDelete(data.label)}
+                            color="secondary"
+                            />
                             </li>
-                            :
-                          <li key={data.key}>
+                          )} else {
+                            return (
+                              <li key={data.key}>
                               <Chip
                               label={data.label}
                               className={classes.chip}
@@ -424,8 +426,7 @@ const handleClick = (value) => {
                               color="primary"
                               />
                           </li>
-                        );
-                      }
+                          )}}
                     })}
                 </Paper>
               </Grid>
