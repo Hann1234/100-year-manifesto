@@ -9,8 +9,7 @@ import { useHistory } from "react-router-dom";
 import NextButton from "../NextButton/NextButton";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import BackButton from "../BackButton/BackButton";
-
-
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,22 +39,27 @@ function getSteps(activeStep) {
   ];
 }
 
-
 function ProgressBar() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const activeStep = useSelector((store) => store.nextButtonReducer.nextButton);
   const [oldActiveStep, setActiveStep] = React.useState();
+  const completedReducer = useSelector(
+    (store) => store.completeButtonReducer.completeButton
+  );
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps(activeStep);
   const history = useHistory();
-  
+
   useEffect(() => {
     setActiveStep(activeStep);
-    // console.log(activeStep);
-  }, [activeStep])
-  
+  }, [activeStep]);
+
   console.log(`What is activeStep store value?`, activeStep);
+  console.log(
+    `What is in completedReducer in ProgressBar.jsx`,
+    completedReducer
+  );
 
   function getStepContent(step) {
     switch (step) {
@@ -76,7 +80,7 @@ function ProgressBar() {
       case 7:
         return history.push("/nextSteps");
       default:
-        return '';
+        return "";
     }
   }
 
@@ -96,35 +100,10 @@ function ProgressBar() {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
-    dispatch({ type: "SET_NEXT_BUTTON", payload: newActiveStep });
-
-  };
-
-  // const handleBack = () => {
-  //   // setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  //   dispatch({ type: "SET_NEXT_BUTTON", payload: activeStep-1 });
-  // };
-
-  //I think this is where we can put some logic to push user to the page they want to be onClick
   const handleStep = (step) => () => {
     setActiveStep(step);
     getStepContent(step);
     dispatch({ type: "SET_NEXT_BUTTON", payload: step });
-  };
-
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
   };
 
   const handleReset = () => {
@@ -139,7 +118,7 @@ function ProgressBar() {
           <Step key={label}>
             <StepButton
               onClick={handleStep(index)}
-              completed={completed[index]}
+              completed={completedReducer[index]}
             >
               {label}
             </StepButton>
@@ -160,39 +139,9 @@ function ProgressBar() {
               {getStepContent(activeStep)}
             </Typography>
             <div>
-              <BackButton/>
-              {/* <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button> */}
-              <NextButton/>
-              {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                Next
-              </Button> */}
-              {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography variant="caption" className={classes.completed}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleComplete}
-                  >
-                    {completedSteps() === totalSteps() - 1
-                      ? "Finish"
-                      : "Complete Step"}
-                  </Button>
-                ))}
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
             </div>
           </div>
         )}
