@@ -2,7 +2,6 @@ import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './Manifesto.css';
-import ManifestoSvgElement from "./ManifestoSvgElement";
 
 function Manifesto(){
     const dispatch = useDispatch();
@@ -33,43 +32,54 @@ function Manifesto(){
                 </Grid>
                 <Grid className="content" item container direction="row" justifyContent="center">
                     <Grid className="smallColumn">
-                        <div className="mission">MISSION: {mission.length !==0 ? mission[0].manifesto_text : "null"}</div>
-                        <div className="mantras smallColumnAutoFill">
+                        <div className="mission">MISSION: {mission ? mission.manifesto_text : "null"}</div>
+                        <div className="mantras">
                             <div><Typography>MANTRAS:</Typography></div>
-                            {mantras.length !==0 && mantras.map(mantra => (
-                                <ManifestoSvgElement manifestoText={mantra.manifesto_text} key={mantra.id}/>
-                            ))}
+                            {mantras.length !==0 ? mantras.map(mantra => (
+                                <div className="mantraElement" >
+                                    {/* <TextFit mode="single" max={28}>
+                                        {mantra.manifesto_text}
+                                    </TextFit> */}
+                                        <svg  xmlns="http://www.w3.org/2000/svg" 
+                                        viewBox="0 0 190 100%"  preserveAspectRatio="none">
+                                            <text x="1" y="18" textLength="190"
+                                            fontFamily="Verdana"
+                                            fill="#4d5470"
+                                            lengthAdjust="spacingAndGlyphs">
+                                                {mantra.manifesto_text}
+                                            </text>
+                                        </svg>
+                                </div>
+                            )):<div className="emptyMantras"></div>}
+                            <div className="dotSeparation"> ********** </div>
                         </div>
-                        <div className="dotSeparation"> ********** </div>
-                        <div className="coreValues smallColumnAutoFill">
+                        <div className="coreValues">
                             <div>CORE VALUES:</div>
-                            {coreValues.length !== 0 ? coreValues.map(value => (
-                                <ManifestoSvgElement manifestoText={value.manifesto_text} key={value.id}/>
-                            )):<div className="emptySection"></div>}
+                            {coreValues.map(value => (
+                                <div>{value}</div>
+                            ))}
+                            <div className="dotSeparation"> ********** </div>
                         </div>
-                        <div className="dotSeparation"> ********** </div>
-                        <div className="forGood smallColumnAutoFill">
+                        <div className="forGood">
                             <div>FOR GOOD:</div>
                             {forGood.length !== 0 ? forGood.map(text => (
-                                <ManifestoSvgElement manifestoText={text.manifesto_text} key={text.id}/>
-                            )):<div className="emptySection"></div>}
+                                <div>{text}</div>
+                            )):<div className="emptyMantras"></div>}
                         </div>
                     </Grid>
                     <Grid className="bigColumn" item>
                         <div className="lifeGoalsTitle blueBar">LIFE GOALS</div>
-                        <div className="lifeGoals bigColumnAutoFill">
-                            {lifeGoals.length !== 0 && lifeGoals.map(textItem => (
-                                <div className="lifeGoalItem" key={textItem.id}>{textItem.manifesto_text} </div>
-                            ))}
+                        <div className="lifeGoals">
+                            {/* {lifeGoals ? lifeGoals.map(textItem => (
+                                <div className="lifeGoalItem">{textItem}</div>
+                            )): null} */}
                         </div>
-                        <div className="principlesTitle"><Typography>////////////////////////////Guiding Principles////////////////////////////</Typography></div>
-                        {/* <div className="principles bigColumnAutoFill"> */}
-                            <Grid container spacing={3} direction="column" justifyContent="flex-end">
-                                {guidingPrinciples.length !== 0 && guidingPrinciples.map(textItem => (
-                                    <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
-                                ))}
-                            </Grid>
-                        {/* </div> */}
+                        <div className="principlesTitle"> ////////////////////////////          Guiding Principles          ////////////////////////////</div>
+                        <div className="principles">
+                            {/* {guidingPrinciples ? guidingPrinciples.map(textItem => (
+                                <div className="principleItem">{textItem}</div>
+                            )): null} */}
+                        </div>
                     </Grid>
                 </Grid>
                 <Grid item>

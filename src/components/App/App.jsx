@@ -20,16 +20,18 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 
 //Project specific routes
-import HomePage from "../HomePage/HomePage";
-import IntroPage from "../IntroPage/IntroPage";
-import MissionStatement from "../MissionStatement/MissionStatement";
-import Mantras from "../Mantras/Mantras";
-import CoreValues from "../CoreValues/CoreValues";
-import ForGood from "../ForGood/ForGood";
-import LifeGoals from "../LifeGoals/LifeGoals";
-import GuidingPrinciples from "../GuidingPrinciples/GuidingPrinciples";
-import NextSteps from "../NextSteps/NextSteps";
-import "./App.css";
+
+import HomePage from '../HomePage/HomePage';
+import IntroPage from '../IntroPage/IntroPage';
+import MissionStatement from '../MissionStatement/MissionStatement';
+import Mantras from '../Mantras/Mantras';
+import CoreValues from '../CoreValues/CoreValues';
+import ForGood from '../ForGood/ForGood';
+import LifeGoals from '../LifeGoals/LifeGoals';
+import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
+import NextSteps from '../NextSteps/NextSteps';
+import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -100,7 +102,25 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/lifegoals"
+            path="/coreValues"
+          >
+            <CoreValues />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/forGood"
+          >
+            <CoreValues />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+
+            path="/lifeGoals"
+
           >
             <LifeGoals />
           </ProtectedRoute>
@@ -111,22 +131,6 @@ function App() {
             path="/guidingPrinciples"
           >
             <GuidingPrinciples />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/forgood"
-          >
-            <ForGood />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/coreValues"
-          >
-            <CoreValues />
           </ProtectedRoute>
 
           <ProtectedRoute
