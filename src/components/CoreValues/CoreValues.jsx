@@ -77,7 +77,7 @@ function CoreValues() {
 
   const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
 
-  const [manifestoText, setManifestoText] = useState('');
+  // const [manifestoText, setManifestoText] = useState('');
   const [editManifestoText, setEditManifestoText] = useState('');
   const [CoreValueToEdit, setCoreValueToEdit] = useState(0);
   const dispatch = useDispatch ();
@@ -317,13 +317,13 @@ function CoreValues() {
         type: 'FETCH_CORE_VALUES'
     });
 
-    setManifestoText('');
+    // setManifestoText('');
     setEditManifestoText('');
     setCoreValueToEdit(0);
 
-  }, []);
+  }, []); // when value inside square bracket is updated, useEffect is rerun
 
-  const addCoreValue = () => {
+  const addCoreValue = (manifestoText) => {
     dispatch({
         type: 'ADD_CORE_VALUE', 
         payload: {
@@ -353,9 +353,9 @@ const handleAddCoreValue = (value) => {
 
     event.preventDefault();
 
-    setManifestoText(value);
+    // setManifestoText(value);
 
-    addCoreValue();
+    addCoreValue(value);
 
     };
 
