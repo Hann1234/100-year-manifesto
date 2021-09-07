@@ -22,30 +22,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "wrap",
     marginBottom: theme.spacing(1),
   },
-  paper2: {
-    height: "28vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
-  paper3: {
-    height: "28vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
-  paper4: {
-    height: "60vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
+  
   divider: {
     margin: theme.spacing(2, 0),
   },
@@ -82,7 +59,7 @@ const editName = (event) => {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <Paper className={classes.paper}>
+            
             <center>
               <h1>Intro: Your 100 Year Manifesto</h1>
                 <h2>Welcome to The 100 Year Manifesto.  We are so glad you’re here.</h2>
@@ -93,9 +70,15 @@ const editName = (event) => {
             </center>
               <Grid container spacing={1}>
                 <Grid item xs={6}>
-                  <Paper className={classes.paper2}> 
+                  
                   {/* under the video we will include Micks information add another Grid component for Micks info?*/}
-                    <h2>The video will go here</h2>
+                  <div className="videoWrapper">
+                  <iframe
+                    width="512"
+                    height="288"
+                    src="https://player.vimeo.com/video/599579818?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a0deca7b32"
+                  ></iframe>
+                </div>
                     <br></br>
                     {/* make Mick's information a separate card with circled avatar pic */}
                     <h3>Instructor: Mick White</h3>
@@ -104,10 +87,10 @@ const editName = (event) => {
                     <br></br>
                     <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/3152123/settings_images/FtJgiPhtTE6KMfcyTFIC_120903065_10158492341299373_1571312014878542166_o.jpg" alt="Mick White" />
                     <h4>"To live with intentionality. A framework for living. A commitment to be who you are capable of being. A commitment to live a better life. Your life on purpose. Your business. Your life. For good.”</h4>
-                  </Paper>
+                  
                 </Grid>
                 <Grid item xs={6}>
-                  <Paper className={classes.paper3}>
+                  
                     <h3>Logistics for the course:</h3>
                     <br></br>
                     <h4>Each section of this course has a short video & a worksheet.</h4>
@@ -124,11 +107,11 @@ const editName = (event) => {
                         />
                         <button className="nameButton" type="submit">SAVE</button>
                     </form>
-                  </Paper>
+                  
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-                <Paper className={classes.paper4}>
+                
                 <center>
                   <h4>Questions? Send us an email at team@100yearmanifesto.com</h4>
                   <br></br>
@@ -139,9 +122,9 @@ const editName = (event) => {
                   <h4>It’s time to start living your 100 Year Manifesto!</h4>
                   <button className="nextButton" onClick={() => history.push('/missionStatement')}>NEXT</button>
                 </center>
-                </Paper>
+                
               </Grid>
-            </Paper>
+            
           </Grid>
         </Grid>
       </div>
