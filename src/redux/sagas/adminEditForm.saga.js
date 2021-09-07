@@ -13,13 +13,13 @@ function* fetchPageEdits(action) {
 }
 
 // Get page edits from admin_edit_form on a certain date
-function* fetchPageEditsOnDate(action) {
+function* fetchEditOnDate(action) {
     try {
-        const pageEditsOnDate = yield axios.get(`/api/adminEditForm/page_on_date/${action.payload.page_id}`);
-        yield put({type: 'SET_PAGE_EDITS_ON_DATE', payload: pageEditsOnDate.data}) // Loads page edits on date into reducer
+        const editOnDate = yield axios.get(`/api/adminEditForm/edit_on_date/${action.payload.page_id}/?edit_date=${encodeURIComponent(action.payload.edit_date)}&html_id=${encodeURIComponent(action.payload.html_id)}`);
+        yield put({type: 'SET_EDIT_ON_DATE', payload: {edit_data: editOnDate.data[0], page_id: action.payload.page_id, html_id: action.payload.html_id}}) // Loads page edits on date into reducer
     } catch (error) {
-        console.log('Error getting pageEditsOnDate:', error);
-        yield put({ type: 'FETCH_PAGE_EDITS_ON_DATE_ERROR' });
+        console.log('Error getting editOnDate:', error);
+        yield put({ type: 'FETCH_EDIT_ON_DATE_ERROR' });
     }
 }
 
@@ -27,8 +27,7 @@ function* fetchPageEditsOnDate(action) {
 function* addPageEdits(action) {
     try {
         yield axios.post('/api/adminEditForm', action.payload); 
-        yield put({type: 'CLEAR_PAGE_EDITS'}); // Clears reducer
-        yield put({ type: 'FETCH_PAGE_EDITS'}); // Loads the updated page edits into reducer
+        yield put({ type: 'FETCH_PAGE_EDITS', payload: {page_id: action.payload.page_id} }); // Loads the updated page edits into reducer
     } catch (error) {
         console.log('Error adding pageEdits:', error);
         yield put({ type: 'ADD_PAGE_EDIT_ERROR' });
@@ -40,7 +39,7 @@ function* deletePageEdits(action) {
     try {
         console.log(action);
         yield axios.delete(`/api/adminEditForm/${action.payload.id}`);
-        yield put({ type: 'FETCH_PAGE_EDITS'}); // Reloads page edits
+        yield put({ type: 'FETCH_EDIT_ON_DATE', payload: action.payload }); // Reload edit
     } catch (error) {
         console.log('Error deleting pageEdits:', error);
         yield put({ type: 'DELETE_PAGE_EDIT_ERROR' });
@@ -49,7 +48,7 @@ function* deletePageEdits(action) {
 
 function* adminEditSaga() {
   yield takeLatest('FETCH_PAGE_EDITS', fetchPageEdits);
-  yield takeLatest('FETCH_PAGE_EDITS_ON_DATE', fetchPageEditsOnDate);
+  yield takeLatest('FETCH_EDIT_ON_DATE', fetchEditOnDate);
   yield takeLatest('ADD_PAGE_EDIT', addPageEdits);
   yield takeLatest('DELETE_PAGE_EDIT', deletePageEdits);
 }

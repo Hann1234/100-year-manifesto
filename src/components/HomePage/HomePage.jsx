@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { useDispatch } from "react-redux";
@@ -40,10 +40,19 @@ const useStyles = makeStyles((theme) => ({
 
 function HomePage() {
   // HomePage DOM where the user begins their 100YM journey
+  const additionalQuestions = useSelector((store) => store.additionalQuestionsReducer.additionalQuestions);
   const user = useSelector((store) => store.user);
+
   const dispatch = useDispatch ();
   const classes = useStyles();
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch({
+        type: 'FETCH_ADDITIONAL_QUESTIONS'
+    });
+  }, []);
+
 
   return (
       <div>
@@ -85,6 +94,18 @@ function HomePage() {
               <Paper className={classes.paper2} onClick={() => history.push('/nextSteps')}>
                 <h1>8 Next Steps</h1>
               </Paper>
+          </Grid>
+          <Grid item xs={8}>
+            {additionalQuestions.map((answer) => {
+              if (answer.id > 0) {
+                return (
+                  <Grid item xs={8} key={answer.id}>
+                    <p>{answer.question}</p>
+                    <p>{answer.manifesto_text}</p>
+                  </Grid>
+                );
+              }
+            })}
           </Grid>
         </Grid>
       <p>Your ID is: {user.id}</p>

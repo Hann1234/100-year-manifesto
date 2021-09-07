@@ -9,6 +9,8 @@ import forGoodReducer from './forGoodReducer';
 import guidingPrinciplesReducer from  './guidingPrinciplesReducer';
 import additionalQuestionsReducer from './additionalQuestionsReducer';
 import adminEditFormReducer from './adminEditForm.reducer';
+import nextButtonReducer from './nextButtonReducer';
+import completeButtonReducer from './completeButton.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +29,8 @@ const rootReducer = combineReducers({
   guidingPrinciplesReducer,
   additionalQuestionsReducer,
   adminEditFormReducer,
+  nextButtonReducer,
+  completeButtonReducer,
 });
 
 export default rootReducer;

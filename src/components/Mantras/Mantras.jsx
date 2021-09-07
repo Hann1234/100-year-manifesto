@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import "./Mantras.css";
 import { useHistory } from "react-router-dom";
 import AutoScale from "react-auto-scale";
@@ -22,19 +22,19 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     display: "flex",
-    padding: 8
+    padding: 8,
   },
   bottomBox: {
     justifyContent: "flex-end",
-    alignItems: "flex-end"
-  }
+    alignItems: "flex-end",
+  },
 }));
 
 function Mantras(props) {
   const mantras = useSelector((store) => store.mantrasReducer.mantras);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [itemToEdit, setItemToEdit] = useState(0);
+  const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,19 +48,13 @@ function Mantras(props) {
     setManifestoText("");
   };
 
-
-  const startEdit = (itemToEdit) => {
-    setEditManifestoText(itemToEdit.manifesto_text)
-    setItemToEdit(itemToEdit.id)
-}
-
   const editMantra = (id) => {
     dispatch({
       type: "UPDATE_MANTRA",
       payload: { id: id, manifestoText: editManifestoText },
     });
     setEditManifestoText("");
-    setItemToEdit(0);
+    setMantraToEdit(0);
   };
 
   const deleteMantra = (id) => {
@@ -157,7 +151,7 @@ function Mantras(props) {
 
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
-                if (mantra.id === itemToEdit) {
+                if (mantra.id === mantraToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
                       <TextField
@@ -184,7 +178,7 @@ function Mantras(props) {
                     </Grid>
                   );
                 }
-                if (mantra.id != itemToEdit) {
+                if (mantra.id != mantraToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
                       <TextField
@@ -204,7 +198,7 @@ function Mantras(props) {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => startEdit(mantra)}
+                        onClick={() => setMantraToEdit(mantra.id)}
                       >
                         Edit
                       </Button>
@@ -226,19 +220,19 @@ function Mantras(props) {
               })}
             </Grid>
             <Box
-  component="span"
-  m={1} //margin
-  className={`${classes.bottomBox} ${classes.box}`}
->
-  <Button 
-    variant="contained" 
-    color="primary" 
-    style={{ height: 40 }}
-    onClick={() => history.push('/corevalues')}
-  >
-    Next
-  </Button>
-</Box>
+              component="span"
+              m={1} //margin
+              className={`${classes.bottomBox} ${classes.box}`}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ height: 40 }}
+                onClick={() => history.push("/corevalues")}
+              >
+                Next
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </div>
