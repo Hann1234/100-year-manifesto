@@ -34,7 +34,6 @@ function getSteps() {
 function NextButton() {
   const classes = useStyles();
   const activeStep = useSelector((store) => store.nextButtonReducer.nextButton);
-  // const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
   const dispatch = useDispatch();
@@ -71,7 +70,6 @@ function NextButton() {
         variant="contained"
         color="primary"
         onClick={handleNext}
-        // onClick={() => handleNext()}
         className={classes.button}
       >
         Next

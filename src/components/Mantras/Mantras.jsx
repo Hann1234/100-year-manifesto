@@ -11,6 +11,8 @@ import { useHistory } from "react-router-dom";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,12 +70,9 @@ function Mantras(props) {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Paper className={classes.paper}>
-              this is where the manifesto goes I do not know if we thought about
-              this but almost all of our pages are going to follw a vary
-              spacific grid layout so it should be atop priority to get that
-              layout figured out so we can all have it for our pages
-            </Paper>
+            <AutoScale>
+              <Manifesto/>
+            </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
@@ -150,7 +149,7 @@ function Mantras(props) {
                 </Button>
               </section>
             </Grid>
-
+                  <br />
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
                 if (mantra.id === mantraToEdit) {

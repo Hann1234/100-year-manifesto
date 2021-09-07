@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 //**Clean up unused components!! */
 
 //Material UI styling components
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TextField, Button } from "@material-ui/core";
@@ -43,10 +42,8 @@ function MissionStatement() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [editMissionText, setEditMissionText] = useState(0);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const missions = useSelector((store) => store.missionReducer.mission);
-  const [heading, setHeading] = useState("Functional Component");
   console.log(`What is missions store? `, missions);
 
   const classes = useStyles();
@@ -62,7 +59,6 @@ function MissionStatement() {
   };
 
   //Need handleSubmit
-
   const addMission = (event) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
