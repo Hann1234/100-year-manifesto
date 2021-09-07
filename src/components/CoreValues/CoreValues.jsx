@@ -403,17 +403,29 @@ const handleClick = (value) => {
                 </center>
                 <Paper component="ul" className={classes.root}>
                     {chipData.map((data) => {
-                        return (
+                      for (const value of coreValues) {
+                        return (data.label === value.manifesto_text ?
                             <li key={data.key}>
                                 <Chip
                                 label={data.label}
                                 className={classes.chip}
                                 clickable
-                                onClick={() => handleClick(data.label)}
-                                color="primary"
+                                onClick={() => handleDelete(data.label)}
+                                color="secondary"
                                 />
                             </li>
+                            :
+                          <li key={data.key}>
+                              <Chip
+                              label={data.label}
+                              className={classes.chip}
+                              clickable
+                              onClick={() => handleAddCoreValue(data.label)}
+                              color="primary"
+                              />
+                          </li>
                         );
+                      }
                     })}
                 </Paper>
               </Grid>
@@ -422,6 +434,9 @@ const handleClick = (value) => {
         </Grid>
     </section>
   );
-}
+};
 
 export default CoreValues;
+
+// if chip is in the database then we will return the chip map will appear green, appear before other chips, 2nd handle click to delete
+// if data.label === for of loop of coreValues.manifesto_text
