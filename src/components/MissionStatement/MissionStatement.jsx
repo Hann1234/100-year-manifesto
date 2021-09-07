@@ -109,8 +109,7 @@ function MissionStatement() {
               </Grid>
                 <Grid item xs={6}>
                   
-                    <div>
-                      <h3>Mission Statement</h3>
+                <section className="rightOfVideo">
                       <p>
                         Your 100 Year Manifesto starts with your mission
                         statement. There is no great gift you can give yourself
@@ -126,7 +125,14 @@ function MissionStatement() {
                         Just as important, it gives you permission to stay no to
                         the things that are distractions. What's your cause.
                       </p>
-                      <p>For me, my mission: "Help others live better."</p>
+                      
+                    </section>
+                  
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+              <section>
+              <p>For me, my mission: "Help others live better."</p>
                       <p>
                         My mission in life is to make people happy." Walt
                         Disney's mission statement.
@@ -142,10 +148,8 @@ function MissionStatement() {
                         yours. What were you born to do? Who are you called to
                         be?
                       </p>
-                    </div>
-                  
-                </Grid>
-              </Grid>
+              </section>
+            </Grid>
               <Grid item xs={12}>
                 
                   <form onSubmit={addMission}>

@@ -108,22 +108,18 @@ function Mantras(props) {
                 </section>
               </Grid>
             </Grid>
+            
             <Grid item xs={12}>
-              <section>
-                <h3>
+              <section className='BottomText'>
+              <p>
                   Here are some of our favorites: Own your ugly Zip-a-dee-do-dah
                   Make it a Masterpiece Live. Laugh. Love. Simplify. Simplify.
                   Love unconditionally Embrace the uncertainty
-                </h3>
-                <p></p>
-              </section>
-            </Grid>
-            <Grid item xs={12}>
-              <section>
-                <h3>
+                </p>
+                <p>
                   What are meaningful words that provide a framework for your
                   decisions & your life?{" "}
-                </h3>
+                </p>
                 <h3>List 5-10 words & phrases you live by:</h3>
               </section>
             </Grid>
