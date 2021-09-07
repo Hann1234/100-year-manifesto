@@ -381,7 +381,7 @@ const handleClick = (value) => {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/kMypT3S5iPDUWJ6hioaw_100_-_DIY_-_Core_Values_v3.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143843Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d809bb4dae9bc46f54e78f51db053875963aeb5c9fad1a1a573dc6a0f327054a"
+                    src="https://player.vimeo.com/video/599578721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a2b5bd36bf"
                   ></iframe>
                 </div>
               </Grid>
