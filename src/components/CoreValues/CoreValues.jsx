@@ -359,13 +359,11 @@ const handleAddCoreValue = (value) => {
 
     };
 
-const handleDeleteCoreValue = (value) => {
+const handleDeleteCoreValue = (id) => {
 
   event.preventDefault();
 
-  setManifestoText(value);
-
-  addCoreValue();
+  deleteCoreValue(id);
 
   };
 
