@@ -4,12 +4,10 @@ import { useHistory } from "react-router";
 //**Clean up unused components!! */
 
 //Material UI styling components
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import ReactPlayer from "react-player";
 
 //Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
@@ -82,10 +80,8 @@ function MissionStatement() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [editMissionText, setEditMissionText] = useState(0);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const missions = useSelector((store) => store.missionReducer.mission);
-  const [heading, setHeading] = useState("Functional Component");
   console.log(`What is missions store? `, missions);
 
   const classes = useStyles();
@@ -101,7 +97,6 @@ function MissionStatement() {
   };
 
   //Need handleSubmit
-
   const addMission = (event) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
@@ -141,9 +136,10 @@ function MissionStatement() {
                   <Paper className={classes.paper2}>
                     <CardMedia
                       component="iframe"
-                      height="140"
-                      image="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/ya1H0DGQTSCgIZ2mQ9xf_100_-_DIY_-_Mission_Statement_v3.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143655Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=37e8277b03bfac4c944b72dddb4c3eeb86a5d365c79f76a35123a51a6fce6f71"
-                      title="Contemplative Reptile"
+                      height="100%"
+                      width="100%"
+                      image="https://player.vimeo.com/video/599580839?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a6d13d3de0"
+                      title="100YM_DIY_Mission_Statement_v3.mp4"
                     />
                   </Paper>
                 </Grid>
@@ -212,9 +208,9 @@ function MissionStatement() {
                       >
                         ADD
                       </Button>
-                      <NextButton/>
-                      <BackButton/>
-                      <CompleteButton/>
+                      <NextButton />
+                      <BackButton />
+                      <CompleteButton />
                     </center>
                   </form>
                 </Paper>
@@ -222,75 +218,75 @@ function MissionStatement() {
 
               {/* Need to append data from mission DB here */}
               <Grid item xs={12} container spacing={2}>
-              <Paper className={classes.paper5}>
-                {missions.map((mission) => {
-                  if (mission.id === editMissionText) {
-                    return (
-                      <Grid key={mission.id} item xs={3}>
-                        <TextField
-                          id="outlined-required"
-                          placeholder={mission.manifesto_text}
-                          variant="outlined"
-                          onChange={(evt) =>
-                            setEditManifestoText(evt.target.value)
-                          }
-                        />
-                        <Button
-                          id={mission.id}
-                          type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#bec9bc",
-                            color: "#132411",
-                          }}
-                          variant="contained"
-                          onClick={() => editMission(mission.id)}
-                        >
-                          SAVE
-                        </Button>
-                      </Grid>
-                    );
-                  }
-                  if (mission.id != editMission) {
-                    return (
-                      <Grid key={mission.id} item xs={3}>
-                        <TextField
-                          disabled
-                          id="outlined-required"
-                          label="Your Mission Statements"
-                          value={mission.manifesto_text}
-                          variant="outlined"
-                          onChange={(evt) => setMissionText(evt.target.value)}
-                        />
-                        <Button
-                          id={mission.id}
-                          type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#bec9bc",
-                            color: "#132411",
-                          }}
-                          variant="contained"
-                          onClick={() => setEditMissionText(mission.id)}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#bec9bc",
-                            color: "#132411",
-                          }}
-                          variant="contained"
-                          onClick={() => deleteMission(mission.id)}
-                        >
-                          Remove
-                        </Button>
-                      </Grid>
-                    );
-                  }
-                })}
+                <Paper className={classes.paper5}>
+                  {missions.map((mission) => {
+                    if (mission.id === editMissionText) {
+                      return (
+                        <Grid key={mission.id} item xs={3}>
+                          <TextField
+                            id="outlined-required"
+                            placeholder={mission.manifesto_text}
+                            variant="outlined"
+                            onChange={(evt) =>
+                              setEditManifestoText(evt.target.value)
+                            }
+                          />
+                          <Button
+                            id={mission.id}
+                            type="submit"
+                            style={{
+                              height: "28px",
+                              backgroundColor: "#bec9bc",
+                              color: "#132411",
+                            }}
+                            variant="contained"
+                            onClick={() => editMission(mission.id)}
+                          >
+                            SAVE
+                          </Button>
+                        </Grid>
+                      );
+                    }
+                    if (mission.id != editMission) {
+                      return (
+                        <Grid key={mission.id} item xs={3}>
+                          <TextField
+                            disabled
+                            id="outlined-required"
+                            label="Your Mission Statements"
+                            value={mission.manifesto_text}
+                            variant="outlined"
+                            onChange={(evt) => setMissionText(evt.target.value)}
+                          />
+                          <Button
+                            id={mission.id}
+                            type="submit"
+                            style={{
+                              height: "28px",
+                              backgroundColor: "#bec9bc",
+                              color: "#132411",
+                            }}
+                            variant="contained"
+                            onClick={() => setEditMissionText(mission.id)}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            type="submit"
+                            style={{
+                              height: "28px",
+                              backgroundColor: "#bec9bc",
+                              color: "#132411",
+                            }}
+                            variant="contained"
+                            onClick={() => deleteMission(mission.id)}
+                          >
+                            Remove
+                          </Button>
+                        </Grid>
+                      );
+                    }
+                  })}
                 </Paper>
               </Grid>
             </Paper>
