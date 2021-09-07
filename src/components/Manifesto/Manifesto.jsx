@@ -80,6 +80,14 @@ function Manifesto(){
                                 <div className="principleItem">{textItem}</div>
                             )): null} */}
                         </div>
+                        <div className="principlesTitle"><Typography>////////////////////////////Guiding Principles////////////////////////////</Typography></div>
+                        <div className="principles bigColumnAutoFill">
+                            <Grid container>
+                                {guidingPrinciples.length !== 0 && guidingPrinciples.map(textItem => (
+                                    <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                ))}
+                            </Grid>
+                        </div>
                     </Grid>
                 </Grid>
                 <Grid item>
