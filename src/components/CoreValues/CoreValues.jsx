@@ -349,13 +349,25 @@ function CoreValues() {
   };
 
 //Need handleSubmit
-const handleClick = (value) => {
+const handleAddCoreValue = (value) => {
 
     event.preventDefault();
 
-    console.log('You clicked', value);
+    setManifestoText(value);
+
+    addCoreValue();
 
     };
+
+const handleDeleteCoreValue = (value) => {
+
+  event.preventDefault();
+
+  setManifestoText(value);
+
+  addCoreValue();
+
+  };
 
   return (
     <section>
@@ -411,7 +423,7 @@ const handleClick = (value) => {
                             label={data.label}
                             className={classes.chip}
                             clickable
-                            onClick={() => handleDelete(data.label)}
+                            onClick={() => handleDeleteCoreValue(value.id)}
                             color="secondary"
                             />
                             </li>
