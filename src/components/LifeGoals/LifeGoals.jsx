@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import "./LifeGoals.css";
 import { useHistory } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
@@ -23,13 +23,12 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     display: "flex",
-    padding: 8
+    padding: 8,
   },
   bottomBox: {
     justifyContent: "flex-end",
-    alignItems: "flex-end"
-  }
-
+    alignItems: "flex-end",
+  },
 }));
 
 function Mantras() {
@@ -46,14 +45,17 @@ function Mantras() {
   }, []);
 
   const addLifeGoal = () => {
-    dispatch({ type: "ADD_LIFE_GOAL", payload: { manifestoText: manifestoText } });
+    dispatch({
+      type: "ADD_LIFE_GOAL",
+      payload: { manifestoText: manifestoText },
+    });
     setManifestoText("");
   };
 
   const startEdit = (itemToEdit) => {
-    setEditManifestoText(itemToEdit.manifesto_text)
-    setItemToEdit(itemToEdit.id)
-}
+    setEditManifestoText(itemToEdit.manifesto_text);
+    setItemToEdit(itemToEdit.id);
+  };
 
   const editLifeGoal = (id) => {
     dispatch({
@@ -82,49 +84,50 @@ function Mantras() {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <center><h1>Life Goals</h1></center>
+            <center>
+              <h1>Life Goals</h1>
+            </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/Jz785ePrTo24qyAOemUE_100_-_DIY_-_Life_Goals_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143925Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0fcc5ae2c7f728127ffe9f159f7664101f7482fd55586a370d64cf3cb9853985"
+                    src="https://player.vimeo.com/video/599580195?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5321e6f5c6"
                   ></iframe>
                 </div>
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
                   <p>
-                  This is a place for your goals. These goals may or may not be goals you can measure. Think about what you want to accomplish in your life. Think about who you want to be. Think about what you can do.
+                    This is a place for your goals. These goals may or may not
+                    be goals you can measure. Think about what you want to
+                    accomplish in your life. Think about who you want to be.
+                    Think about what you can do.
                   </p>
-                  <p>
-                  10 Goals for You. For your life.
-                  </p>
+                  <p>10 Goals for You. For your life.</p>
                   <p>For me, they include:</p>
                   <p>
-                  “Be the man, father, & husband God created me to be.“
-“Build a business allowing for remore work anywhere in the world.“
-“Raise healthy boys who love themselves, their family, & their God: who serve others, lead by example, & do their best every single day of their lives. “
+                    “Be the man, father, & husband God created me to be.“ “Build
+                    a business allowing for remore work anywhere in the world.“
+                    “Raise healthy boys who love themselves, their family, &
+                    their God: who serve others, lead by example, & do their
+                    best every single day of their lives. “
                   </p>
                 </section>
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <section>
-                <h3>
-                WHAT ARE YOU LIFE GOALS?
-                </h3>
+                <h3>WHAT ARE YOU LIFE GOALS?</h3>
               </section>
             </Grid>
+            <Grid item xs={12}></Grid>
             <Grid item xs={12}>
-              
-            </Grid>
-            <Grid item xs={12} >
               <section>
                 <TextField
                   required
-                  style = {{width: '48%'}}
+                  style={{ width: "48%" }}
                   id="outlined-required"
                   label="Add lifeGoal"
                   value={manifestoText}
@@ -145,7 +148,7 @@ function Mantras() {
                 </Button>
               </section>
             </Grid>
-                    <br />
+            <br />
             <Grid item xs={12} container spacing={2}>
               {lifeGoal.map((lifeGoal) => {
                 if (lifeGoal.id === itemToEdit) {
@@ -153,7 +156,7 @@ function Mantras() {
                     <Grid key={lifeGoal.id} item xs={6}>
                       <TextField
                         id="outlined-required"
-                        style = {{width: '100%'}}
+                        style={{ width: "100%" }}
                         placeholder={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) =>
@@ -162,7 +165,7 @@ function Mantras() {
                       />
                       <Button
                         id={lifeGoal.id}
-                        style = {{width: 450}}
+                        style={{ width: 450 }}
                         type="submit"
                         style={{
                           height: "28px",
@@ -184,7 +187,7 @@ function Mantras() {
                         disabled
                         id="outlined-required"
                         label="Your Life Goal"
-                        style = {{width: '100%'}}
+                        style={{ width: "100%" }}
                         value={lifeGoal.manifesto_text}
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
@@ -220,14 +223,14 @@ function Mantras() {
               })}
             </Grid>
             <Box
-  component="span"
-  m={1} //margin
-  className={`${classes.bottomBox} ${classes.box}`}
->
-<BackButton/>
-<NextButton/>
-<CompleteButton/>
-</Box>
+              component="span"
+              m={1} //margin
+              className={`${classes.bottomBox} ${classes.box}`}
+            >
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
+            </Box>
           </Grid>
         </Grid>
       </div>

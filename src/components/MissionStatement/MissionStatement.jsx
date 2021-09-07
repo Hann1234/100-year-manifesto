@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import './MissionStatement.css'
+import "./MissionStatement.css";
 //Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
@@ -102,7 +102,7 @@ function MissionStatement() {
                   <iframe
                     width="512"
                     height="288"
-                    src="https://kajabi-storefronts-production.s3.amazonaws.com/sites/143056/video/Jz785ePrTo24qyAOemUE_100_-_DIY_-_Life_Goals_v2.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI4TIKYMSB4PQMFBA%2F20210827%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210827T143925Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0fcc5ae2c7f728127ffe9f159f7664101f7482fd55586a370d64cf3cb9853985"
+                    src="https://player.vimeo.com/video/599580839?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a6d13d3de0"
                   ></iframe>
                 </div>
               </Grid>

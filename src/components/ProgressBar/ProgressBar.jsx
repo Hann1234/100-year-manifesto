@@ -138,11 +138,7 @@ function ProgressBar() {
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-            <div>
-              <BackButton />
-              <NextButton />
-              <CompleteButton />
-            </div>
+           
           </div>
         )}
       </div>
