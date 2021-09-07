@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -6,7 +6,10 @@ import StepButton from "@material-ui/core/StepButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-
+import NextButton from "../NextButton/NextButton";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import BackButton from "../BackButton/BackButton";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
+function getSteps(activeStep) {
   return [
     "Intro: Your 100 Year Manifesto",
     "Mission Statement",
@@ -36,36 +39,27 @@ function getSteps() {
   ];
 }
 
-//This just displays the name of the page we're on.
-// function getStepContent(step) {
-//   switch (step) {
-//     case 0:
-//       return "Intro: Your 100 Year Manifesto";
-//     case 1:
-//       return history.push("/missionStatement");
-//     case 2:
-//       return history.push("/mantras");
-//     case 3:
-//       return "Core Values";
-//     case 4:
-//       return "For Good";
-//     case 5:
-//       return "Life Goals";
-//     case 6:
-//       return "Guiding Principles";
-//     case 7:
-//       return "Next Steps";
-//     default:
-//       return "Unknown step";
-//   }
-// }
-
 function ProgressBar() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(-1);
+  const dispatch = useDispatch();
+  const activeStep = useSelector((store) => store.nextButtonReducer.nextButton);
+  const [oldActiveStep, setActiveStep] = React.useState();
+  const completedReducer = useSelector(
+    (store) => store.completeButtonReducer.completeButton
+  );
   const [completed, setCompleted] = React.useState({});
-  const steps = getSteps();
+  const steps = getSteps(activeStep);
   const history = useHistory();
+
+  useEffect(() => {
+    setActiveStep(activeStep);
+  }, [activeStep]);
+
+  console.log(`What is activeStep store value?`, activeStep);
+  console.log(
+    `What is in completedReducer in ProgressBar.jsx`,
+    completedReducer
+  );
 
   function getStepContent(step) {
     switch (step) {
@@ -86,7 +80,7 @@ function ProgressBar() {
       case 7:
         return history.push("/nextSteps");
       default:
-        return 'Unknown step';
+        return "";
     }
   }
 
@@ -106,31 +100,10 @@ function ProgressBar() {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  //I think this is where we can put some logic to push user to the page they want to be onClick
   const handleStep = (step) => () => {
     setActiveStep(step);
     getStepContent(step);
-  };
-
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
+    dispatch({ type: "SET_NEXT_BUTTON", payload: step });
   };
 
   const handleReset = () => {
@@ -145,7 +118,7 @@ function ProgressBar() {
           <Step key={label}>
             <StepButton
               onClick={handleStep(index)}
-              completed={completed[index]}
+              completed={completedReducer[index]}
             >
               {label}
             </StepButton>
@@ -166,37 +139,9 @@ function ProgressBar() {
               {getStepContent(activeStep)}
             </Typography>
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                Next
-              </Button>
-              {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography variant="caption" className={classes.completed}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleComplete}
-                  >
-                    {completedSteps() === totalSteps() - 1
-                      ? "Finish"
-                      : "Complete Step"}
-                  </Button>
-                ))}
+              <BackButton />
+              <NextButton />
+              <CompleteButton />
             </div>
           </div>
         )}
