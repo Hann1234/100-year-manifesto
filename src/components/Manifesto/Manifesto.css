@@ -50,30 +50,27 @@
   color:#e7e7e7;
   font-size: 30px;
   padding: 8px;
+  min-height: 15%;
 }
-.mantras{
-  min-height: 60px;
+.smallColumnAutoFill{
+  min-height: 20%;
 }
 .mantraElement{
   max-width: calc(var(--manifestoWidth) * .2272);
   color: #4d5470;
   text-transform: uppercase;
-  border: 1px solid black;
   font-family: 'Roboto Slab', serif;
-}
-.emptyMantras{
-  height: 100%;
-  background-color: aqua;
 }
 .dotSeparation{
   padding: 4px 0;
 }
-
 .bigColumn{
   width: calc(var(--manifestoWidth) * .6818);
   text-align: center;
 }
-
+.bigColumnAutoFill{
+  min-height: 30%;
+}
 .lifeGoalsTitle{
   color:#e7e7e7;
 }
