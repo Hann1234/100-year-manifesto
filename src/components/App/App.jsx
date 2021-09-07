@@ -120,6 +120,14 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+            path="/forgood"
+          >
+            <ForGood />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
             path="/coreValues"
           >
             <CoreValues />
