@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 function GuidingPrinciples() {
   const guidingPrinciples = useSelector((store) => store.guidingPrinciplesReducer.guidingPrinciples);
   const [manifestoText, setManifestoText] = useState("");
+  const [source, setSource] = useState("")
   const [editManifestoText, setEditManifestoText] = useState("");
   const [guidingPrincipleToEdit, setGuidingPrincipleToEdit] = useState(0);
   const classes = useStyles();
@@ -56,7 +57,7 @@ function GuidingPrinciples() {
     dispatch({
       type: "ADD_GUIDING_PRINCIPLE",
       payload: {
-        manifestoText: manifestoText,
+        manifestoText: manifestoText, source: source
       },
     });
 
@@ -165,9 +166,20 @@ function GuidingPrinciples() {
                   required
                   id="outlined-required"
                   label="Add Guiding Principle"
+                  style={{ width: "100%" }}
                   value={manifestoText}
                   variant="outlined"
                   onChange={(event) => setManifestoText(event.target.value)}
+                />
+                
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Source"
+                  style={{ width: "50%" }}
+                  value={source}
+                  variant="outlined"
+                  onChange={(event) => setSource(event.target.value)}
                 />
                 <Button
                   type="submit"
@@ -190,14 +202,22 @@ function GuidingPrinciples() {
               {guidingPrinciples.map((principle) => {
                 if (principle.id === guidingPrincipleToEdit) {
                   return (
-                    <Grid key={principle.id} item xs={3}>
+                    <Grid key={principle.id} item xs={6}>
                       <TextField
                         id="outlined-required"
+                        style={{ width: "100%" }}
                         placeholder={guidingPrinciples.manifesto_text}
                         variant="outlined"
                         onChange={(event) =>
                           setEditGuidingPrincipleText(event.target.value)
                         }
+                      />
+                      <TextField
+                        id="outlined-required"
+                        style={{ width: "50%" }}
+                        label="Your Guiding Principles"
+                        value={principle.source}
+                        variant="outlined"
                       />
                       <Button
                         id={principle.id}
@@ -217,16 +237,22 @@ function GuidingPrinciples() {
                 }
                 if (principle.id != guidingPrincipleToEdit) {
                   return (
-                    <Grid key={principle.id} item xs={3}>
+                    <Grid key={principle.id} item xs={6}>
                       <TextField
                         disabled
                         id="outlined-required"
+                        style={{ width: "100%" }}
                         label="Your Guiding Principles"
                         value={principle.manifesto_text}
                         variant="outlined"
-                        onChange={(event) =>
-                          setManifestoText(event.target.value)
-                        }
+                      />
+                      <TextField
+                        disabled
+                        id="outlined-required"
+                        style={{ width: "50%" }}
+                        label="Your Guiding Principles"
+                        value={principle.source}
+                        variant="outlined"
                       />
                       <Button
                         id={principle.id}
