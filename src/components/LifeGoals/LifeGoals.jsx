@@ -79,12 +79,18 @@ function LifeGoals() {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <AutoScale>
-              <Manifesto/>
+              <Manifesto />
             </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
               <h1>Life Goals</h1>
+              <h3>
+                Your life goals. Make them yours. For your whole life. Something
+                to reflect on one day & say, “Well done, you lived your life on
+                purpose.” You achieved the goals you set out to achieve. You
+                lived the life worthy of the calling you received.{" "}
+              </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
