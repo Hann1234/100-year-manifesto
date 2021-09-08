@@ -24,7 +24,7 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
         // make sure reducer isn't empty
         if (adminEditFormReducer.pageEdits.length !== 0) {
             // check if the current html_id is in the reducer
-            if (adminEditFormReducer.pageEdits.find(row => row.html_id === html_id)) {
+            if (adminEditFormReducer.pageEdits.find(row => row.html_id === html_id && row.html_type === 'text')) {
                 // return object {value: html_content, id: id}
                 return {
                     value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content,
@@ -41,7 +41,7 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
         // make sure reducer isn't empty
         if (adminEditFormReducer.pageEditsOnDate.length !== 0) {
             // check if the current html_id is in the reducer
-            if (adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id)) {
+            if (adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id && row.html_type === 'text')) {
                 // return object {value: html_content, id: id}
                 return {
                     value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content,

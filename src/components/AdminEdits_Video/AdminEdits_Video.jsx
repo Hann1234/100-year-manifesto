@@ -19,20 +19,43 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
     const [date, setDate] = useState(new Date());
     const [editDate, setEditDate] = useState(false);
 
+    // getCurrentValue
+    const getCurrentValue = () => {
+        // make sure reducer isn't empty
+        if (adminEditFormReducer.pageEdits.length !== 0) {
+            // check if the current html_id is in the reducer
+            if (adminEditFormReducer.pageEdits.find(row => row.html_id === html_id && row.html_type === 'video')) {
+                // return object {value: html_content, id: id}
+                return {
+                    value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content,
+                    id: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).id
+                };
+            }
+        }
+        // html_id isn't in reducer; use default
+        return {value: default_value, id: -1};
+    }; // end getCurrentValue
+
+    // getValueOnDate
+    const getValueOnDate = () => {
+        // make sure reducer isn't empty
+        if (adminEditFormReducer.pageEditsOnDate.length !== 0) {
+            // check if the current html_id is in the reducer
+            if (adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id && row.html_type === 'video')) {
+                // return object {value: html_content, id: id}
+                return {
+                    value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content,
+                    id: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).id
+                };
+            }
+        }
+        // html_id isn't in reducer; use default
+        return {value: default_value, id: -1};
+    }; // end getValueOnDate
+    
     // if editDate is true, use values in pageEditsOnDate reducer; else, use pageEdits reducer
-    // if current html_id is in the pageEdits reducer, use value from db; else, use default
-    // initial value is an object, {value: , id: }, with id = -1 if we're using the default value instead of a database value
-    const initialValue = editDate ?
-        (adminEditFormReducer.pageEditsOnDate.length !== 0 ? 
-        adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id) ?
-            {value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content,
-            id: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).id} :
-            {value: default_value, id: -1} : {value: default_value, id: -1}) :
-        (adminEditFormReducer.pageEdits.length !== 0 ? 
-        adminEditFormReducer.pageEdits.find(row => row.html_id === html_id) ?
-            {value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content,
-            id: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).id} :
-            {value: default_value, id: -1} : {value: default_value, id: -1});
+    // initial value is an object, {value: , id: }. id = -1 if we're using the default value instead of a database value
+    const initialValue = editDate ? getValueOnDate() : getCurrentValue();
     
     const [edit, setEdit] = useState(false);
     const [value, setValue] = useState(initialValue.value);
@@ -117,7 +140,14 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
         <>{
             user.role !== "admin" ?
             // user case
-            <>{value}</> :
+            <div className="videoWrapper">
+                <iframe
+                    width="512"
+                    height="288"
+                    src={value}
+                />
+            </div>
+            :
             // admin case
             <>{
                 edit ?
@@ -158,8 +188,14 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
                 </> :
                 // display mode (edit is false)
                 <>
-                    {value}
                     <EditIcon onClick={() => setEdit(true)}/>
+                    <div className="videoWrapper">
+                        <iframe
+                            width="512"
+                            height="288"
+                            src={value}
+                        />
+                    </div>
                 </>
             }</>
         }</>

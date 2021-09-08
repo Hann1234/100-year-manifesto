@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AdminEdits from '../AdminEdits/AdminEdits';
 
 // This is one of our simplest components
