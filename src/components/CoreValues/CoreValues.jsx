@@ -79,9 +79,9 @@ function CoreValues() {
 
   const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
 
-  // const [manifestoText, setManifestoText] = useState('');
+  const [manifestoText, setManifestoText] = useState('');
   const [editManifestoText, setEditManifestoText] = useState('');
-  const [CoreValueToEdit, setCoreValueToEdit] = useState(0);
+  const [coreValueToEdit, setCoreValueToEdit] = useState(0);
   const dispatch = useDispatch ();
   const classes = useStyles();
 
@@ -315,7 +315,7 @@ function CoreValues() {
         type: 'FETCH_CORE_VALUES'
     });
 
-    // setManifestoText('');
+    setManifestoText('');
     setEditManifestoText('');
     setCoreValueToEdit(0);
 
@@ -406,6 +406,90 @@ const handleDeleteCoreValue = (id) => {
                     For your 100 Year Manifesto, which are the ones that are in your heart of hearts. What are those core values?</h4>
                   {/* What is the "For Good" section renamed as? <button className="nextButton" onClick={() => history.push('/forgood')}>NEXT</button> */}
                 </center>
+            <Grid item xs={12} container spacing={2}>
+              <section>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Add Core Value"
+                  value={manifestoText}
+                  variant="outlined"
+                  onChange={(event) => setManifestoText(event.target.value)}
+                />
+                <Button
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addCoreValue()}
+                >
+                  ADD
+                </Button>
+              </section>
+            </Grid>
+            <br />
+            <Grid item xs={12} container spacing={2}>
+              {coreValues.map((value) => {
+                if (value.id === coreValueToEdit) {
+                  return (
+                    <Grid key={value.id} item xs={3}>
+                      <TextField
+                        id="outlined-required"
+                        placeholder={value.manifesto_text}
+                        variant="outlined"
+                        onChange={(event) =>
+                          setEditManifestoText(event.target.value)
+                        }
+                      />
+                      <Button
+                        id={value.id}
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#7bd91c",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => editCoreValue(value.id)}
+                      >
+                        Save
+                      </Button>
+                    </Grid>
+                  );
+                }
+                if (value.id != coreValueToEdit) {
+                  return (
+                    <Grid key={value.id} item xs={3}>
+                      <TextField
+                        disabled
+                        id="outlined-required"
+                        label="Your Core Value"
+                        value={value.manifesto_text}
+                        variant="outlined"
+                        onChange={(event) => setManifestoText(event.target.value)}
+                      />
+                      <br />
+                      <span> </span>
+                      <Button
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#d91c1c",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => deleteCoreValue(value.id)}
+                      >
+                        Remove
+                      </Button>
+                    </Grid>
+                  );
+                }
+              })}
+            </Grid>
                 <Paper component="ul" className={classes.root}>
                     {chipData.map((data) => {
                       for (const value of coreValues) {
