@@ -71,6 +71,10 @@ function NextButton() {
         color="primary"
         onClick={handleNext}
         className={classes.button}
+        style={{
+          backgroundColor: "#1c4bd9",
+          color: "#132411",
+        }}
       >
         Next
       </Button>
