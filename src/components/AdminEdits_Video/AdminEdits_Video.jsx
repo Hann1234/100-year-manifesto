@@ -154,7 +154,7 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
                 // edit mode
                 <>
                     <TextField
-                        label="Multiline"
+                        label="Video URL"
                         multiline
                         value={value}
                         onChange={handleChange}

@@ -147,7 +147,7 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
                 // edit mode
                 <>
                     <TextField
-                        label="Multiline"
+                        label="Editing value"
                         multiline
                         value={value}
                         onChange={handleChange}
