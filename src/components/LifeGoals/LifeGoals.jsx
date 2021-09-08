@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Mantras() {
+function LifeGoals() {
   const lifeGoal = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
@@ -208,7 +208,7 @@ function Mantras() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#d91c1c",
                           color: "#132411",
                         }}
                         variant="contained"
@@ -237,4 +237,4 @@ function Mantras() {
   );
 }
 
-export default Mantras;
+export default LifeGoals;

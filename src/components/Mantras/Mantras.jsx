@@ -147,7 +147,7 @@ function Mantras(props) {
                 </Button>
               </section>
             </Grid>
-                  <br />
+            <br />  
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
                 if (mantra.id === mantraToEdit) {
@@ -201,11 +201,12 @@ function Mantras(props) {
                       >
                         Edit
                       </Button>
+                      <span> </span>
                       <Button
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#d91c1c",
                           color: "#132411",
                         }}
                         variant="contained"

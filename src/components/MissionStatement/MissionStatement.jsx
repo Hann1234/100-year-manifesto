@@ -166,7 +166,7 @@ function MissionStatement() {
                 </center>
               </form>
             </Grid>
-
+<br />
             {/* Need to append data from mission DB here */}
             <Grid item xs={12} container spacing={2}>
               {missions.map((mission) => {
@@ -228,7 +228,7 @@ function MissionStatement() {
                           type="submit"
                           style={{
                             height: "28px",
-                            backgroundColor: "#bec9bc",
+                            backgroundColor: "#d91c1c",
                             color: "#132411",
                           }}
                           variant="contained"
