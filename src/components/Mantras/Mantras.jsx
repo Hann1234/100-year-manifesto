@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./Mantras.css";
-import { useHistory } from "react-router-dom";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
-import AdminEdits from '../AdminEdits/AdminEdits';
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,14 +38,12 @@ function Mantras(props) {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
   const page_id = 3;
 
-
   useEffect(() => {
     dispatch({ type: "FETCH_MANTRAS" });
-    dispatch({ type: 'FETCH_PAGE_EDITS', payload: {page_id: page_id} });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
   }, []);
 
   const addMantra = () => {
@@ -75,31 +71,42 @@ function Mantras(props) {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <AutoScale>
-              <Manifesto/>
+              <Manifesto />
             </AutoScale>
           </Grid>
-          <Grid item xs={8}  className="scrollableDiv">
-            <center><h1><AdminEdits page_id={page_id} html_id={"header"} default_value={"Words To Live By"}/></h1></center>
+          <Grid item xs={8} className="scrollableDiv">
+            <center>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"header"}
+                  default_value={"Words To Live By"}
+                />
+              </h1>
+              <h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"right_of_vid1"}
+                  default_value={`Having a framework for decisions is critical to living a
+                      life on purpose. Guiding principles set forth through “Words to Live By.”
+                      When life brings uncertainty through events, circumstances, & difficult
+                      moments having a compass to guide your decisions is necessary.`}
+                />
+              </h3>
+            </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <AdminEdits
                   page_id={page_id}
-                  html_type={'video'}
-                  html_id={'video'}
-                  default_value={"https://player.vimeo.com/video/599580455?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=f2cf5fad43"}/>
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599580455?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=f2cf5fad43"
+                  }
+                />
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid1"}
-                      default_value={`Having a framework for decisions is critical to living a
-                      life on purpose. Guiding principles set forth through “Words to Live By.”
-                      When life brings uncertainty through events, circumstances, & difficult
-                      moments having a compass to guide your decisions is necessary.`}
-                    />
-                  </p>
                   <p>
                     <AdminEdits
                       page_id={page_id}
@@ -120,33 +127,85 @@ function Mantras(props) {
                 </section>
               </Grid>
             </Grid>
-
+<br />
             <Grid item xs={12}>
               <section className="BottomText">
-                <p>
+                <h3>
                   <AdminEdits
                     page_id={page_id}
                     html_id={"bottom1"}
-                    default_value={`Here are some of our favorites: Own your ugly Zip-a-dee-do-dah
-                    Make it a Masterpiece Live. Laugh. Love. Simplify. Simplify.
-                    Love unconditionally Embrace the uncertainty`}
+                    default_value={`Here are some of our favorites:`}
                   />
-                </p>
-                <p>
-                  <AdminEdits
-                    page_id={page_id}
-                    html_id={"bottom2"}
-                    default_value={`What are meaningful words that provide a framework for your
-                    decisions & your life?`}
-                  />
-                </p>
+                </h3>
+                <Grid item xs={12} container spacing={2}>
+                  <Grid item xs={3}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom2"}
+                        default_value={`Own your ugly `}
+                      />
+                    </p>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom3"}
+                        default_value={`Zip-a-dee-do-dah`}
+                      />
+                    </p>
+                  </Grid>
+
+                  <Grid item xs={3}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom4"}
+                        default_value={`Make it a Masterpiece`}
+                      />
+                    </p>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom5"}
+                        default_value={`Live. Laugh. Love.`}/>
+                    </p>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom6"}
+                        default_value={`Embrace the uncertainty`}/>
+                    </p>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom7"}
+                        default_value={`Love unconditionally`}/>
+                    </p>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom8"}
+                        default_value={`Simplify. Simplify.`}/>
+                    </p>
+                  </Grid>
+                </Grid>
+
                 <h3>
                   <AdminEdits
                     page_id={page_id}
                     html_id={"instruction1"}
                     default_value={`List 5-10 words & phrases you live by:`}
                   />
-                
                 </h3>
               </section>
             </Grid>
@@ -174,7 +233,7 @@ function Mantras(props) {
                 </Button>
               </section>
             </Grid>
-            <br />  
+            <br />
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
                 if (mantra.id === mantraToEdit) {
@@ -215,6 +274,7 @@ function Mantras(props) {
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
                       />
+                      <br />
                       <Button
                         id={mantra.id}
                         type="submit"
@@ -228,7 +288,7 @@ function Mantras(props) {
                       >
                         Edit
                       </Button>
-                      <span></span>
+                      <span> </span>
                       <Button
                         type="submit"
                         style={{
