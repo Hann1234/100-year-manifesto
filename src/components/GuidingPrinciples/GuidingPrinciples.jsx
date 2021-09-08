@@ -178,7 +178,7 @@ function GuidingPrinciples(props) {
                   type="submit"
                   style={{
                     height: "56px",
-                    backgroundColor: "#bec9bc",
+                    backgroundColor: "#1c4bd9",
                     color: "#132411",
                   }}
                   variant="contained"
