@@ -31,6 +31,7 @@ import LifeGoals from '../LifeGoals/LifeGoals';
 import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 import NextSteps from '../NextSteps/NextSteps';
 import './App.css';
+import RegisterForm from "../RegisterForm/RegisterForm";
 import MyManifesto from "../MyManifesto/MyManifesto";
 
 
@@ -179,7 +180,7 @@ function App() {
               <Redirect to="/homepage" />
             ) : (
               // Otherwise, show the Landing page
-              <LandingPage />
+              <RegisterForm />
             )}
           </Route>
 
