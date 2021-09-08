@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./Mantras.css";
-import { useHistory } from "react-router-dom";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
@@ -40,10 +38,8 @@ function Mantras(props) {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [mantraToEdit, setMantraToEdit] = useState(0);
   const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
   const page_id = 3;
-
 
   useEffect(() => {
     dispatch({ type: "FETCH_MANTRAS" });
@@ -79,7 +75,18 @@ function Mantras(props) {
             </AutoScale>
           </Grid>
           <Grid item xs={8}  className="scrollableDiv">
-            <center><h1><AdminEdits page_id={page_id} html_id={"header"} default_value={"Words To Live By"}/></h1></center>
+            <center>
+              <h1><AdminEdits page_id={page_id} html_id={"header"} default_value={"Words To Live By"}/></h1>
+            <h3>
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid1"}
+                      default_value={`Having a framework for decisions is critical to living a
+                      life on purpose. Guiding principles set forth through “Words to Live By.”
+                      When life brings uncertainty through events, circumstances, & difficult
+                      moments having a compass to guide your decisions is necessary.`}
+                    />
+                  </h3></center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <AdminEdits
@@ -90,16 +97,7 @@ function Mantras(props) {
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid1"}
-                      default_value={`Having a framework for decisions is critical to living a
-                      life on purpose. Guiding principles set forth through “Words to Live By.”
-                      When life brings uncertainty through events, circumstances, & difficult
-                      moments having a compass to guide your decisions is necessary.`}
-                    />
-                  </p>
+                  
                   <p>
                     <AdminEdits
                       page_id={page_id}
@@ -215,6 +213,7 @@ function Mantras(props) {
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}
                       />
+                      <br />
                       <Button
                         id={mantra.id}
                         type="submit"
@@ -228,7 +227,7 @@ function Mantras(props) {
                       >
                         Edit
                       </Button>
-                      <span></span>
+                      <span> </span>
                       <Button
                         type="submit"
                         style={{
