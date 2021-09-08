@@ -33,17 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GuidingPrinciples(props) {
-  const guidingPrinciples = useSelector(
-    (store) => store.guidingPrinciplesReducer.guidingPrinciples
-  );
-
+function GuidingPrinciples() {
+  const guidingPrinciples = useSelector((store) => store.guidingPrinciplesReducer.guidingPrinciples);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
   const [guidingPrincipleToEdit, setGuidingPrincipleToEdit] = useState(0);
-
   const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
