@@ -1,8 +1,7 @@
 import { combineReducers } from "redux";
 
 // Stores NextButton and BackButton "state"
-const nextButton = (state = 0, action) => {
-  console.log(`What is action in next button reducer`, state);
+const nextButton = (state = -1, action) => {
   switch (action.type) {
     case "CLEAR_NEXT_BUTTON":
       return [];

@@ -12,7 +12,8 @@ import CompleteButton from "../CompleteButton/CompleteButton";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
 import AutoScale from "react-auto-scale";
-import Manifesto from "../Manifesto/Manifesto"
+import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from '../AdminEdits/AdminEdits';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,9 +42,12 @@ function Mantras(props) {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const page_id = 3;
+
 
   useEffect(() => {
     dispatch({ type: "FETCH_MANTRAS" });
+    dispatch({ type: 'FETCH_PAGE_EDITS', payload: {page_id: page_id} });
   }, []);
 
   const addMantra = () => {
@@ -75,35 +79,43 @@ function Mantras(props) {
             </AutoScale>
           </Grid>
           <Grid item xs={8}  className="scrollableDiv">
-            <center><h1>Words To Live By</h1></center>
+            <center><h1><AdminEdits page_id={page_id} html_id={"header"} default_value={"Words To Live By"}/></h1></center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-                <div className="videoWrapper">
-                  <iframe
-                    width="512"
-                    height="288"
-                    src="https://player.vimeo.com/video/599580455?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=f2cf5fad43"
-                  ></iframe>
-                </div>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={'video'}
+                  html_id={'video'}
+                  default_value={"https://player.vimeo.com/video/599580455?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=f2cf5fad43"}/>
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
                   <p>
-                    Having a framework for decisions is critical to living a
-                    life on purpose. Guiding principles set forth through “Words
-                    to Live By.” When life brings uncertainty through events,
-                    circumstances, & difficult moments having a compass to guide
-                    your decisions is necessary.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid1"}
+                      default_value={`Having a framework for decisions is critical to living a
+                      life on purpose. Guiding principles set forth through “Words to Live By.”
+                      When life brings uncertainty through events, circumstances, & difficult
+                      moments having a compass to guide your decisions is necessary.`}
+                    />
                   </p>
                   <p>
-                    These are one, two, or three word sentences or phrases.
-                    Simple concepts that really resonate to your core.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid2"}
+                      default_value={`These are one, two, or three word sentences or phrases.
+                      Simple concepts that really resonate to your core.`}
+                    />
                   </p>
                   <p>
-                    This framework might include quotes from some of the lessons
-                    you learned growing up, simple mantras you’ve picked up
-                    along the way, or phrases you repeat to yourself throughout
-                    the day.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid3"}
+                      default_value={`This framework might include quotes from some of the lessons
+                      you learned growing up, simple mantras you’ve picked up along the way,
+                      or phrases you repeat to yourself throughout the day.`}
+                    />
                   </p>
                 </section>
               </Grid>
@@ -112,15 +124,30 @@ function Mantras(props) {
             <Grid item xs={12}>
               <section className="BottomText">
                 <p>
-                  Here are some of our favorites: Own your ugly Zip-a-dee-do-dah
-                  Make it a Masterpiece Live. Laugh. Love. Simplify. Simplify.
-                  Love unconditionally Embrace the uncertainty
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom1"}
+                    default_value={`Here are some of our favorites: Own your ugly Zip-a-dee-do-dah
+                    Make it a Masterpiece Live. Laugh. Love. Simplify. Simplify.
+                    Love unconditionally Embrace the uncertainty`}
+                  />
                 </p>
                 <p>
-                  What are meaningful words that provide a framework for your
-                  decisions & your life?{" "}
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom2"}
+                    default_value={`What are meaningful words that provide a framework for your
+                    decisions & your life?`}
+                  />
                 </p>
-                <h3>List 5-10 words & phrases you live by:</h3>
+                <h3>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"instruction1"}
+                    default_value={`List 5-10 words & phrases you live by:`}
+                  />
+                
+                </h3>
               </section>
             </Grid>
             <Grid item xs={12} container spacing={2}>

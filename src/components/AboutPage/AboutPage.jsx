@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AdminEdits from '../AdminEdits/AdminEdits';
 
 // This is one of our simplest components
@@ -9,6 +9,9 @@ import AdminEdits from '../AdminEdits/AdminEdits';
 function AboutPage() {
   const dispatch = useDispatch ();
   const page_id = 9;
+  
+  // component is not listed in the progress bar
+  dispatch({ type: "SET_NEXT_BUTTON", payload: -1 });
 
   useEffect(() => {
       dispatch({ type: 'FETCH_USER' });
