@@ -32,8 +32,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#475473",
   },
 
-  divider: {
-    margin: theme.spacing(2, 0),
+  box: {
+    display: "flex",
+    padding: 8,
+  },
+  bottomBox: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
 }));
 
