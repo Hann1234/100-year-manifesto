@@ -196,8 +196,8 @@ function LifeGoals() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          backgroundColor: "#1c4bd9",
+                          color: "#fff",
                         }}
                         variant="contained"
                         onClick={() => startEdit(lifeGoal)}

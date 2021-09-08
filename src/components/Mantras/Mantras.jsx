@@ -193,15 +193,15 @@ function Mantras(props) {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          backgroundColor: "#1c4bd9",
+                          color: "#fff",
                         }}
                         variant="contained"
                         onClick={() => setMantraToEdit(mantra.id)}
                       >
                         Edit
                       </Button>
-                      <span> </span>
+                      <span></span>
                       <Button
                         type="submit"
                         style={{

@@ -211,19 +211,21 @@ function MissionStatement() {
                           style={{ width: "66%" }}
                           onChange={(evt) => setMissionText(evt.target.value)}
                         />
+                        <br />
                         <Button
                           id={mission.id}
                           type="submit"
                           style={{
                             height: "28px",
-                            backgroundColor: "#bec9bc",
-                            color: "#132411",
+                            backgroundColor: "#1c4bd9",
+                          color: "#fff",
                           }}
                           variant="contained"
                           onClick={() => setEditMissionText(mission.id)}
                         >
                           Edit
                         </Button>
+                        <span> </span>
                         <Button
                           type="submit"
                           style={{
