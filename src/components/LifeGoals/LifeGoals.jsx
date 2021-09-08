@@ -114,7 +114,7 @@ function LifeGoals() {
                   <p>For me, they include:</p>
                   <p>
                     “Be the man, father, & husband God created me to be.“ “Build
-                    a business allowing for remore work anywhere in the world.“
+                    a business allowing for remote work anywhere in the world.“
                     “Raise healthy boys who love themselves, their family, &
                     their God: who serve others, lead by example, & do their
                     best every single day of their lives. “
