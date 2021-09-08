@@ -168,7 +168,7 @@ function LifeGoals() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#7bd91c",
                           color: "#132411",
                         }}
                         variant="contained"

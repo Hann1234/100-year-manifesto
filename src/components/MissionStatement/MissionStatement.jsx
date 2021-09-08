@@ -173,28 +173,31 @@ function MissionStatement() {
                 if (mission.id === editMissionText) {
                   return (
                     <Grid key={mission.id} item xs={12}>
-                      <TextField
-                        id="outlined-required"
-                        placeholder={mission.manifesto_text}
-                        variant="outlined"
-                        style={{ width: "66%" }}
-                        onChange={(evt) =>
-                          setEditManifestoText(evt.target.value)
-                        }
-                      />
-                      <Button
-                        id={mission.id}
-                        type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
-                        }}
-                        variant="contained"
-                        onClick={() => editMission(mission.id)}
-                      >
-                        SAVE
-                      </Button>
+                      <center>
+                        <TextField
+                          id="outlined-required"
+                          placeholder={mission.manifesto_text}
+                          variant="outlined"
+                          style={{ width: "66%" }}
+                          onChange={(evt) =>
+                            setEditManifestoText(evt.target.value)
+                          }
+                        />
+                        <br />
+                        <Button
+                          id={mission.id}
+                          type="submit"
+                          style={{
+                            height: "28px",
+                            backgroundColor: "#7bd91c",
+                            color: "#132411",
+                          }}
+                          variant="contained"
+                          onClick={() => editMission(mission.id)}
+                        >
+                          SAVE
+                        </Button>
+                      </center> 
                     </Grid>
                   );
                 }
