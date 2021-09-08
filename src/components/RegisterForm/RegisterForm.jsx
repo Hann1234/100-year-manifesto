@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RegisterForm() {
   const classes = useStyles();
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const errors = useSelector((store) => store.errors);
@@ -49,6 +50,7 @@ function RegisterForm() {
     dispatch({
       type: "REGISTER",
       payload: {
+        name: name,
         username: username,
         password: password,
       },
@@ -71,7 +73,22 @@ function RegisterForm() {
           )}
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="name"
+                type="text"
+                value={name}
+                required
+                onChange={(event) => setName(event.target.value)}
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

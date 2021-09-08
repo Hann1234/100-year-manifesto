@@ -32,7 +32,7 @@ import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 import NextSteps from '../NextSteps/NextSteps';
 import './App.css';
 import RegisterForm from "../RegisterForm/RegisterForm";
-// import MyManifesto from "../MyManifesto/MyManifesto";
+import MyManifesto from "../MyManifesto/MyManifesto";
 
 
 function App() {
@@ -143,13 +143,13 @@ function App() {
             <NextSteps />
           </ProtectedRoute>
 
-          {/* <ProtectedRoute
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/myManifesto"
           >
             <MyManifesto />
-          </ProtectedRoute> */}
+          </ProtectedRoute>
 
           <Route exact path="/login">
             {user.id ? (
