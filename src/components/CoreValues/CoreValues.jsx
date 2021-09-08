@@ -11,6 +11,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 
+import './CoreValues.css'
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "grid",
@@ -380,10 +382,9 @@ const handleDeleteCoreValue = (id) => {
           </Paper>
         </Grid>
         <Grid container item xs={8}>
-          <Paper className={classes.paper}>
             <center>
               <h1>Core Values</h1>
-              <h2>You can’t argue with your core values. They just are. What are yours?</h2>
+              <h3>You can’t argue with your core values. They just are. What are yours?</h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
@@ -396,11 +397,9 @@ const handleDeleteCoreValue = (id) => {
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paper3}>
                     <p>Most companies have identified a set of core values. Oftentimes they post them on their walls as a reminder for their employees, their customers, & everyone they encounter.</p>
                     <p>If it makes sense for a business, it definitely makes sense for an individual to have a personal set of core values. Uncompromising, non-negotiables.</p>
                     <p>Our values reveal themselves to us.</p>
-                </Paper>
               </Grid>
             </Grid>
               <Grid item xs={12}>
@@ -440,7 +439,6 @@ const handleDeleteCoreValue = (id) => {
                     })}
                 </Paper>
               </Grid>
-            </Paper>
           </Grid>
         </Grid>
     </section>
