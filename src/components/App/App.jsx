@@ -31,6 +31,8 @@ import LifeGoals from '../LifeGoals/LifeGoals';
 import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
 import NextSteps from '../NextSteps/NextSteps';
 import './App.css';
+import RegisterForm from "../RegisterForm/RegisterForm";
+// import MyManifesto from "../MyManifesto/MyManifesto";
 
 
 function App() {
@@ -141,6 +143,14 @@ function App() {
             <NextSteps />
           </ProtectedRoute>
 
+          {/* <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/myManifesto"
+          >
+            <MyManifesto />
+          </ProtectedRoute> */}
+
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
@@ -170,7 +180,7 @@ function App() {
               <Redirect to="/homepage" />
             ) : (
               // Otherwise, show the Landing page
-              <LandingPage />
+              <RegisterForm />
             )}
           </Route>
 
