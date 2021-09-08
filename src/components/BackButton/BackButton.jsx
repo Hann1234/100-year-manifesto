@@ -58,6 +58,10 @@ function BackButton() {
         disabled={activeStep === 0}
         onClick={handleBack}
         className={classes.button}
+        style={{
+          backgroundColor: "#132411",
+          color: "#1c4bd9",
+        }}
       >
         Back
       </Button>

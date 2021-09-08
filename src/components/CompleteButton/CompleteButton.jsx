@@ -93,6 +93,10 @@ function CompleteButton() {
             variant="contained" 
             color="primary" 
             onClick={handleComplete}
+            style={{
+              backgroundColor: "#1c4bd9",
+              color: "#132411",
+            }}
             >
             {completedSteps() === totalSteps() - 1 
             ? "Finish" 
