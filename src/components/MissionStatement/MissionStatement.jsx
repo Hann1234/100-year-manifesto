@@ -96,7 +96,15 @@ function MissionStatement() {
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <h1>Mission Statement</h1>
+            <center>
+              <h1>Mission Statement</h1>
+              <h3>
+                      Your 100 Year Manifesto starts with your mission statement.
+                      There is no great gift you can give yourself than a defining
+                      purpose. A mission statement. To live with intentionality
+                      for the cause which you were created.
+                    </h3>
+            </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
@@ -109,12 +117,7 @@ function MissionStatement() {
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
-                  <p>
-                    Your 100 Year Manifesto starts with your mission statement.
-                    There is no great gift you can give yourself than a defining
-                    purpose. A mission statement. To live with intentionality
-                    for the cause which you were created.
-                  </p>
+                  
                   <p>
                     Your life is worthy of a noble motive. What is it?
                     Dedicating your life to a cause greater than yourself is a
