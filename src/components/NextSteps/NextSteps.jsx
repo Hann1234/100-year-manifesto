@@ -161,7 +161,7 @@ function NextSteps() {
                   type="submit"
                   style={{
                     height: "56px",
-                    backgroundColor: "#bec9bc",
+                    backgroundColor: "#1c4bd9",
                     color: "#132411",
                   }}
                   variant="contained"
@@ -171,6 +171,7 @@ function NextSteps() {
                 </Button>
               </section>
             </Grid>
+            <br />
 
             <Grid item xs={12} container spacing={2}>
               <section>
@@ -187,7 +188,7 @@ function NextSteps() {
                   type="submit"
                   style={{
                     height: "56px",
-                    backgroundColor: "#bec9bc",
+                    backgroundColor: "#1c4bd9",
                     color: "#132411",
                   }}
                   variant="contained"

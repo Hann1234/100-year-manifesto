@@ -217,7 +217,7 @@ function ForGood() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#1c4bd9",
+                          backgroundColor: "#7bd91c",
                           color: "#132411",
                         }}
                         variant="contained"
@@ -245,8 +245,8 @@ function ForGood() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          backgroundColor: "#1c4bd9",
+                          color: "#fff",
                         }}
                         variant="contained"
                         onClick={() => startEdit(ForGood)}
@@ -257,7 +257,7 @@ function ForGood() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#d91c1c",
                           color: "#132411",
                         }}
                         variant="contained"

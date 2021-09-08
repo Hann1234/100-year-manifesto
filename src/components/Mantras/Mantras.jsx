@@ -137,7 +137,7 @@ function Mantras(props) {
                   type="submit"
                   style={{
                     height: "56px",
-                    backgroundColor: "#bec9bc",
+                    backgroundColor: "#1c4bd9",
                     color: "#132411",
                   }}
                   variant="contained"
@@ -147,7 +147,7 @@ function Mantras(props) {
                 </Button>
               </section>
             </Grid>
-                  <br />
+            <br />  
             <Grid item xs={12} container spacing={2}>
               {mantras.map((mantra) => {
                 if (mantra.id === mantraToEdit) {
@@ -166,7 +166,7 @@ function Mantras(props) {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#7bd91c",
                           color: "#132411",
                         }}
                         variant="contained"
@@ -193,19 +193,20 @@ function Mantras(props) {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          backgroundColor: "#1c4bd9",
+                          color: "#fff",
                         }}
                         variant="contained"
                         onClick={() => setMantraToEdit(mantra.id)}
                       >
                         Edit
                       </Button>
+                      <span></span>
                       <Button
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#d91c1c",
                           color: "#132411",
                         }}
                         variant="contained"
