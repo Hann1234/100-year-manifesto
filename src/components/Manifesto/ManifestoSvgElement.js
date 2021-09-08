@@ -1,14 +1,24 @@
 function ManifestoSvgElement({manifestoText}){
-    let variableFontSize = 280/(manifestoText.length*1.2);
-    let viewBoxVariable= `0 0 190 ${variableFontSize}`
+    let extra=0;
+    let lengthAdjust="spacingAndGlyphs";
+    if(manifestoText.length <=10){
+        extra=0;
+        lengthAdjust="spacing"
+    }
+    manifestoText.length >=15 ? extra=-3:null;
+    let variableFontSize = 300/(1.4*(manifestoText.length+extra));
+    // let viewBoxVariable= `0 0 190 ${variableFontSize}`;
+    
+
     return(
-        <div className="mantraElement" >
-            <svg width="190" height={variableFontSize*.85} 
+        <div className="smallColumnElement" >
+            <svg width="1900" height={variableFontSize} 
             xmlns="http://www.w3.org/2000/svg">
                 <text y="90%" textLength="190"
                 fontSize={variableFontSize}
+                fontWeight="bold"
                 fill="#4d5470"
-                lengthAdjust="spacingAndGlyphs">
+                lengthAdjust={lengthAdjust}>
                     {manifestoText}
                 </text>
             </svg>
