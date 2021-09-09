@@ -14,6 +14,8 @@ import "./MissionStatement.css";
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -91,9 +93,9 @@ function MissionStatement() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid xs={4}>
-            <Paper className={classes.paper}>
-              This is where the 100 Year Manifesto Poster will be displayed
-            </Paper>
+          <AutoScale>
+              <Manifesto />
+            </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
@@ -241,8 +243,7 @@ function MissionStatement() {
                           type="submit"
                           style={{
                             height: "28px",
-                            background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+                            backgroundColor: "#d91c1c",
                             color: "#132411",
                           }}
                           variant="contained"
