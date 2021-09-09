@@ -19,20 +19,22 @@
 
 .blueBar{
   height: calc(var(--manifestoHeight) * .01818);
-  background-color: #4d5470;
+  background-color: #575f80;
 }
 
 .titleSection{
-  height: calc(var(--manifestoHeight) * .1818);
+  height: calc(var(--manifestoHeight) * .155);
   text-align: center;
   font-family: 'Oswald Stencil';
 }
 
 .hundredYear{
   font-size: 80px;
+  margin: -12px 0 0 0 ;
 }
 .userName{
   font-size: 60px;
+  margin: -20px 0 0 0;
 }
 .userName:hover{
   cursor: pointer;
@@ -40,15 +42,15 @@
 .smallColumn{
   width: calc(var(--manifestoWidth) * .2272);
   margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
-  height: calc(var(--manifestoHeight) * .7813);
+  height: calc(var(--manifestoHeight) * .8081);
   text-align: center;
 }
 .mission{
   background-color: #4d5470;
   color:#e7e7e7;
-  font-size: 30px;
+  font-size: 26px;
   padding: 8px;
-  min-height: 15%;
+  min-height: 12%;
 }
 .smTitle{
   font-size: 20px;
