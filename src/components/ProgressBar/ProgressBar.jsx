@@ -64,7 +64,7 @@ function ProgressBar() {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return history.push("/homepage");
+        return history.push("/intro");
       case 1:
         return history.push("/missionStatement");
       case 2:
