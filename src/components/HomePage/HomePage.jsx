@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 
@@ -15,22 +15,6 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "repeat(12, 1fr)",
     gridGap: theme.spacing(3),
-  },
-  paper: {
-    height: "100vh",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
-  paper2: {
-    height: "10vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
   },
   divider: {
     margin: theme.spacing(2, 0),
@@ -69,12 +53,9 @@ function HomePage() {
   return (
       <Grid container spacing={3} xs={12}>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>
-            this is where the manifesto goes I do not know if we thought about
-            this but almost all of our pages are going to follw a vary spacific
-            grid layout so it should be atop priority to get that layout figured
-            out so we can all have it for our pages
-          </Paper>
+        <AutoScale>
+              <Manifesto />
+            </AutoScale>
         </Grid>
         <Grid item align="center" xs={8}>
           <div>
