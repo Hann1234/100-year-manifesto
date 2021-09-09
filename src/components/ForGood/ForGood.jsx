@@ -47,11 +47,14 @@ function ForGood() {
   }, []);
 
   const addForGood = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
       type: "ADD_FOR_GOOD",
       payload: { manifestoText: manifestoText },
     });
     setManifestoText("");
+  }
   };
 
   const startEdit = (itemToEdit) => {
@@ -177,8 +180,22 @@ function ForGood() {
                   multiline={true}
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
-                />
-
+                /> <span> </span>
+                {ForGood.length >= 4 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addForGood()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -191,6 +208,7 @@ function ForGood() {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
 
