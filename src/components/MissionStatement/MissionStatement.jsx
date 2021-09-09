@@ -56,7 +56,7 @@ function MissionStatement() {
   };
 
   //Need handleSubmit
-  const addMission = (event) => {
+  const addMission = () => {
     if(missionText === ""){}
     else{
     dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });

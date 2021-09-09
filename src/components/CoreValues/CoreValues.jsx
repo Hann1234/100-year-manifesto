@@ -332,6 +332,8 @@ function CoreValues() {
   };
 
   const addCoreValue = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
         type: 'ADD_CORE_VALUE', 
         payload: {
@@ -339,7 +341,7 @@ function CoreValues() {
         }});
     
     setManifestoText('');
-
+      }
   };
 
 
@@ -428,6 +430,21 @@ const handleDeleteCoreValue = (id) => {
                   variant="outlined"
                   onChange={(event) => setManifestoText(event.target.value)}
                 />
+                {coreValues.length >= 6 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addCoreValue()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -440,6 +457,7 @@ const handleDeleteCoreValue = (id) => {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
             <br />
@@ -502,6 +520,7 @@ const handleDeleteCoreValue = (id) => {
                 }
               })}
             </Grid>
+            {coreValues.length >= 6 ?
                 <Paper component="ul" className={classes.root}>
                     {chipData.map((data) => {
                       for (const value of coreValues) {
@@ -512,7 +531,7 @@ const handleDeleteCoreValue = (id) => {
                             label={data.label}
                             className={classes.chip}
                             clickable
-                            onClick={() => handleDeleteCoreValue(value.id)}
+                           
                             color="secondary"
                             />
                             </li>
@@ -523,13 +542,42 @@ const handleDeleteCoreValue = (id) => {
                           label={data.label}
                           className={classes.chip}
                           clickable
-                          onClick={() => handleAddCoreValue(data.label)}
+                         
                           color="primary"
                           />
                           </li>
                         )
                     })}
-                </Paper>
+                </Paper> :
+                <Paper component="ul" className={classes.root}>
+                {chipData.map((data) => {
+                  for (const value of coreValues) {
+                    if (data.label === value.manifesto_text) {
+                      return (
+                        <li key={data.key}>
+                        <Chip
+                        label={data.label}
+                        className={classes.chip}
+                        clickable
+                        onClick={() => handleDeleteCoreValue(value.id)}
+                        color="secondary"
+                        />
+                        </li>
+                      )}}
+                    return (
+                      <li key={data.key}>
+                      <Chip
+                      label={data.label}
+                      className={classes.chip}
+                      clickable
+                      onClick={() => handleAddCoreValue(data.label)}
+                      color="primary"
+                      />
+                      </li>
+                    )
+                })}
+            </Paper>
+}
               </Grid>
           </Grid>
         </Grid>
