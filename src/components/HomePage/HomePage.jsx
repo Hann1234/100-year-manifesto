@@ -67,8 +67,8 @@ function HomePage() {
   }, []);
 
   return (
-      <Grid container spacing={3}>
-        <Grid xs={4}>
+      <Grid container spacing={3} xs={12}>
+        <Grid item xs={4}>
           <Paper className={classes.paper}>
             this is where the manifesto goes I do not know if we thought about
             this but almost all of our pages are going to follw a vary spacific
@@ -78,12 +78,17 @@ function HomePage() {
         </Grid>
         <Grid item align="center" xs={8}>
           <div>
-            <h1>Welcome, {user.email}! Start your journey here!</h1>
+            <h1>Welcome, {user.name}! Start your journey here!</h1>
           </div >
-          <div onClick={() => history.push("/intro")}>
-            <Avatar className={classes.circle}>1</Avatar> 
-            <h1>Intro: Your 100 Year Manifesto</h1>
-          </div>
+          <Grid container item xs={12} onClick={() => history.push("/intro")}>
+            <Grid item xs={3}></Grid>
+            <Grid item justify="center" xs={1}>
+              <Avatar justify="center" className={classes.circle}>1</Avatar>
+            </Grid>
+            <Grid item xs={8}>
+              <h1>Intro: Your 100 Year Manifesto</h1>
+            </Grid>
+          </Grid>
           <div onClick={() => history.push("missionStatement")}>
             <Avatar className={classes.circle}>2</Avatar> 
             <h1>Mission Statement</h1>
