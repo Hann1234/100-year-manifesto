@@ -11,236 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import HistoryIcon from '@material-ui/icons/History';
-import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker';
-
-const chips = [
-    'Acceptance',
-    'Accomplishment',
-    'Accountability',
-    'Accuracy',
-    'Achievement',
-    'Adaptability',
-    'Alertness',
-    'Altruism',
-    'Ambition',
-    'Amusement',
-    'Assertiveness',
-    'Attentive',
-    'Awareness',
-    'Balance',
-    'Beauty',
-    'Boldness',
-    'Bravery',
-    'Brilliance',
-    'Calm',
-    'Candor',
-    'Capable',
-    'Careful',
-    'Certainty',
-    'Challenge',
-    'Charity',
-    'Cleanliness',
-    'Clear',
-    'Clever',
-    'Comfort',
-    'Commitment',
-    'Common Sense',
-    'Communication',
-    'Community',
-    'Compassion',
-    'Competence',
-    'Concentration',
-    'Confidence',
-    'Connection',
-    'Consciousness',
-    'Consistency',
-    'Contentment',
-    'Contribution',
-    'Control',
-    'Conviction',
-    'Cooperation',
-    'Courage',
-    'Courtesy',
-    'Creation',
-    'Creativity',
-    'Credibility',
-    'Curiosity',
-    'Creation',
-    'Creativity',
-    'Credibility',
-    'Curiosity',
-    'Decisive',
-    'Decisiveness',
-    'Dedication',
-    'Dependability',
-    'Determination',
-    'Development',
-    'Devotion',
-    'Dignity',
-    'Discipline',
-    'Discovery',
-    'Drive',
-    'Effectiveness',
-    'Efficiency',
-    'Empathy',
-    'Empower',
-    'Endurance',
-    'Energy',
-    'Enjoyment',
-    'Enthusiasm',
-    'Equity',
-    'Ethical',
-    'Excellence',
-    'Experience',
-    'Exploration',
-    'Expressive',
-    'Fairness',
-    'Family',
-    'Famous',
-    'Fearless',
-    'Feelings',
-    'Ferocious',
-    'Fidelity',
-    'Focus',
-    'Foresight',
-    'Fortitude',
-    'Freedom',
-    'Friendship',
-    'Fun',
-    'Generosity',
-    'Genius',
-    'Giving',
-    'Goodness',
-    'Grace',
-    'Gratitude',
-    'Greatness',
-    'Growth',
-    'Happiness',
-    'Hard work',
-    'Harmony',
-    'Health',
-    'Honesty',
-    'Honor',
-    'Hope',
-    'Humility',
-    'Imagination',
-    'Improvement',
-    'Independence',
-    'Individuality',
-    'Innovation',
-    'Inquisitive',
-    'Insightful',
-    'Inspiring',
-    'Integrity',
-    'Intelligence',
-    'Intensity',
-    'Intuitive',
-    'Irreverent',
-    'Joy',
-    'Justice',
-    'Kindness',
-    'Knowledge',
-    'Lawful',
-    'Leadership',
-    'Learning',
-    'Liberty',
-    'Logic',
-    'Love',
-    'Loyalty',
-    'Mastery',
-    'Maturity',
-    'Meaning',
-    'Moderation',
-    'Motivation',
-    'Openness',
-    'Optimism',
-    'Order',
-    'Organization',
-    'Originality',
-    'Passion',
-    'Patience',
-    'Peace',
-    'Performance',
-    'Persistence',
-    'Playfulness',
-    'Poise',
-    'Potential',
-    'Power',
-    'Present',
-    'Productivity',
-    'Professionalism',
-    'Prosperity',
-    'Purpose',
-    'Quality',
-    'Realistic',
-    'Reason',
-    'Recognition',
-    'Recreation',
-    'Reflective',
-    'Respect',
-    'Responsibility',
-    'Restraint',
-    'Results-oriented',
-    'Rigor',
-    'Risk',
-    'Satisfaction',
-    'Security',
-    'Self-reliance',
-    'Selfless',
-    'Sensitivity',
-    'Serenity',
-    'Service',
-    'Sharing',
-    'Significance',
-    'Silence',
-    'Simplicity',
-    'Sincerity',
-    'Skill',
-    'Skillfulness',
-    'Smart',
-    'Solitude',
-    'Spirit',
-    'Spirituality',
-    'Spontaneous',
-    'Stability',
-    'Status',
-    'Stewardship',
-    'Strength',
-    'Structure',
-    'Success',
-    'Support',
-    'Surprise',
-    'Sustainability',
-    'Talent',
-    'Teamwork',
-    'Temperance',
-    'Thankful',
-    'Thorough',
-    'Thoughtful',
-    'Timeliness',
-    'Tolerance',
-    'Toughness',
-    'Traditional',
-    'Tranquility',
-    'Transparency',
-    'Trust',
-    'Trustworthy',
-    'Truth',
-    'Understanding',
-    'Uniqueness',
-    'Unity',
-    'Valor',
-    'Victory',
-    'Vigor',
-    'Vision',
-    'Vitality',
-    'Wealth',
-    'Welcoming',
-    'Winning',
-    'Wisdom',
-    'Wonder',
-  ];
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -388,13 +159,12 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     return (
         <>{
             user.role !== "admin" ?
-            // user case
+            // customer case
             <>
             <Paper component="ul" className={classes.root}>
-                {/* .pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) */}
                 {
                     current_selection_sorted.length > 0 ?
-                    // chips in user the relevant reducer
+                    // chips from the relevant reducer
                     current_selection_sorted.map((data, index) => {
                             return (
                                 <li key={index}>
@@ -435,12 +205,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 edit ?
                 // edit mode
                 <>
-                    <TextField
-                        label="Editing value"
-                        multiline
-                        value={value}
-                        onChange={handleChange}
-                    />
+                    
                     <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setValue(initialValue.value);}}/>
                     <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
                     <ScheduleIcon onClick={() => setEditDate(!editDate)}/>
@@ -467,25 +232,46 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                         </> :
                         <></>
                     }
+                    <Paper component="ul" className={classes.root}>
+                        <Chip
+                            label={<AddCircleOutlineIcon />}
+                            className={classes.chip}
+                            color="primary"
+                        ></Chip>
+                        {
+                            // other chips
+                            sortedOptions
+                                .map((data, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <Chip
+                                            label={<>{data}<DeleteIcon /></>}
+                                            className={classes.chip}
+                                            color="primary"
+                                            />
+                                        </li>
+                                    )
+                                })
+                        }
+                    </Paper>
                 </> :
                 // display mode (edit is false)
                 <>
                     <EditIcon onClick={() => setEdit(true)}/>
                     <Paper component="ul" className={classes.root}>
-                        {/* .pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) */}
                         {
                             current_selection_sorted.length > 0 ?
                             // chips in user the relevant reducer
                             current_selection_sorted.map((data, index) => {
                                     return (
                                         <li key={index}>
-                                        <Chip
-                                        label={data.manifesto_text}
-                                        className={classes.chip}
-                                        clickable
-                                        onClick={() => handleDeleteFunction(data.id)}
-                                        color="secondary"
-                                        />
+                                            <Chip
+                                            label={data.manifesto_text}
+                                            className={classes.chip}
+                                            clickable
+                                            onClick={() => handleDeleteFunction(data.id)}
+                                            color="secondary"
+                                            />
                                         </li>
                                     )
                                 }) :
@@ -498,13 +284,13 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                                 .map((data, index) => {
                                     return (
                                         <li key={index}>
-                                        <Chip
-                                        label={data}
-                                        className={classes.chip}
-                                        clickable
-                                        onClick={() => handleAddFunction(data)}
-                                        color="primary"
-                                        />
+                                            <Chip
+                                            label={data}
+                                            className={classes.chip}
+                                            clickable
+                                            onClick={() => handleAddFunction(data)}
+                                            color="primary"
+                                            />
                                         </li>
                                     )
                                 })
