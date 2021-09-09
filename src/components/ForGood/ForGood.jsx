@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./ForGood.css";
-import { useHistory } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
@@ -41,7 +40,6 @@ function ForGood() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -80,18 +78,17 @@ function ForGood() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-          <AutoScale>
+            <AutoScale>
               <Manifesto />
             </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
               <h1>For Good</h1>
-              <h3>What’s you’re greater good?  
-
-What causes & organizations are you passionate about?
-
-Your “For Good”.</h3>
+              <h3>
+                What’s you’re greater good? What causes & organizations are you
+                passionate about? Your “For Good”.
+              </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
@@ -171,7 +168,7 @@ Your “For Good”.</h3>
             </Grid>
             <Grid item xs={12}>
               <section>
-              <TextField
+                <TextField
                   required
                   style={{ height: "10vh" }}
                   id="outlined-required"
@@ -204,7 +201,6 @@ Your “For Good”.</h3>
                     <Grid key={ForGood.id} item xs={3}>
                       <TextField
                         required
-                        
                         id="outlined-required"
                         value={ForGood.manifest_text}
                         multiline={true}
@@ -235,7 +231,6 @@ Your “For Good”.</h3>
                     <Grid key={ForGood.id} item xs={3}>
                       <TextField
                         disabled
-                        
                         id="outlined-required"
                         value={ForGood.manifesto_text}
                         multiline={true}
