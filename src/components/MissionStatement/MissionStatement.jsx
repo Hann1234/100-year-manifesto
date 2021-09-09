@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 //**Clean up unused components!! */
 
 //Material UI styling components
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -24,15 +23,6 @@ const useStyles = makeStyles((theme) => ({
     gridGap: theme.spacing(3),
   },
   //paper will be for Manifesto display.
-  paper: {
-    height: "100vh",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-    backgroundColor: "#475473",
-  },
 
   box: {
     display: "flex",
@@ -67,11 +57,12 @@ function MissionStatement() {
 
   //Need handleSubmit
   const addMission = (event) => {
-    event.preventDefault();
-    //Need to verify what the dispatch will be for this
+    if(missionText === ""){}
+    else{
     dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });
     console.log(`What's the current state of mission?`, missionText);
     setMissionText("");
+    }
   };
 
   const editMission = (id) => {
@@ -161,18 +152,34 @@ function MissionStatement() {
                     variant="outlined"
                     onChange={(evt) => setMissionText(evt.target.value)}
                   />
-                  <Button
-                    type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
-                    variant="contained"
-                    onClick={() => addMission(event)}
-                  >
-                    ADD
-                  </Button>
+                 {missions.length >= 1 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMission()}
+                >
+                  ADD
+                </Button>
+                :
+                <Button
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMission()}
+                >
+                  ADD
+                </Button>
+}
                 </center>
               </form>
             </Grid>
