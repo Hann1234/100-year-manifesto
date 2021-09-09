@@ -92,8 +92,18 @@ function CompleteButton() {
             Step {activeStep + 1} already completed
           </Typography>
         ) : (
-          <Button variant="contained" color="primary" onClick={handleComplete}>
-            {completedSteps() === totalSteps() - 1 ? "Finish" : "Complete Step"}
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleComplete}
+            style={{
+              backgroundColor: "#1c4bd9",
+              color: "#132411",
+            }}
+            >
+            {completedSteps() === totalSteps() - 1 
+            ? "Finish" 
+            : "Complete Step"}
           </Button>
         ))}
     </div>

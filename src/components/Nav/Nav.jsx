@@ -34,7 +34,9 @@ function Nav() {
             <Link className="navLink" to="/homepage">
               My Library
             </Link>
-
+            <Link className="navLink" to="/myManifesto">
+              My Manifesto
+            </Link>
             <LogOutButton className="navLink" />
           </>
         )}

@@ -112,3 +112,12 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+.scrollableDiv{
+  overflow-y: auto;
+  height: 80vh;
+}
+
+h1{
+  color: #fff;
+}

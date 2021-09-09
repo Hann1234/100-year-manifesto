@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 
 // Stores the "state" of ProgressBar completion
 const completeButton = (state = {0:false}, action) => {
-  console.log(`What is action in complete button reducer`, state);
   switch (action.type) {
     case "CLEAR_NEXT_BUTTON":
       return [];

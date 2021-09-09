@@ -13,6 +13,7 @@ import NextButton from "../NextButton/NextButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Mantras() {
+function LifeGoals() {
   const lifeGoal = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
@@ -41,9 +42,11 @@ function Mantras() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const page_id = 6;
 
   useEffect(() => {
     dispatch({ type: "FETCH_LIFE_GOALS" });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
   }, []);
 
   const addLifeGoal = () => {
@@ -79,46 +82,102 @@ function Mantras() {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <AutoScale>
-              <Manifesto/>
+              <Manifesto />
             </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
-              <h1>Life Goals</h1>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"header"}
+                  default_value={"Life Goals"}
+                />
+              </h1>
+              <h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid"}
+                  default_value={`
+                    Your life goals. Make them yours. For your whole life. Something
+                    to reflect on one day & say, “Well done, you lived your life on
+                    purpose.” You achieved the goals you set out to achieve. You
+                    lived the life worthy of the calling you received.
+                  `}
+                />
+                
+              </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-                <div className="videoWrapper">
-                  <iframe
-                    width="512"
-                    height="288"
-                    src="https://player.vimeo.com/video/599580195?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5321e6f5c6"
-                  ></iframe>
-                </div>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599580195?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5321e6f5c6"
+                  }
+                />
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
                   <p>
-                    This is a place for your goals. These goals may or may not
-                    be goals you can measure. Think about what you want to
-                    accomplish in your life. Think about who you want to be.
-                    Think about what you can do.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid1"}
+                      default_value={`
+                        This is a place for your goals. These goals may or may not
+                        be goals you can measure. Think about what you want to
+                        accomplish in your life. Think about who you want to be.
+                        Think about what you can do.
+                      `}
+                    />
                   </p>
-                  <p>10 Goals for You. For your life.</p>
-                  <p>For me, they include:</p>
                   <p>
-                    “Be the man, father, & husband God created me to be.“ “Build
-                    a business allowing for remore work anywhere in the world.“
-                    “Raise healthy boys who love themselves, their family, &
-                    their God: who serve others, lead by example, & do their
-                    best every single day of their lives. “
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid2"}
+                      default_value={`
+                        10 Goals for You. For your life.
+                      `}
+                    />
+                  </p>
+                  <p>
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid3"}
+                      default_value={`
+                        For me, they include:
+                      `}
+                    />
+                  </p>
+                  <p>
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid4"}
+                      default_value={`
+                        “Be the man, father, & husband God created me to be.“ “Build
+                        a business allowing for remote work anywhere in the world.“
+                        “Raise healthy boys who love themselves, their family, &
+                        their God: who serve others, lead by example, & do their
+                        best every single day of their lives.“
+                      `}
+                    />
                   </p>
                 </section>
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <section>
-                <h3>WHAT ARE YOU LIFE GOALS?</h3>
+                <h3>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom"}
+                    default_value={`
+                      WHAT ARE YOU LIFE GOALS?
+                    `}
+                  />
+                </h3>
               </section>
             </Grid>
             <Grid item xs={12}></Grid>
@@ -137,7 +196,7 @@ function Mantras() {
                   type="submit"
                   style={{
                     height: "56px",
-                    backgroundColor: "#bec9bc",
+                    backgroundColor: "#1c4bd9",
                     color: "#132411",
                   }}
                   variant="contained"
@@ -168,7 +227,7 @@ function Mantras() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#7bd91c",
                           color: "#132411",
                         }}
                         variant="contained"
@@ -196,19 +255,20 @@ function Mantras() {
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
+                          backgroundColor: "#1c4bd9",
+                          color: "#fff",
                         }}
                         variant="contained"
                         onClick={() => startEdit(lifeGoal)}
                       >
                         Edit
                       </Button>
+                      <span> </span>
                       <Button
                         type="submit"
                         style={{
                           height: "28px",
-                          backgroundColor: "#bec9bc",
+                          backgroundColor: "#d91c1c",
                           color: "#132411",
                         }}
                         variant="contained"
@@ -237,4 +297,4 @@ function Mantras() {
   );
 }
 
-export default Mantras;
+export default LifeGoals;
