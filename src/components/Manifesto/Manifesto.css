@@ -14,22 +14,21 @@
 .manifesto{
   background-color: #e7e7e7;
   color: #4d5470;
+  font-family: 'Roboto Slab', serif;
 }
+
 .blueBar{
   height: calc(var(--manifestoHeight) * .01818);
-  background-color: #8e9cd3;
+  background-color: #4d5470;
 }
-/* .manifesto div{
-  border: 1px solid black;
-} */
 
 .titleSection{
   height: calc(var(--manifestoHeight) * .1818);
   text-align: center;
+  font-family: 'Oswald Stencil';
 }
 
 .hundredYear{
-  font-family: 'Oswald Stencil';
   font-size: 80px;
 }
 .userName{
@@ -38,7 +37,6 @@
 .userName:hover{
   cursor: pointer;
 }
-
 .smallColumn{
   width: calc(var(--manifestoWidth) * .2272);
   margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
@@ -52,17 +50,21 @@
   padding: 8px;
   min-height: 15%;
 }
+.smTitle{
+  font-size: 20px;
+}
 .smallColumnAutoFill{
   min-height: 20%;
 }
-.mantraElement{
+.smallColumnElement{
   max-width: calc(var(--manifestoWidth) * .2272);
+  margin: -7px 0 1px 0;
   color: #4d5470;
   text-transform: uppercase;
-  font-family: 'Roboto Slab', serif;
 }
-.dotSeparation{
-  padding: 4px 0;
+.dottedBottom{
+  border-bottom: 8px dotted #4d5470;
+  padding-bottom: 4px;
 }
 .bigColumn{
   width: calc(var(--manifestoWidth) * .6818);
@@ -76,12 +78,13 @@
 }
 
 .lifeGoalItem{
-  border-bottom: 1px solid black; 
+  border-bottom: 1px solid #8088a7; 
   padding: 4px 8px;
 }
 
 .principlesTitle{
-  padding: 16px 0;
+  color:#e7e7e7;
+  margin-top: 8px;
 }
 
 .principleItem{
