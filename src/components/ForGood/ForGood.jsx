@@ -169,9 +169,9 @@ function ForGood() {
             </Grid>
             <Grid item xs={12}>
               <section>
-                <TextareaAutosize
+              <TextField
                   required
-                  style={{ height: "30vh" }}
+                  style={{ height: "10vh" }}
                   id="outlined-required"
                   placeholder="Add For Good"
                   value={manifestoText}
@@ -200,9 +200,9 @@ function ForGood() {
                 if (ForGood.id === itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
-                      <TextareaAutosize
+                      <TextField
                         required
-                        style={{ height: "30vh" }}
+                        
                         id="outlined-required"
                         value={ForGood.manifest_text}
                         multiline={true}
@@ -231,9 +231,9 @@ function ForGood() {
                 if (ForGood.id != itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
-                      <TextareaAutosize
+                      <TextField
                         disabled
-                        style={{ height: "30vh" }}
+                        
                         id="outlined-required"
                         value={ForGood.manifesto_text}
                         multiline={true}
@@ -253,6 +253,7 @@ function ForGood() {
                       >
                         Edit
                       </Button>
+                      <span> </span>
                       <Button
                         type="submit"
                         style={{
