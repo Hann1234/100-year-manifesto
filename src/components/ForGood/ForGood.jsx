@@ -90,6 +90,11 @@ function ForGood() {
           <Grid item xs={8}>
             <center>
               <h1>For Good</h1>
+              <h3>What’s you’re greater good?  
+
+What causes & organizations are you passionate about?
+
+Your “For Good”.</h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
