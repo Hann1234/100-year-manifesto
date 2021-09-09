@@ -12,6 +12,7 @@ import NextButton from "../NextButton/NextButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,11 +44,13 @@ function GuidingPrinciples() {
   const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const page_id = 7;
 
   useEffect(() => {
     dispatch({
       type: "FETCH_GUIDING_PRINCIPLES",
     });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
   }, []);
 
   const addGuidingPrinciple = () => {
@@ -100,39 +103,69 @@ function GuidingPrinciples() {
           </Grid>
           <Grid item xs={8}>
             <center>
-              <h1>Guiding Principles</h1>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"header"}
+                  default_value={"Guiding Principles"}
+                />
+              </h1>
               <h3>
-                Living your 100 Year Manifesto requires having Guiding
-                Principles. Meaningful quotes, poetry, song lyrics, or
-                Scriptures that guide your life. What are yours?
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid1"}
+                  default_value={`
+                    Living your 100 Year Manifesto requires having Guiding
+                    Principles. Meaningful quotes, poetry, song lyrics, or
+                    Scriptures that guide your life. What are yours?
+                  `}
+                />
               </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-                <div className="videoWrapper">
-                  <iframe
-                    width="512"
-                    height="288"
-                    src="https://player.vimeo.com/video/599579500?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5c7636e390"
-                  ></iframe>
-                </div>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599579500?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5c7636e390"
+                  }
+                />
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo2">
                   <p>
-                    Different than the Words to Live By, this section is a place
-                    for guiding principles, meaningful Scriptures, or passages
-                    from your favorite books that significantly guide your life.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid1"}
+                      default_value={`
+                        Different than the Words to Live By, this section is a place
+                        for guiding principles, meaningful Scriptures, or passages
+                        from your favorite books that significantly guide your life.
+                      `}
+                    />
                   </p>
                   <p>
-                    This framework might include quotes from famous people,
-                    like:
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid2"}
+                      default_value={`
+                        This framework might include quotes from famous people, like:
+                      `}
+                    />
                   </p>
                   <p>
-                    “Do all the good you can. By all the means you can. In all
-                    the ways you can. In all the places you can. At all the
-                    times you can. To all the people you can. As long as ever
-                    you can.” - John Wesley, Theologian
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid3"}
+                      default_value={`
+                        “Do all the good you can. By all the means you can. In all
+                        the ways you can. In all the places you can. At all the
+                        times you can. To all the people you can. As long as ever
+                        you can.” - John Wesley, Theologian
+                      `}
+                    />
                   </p>
                 </section>
               </Grid>
@@ -141,18 +174,33 @@ function GuidingPrinciples() {
               <center>
                 <section className="BottomText">
                   <p>
-                    They might include quotes like: “You can never go wrong
-                    doing the right thing.”
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"bottom1"}
+                      default_value={`
+                        They might include quotes like: “You can never go wrong
+                        doing the right thing.”
+                      `}
+                    />
                   </p>
                   <p>
-                    They might also include a handful of Scriptures, such as:
-                    “To whom much is given, much is demanded.” Luke 12:48
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"bottom2"}
+                      default_value={`
+                        They might also include a handful of Scriptures, such as:
+                        “To whom much is given, much is demanded.” Luke 12:48
+                      `}
+                    />
                   </p>
-                  <p>For me, I put 10 scriptures that really touch my soul.</p>
                   <p>
-                    If you’re not into scriptures, there are quotes. Power
-                    phrases. Things your parents said. Things you say. Passages
-                    from books.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"bottom3"}
+                      default_value={`
+                        There are quotes. Power phrases. Things your parents said. Things you say. Passages from books. Scriptures.
+                      `}
+                    />
                   </p>
                 </section>
               </center>
