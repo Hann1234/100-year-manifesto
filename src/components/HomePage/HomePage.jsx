@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-
+import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 
 import "./HomePage.css";
@@ -45,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: '0 30px',
   },
+  circle: {
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+  },
 }));
 
 function HomePage() {
@@ -65,8 +67,6 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
-      {/* Prototype Grid layout */}
       <Grid container spacing={3}>
         <Grid xs={4}>
           <Paper className={classes.paper}>
@@ -76,37 +76,43 @@ function HomePage() {
             out so we can all have it for our pages
           </Paper>
         </Grid>
-        <Grid item center xs={8}>
-          <center>
+        <Grid item align="center" xs={8}>
           <div>
             <h1>Welcome, {user.email}! Start your journey here!</h1>
-          </div>
+          </div >
           <div onClick={() => history.push("/intro")}>
-            <h1>1 Intro: Your 100 Year Manifesto</h1>
+            <Avatar className={classes.circle}>1</Avatar> 
+            <h1>Intro: Your 100 Year Manifesto</h1>
           </div>
           <div onClick={() => history.push("missionStatement")}>
-            <h1>2 Mission Statement</h1>
+            <Avatar className={classes.circle}>2</Avatar> 
+            <h1>Mission Statement</h1>
           </div>
           <div onClick={() => history.push("/mantras")}>
-            <h1>3 Words to Live By</h1>
+            <Avatar className={classes.circle}>3</Avatar> 
+            <h1>Words to Live By</h1>
           </div>
           <div onClick={() => history.push("/coreValues")}>
-            <h1>4 Core Values</h1>
+            <Avatar className={classes.circle}>4</Avatar> 
+            <h1>Core Values</h1>
           </div>
           <div onClick={() => history.push("/forGood")}>
-            <h1>5 For Good</h1>
+          <Avatar className={classes.circle}>5</Avatar> 
+            <h1>For Good</h1>
           </div>
           <div onClick={() => history.push("/lifeGoals")}>
-            <h1>6 Life Goals</h1>
+          <Avatar className={classes.circle}>6</Avatar> 
+            <h1>Life Goals</h1>
           </div>
           <div onClick={() => history.push("/guidingPrinciples")}>
-            <h1>7 Guiding Principles</h1>
+          <Avatar className={classes.circle}>7</Avatar> 
+            <h1>Guiding Principles</h1>
           </div>
           <div onClick={() => history.push("/nextSteps")}>
-            <h1>8 Next Steps</h1>
+          <Avatar className={classes.circle}>8</Avatar> 
+            <h1>Next Steps</h1>
           </div>
           <button className={classes.button} onClick={() => history.push("/intro")}>START</button>
-          </center>
         </Grid>
         <Grid item xs={8}>
           {additionalQuestions.map((answer) => {
@@ -121,7 +127,6 @@ function HomePage() {
           })}
         </Grid>
       </Grid>
-    </div>
   );
 }
 
