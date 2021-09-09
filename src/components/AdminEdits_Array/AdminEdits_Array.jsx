@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Chip from '@material-ui/core/Chip';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import CheckIcon from '@material-ui/icons/Check';
@@ -11,14 +14,259 @@ import HistoryIcon from '@material-ui/icons/History';
 import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker';
 
-function AdminEdits_Array( {page_names, page_id, html_id, default_value} ) {
+const chips = [
+    'Acceptance',
+    'Accomplishment',
+    'Accountability',
+    'Accuracy',
+    'Achievement',
+    'Adaptability',
+    'Alertness',
+    'Altruism',
+    'Ambition',
+    'Amusement',
+    'Assertiveness',
+    'Attentive',
+    'Awareness',
+    'Balance',
+    'Beauty',
+    'Boldness',
+    'Bravery',
+    'Brilliance',
+    'Calm',
+    'Candor',
+    'Capable',
+    'Careful',
+    'Certainty',
+    'Challenge',
+    'Charity',
+    'Cleanliness',
+    'Clear',
+    'Clever',
+    'Comfort',
+    'Commitment',
+    'Common Sense',
+    'Communication',
+    'Community',
+    'Compassion',
+    'Competence',
+    'Concentration',
+    'Confidence',
+    'Connection',
+    'Consciousness',
+    'Consistency',
+    'Contentment',
+    'Contribution',
+    'Control',
+    'Conviction',
+    'Cooperation',
+    'Courage',
+    'Courtesy',
+    'Creation',
+    'Creativity',
+    'Credibility',
+    'Curiosity',
+    'Creation',
+    'Creativity',
+    'Credibility',
+    'Curiosity',
+    'Decisive',
+    'Decisiveness',
+    'Dedication',
+    'Dependability',
+    'Determination',
+    'Development',
+    'Devotion',
+    'Dignity',
+    'Discipline',
+    'Discovery',
+    'Drive',
+    'Effectiveness',
+    'Efficiency',
+    'Empathy',
+    'Empower',
+    'Endurance',
+    'Energy',
+    'Enjoyment',
+    'Enthusiasm',
+    'Equity',
+    'Ethical',
+    'Excellence',
+    'Experience',
+    'Exploration',
+    'Expressive',
+    'Fairness',
+    'Family',
+    'Famous',
+    'Fearless',
+    'Feelings',
+    'Ferocious',
+    'Fidelity',
+    'Focus',
+    'Foresight',
+    'Fortitude',
+    'Freedom',
+    'Friendship',
+    'Fun',
+    'Generosity',
+    'Genius',
+    'Giving',
+    'Goodness',
+    'Grace',
+    'Gratitude',
+    'Greatness',
+    'Growth',
+    'Happiness',
+    'Hard work',
+    'Harmony',
+    'Health',
+    'Honesty',
+    'Honor',
+    'Hope',
+    'Humility',
+    'Imagination',
+    'Improvement',
+    'Independence',
+    'Individuality',
+    'Innovation',
+    'Inquisitive',
+    'Insightful',
+    'Inspiring',
+    'Integrity',
+    'Intelligence',
+    'Intensity',
+    'Intuitive',
+    'Irreverent',
+    'Joy',
+    'Justice',
+    'Kindness',
+    'Knowledge',
+    'Lawful',
+    'Leadership',
+    'Learning',
+    'Liberty',
+    'Logic',
+    'Love',
+    'Loyalty',
+    'Mastery',
+    'Maturity',
+    'Meaning',
+    'Moderation',
+    'Motivation',
+    'Openness',
+    'Optimism',
+    'Order',
+    'Organization',
+    'Originality',
+    'Passion',
+    'Patience',
+    'Peace',
+    'Performance',
+    'Persistence',
+    'Playfulness',
+    'Poise',
+    'Potential',
+    'Power',
+    'Present',
+    'Productivity',
+    'Professionalism',
+    'Prosperity',
+    'Purpose',
+    'Quality',
+    'Realistic',
+    'Reason',
+    'Recognition',
+    'Recreation',
+    'Reflective',
+    'Respect',
+    'Responsibility',
+    'Restraint',
+    'Results-oriented',
+    'Rigor',
+    'Risk',
+    'Satisfaction',
+    'Security',
+    'Self-reliance',
+    'Selfless',
+    'Sensitivity',
+    'Serenity',
+    'Service',
+    'Sharing',
+    'Significance',
+    'Silence',
+    'Simplicity',
+    'Sincerity',
+    'Skill',
+    'Skillfulness',
+    'Smart',
+    'Solitude',
+    'Spirit',
+    'Spirituality',
+    'Spontaneous',
+    'Stability',
+    'Status',
+    'Stewardship',
+    'Strength',
+    'Structure',
+    'Success',
+    'Support',
+    'Surprise',
+    'Sustainability',
+    'Talent',
+    'Teamwork',
+    'Temperance',
+    'Thankful',
+    'Thorough',
+    'Thoughtful',
+    'Timeliness',
+    'Tolerance',
+    'Toughness',
+    'Traditional',
+    'Tranquility',
+    'Transparency',
+    'Trust',
+    'Trustworthy',
+    'Truth',
+    'Understanding',
+    'Uniqueness',
+    'Unity',
+    'Valor',
+    'Victory',
+    'Vigor',
+    'Vision',
+    'Vitality',
+    'Wealth',
+    'Welcoming',
+    'Winning',
+    'Wisdom',
+    'Wonder',
+  ];
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      listStyle: 'none',
+      padding: theme.spacing(0.5),
+      margin: 0,
+    },
+    chip: {
+      margin: theme.spacing(0.5),
+    }
+  }));
+
+function AdminEdits_Array( {page_names, page_id, html_id, default_value, current_selection, handleAddFunction, handleDeleteFunction} ) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch ();
+    const classes = useStyles();
 
     const adminEditFormReducer = useSelector((store) => store.adminEditFormReducer);
 
     const [date, setDate] = useState(new Date());
     const [editDate, setEditDate] = useState(false);
+    const current_selection_sorted = current_selection.sort((a,b) => (a.manifesto_text > b.manifesto_text) ? 1 : ((b.manifesto_text > a.manifesto_text) ? -1 : 0));
+    const [sortedOptions, setSortedOptions] = useState(default_value.sort());
 
     // getCurrentValue
     const getCurrentValue = () => {
@@ -141,7 +389,47 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value} ) {
         <>{
             user.role !== "admin" ?
             // user case
-            <>{value}</> :
+            <>
+            <Paper component="ul" className={classes.root}>
+                {/* .pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) */}
+                {
+                    current_selection_sorted.length > 0 ?
+                    // chips in user the relevant reducer
+                    current_selection_sorted.map((data, index) => {
+                            return (
+                                <li key={index}>
+                                <Chip
+                                label={data.manifesto_text}
+                                className={classes.chip}
+                                clickable
+                                onClick={() => handleDeleteFunction(data.id)}
+                                color="secondary"
+                                />
+                                </li>
+                            )
+                        }) :
+                    <></>
+                }
+                {
+                    // other chips
+                    sortedOptions
+                        .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                        .map((data, index) => {
+                            return (
+                                <li key={index}>
+                                <Chip
+                                label={data}
+                                className={classes.chip}
+                                clickable
+                                onClick={() => handleAddFunction(data)}
+                                color="primary"
+                                />
+                                </li>
+                            )
+                        })
+                }
+            </Paper>
+            </> :
             // admin case
             <>{
                 edit ?
@@ -182,8 +470,46 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value} ) {
                 </> :
                 // display mode (edit is false)
                 <>
-                    {value}
                     <EditIcon onClick={() => setEdit(true)}/>
+                    <Paper component="ul" className={classes.root}>
+                        {/* .pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) */}
+                        {
+                            current_selection_sorted.length > 0 ?
+                            // chips in user the relevant reducer
+                            current_selection_sorted.map((data, index) => {
+                                    return (
+                                        <li key={index}>
+                                        <Chip
+                                        label={data.manifesto_text}
+                                        className={classes.chip}
+                                        clickable
+                                        onClick={() => handleDeleteFunction(data.id)}
+                                        color="secondary"
+                                        />
+                                        </li>
+                                    )
+                                }) :
+                            <></>
+                        }
+                        {
+                            // other chips
+                            sortedOptions
+                                .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                                .map((data, index) => {
+                                    return (
+                                        <li key={index}>
+                                        <Chip
+                                        label={data}
+                                        className={classes.chip}
+                                        clickable
+                                        onClick={() => handleAddFunction(data)}
+                                        color="primary"
+                                        />
+                                        </li>
+                                    )
+                                })
+                        }
+                    </Paper>
                 </>
             }</>
         }</>

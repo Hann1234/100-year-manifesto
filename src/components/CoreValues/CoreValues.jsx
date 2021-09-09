@@ -11,6 +11,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 
+import './CoreValues.css'
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "grid",
@@ -77,9 +79,9 @@ function CoreValues() {
 
   const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
 
-  // const [manifestoText, setManifestoText] = useState('');
+  const [manifestoText, setManifestoText] = useState('');
   const [editManifestoText, setEditManifestoText] = useState('');
-  const [CoreValueToEdit, setCoreValueToEdit] = useState(0);
+  const [coreValueToEdit, setCoreValueToEdit] = useState(0);
   const dispatch = useDispatch ();
   const classes = useStyles();
 
@@ -136,10 +138,6 @@ function CoreValues() {
     { key: 48, label: 'Creativity' },
     { key: 49, label: 'Credibility' },
     { key: 50, label: 'Curiosity' },
-    { key: 51, label: 'Creation' },
-    { key: 52, label: 'Creativity' },
-    { key: 53, label: 'Credibility' },
-    { key: 54, label: 'Curiosity' },
     { key: 55, label: 'Decisive' },
     { key: 56, label: 'Decisiveness' },
     { key: 57, label: 'Dedication' },
@@ -317,19 +315,32 @@ function CoreValues() {
         type: 'FETCH_CORE_VALUES'
     });
 
-    // setManifestoText('');
+    setManifestoText('');
     setEditManifestoText('');
     setCoreValueToEdit(0);
 
   }, []); // when value inside square bracket is updated, useEffect is rerun
 
-  const addCoreValue = (manifestoText) => {
+  const addCoreValueChip = (coreValue) => {
+    dispatch({
+        type: 'ADD_CORE_VALUE', 
+        payload: {
+            manifestoText: coreValue
+        }});
+  };
+
+  const addCoreValue = () => {
     dispatch({
         type: 'ADD_CORE_VALUE', 
         payload: {
             manifestoText: manifestoText
         }});
+    
+    setManifestoText('');
+
   };
+
+
 
   const editCoreValue = (id) => {
     dispatch({
@@ -355,7 +366,7 @@ const handleAddCoreValue = (value) => {
 
     // setManifestoText(value);
 
-    addCoreValue(value);
+    addCoreValueChip(value);
 
     };
 
@@ -380,10 +391,9 @@ const handleDeleteCoreValue = (id) => {
           </Paper>
         </Grid>
         <Grid container item xs={8}>
-          <Paper className={classes.paper}>
             <center>
               <h1>Core Values</h1>
-              <h2>You can’t argue with your core values. They just are. What are yours?</h2>
+              <h3>You can’t argue with your core values. They just are. What are yours?</h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
@@ -396,11 +406,9 @@ const handleDeleteCoreValue = (id) => {
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paper3}>
                     <p>Most companies have identified a set of core values. Oftentimes they post them on their walls as a reminder for their employees, their customers, & everyone they encounter.</p>
                     <p>If it makes sense for a business, it definitely makes sense for an individual to have a personal set of core values. Uncompromising, non-negotiables.</p>
                     <p>Our values reveal themselves to us.</p>
-                </Paper>
               </Grid>
             </Grid>
               <Grid item xs={12}>
@@ -411,6 +419,90 @@ const handleDeleteCoreValue = (id) => {
                     For your 100 Year Manifesto, which are the ones that are in your heart of hearts. What are those core values?</h4>
                   {/* What is the "For Good" section renamed as? <button className="nextButton" onClick={() => history.push('/forgood')}>NEXT</button> */}
                 </center>
+            <Grid item xs={12} container spacing={2}>
+              <section>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Add Core Value"
+                  value={manifestoText}
+                  variant="outlined"
+                  onChange={(event) => setManifestoText(event.target.value)}
+                />
+                <Button
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addCoreValue()}
+                >
+                  ADD
+                </Button>
+              </section>
+            </Grid>
+            <br />
+            <Grid item xs={12} container spacing={2}>
+              {coreValues.map((value) => {
+                if (value.id === coreValueToEdit) {
+                  return (
+                    <Grid key={value.id} item xs={3}>
+                      <TextField
+                        id="outlined-required"
+                        placeholder={value.manifesto_text}
+                        variant="outlined"
+                        onChange={(event) =>
+                          setEditManifestoText(event.target.value)
+                        }
+                      />
+                      <Button
+                        id={value.id}
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#7bd91c",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => editCoreValue(value.id)}
+                      >
+                        Save
+                      </Button>
+                    </Grid>
+                  );
+                }
+                if (value.id != coreValueToEdit) {
+                  return (
+                    <Grid key={value.id} item xs={3}>
+                      <TextField
+                        disabled
+                        id="outlined-required"
+                        label="Your Core Value"
+                        value={value.manifesto_text}
+                        variant="outlined"
+                        onChange={(event) => setManifestoText(event.target.value)}
+                      />
+                      <br />
+                      <span> </span>
+                      <Button
+                        type="submit"
+                        style={{
+                          height: "28px",
+                          backgroundColor: "#d91c1c",
+                          color: "#132411",
+                        }}
+                        variant="contained"
+                        onClick={() => deleteCoreValue(value.id)}
+                      >
+                        Remove
+                      </Button>
+                    </Grid>
+                  );
+                }
+              })}
+            </Grid>
                 <Paper component="ul" className={classes.root}>
                     {chipData.map((data) => {
                       for (const value of coreValues) {
@@ -440,7 +532,6 @@ const handleDeleteCoreValue = (id) => {
                     })}
                 </Paper>
               </Grid>
-            </Paper>
           </Grid>
         </Grid>
     </section>
