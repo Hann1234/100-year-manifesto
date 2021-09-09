@@ -321,13 +321,26 @@ function CoreValues() {
 
   }, []); // when value inside square bracket is updated, useEffect is rerun
 
-  const addCoreValue = (manifestoText) => {
+  const addCoreValueChip = (coreValue) => {
+    dispatch({
+        type: 'ADD_CORE_VALUE', 
+        payload: {
+            manifestoText: coreValue
+        }});
+  };
+
+  const addCoreValue = () => {
     dispatch({
         type: 'ADD_CORE_VALUE', 
         payload: {
             manifestoText: manifestoText
         }});
+    
+    setManifestoText('');
+
   };
+
+
 
   const editCoreValue = (id) => {
     dispatch({
@@ -353,7 +366,7 @@ const handleAddCoreValue = (value) => {
 
     // setManifestoText(value);
 
-    addCoreValue(value);
+    addCoreValueChip(value);
 
     };
 
