@@ -9,6 +9,8 @@ import Paper from "@material-ui/core/Paper";
 
 import Grid from "@material-ui/core/Grid";
 
+import "./HomePage.css";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "grid",
@@ -33,6 +35,15 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     margin: theme.spacing(2, 0),
+  },
+  button: {
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
   },
 }));
 
@@ -65,58 +76,37 @@ function HomePage() {
             out so we can all have it for our pages
           </Paper>
         </Grid>
-        <Grid item xs={8}>
-          <Paper className={classes.paper2}>
+        <Grid item center xs={8}>
+          <center>
+          <div>
             <h1>Welcome, {user.email}! Start your journey here!</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/intro")}
-          >
+          </div>
+          <div onClick={() => history.push("/intro")}>
             <h1>1 Intro: Your 100 Year Manifesto</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/missionStatement")}
-          >
+          </div>
+          <div onClick={() => history.push("missionStatement")}>
             <h1>2 Mission Statement</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/mantras")}
-          >
+          </div>
+          <div onClick={() => history.push("/mantras")}>
             <h1>3 Words to Live By</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/coreValues")}
-          >
+          </div>
+          <div onClick={() => history.push("/coreValues")}>
             <h1>4 Core Values</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/forGood")}
-          >
+          </div>
+          <div onClick={() => history.push("/forGood")}>
             <h1>5 For Good</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/lifeGoals")}
-          >
+          </div>
+          <div onClick={() => history.push("/lifeGoals")}>
             <h1>6 Life Goals</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/guidingPrinciples")}
-          >
+          </div>
+          <div onClick={() => history.push("/guidingPrinciples")}>
             <h1>7 Guiding Principles</h1>
-          </Paper>
-          <Paper
-            className={classes.paper2}
-            onClick={() => history.push("/nextSteps")}
-          >
+          </div>
+          <div onClick={() => history.push("/nextSteps")}>
             <h1>8 Next Steps</h1>
-          </Paper>
+          </div>
+          <button className={classes.button} onClick={() => history.push("/intro")}>START</button>
+          </center>
         </Grid>
         <Grid item xs={8}>
           {additionalQuestions.map((answer) => {
@@ -131,11 +121,6 @@ function HomePage() {
           })}
         </Grid>
       </Grid>
-      <p>Your ID is: {user.id}</p>
-      <button className="nextButton" onClick={() => history.push("/intro")}>
-        START
-      </button>
-      <LogOutButton className="btn" />
     </div>
   );
 }
