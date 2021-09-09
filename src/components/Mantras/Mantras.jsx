@@ -47,8 +47,11 @@ function Mantras(props) {
   }, []);
 
   const addMantra = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
     setManifestoText("");
+    }
   };
 
   const editMantra = (id) => {
@@ -225,6 +228,21 @@ function Mantras(props) {
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
                 />
+                {mantras.length >= 10 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMantra()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -237,6 +255,7 @@ function Mantras(props) {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
             <br />
