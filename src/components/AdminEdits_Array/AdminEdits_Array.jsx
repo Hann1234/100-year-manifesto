@@ -204,8 +204,8 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                                     <Chip
                                     label={data}
                                     className={classes.chip}
-                                        clickable
-                                        onClick={() => handleAddFunction(data)}
+                                    clickable
+                                    onClick={() => handleAddFunction(data)}
                                     color="primary"
                                     />
                                     </li>
@@ -293,18 +293,32 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                         }
                         {
                             // other chips
+                            current_selection_sorted.length >= max_selected ?
                             sortedOptions
                                 .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
                                 .map((data, index) => {
                                     return (
                                         <li key={index}>
-                                            <Chip
-                                            label={data}
-                                            className={classes.chip}
-                                            clickable
-                                            onClick={() => handleAddFunction(data)}
-                                            color="primary"
-                                            />
+                                        <Chip
+                                        label={data}
+                                        className={classes.chip}
+                                        color="primary"
+                                        />
+                                        </li>
+                                    )
+                                }) :
+                            sortedOptions
+                                .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                                .map((data, index) => {
+                                    return (
+                                        <li key={index}>
+                                        <Chip
+                                        label={data}
+                                        className={classes.chip}
+                                        clickable
+                                        onClick={() => handleAddFunction(data)}
+                                        color="primary"
+                                        />
                                         </li>
                                     )
                                 })
