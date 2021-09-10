@@ -5,7 +5,7 @@ import axios from 'axios';
 function* fetchUsers() {
     try {
         const userList = yield axios.get(`/api/adminEditUsers`);
-        yield put({type: 'ADMIN_SET_USERS', payload: userList.data}) // Loads userList into reducer
+        yield put({type: 'ADMIN_SET_USERS', payload: userList.data}); // Loads userList into reducer
     } catch (error) {
         console.log('Error getting userList:', error);
         yield put({ type: 'ADMIN_FETCH_USERS_ERROR' });

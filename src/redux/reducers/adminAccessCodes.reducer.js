@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-// Stores user list
-const userList = (state = [], action) => {
+// Stores access codes
+const accessCodes = (state = [], action) => {
   switch (action.type) {
-    case 'ADMIN_SET_USERS':
+    case 'ADMIN_SET_ACCESS_CODES':
         return action.payload;
     default:
       return state;
@@ -11,5 +11,5 @@ const userList = (state = [], action) => {
 };
 
 export default combineReducers({
-  userList
+  accessCodes
 });

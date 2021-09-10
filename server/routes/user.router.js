@@ -23,12 +23,13 @@ router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
   const access_code = req.body.access_code;
 
+  // add user if their access code is in the access_code table and it hasn't expired
   const queryText = `
     INSERT INTO "user" ("name", "email", "password")
       SELECT $1, $2, $3
     WHERE EXISTS (
         SELECT * FROM "access_code"
-        WHERE "code" = $4 and "expiration_date" >= NOW()
+        WHERE "code" = $4 AND "expiration_date" >= NOW()
       )
     RETURNING "id";
   `;
@@ -38,8 +39,10 @@ router.post('/register', (req, res, next) => {
     .then((response) => {
       console.log(response.rows);
       if (response.rows.length === 1) {
+        console.log("user registration successful");
         res.sendStatus(201);
       } else {
+        console.log("user registration failed - invalid access code: ", access_code);
         res.sendStatus(403);
       }
     })
