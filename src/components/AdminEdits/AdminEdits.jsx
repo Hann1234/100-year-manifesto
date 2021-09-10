@@ -14,7 +14,6 @@ const page_names = {
     6: 'life_goals',
     7: 'guiding_principles',
     8: 'next_steps',
-    9: 'about'
 }
 
 function AdminEdits( {page_id, html_id, html_type = 'text', default_value, current_selection, handleAddFunction, handleDeleteFunction}) {
