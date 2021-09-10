@@ -64,7 +64,7 @@ function RegisterForm() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" style={{color: "black"}}>
           Sign up
           {errors.registrationMessage && (
             <h3 className="alert" role="alert">
@@ -125,7 +125,7 @@ function RegisterForm() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color="secondary"
             className={classes.submit}
             name="submit"
             value="Register"
@@ -137,6 +137,7 @@ function RegisterForm() {
               <Link
                 href="http://localhost:3000/login#/login"
                 variant="body2"
+                style={{color: "blue"}}
                 onClick={() => {
                   history.push("/login");
                 }}

@@ -52,11 +52,13 @@ const editName = (event) => {
           {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid xs={4}>
-          <AutoScale>
-              <Manifesto />
-            </AutoScale>
+              <div className="manifestoPadding">
+                <AutoScale>
+                    <Manifesto />
+                </AutoScale>
+              </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} className="scrollableDiv">
             
             <center>
               <h1>Intro: Your 100 Year Manifesto</h1>

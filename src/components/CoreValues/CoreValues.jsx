@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -12,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 import './CoreValues.css'
 
@@ -86,236 +86,238 @@ function CoreValues() {
   const [coreValueToEdit, setCoreValueToEdit] = useState(0);
   const dispatch = useDispatch ();
   const classes = useStyles();
+  const page_id = 4;
 
   //Chip info
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'Acceptance' },
-    { key: 1, label: 'Accomplishment' },
-    { key: 2, label: 'Accountability' },
-    { key: 3, label: 'Accuracy' },
-    { key: 4, label: 'Achievement' },
-    { key: 5, label: 'Adaptability' },
-    { key: 6, label: 'Alertness' },
-    { key: 7, label: 'Altruism' },
-    { key: 8, label: 'Ambition' },
-    { key: 9, label: 'Amusement' },
-    { key: 10, label: 'Assertiveness' },
-    { key: 11, label: 'Attentive' },
-    { key: 12, label: 'Awareness' },
-    { key: 13, label: 'Balance' },
-    { key: 14, label: 'Beauty' },
-    { key: 15, label: 'Boldness' },
-    { key: 16, label: 'Bravery' },
-    { key: 17, label: 'Brilliance' },
-    { key: 18, label: 'Calm' },
-    { key: 19, label: 'Candor' },
-    { key: 20, label: 'Capable' },
-    { key: 21, label: 'Careful' },
-    { key: 22, label: 'Certainty' },
-    { key: 23, label: 'Challenge' },
-    { key: 24, label: 'Charity' },
-    { key: 25, label: 'Cleanliness' },
-    { key: 26, label: 'Clear' },
-    { key: 27, label: 'Clever' },
-    { key: 28, label: 'Comfort' },
-    { key: 29, label: 'Commitment' },
-    { key: 30, label: 'Common Sense' },
-    { key: 31, label: 'Communication' },
-    { key: 32, label: 'Community' },
-    { key: 33, label: 'Compassion' },
-    { key: 34, label: 'Competence' },
-    { key: 35, label: 'Concentration' },
-    { key: 36, label: 'Confidence' },
-    { key: 37, label: 'Connection' },
-    { key: 38, label: 'Consciousness' },
-    { key: 39, label: 'Consistency' },
-    { key: 40, label: 'Contentment' },
-    { key: 41, label: 'Contribution' },
-    { key: 42, label: 'Control' },
-    { key: 43, label: 'Conviction' },
-    { key: 44, label: 'Cooperation' },
-    { key: 45, label: 'Courage' },
-    { key: 46, label: 'Courtesy' },
-    { key: 47, label: 'Creation' },
-    { key: 48, label: 'Creativity' },
-    { key: 49, label: 'Credibility' },
-    { key: 50, label: 'Curiosity' },
-    { key: 55, label: 'Decisive' },
-    { key: 56, label: 'Decisiveness' },
-    { key: 57, label: 'Dedication' },
-    { key: 58, label: 'Dependability' },
-    { key: 59, label: 'Determination' },
-    { key: 60, label: 'Development' },
-    { key: 61, label: 'Devotion' },
-    { key: 62, label: 'Dignity' },
-    { key: 63, label: 'Discipline' },
-    { key: 64, label: 'Discovery' },
-    { key: 65, label: 'Drive' },
-    { key: 66, label: 'Effectiveness' },
-    { key: 67, label: 'Efficiency' },
-    { key: 68, label: 'Empathy' },
-    { key: 69, label: 'Empower' },
-    { key: 70, label: 'Endurance' },
-    { key: 71, label: 'Energy' },
-    { key: 72, label: 'Enjoyment' },
-    { key: 73, label: 'Enthusiasm' },
-    { key: 74, label: 'Equity' },
-    { key: 75, label: 'Ethical' },
-    { key: 76, label: 'Excellence' },
-    { key: 77, label: 'Experience' },
-    { key: 78, label: 'Exploration' },
-    { key: 79, label: 'Expressive' },
-    { key: 80, label: 'Fairness' },
-    { key: 81, label: 'Family' },
-    { key: 82, label: 'Famous' },
-    { key: 83, label: 'Fearless' },
-    { key: 84, label: 'Feelings' },
-    { key: 85, label: 'Ferocious' },
-    { key: 86, label: 'Fidelity' },
-    { key: 87, label: 'Focus' },
-    { key: 88, label: 'Foresight' },
-    { key: 89, label: 'Fortitude' },
-    { key: 90, label: 'Freedom' },
-    { key: 91, label: 'Friendship' },
-    { key: 92, label: 'Fun' },
-    { key: 93, label: 'Generosity' },
-    { key: 94, label: 'Genius' },
-    { key: 95, label: 'Giving' },
-    { key: 96, label: 'Goodness' },
-    { key: 97, label: 'Grace' },
-    { key: 98, label: 'Gratitude' },
-    { key: 99, label: 'Greatness' },
-    { key: 100, label: 'Growth' },
-    { key: 101, label: 'Happiness' },
-    { key: 102, label: 'Hard work' },
-    { key: 103, label: 'Harmony' },
-    { key: 104, label: 'Health' },
-    { key: 105, label: 'Honesty' },
-    { key: 106, label: 'Honor' },
-    { key: 107, label: 'Hope' },
-    { key: 108, label: 'Humility' },
-    { key: 109, label: 'Imagination' },
-    { key: 110, label: 'Improvement' },
-    { key: 111, label: 'Independence' },
-    { key: 112, label: 'Individuality' },
-    { key: 113, label: 'Innovation' },
-    { key: 114, label: 'Inquisitive' },
-    { key: 115, label: 'Insightful' },
-    { key: 116, label: 'Inspiring' },
-    { key: 117, label: 'Integrity' },
-    { key: 118, label: 'Intelligence' },
-    { key: 119, label: 'Intensity' },
-    { key: 120, label: 'Intuitive' },
-    { key: 121, label: 'Irreverent' },
-    { key: 122, label: 'Joy' },
-    { key: 123, label: 'Justice' },
-    { key: 124, label: 'Kindness' },
-    { key: 125, label: 'Knowledge' },
-    { key: 126, label: 'Lawful' },
-    { key: 127, label: 'Leadership' },
-    { key: 128, label: 'Learning' },
-    { key: 129, label: 'Liberty' },
-    { key: 130, label: 'Logic' },
-    { key: 131, label: 'Love' },
-    { key: 132, label: 'Loyalty' },
-    { key: 133, label: 'Mastery' },
-    { key: 134, label: 'Maturity' },
-    { key: 135, label: 'Meaning' },
-    { key: 136, label: 'Moderation' },
-    { key: 137, label: 'Motivation' },
-    { key: 138, label: 'Openness' },
-    { key: 139, label: 'Optimism' },
-    { key: 140, label: 'Order' },
-    { key: 141, label: 'Organization' },
-    { key: 142, label: 'Originality' },
-    { key: 143, label: 'Passion' },
-    { key: 144, label: 'Patience' },
-    { key: 145, label: 'Peace' },
-    { key: 146, label: 'Performance' },
-    { key: 147, label: 'Persistence' },
-    { key: 148, label: 'Playfulness' },
-    { key: 149, label: 'Poise' },
-    { key: 150, label: 'Potential' },
-    { key: 151, label: 'Power' },
-    { key: 152, label: 'Present' },
-    { key: 153, label: 'Productivity' },
-    { key: 154, label: 'Professionalism' },
-    { key: 155, label: 'Prosperity' },
-    { key: 156, label: 'Purpose' },
-    { key: 157, label: 'Quality' },
-    { key: 158, label: 'Realistic' },
-    { key: 159, label: 'Reason' },
-    { key: 160, label: 'Recognition' },
-    { key: 161, label: 'Recreation' },
-    { key: 162, label: 'Reflective' },
-    { key: 163, label: 'Respect' },
-    { key: 164, label: 'Responsibility' },
-    { key: 165, label: 'Restraint' },
-    { key: 166, label: 'Results-oriented' },
-    { key: 167, label: 'Rigor' },
-    { key: 168, label: 'Risk' },
-    { key: 169, label: 'Satisfaction' },
-    { key: 170, label: 'Security' },
-    { key: 171, label: 'Self-reliance' },
-    { key: 172, label: 'Selfless' },
-    { key: 173, label: 'Sensitivity' },
-    { key: 174, label: 'Serenity' },
-    { key: 175, label: 'Service' },
-    { key: 176, label: 'Sharing' },
-    { key: 177, label: 'Significance' },
-    { key: 178, label: 'Silence' },
-    { key: 179, label: 'Simplicity' },
-    { key: 180, label: 'Sincerity' },
-    { key: 181, label: 'Skill' },
-    { key: 182, label: 'Skillfulness' },
-    { key: 183, label: 'Smart' },
-    { key: 184, label: 'Solitude' },
-    { key: 185, label: 'Spirit' },
-    { key: 186, label: 'Spirituality' },
-    { key: 187, label: 'Spontaneous' },
-    { key: 188, label: 'Stability' },
-    { key: 189, label: 'Status' },
-    { key: 190, label: 'Stewardship' },
-    { key: 191, label: 'Strength' },
-    { key: 192, label: 'Structure' },
-    { key: 193, label: 'Success' },
-    { key: 194, label: 'Support' },
-    { key: 195, label: 'Surprise' },
-    { key: 196, label: 'Sustainability' },
-    { key: 197, label: 'Talent' },
-    { key: 198, label: 'Teamwork' },
-    { key: 199, label: 'Temperance' },
-    { key: 200, label: 'Thankful' },
-    { key: 201, label: 'Thorough' },
-    { key: 202, label: 'Thoughtful' },
-    { key: 203, label: 'Timeliness' },
-    { key: 204, label: 'Tolerance' },
-    { key: 205, label: 'Toughness' },
-    { key: 206, label: 'Traditional' },
-    { key: 207, label: 'Tranquility' },
-    { key: 208, label: 'Transparency' },
-    { key: 209, label: 'Trust' },
-    { key: 210, label: 'Trustworthy' },
-    { key: 211, label: 'Truth' },
-    { key: 212, label: 'Understanding' },
-    { key: 213, label: 'Uniqueness' },
-    { key: 214, label: 'Unity' },
-    { key: 215, label: 'Valor' },
-    { key: 216, label: 'Victory' },
-    { key: 217, label: 'Vigor' },
-    { key: 218, label: 'Vision' },
-    { key: 219, label: 'Vitality' },
-    { key: 220, label: 'Wealth' },
-    { key: 221, label: 'Welcoming' },
-    { key: 222, label: 'Winning' },
-    { key: 223, label: 'Wisdom' },
-    { key: 224, label: 'Wonder' },
-  ]);
+  const chips = [
+    'Acceptance',
+    'Accomplishment',
+    'Accountability',
+    'Accuracy',
+    'Achievement',
+    'Adaptability',
+    'Alertness',
+    'Altruism',
+    'Ambition',
+    'Amusement',
+    'Assertiveness',
+    'Attentive',
+    'Awareness',
+    'Balance',
+    'Beauty',
+    'Boldness',
+    'Bravery',
+    'Brilliance',
+    'Calm',
+    'Candor',
+    'Capable',
+    'Careful',
+    'Certainty',
+    'Challenge',
+    'Charity',
+    'Cleanliness',
+    'Clear',
+    'Clever',
+    'Comfort',
+    'Commitment',
+    'Common Sense',
+    'Communication',
+    'Community',
+    'Compassion',
+    'Competence',
+    'Concentration',
+    'Confidence',
+    'Connection',
+    'Consciousness',
+    'Consistency',
+    'Contentment',
+    'Contribution',
+    'Control',
+    'Conviction',
+    'Cooperation',
+    'Courage',
+    'Courtesy',
+    'Creation',
+    'Creativity',
+    'Credibility',
+    'Curiosity',
+    'Decisive',
+    'Decisiveness',
+    'Dedication',
+    'Dependability',
+    'Determination',
+    'Development',
+    'Devotion',
+    'Dignity',
+    'Discipline',
+    'Discovery',
+    'Drive',
+    'Effectiveness',
+    'Efficiency',
+    'Empathy',
+    'Empower',
+    'Endurance',
+    'Energy',
+    'Enjoyment',
+    'Enthusiasm',
+    'Equity',
+    'Ethical',
+    'Excellence',
+    'Experience',
+    'Exploration',
+    'Expressive',
+    'Fairness',
+    'Family',
+    'Famous',
+    'Fearless',
+    'Feelings',
+    'Ferocious',
+    'Fidelity',
+    'Focus',
+    'Foresight',
+    'Fortitude',
+    'Freedom',
+    'Friendship',
+    'Fun',
+    'Generosity',
+    'Genius',
+    'Giving',
+    'Goodness',
+    'Grace',
+    'Gratitude',
+    'Greatness',
+    'Growth',
+    'Happiness',
+    'Hard work',
+    'Harmony',
+    'Health',
+    'Honesty',
+    'Honor',
+    'Hope',
+    'Humility',
+    'Imagination',
+    'Improvement',
+    'Independence',
+    'Individuality',
+    'Innovation',
+    'Inquisitive',
+    'Insightful',
+    'Inspiring',
+    'Integrity',
+    'Intelligence',
+    'Intensity',
+    'Intuitive',
+    'Irreverent',
+    'Joy',
+    'Justice',
+    'Kindness',
+    'Knowledge',
+    'Lawful',
+    'Leadership',
+    'Learning',
+    'Liberty',
+    'Logic',
+    'Love',
+    'Loyalty',
+    'Mastery',
+    'Maturity',
+    'Meaning',
+    'Moderation',
+    'Motivation',
+    'Openness',
+    'Optimism',
+    'Order',
+    'Organization',
+    'Originality',
+    'Passion',
+    'Patience',
+    'Peace',
+    'Performance',
+    'Persistence',
+    'Playfulness',
+    'Poise',
+    'Potential',
+    'Power',
+    'Present',
+    'Productivity',
+    'Professionalism',
+    'Prosperity',
+    'Purpose',
+    'Quality',
+    'Realistic',
+    'Reason',
+    'Recognition',
+    'Recreation',
+    'Reflective',
+    'Respect',
+    'Responsibility',
+    'Restraint',
+    'Results-oriented',
+    'Rigor',
+    'Risk',
+    'Satisfaction',
+    'Security',
+    'Self-reliance',
+    'Selfless',
+    'Sensitivity',
+    'Serenity',
+    'Service',
+    'Sharing',
+    'Significance',
+    'Silence',
+    'Simplicity',
+    'Sincerity',
+    'Skill',
+    'Skillfulness',
+    'Smart',
+    'Solitude',
+    'Spirit',
+    'Spirituality',
+    'Spontaneous',
+    'Stability',
+    'Status',
+    'Stewardship',
+    'Strength',
+    'Structure',
+    'Success',
+    'Support',
+    'Surprise',
+    'Sustainability',
+    'Talent',
+    'Teamwork',
+    'Temperance',
+    'Thankful',
+    'Thorough',
+    'Thoughtful',
+    'Timeliness',
+    'Tolerance',
+    'Toughness',
+    'Traditional',
+    'Tranquility',
+    'Transparency',
+    'Trust',
+    'Trustworthy',
+    'Truth',
+    'Understanding',
+    'Uniqueness',
+    'Unity',
+    'Valor',
+    'Victory',
+    'Vigor',
+    'Vision',
+    'Vitality',
+    'Wealth',
+    'Welcoming',
+    'Winning',
+    'Wisdom',
+    'Wonder',
+  ];
 
   useEffect(() => {
     dispatch({
         type: 'FETCH_CORE_VALUES'
     });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
 
     setManifestoText('');
     setEditManifestoText('');
@@ -387,37 +389,90 @@ const handleDeleteCoreValue = (id) => {
           {/* Prototype Grid layout */}
       <Grid container spacing={3}>
         <Grid xs={4}>
-        <AutoScale>
-              <Manifesto />
+          <div className="manifestoPadding">
+            <AutoScale>
+                <Manifesto />
             </AutoScale>
+          </div>
         </Grid>
-        <Grid container item xs={8}>
+        <Grid container item xs={8} className="scrollableDiv">
             <center>
-              <h1>Core Values</h1>
-              <h3>You can’t argue with your core values. They just are. What are yours?</h3>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"header"}
+                  default_value={`Core Values`}
+                />
+              </h1>
+              <h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid"}
+                  default_value={`
+                    You can’t argue with your core values. They just are. What are yours?
+                  `}
+                />
+              </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-                <div className="videoWrapper">
-                  <iframe
-                    width="512"
-                    height="288"
-                    src="https://player.vimeo.com/video/599578721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a2b5bd36bf"
-                  ></iframe>
-                </div>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599578721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a2b5bd36bf"
+                  }
+                />
               </Grid>
               <Grid item xs={6}>
-                    <p>Most companies have identified a set of core values. Oftentimes they post them on their walls as a reminder for their employees, their customers, & everyone they encounter.</p>
-                    <p>If it makes sense for a business, it definitely makes sense for an individual to have a personal set of core values. Uncompromising, non-negotiables.</p>
-                    <p>Our values reveal themselves to us.</p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid1"}
+                        default_value={`
+                        Most companies have identified a set of core values.
+                        Oftentimes they post them on their walls as a reminder
+                        for their employees, their customers, & everyone they encounter.
+                        `}
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid2"}
+                        default_value={`
+                        If it makes sense for a business, it definitely makes sense
+                        for an individual to have a personal set of core values.
+                        Uncompromising, non-negotiables.
+                        `}
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid3"}
+                        default_value={`
+                        Our values reveal themselves to us.
+                        `}
+                      />
+                    </p>
               </Grid>
             </Grid>
               <Grid item xs={12}>
                 <center>
-                  <h4>What five core values have revealed themselves to you in the course of your life?
-                    Pick 4-5-6 core values. Ones that have revealed themselves to you in your life.
-                    The challenge here is this: there may be many core values that resonate with you.
-                    For your 100 Year Manifesto, which are the ones that are in your heart of hearts. What are those core values?</h4>
+                  <h4>
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"bottom1"}
+                      default_value={`
+                        What five core values have revealed themselves to you in the course of your life?
+                        Pick 4-5-6 core values. Ones that have revealed themselves to you in your life.
+                        The challenge here is this: there may be many core values that resonate with you.
+                        For your 100 Year Manifesto, which are the ones that are in your heart of hearts. What are those core values?
+                      `}
+                    />
+                  </h4>
                   {/* What is the "For Good" section renamed as? <button className="nextButton" onClick={() => history.push('/forgood')}>NEXT</button> */}
                 </center>
             <Grid item xs={12} container spacing={2}>
@@ -520,64 +575,9 @@ const handleDeleteCoreValue = (id) => {
                 }
               })}
             </Grid>
-            {coreValues.length >= 6 ?
                 <Paper component="ul" className={classes.root}>
-                    {chipData.map((data) => {
-                      for (const value of coreValues) {
-                        if (data.label === value.manifesto_text) {
-                          return (
-                            <li key={data.key}>
-                            <Chip
-                            label={data.label}
-                            className={classes.chip}
-                            clickable
-                           
-                            color="secondary"
-                            />
-                            </li>
-                          )}}
-                        return (
-                          <li key={data.key}>
-                          <Chip
-                          label={data.label}
-                          className={classes.chip}
-                          clickable
-                         
-                          color="primary"
-                          />
-                          </li>
-                        )
-                    })}
-                </Paper> :
-                <Paper component="ul" className={classes.root}>
-                {chipData.map((data) => {
-                  for (const value of coreValues) {
-                    if (data.label === value.manifesto_text) {
-                      return (
-                        <li key={data.key}>
-                        <Chip
-                        label={data.label}
-                        className={classes.chip}
-                        clickable
-                        onClick={() => handleDeleteCoreValue(value.id)}
-                        color="secondary"
-                        />
-                        </li>
-                      )}}
-                    return (
-                      <li key={data.key}>
-                      <Chip
-                      label={data.label}
-                      className={classes.chip}
-                      clickable
-                      onClick={() => handleAddCoreValue(data.label)}
-                      color="primary"
-                      />
-                      </li>
-                    )
-                })}
-            </Paper>
-}
+                  <AdminEdits page_id={page_id} html_id={"chipsArray"} html_type={'array'} default_value={chips} current_selection={coreValues} max_selected={6} handleAddFunction={addCoreValueChip} handleDeleteFunction={deleteCoreValue}/>
+                </Paper>
               </Grid>
           </Grid>
         </Grid>

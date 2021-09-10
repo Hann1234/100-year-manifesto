@@ -6,9 +6,11 @@
 /* Manifesto styles*/
 .manifestoContainer{
   width: var(--manifestoWidth);
-  height: var(--manifestoHeight);
-  padding: 50px;
+  height: var(--manifestoHeight); 
   display: flex;
+}
+.manifestoPadding{
+  margin-left: 20px;
 }
 
 .manifesto{
@@ -19,36 +21,37 @@
 
 .blueBar{
   height: calc(var(--manifestoHeight) * .01818);
-  background-color: #4d5470;
+  background-color: #575f80;
 }
 
 .titleSection{
-  height: calc(var(--manifestoHeight) * .1818);
+  height: calc(var(--manifestoHeight) * .155);
   text-align: center;
   font-family: 'Oswald Stencil';
 }
 
 .hundredYear{
   font-size: 80px;
+  margin: -12px 0 0 0 ;
 }
 .userName{
   font-size: 60px;
+  margin: -20px 0 0 0;
 }
 .userName:hover{
   cursor: pointer;
 }
 .smallColumn{
-  width: calc(var(--manifestoWidth) * .2272);
-  margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
-  height: calc(var(--manifestoHeight) * .7813);
+  width: calc(var(--manifestoWidth) * .23);
+  height: calc(var(--manifestoHeight) * .8081);
   text-align: center;
 }
 .mission{
   background-color: #4d5470;
   color:#e7e7e7;
-  font-size: 30px;
+  font-size: 26px;
   padding: 8px;
-  min-height: 15%;
+  min-height: 12%;
 }
 .smTitle{
   font-size: 20px;
@@ -81,13 +84,29 @@
   border-bottom: 1px solid #8088a7; 
   padding: 4px 8px;
 }
-
+.principles{
+  text-align: left;
+}
 .principlesTitle{
   color:#e7e7e7;
   margin-top: 8px;
 }
 
+<<<<<<< HEAD
 .principleItem{
   text-align: left;
   font-size: 10px;
+=======
+.pi10{
+  font-size: 10px;
+}
+.pi12{
+  font-size: 12px;
+}
+.pi14{
+  font-size: 14px;
+}
+.pi16{
+  font-size: 16px;
+>>>>>>> 2689b6071ee9e01a6f82b81e3ec9098a9818e277
 }
