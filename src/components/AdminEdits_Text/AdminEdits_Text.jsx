@@ -139,7 +139,7 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
     return (
         <>{
             user.role !== "admin" ?
-            // user case
+            // customer case
             <>{value}</> :
             // admin case
             <>{
