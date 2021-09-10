@@ -29,7 +29,7 @@ function Manifesto(){
         gpTwo = guidingPrinciples.slice(-half);
     } 
     return(
-        <div className="manifestoContainer" >
+        <div className="manifestoContainer">
             <Grid className="manifesto" container direction="column">
                 <Grid item>
                     <div className="blueBar"></div>
@@ -38,7 +38,7 @@ function Manifesto(){
                     <div className="hundredYear">100 YEAR MANIFESTO</div>
                     <div className="userName">JOSE RUBIO</div>
                 </Grid>
-                <Grid className="content" item container direction="row" justifyContent="center">
+                <Grid className="content" item container direction="row" justifyContent="space-around">
                     <Grid className="smallColumn">
                         <div className="mission">MISSION: {mission.length !==0 ? mission[0].manifesto_text : "null"}</div>
                         <div className="smallColumnAutoFill dottedBottom">
@@ -100,25 +100,25 @@ function Manifesto(){
                         <div className="principlesTitle blueBar">Guiding Principles</div>
                         <div className="principles bigColumnAutoFill">
                             {guidingPrinciples.length !== 0 && guidingPrinciples.length < 6 ? 
-                            <Grid container spacing={3}>
+                            <Grid container spacing={1}>
                                 {guidingPrinciples.map(textItem => {
                                     return(
-                                        <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                        <Grid item xs={12} className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
                                     )
                                 })}
                             </Grid>
-                            :<Grid container direction="row" spacing={2}>
-                                <Grid container item  xs={6} spacing={3}>
+                            :<Grid container direction="row" spacing={1}>
+                                <Grid container item container xs={6} spacing={2} >
                                     {gpOne.map(textItem => {
                                         return(
-                                            <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                            <Grid item  className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
                                         )
                                     })}
                                 </Grid>
-                                <Grid container item  xs={6} spacing={3}>
+                                <Grid container item  xs={6} spacing={2} justifyContent="space-around" direction="column">
                                 {gpTwo.map(textItem => {
                                     return(
-                                        <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                        <Grid item  className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
                                     )
                                 })}
                                  </Grid>
@@ -132,6 +132,15 @@ function Manifesto(){
             </Grid>
         </div>
     )
+}
+
+function gpFontSize(text){
+    let fontSizeClass = ""
+    text.length<=50 ? fontSizeClass="pi16": null;
+    text.length>50 && text.length <= 100 ? fontSizeClass="pi14": null;
+    text.length>100 && text.length <= 200 ? fontSizeClass="pi12": null;
+    text.length>200 ? fontSizeClass="pi10": null;
+    return fontSizeClass
 }
 
 export default Manifesto;

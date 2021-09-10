@@ -6,9 +6,11 @@
 /* Manifesto styles*/
 .manifestoContainer{
   width: var(--manifestoWidth);
-  height: var(--manifestoHeight);
-  padding: 50px;
+  height: var(--manifestoHeight); 
   display: flex;
+}
+.manifestoPadding{
+  margin-left: 20px;
 }
 
 .manifesto{
@@ -40,8 +42,7 @@
   cursor: pointer;
 }
 .smallColumn{
-  width: calc(var(--manifestoWidth) * .2272);
-  margin: 0 calc(var(--manifestoHeight) * .02272) 0 calc(var(--manifestoHeight) * .02272);
+  width: calc(var(--manifestoWidth) * .23);
   height: calc(var(--manifestoHeight) * .8081);
   text-align: center;
 }
@@ -83,12 +84,23 @@
   border-bottom: 1px solid #8088a7; 
   padding: 4px 8px;
 }
-
+.principles{
+  text-align: left;
+}
 .principlesTitle{
   color:#e7e7e7;
   margin-top: 8px;
 }
 
-.principleItem{
-  text-align: left;
+.pi10{
+  font-size: 10px;
+}
+.pi12{
+  font-size: 12px;
+}
+.pi14{
+  font-size: 14px;
+}
+.pi16{
+  font-size: 16px;
 }
