@@ -9,14 +9,14 @@ import App from './components/App/App';
 //material.ui imports:
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import grey from '@material-ui/core/colors/grey';
+import blue from '@material-ui/core/colors/blue';
 import cyan from '@material-ui/core/colors/cyan';
 
 //material.ui theme const:
 const theme = createTheme({
   palette: {
     primary: {
-      main: grey[300],
+      main: blue[500],
     },
     secondary: {
       main: cyan[300],
