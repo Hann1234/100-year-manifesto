@@ -139,7 +139,7 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
     return (
         <>{
             user.role !== "admin" ?
-            // user case
+            // customer case
             <div className="videoWrapper">
                 <iframe
                     width="512"

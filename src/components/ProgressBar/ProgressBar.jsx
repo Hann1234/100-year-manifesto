@@ -68,7 +68,7 @@ function ProgressBar() {
       case 1:
         return history.push("/missionStatement");
       case 2:
-        return history.push("/wordsToLiveBy");
+        return history.push("/mantras");
       case 3:
         return history.push("/coreValues");
       case 4:

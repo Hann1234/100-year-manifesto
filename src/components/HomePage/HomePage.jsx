@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   circle: {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    borderRadius: '50%',
-    padding: 24,
+    // padding: 24,
     marginRight: 20,
-    height: 48,
-    width: 48,
+    marginTop: 23,
+    // height: 48,
+    // width: 48,
   },
 }));
 
@@ -62,42 +62,42 @@ function HomePage() {
               <Manifesto />
             </AutoScale>
         </Grid>
-        <Grid item align="center" xs={8}>
-          <div>
+        <Grid container item xs={8}>
+          <Grid item align="center" xs={12}>
             <h1>Welcome, {user.name}! Start your journey here!</h1>
-          </div >
-          <Grid container item xs={12} onClick={() => history.push("/intro")}>
-              <div className={classes.circle}>1</div>
+          </Grid >
+          <Grid container item align="center" xs={12} onClick={() => history.push("/intro")}>
+              <Avatar className={classes.circle}>1</Avatar>
               <h1>Intro: Your 100 Year Manifesto</h1>
           </Grid>
-          <div onClick={() => history.push("missionStatement")}>
+          <Grid container item xs={12} onClick={() => history.push("missionStatement")}>
             <Avatar className={classes.circle}>2</Avatar> 
             <h1>Mission Statement</h1>
-          </div>
-          <div onClick={() => history.push("/mantras")}>
+          </Grid>
+          <Grid container item xs={12} onClick={() => history.push("/mantras")}>
             <Avatar className={classes.circle}>3</Avatar> 
             <h1>Words to Live By</h1>
-          </div>
-          <div onClick={() => history.push("/coreValues")}>
+          </Grid>
+          <Grid container item xs={12} onClick={() => history.push("/coreValues")}>
             <Avatar className={classes.circle}>4</Avatar> 
             <h1>Core Values</h1>
-          </div>
-          <div onClick={() => history.push("/forGood")}>
+          </Grid>
+          <Grid container item xs={12} onClick={() => history.push("/forGood")}>
           <Avatar className={classes.circle}>5</Avatar> 
             <h1>For Good</h1>
-          </div>
-          <div onClick={() => history.push("/lifeGoals")}>
+          </Grid>
+          <Grid container item xs={12} onClick={() => history.push("/lifeGoals")}>
           <Avatar className={classes.circle}>6</Avatar> 
             <h1>Life Goals</h1>
-          </div>
-          <div onClick={() => history.push("/guidingPrinciples")}>
+          </Grid>
+          <Grid container item xs={12} onClick={() => history.push("/guidingPrinciples")}>
           <Avatar className={classes.circle}>7</Avatar> 
             <h1>Guiding Principles</h1>
-          </div>
-          <div onClick={() => history.push("/nextSteps")}>
+          </Grid>
+          <Grid container item xs={12} onClick={() => history.push("/nextSteps")}>
           <Avatar className={classes.circle}>8</Avatar> 
             <h1>Next Steps</h1>
-          </div>
+          </Grid>
           <button className={classes.button} onClick={() => history.push("/intro")}>START</button>
         </Grid>
         <Grid item xs={8}>
