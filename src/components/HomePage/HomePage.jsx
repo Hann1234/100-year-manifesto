@@ -30,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   circle: {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    borderRadius: '50%',
+    padding: 24,
+    marginRight: 20,
+    height: 48,
+    width: 48,
   },
 }));
 
@@ -62,13 +67,8 @@ function HomePage() {
             <h1>Welcome, {user.name}! Start your journey here!</h1>
           </div >
           <Grid container item xs={12} onClick={() => history.push("/intro")}>
-            <Grid item xs={3}></Grid>
-            <Grid item justify="center" xs={1}>
-              <Avatar justify="center" className={classes.circle}>1</Avatar>
-            </Grid>
-            <Grid item xs={8}>
+              <div className={classes.circle}>1</div>
               <h1>Intro: Your 100 Year Manifesto</h1>
-            </Grid>
           </Grid>
           <div onClick={() => history.push("missionStatement")}>
             <Avatar className={classes.circle}>2</Avatar> 
