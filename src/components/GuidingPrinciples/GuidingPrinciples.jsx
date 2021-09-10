@@ -42,6 +42,7 @@ function GuidingPrinciples() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [editSourceText, setEditSourceText] = useState('');
   const [itemToEdit, setItemToEdit] = useState(0);
+  const [max, setMax] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const page_id = 7;
@@ -54,6 +55,8 @@ function GuidingPrinciples() {
   }, []);
 
   const addGuidingPrinciple = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
       type: "ADD_GUIDING_PRINCIPLE",
       payload: {
@@ -63,13 +66,31 @@ function GuidingPrinciples() {
     });
     setSource("");
     setManifestoText("");
+  }
   };
+
   const startEdit = (itemToEdit) => {
     setEditManifestoText(itemToEdit.manifesto_text);
     setEditSourceText(itemToEdit.source);
     setItemToEdit(itemToEdit.id);
   };
 
+ 
+  
+  let letterCount = 0;
+    
+    for( const item of guidingPrinciples ) {
+      letterCount += item.manifesto_text.length; 
+      } 
+      
+      const handleChange = (value) => {
+        setManifestoText(value)
+        if (letterCount + value.length >= 2800){
+          setMax(true)
+        }
+        else setMax(false)
+      }  
+  
   const editGuidingPrinciple = (id) => {
     dispatch({
       type: "UPDATE_GUIDING_PRINCIPLE",
@@ -216,7 +237,8 @@ function GuidingPrinciples() {
                   style={{ width: "100%" }}
                   value={manifestoText}
                   variant="outlined"
-                  onChange={(event) => setManifestoText(event.target.value)}
+                  onChange={(event) => handleChange(event.target.value)}
+                  
                 />
 
                 <TextField
@@ -228,18 +250,67 @@ function GuidingPrinciples() {
                   variant="outlined"
                   onChange={(event) => setSource(event.target.value)}
                 />
-                <Button
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addGuidingPrinciple()}
-                >
-                  ADD
-                </Button>
+
+                {(max === true) ?
+                guidingPrinciples.length >= 10 ?
+                  <Button
+                  disabled
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addGuidingPrinciple()}
+                  >
+                    ADD
+                  </Button>
+                  
+                  :
+                  <Button
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addGuidingPrinciple()}
+                  >
+                    ADD
+                  </Button>
+                
+                :
+                guidingPrinciples.length >= 10 ?
+                  <Button
+                  disabled
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addGuidingPrinciple()}
+                  >
+                    ADD
+                  </Button>
+                  :
+                  <Button
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addGuidingPrinciple()}
+                  >
+                    ADD
+                  </Button> 
+                
+}
               </section>
             </Grid>
 
