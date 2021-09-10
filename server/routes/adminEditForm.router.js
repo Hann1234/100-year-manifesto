@@ -52,7 +52,6 @@ const router = express.Router();
   if (req.user.role === "admin" || req.user.role === "superadmin") {
     const edit_date = decodeURIComponent(req.query.edit_date);
     const html_id = decodeURIComponent(req.query.html_id);
-    console.log('edit_date', edit_date);
 
     // filter out results that are more recent than req.body.edit_date
     // group by page_id and html_id
