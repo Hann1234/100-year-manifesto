@@ -33,8 +33,6 @@ function AdminPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
-        <p><AdminEdits page_id={page_id} html_id={"about_text"} default_value={"This about page is for anyone to read!"}/></p>
       </div>
     </div>
   );
