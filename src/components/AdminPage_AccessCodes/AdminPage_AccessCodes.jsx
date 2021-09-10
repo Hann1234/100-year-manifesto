@@ -83,7 +83,7 @@ function AdminPage_AccessCodes() {
     <section className="container">
       <section id={"access-code-section"}>
         <section id={"active-access-code-list-section"}>
-          <Button onClick={saveCodeToDb}>Save to DB<SaveIcon /></Button>
+          <Button onClick={saveCodeToDb}>Save<SaveIcon /></Button>
           <div style={{position: "relative", margin: "10px"}}>
             <span style={{paddingRight: "10px"}}>New access code:</span>
             <TextField

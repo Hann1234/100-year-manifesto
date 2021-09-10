@@ -166,7 +166,7 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
                                     confirmDelete ?
                                     <>
                                         <br/>
-                                        Are you sure you want to delete this value from the database?
+                                        Are you sure you want to delete this?
                                         <CancelOutlinedIcon onClick={() => setConfirmDelete(false)}/>
                                         <CheckIcon onClick={() => {deleteChangeFromDb(); setConfirmDelete(false);}}/>
                                     </> :
