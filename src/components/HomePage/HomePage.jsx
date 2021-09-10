@@ -30,11 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
   circle: {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-    // padding: 24,
     marginRight: 20,
     marginTop: 23,
-    // height: 48,
-    // width: 48,
   },
 }));
 
