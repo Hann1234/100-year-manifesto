@@ -10,6 +10,8 @@ import forGoodSaga from './forGoodSaga';
 import guidingPrinciplesSaga from './guidingPrinciplesSaga';
 import additionalQuestionsSaga from './additionalQuestionsSaga';
 import adminEditFormSaga from './adminEditForm.saga';
+import adminEditUsersSaga from './adminEditUsers.saga';
+import adminAccessCodes from './adminAccessCodes.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +33,7 @@ export default function* rootSaga() {
     guidingPrinciplesSaga(),
     additionalQuestionsSaga(),
     adminEditFormSaga(),
+    adminEditUsersSaga(),
+    adminAccessCodes(),
   ]);
 }
