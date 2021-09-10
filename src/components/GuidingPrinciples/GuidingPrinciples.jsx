@@ -40,7 +40,7 @@ function GuidingPrinciples() {
   const [manifestoText, setManifestoText] = useState("");
   const [source, setSource] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [editSourceText, setEditSourceText] = useState('');
+  const [editSourceText, setEditSourceText] = useState("");
   const [itemToEdit, setItemToEdit] = useState(0);
   const [max, setMax] = useState(false);
   const classes = useStyles();
@@ -55,18 +55,18 @@ function GuidingPrinciples() {
   }, []);
 
   const addGuidingPrinciple = () => {
-    if(manifestoText === ""){}
-    else{
-    dispatch({
-      type: "ADD_GUIDING_PRINCIPLE",
-      payload: {
-        manifestoText: manifestoText,
-        source: source,
-      },
-    });
-    setSource("");
-    setManifestoText("");
-  }
+    if (manifestoText === "") {
+    } else {
+      dispatch({
+        type: "ADD_GUIDING_PRINCIPLE",
+        payload: {
+          manifestoText: manifestoText,
+          source: source,
+        },
+      });
+      setSource("");
+      setManifestoText("");
+    }
   };
 
   const startEdit = (itemToEdit) => {
@@ -75,33 +75,31 @@ function GuidingPrinciples() {
     setItemToEdit(itemToEdit.id);
   };
 
- 
-  
   let letterCount = 0;
-    
-    for( const item of guidingPrinciples ) {
-      letterCount += item.manifesto_text.length; 
-      } 
-      
-      const handleChange = (value) => {
-        setManifestoText(value)
-        if (letterCount + value.length >= 2800){
-          setMax(true)
-        }
-        else setMax(false)
-      }  
-  
+
+  for (const item of guidingPrinciples) {
+    letterCount += item.manifesto_text.length;
+  }
+
+  const handleChange = (value) => {
+    setManifestoText(value);
+    if (letterCount + value.length >= 2800) {
+      setMax(true);
+    } else setMax(false);
+  };
+
   const editGuidingPrinciple = (id) => {
     dispatch({
       type: "UPDATE_GUIDING_PRINCIPLE",
       payload: {
         id: id,
-        manifestoText: editManifestoText, source: editSourceText
+        manifestoText: editManifestoText,
+        source: editSourceText,
       },
     });
 
     setEditManifestoText("");
-    setEditSourceText('');
+    setEditSourceText("");
     setItemToEdit(0);
   };
 
@@ -120,7 +118,7 @@ function GuidingPrinciples() {
           <Grid item xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
-                  <Manifesto />
+                <Manifesto />
               </AutoScale>
             </div>
           </Grid>
@@ -238,7 +236,6 @@ function GuidingPrinciples() {
                   value={manifestoText}
                   variant="outlined"
                   onChange={(event) => handleChange(event.target.value)}
-                  
                 />
 
                 <TextField
@@ -251,10 +248,9 @@ function GuidingPrinciples() {
                   onChange={(event) => setSource(event.target.value)}
                 />
 
-                {(max === true) ?
-              
+                {max === true ? (
                   <Button
-                  disabled
+                    disabled
                     type="submit"
                     style={{
                       height: "56px",
@@ -266,10 +262,9 @@ function GuidingPrinciples() {
                   >
                     ADD
                   </Button>
-                :
-                guidingPrinciples.length >= 10 ?
+                ) : guidingPrinciples.length >= 10 ? (
                   <Button
-                  disabled
+                    disabled
                     type="submit"
                     style={{
                       height: "56px",
@@ -281,7 +276,7 @@ function GuidingPrinciples() {
                   >
                     ADD
                   </Button>
-                  :
+                ) : (
                   <Button
                     type="submit"
                     style={{
@@ -293,9 +288,8 @@ function GuidingPrinciples() {
                     onClick={() => addGuidingPrinciple()}
                   >
                     ADD
-                  </Button> 
-                
-}
+                  </Button>
+                )}
               </section>
             </Grid>
 
@@ -319,7 +313,9 @@ function GuidingPrinciples() {
                         id="outlined-required"
                         style={{ width: "50%" }}
                         placeholder={principle.source}
-                        onChange={(event) => setEditSourceText(event.target.value)}
+                        onChange={(event) =>
+                          setEditSourceText(event.target.value)
+                        }
                         variant="outlined"
                       />
                       <Button
@@ -364,7 +360,7 @@ function GuidingPrinciples() {
                           color: "#fff",
                         }}
                         variant="contained"
-                        onClick={() => startEdit (principle)}
+                        onClick={() => startEdit(principle)}
                       >
                         Edit
                       </Button>
