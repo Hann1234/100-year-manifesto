@@ -24,9 +24,8 @@ function Manifesto(){
     const user = useSelector(store => store.user);
     
     let half=guidingPrinciples.length/2;
-    let gpOne = []
+    let gpOne = [];
     let gpTwo = [];
-    
     
     if(guidingPrinciples.length > 5){
         gpOne = guidingPrinciples.slice(0,half);
@@ -44,7 +43,7 @@ function Manifesto(){
                 </Grid>
                 <Grid className="content" item container direction="row" justifyContent="space-around">
                     <Grid className="smallColumn">
-                        <div className="mission">MISSION: {mission.length !==0 ? mission[0].manifesto_text : "null"}</div>
+                        <div className="mission">MISSION: {mission.length !==0 && mission[0].manifesto_text}</div>
                         <div className="smallColumnAutoFill dottedBottom">
                             <div className="smTitle">MANTRAS:</div>
                             {mantras.length !==0 && mantras.map(mantra => {
