@@ -109,7 +109,6 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
 
     // get database settings
     const pullEditByDate = () => {
-        console.log("date", date);
         dispatch({
             type: 'FETCH_EDIT_ON_DATE',
             payload: {
@@ -135,13 +134,12 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
         }
     } // end deleteChangeFromDb
 
-    console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
-            user.role !== "admin" ?
+            user.role !== "admin" && user.role !== "superadmin" ?
             // customer case
             <>{value}</> :
-            // admin case
+            // admin && superadmin case
             <>{
                 edit ?
                 // edit mode

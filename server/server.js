@@ -18,7 +18,8 @@ const guidingPrinciplesRouter = require('./routes/guidingPrinciples.router');
 const additionalQuestionsRouter = require('./routes/additionalQuestions.router');
 const trackVideoRouter = require('./routes/trackVideo.router');
 const adminEditFormRouter = require('./routes/adminEditForm.router');
-
+const adminEditUsersRouter = require('./routes/adminEditUsers.router');
+const adminAccessCodes = require('./routes/adminAccessCodes.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -42,6 +43,8 @@ app.use('/api/guidingPrinciples', guidingPrinciplesRouter);
 app.use('/api/additionalQuestions', additionalQuestionsRouter);
 app.use('/api/trackVideo', trackVideoRouter);
 app.use('/api/adminEditForm', adminEditFormRouter);
+app.use('/api/adminEditUsers', adminEditUsersRouter);
+app.use('/api/adminAccessCodes', adminAccessCodes);
 
 // Serve static files
 app.use(express.static('build'));

@@ -40,6 +40,7 @@ function RegisterForm() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [accessCode, setAccessCode] = useState("");
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -53,6 +54,7 @@ function RegisterForm() {
         name: name,
         username: username,
         password: password,
+        access_code: accessCode
       },
     });
   }; // end registerUser
@@ -118,6 +120,21 @@ function RegisterForm() {
                 value={password}
                 required
                 onChange={(event) => setPassword(event.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="accessCode"
+                label="Access Code"
+                id="accessCode"
+                autoComplete="current-accessCode"
+                name="accessCode"
+                value={accessCode}
+                required
+                onChange={(event) => setAccessCode(event.target.value)}
               />
             </Grid>
           </Grid>

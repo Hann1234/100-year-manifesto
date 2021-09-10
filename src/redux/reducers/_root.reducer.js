@@ -9,6 +9,8 @@ import forGoodReducer from './forGoodReducer';
 import guidingPrinciplesReducer from  './guidingPrinciplesReducer';
 import additionalQuestionsReducer from './additionalQuestionsReducer';
 import adminEditFormReducer from './adminEditForm.reducer';
+import userList from './adminEditUsers.reducer';
+import accessCodes from './adminAccessCodes.reducer';
 import nextButtonReducer from './nextButtonReducer';
 import completeButtonReducer from './completeButton.reducer';
 
@@ -29,6 +31,8 @@ const rootReducer = combineReducers({
   guidingPrinciplesReducer,
   additionalQuestionsReducer,
   adminEditFormReducer,
+  userList,
+  accessCodes,
   nextButtonReducer,
   completeButtonReducer,
 });

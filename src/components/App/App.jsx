@@ -13,7 +13,7 @@ import Footer from "../Footer/Footer";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from "../AboutPage/AboutPage";
+import AdminPage from "../AdminPage/AdminPage";
 import InfoPage from "../InfoPage/InfoPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -50,15 +50,19 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
-
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
+          
+          {/* Visiting localhost:3000/admin will show the admin page. */}
+          <ProtectedRoute
+            // shows AdminPage if logged in as an admin or superadmin
             exact
-            path="/about"
+            path="/admin"
           >
-            <AboutPage />
-          </Route>
+            {
+              user.role === 'admin' || user.role === 'superadmin' ?
+              <AdminPage /> :
+              <Redirect to="/login" />
+            }
+          </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.

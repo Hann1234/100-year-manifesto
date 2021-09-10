@@ -98,7 +98,7 @@ This code is also heavily commented. We recommend reading through the comments, 
   - App/App
   - Footer/Footer
   - Nav/Nav
-  - AboutPage/AboutPage
+  - AdminPage/AdminPage
   - InfoPage/InfoPage
   - UserPage/UserPage
   - LoginPage/LoginPage
