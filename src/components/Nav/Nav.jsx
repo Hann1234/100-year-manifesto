@@ -10,6 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
+import LogInButton from "../LoginButton/LoginButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,11 +37,11 @@ function Nav() {
 
   if (user.id != null) {
     loginLinkData.path = "/user";
-    // loginLinkData.text = "Home";
   }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(`Is handleClick for burger menu activating?`, event);
   };
 
   const handleClose = () => {
@@ -59,22 +60,14 @@ function Nav() {
       </Link>
       <ProgressBar />
       <div>
-        {/* If no user is logged in, show these links */}
-        {user.id === null && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        )}
-
         {/* If a user is logged in, show these links */}
         {user.id && (
           <div>
             <MenuIcon
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          />
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            />
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
@@ -83,40 +76,36 @@ function Nav() {
               onClose={handleClose}
             >
               <MenuItem
-                  className="navLink"
-                  onClick={() => {
-                    history.push("/home");
-                    handleClose();
-                  }}
-                >
-                  Home
+                className="navLink"
+                onClick={() => {
+                  history.push("/home");
+                  handleClose();
+                }}
+              >
+                Home
               </MenuItem>
               <MenuItem
-                  className="navLink"
-                  onClick={() => {
-                    history.push("/myManifesto");
-                    handleClose();
-                  }}
-                >
-                  My Manifesto
+                className="navLink"
+                onClick={() => {
+                  history.push("/myManifesto");
+                  handleClose();
+                }}
+              >
+                My Manifesto
               </MenuItem>
               <MenuItem
-                  className="navLink"
-                  onClick={() => {
-                    history.push("/about");
-                    handleClose();
-                  }}
-                >
-                  About
+                className="navLink"
+                onClick={() => {
+                  history.push("/about");
+                  handleClose();
+                }}
+              >
+                About
               </MenuItem>
               <LogOutButton className="navLink" />
             </Menu>
           </div>
         )}
-
-        {/* <Link className="navLink" to="/about">
-          About
-        </Link> */}
       </div>
     </div>
   );
