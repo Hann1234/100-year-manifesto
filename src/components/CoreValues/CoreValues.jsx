@@ -389,11 +389,13 @@ const handleDeleteCoreValue = (id) => {
           {/* Prototype Grid layout */}
       <Grid container spacing={3}>
         <Grid xs={4}>
-        <AutoScale>
-              <Manifesto />
+          <div className="manifestoPadding">
+            <AutoScale>
+                <Manifesto />
             </AutoScale>
+          </div>
         </Grid>
-        <Grid container item xs={8}>
+        <Grid container item xs={8} className="scrollableDiv">
             <center>
               <h1>
                 <AdminEdits

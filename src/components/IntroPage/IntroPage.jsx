@@ -5,7 +5,6 @@ import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -146,7 +145,7 @@ const editName = (event) => {
         <Grid align="center" item xs={12}>      
             <h4>Questions? Send us an email at team@100yearmanifesto.com</h4>
             <h4>When you complete the course, you’ll be able to save and print your own frame worthy 100 Year Manifesto.</h4>
-            <h4>You can also post it on Facebook, Twitter, Instagram, & LinkedIn.  Use the hashtag #my100yearmanifesto</h4>
+            <h4>You can also post it on Facebook, Twitter, Instagram, and LinkedIn.  Use the hashtag #my100yearmanifesto</h4>
             <h4>It’s time to start living your 100 Year Manifesto!</h4>                
         </Grid>
       </Grid>
