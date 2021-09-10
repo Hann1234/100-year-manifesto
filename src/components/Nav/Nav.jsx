@@ -60,30 +60,6 @@ function Nav() {
       </Link>
       <ProgressBar />
       <div>
-        {/* If no user is logged in, show these links */}
-        {user.id === null && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-          // <div>
-          //   <MenuIcon
-          //     aria-controls="simple-menu"
-          //     aria-haspopup="true"
-          //     onClick={handleClick}
-          //   />
-          //   <Menu
-          //     id="simple-menu"
-          //     anchorEl={anchorEl}
-          //     keepMounted
-          //     open={Boolean(anchorEl)}
-          //     onClose={handleClose}
-          //   >
-          //     <LogInButton/>
-          //   </Menu> 
-          // </div>
-        )}
-
         {/* If a user is logged in, show these links */}
         {user.id && (
           <div>
