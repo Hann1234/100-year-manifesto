@@ -47,8 +47,11 @@ function Mantras(props) {
   }, []);
 
   const addMantra = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
     setManifestoText("");
+    }
   };
 
   const editMantra = (id) => {
@@ -82,7 +85,7 @@ function Mantras(props) {
                 <AdminEdits
                   page_id={page_id}
                   html_id={"header"}
-                  default_value={"Words To Live By"}
+                  default_value={`Words To Live By`}
                 />
               </h1>
               <h3>
@@ -227,6 +230,21 @@ function Mantras(props) {
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
                 />
+                {mantras.length >= 10 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMantra()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -239,6 +257,7 @@ function Mantras(props) {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
             <br />

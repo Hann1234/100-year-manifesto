@@ -11,236 +11,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import HistoryIcon from '@material-ui/icons/History';
-import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker';
-
-const chips = [
-    'Acceptance',
-    'Accomplishment',
-    'Accountability',
-    'Accuracy',
-    'Achievement',
-    'Adaptability',
-    'Alertness',
-    'Altruism',
-    'Ambition',
-    'Amusement',
-    'Assertiveness',
-    'Attentive',
-    'Awareness',
-    'Balance',
-    'Beauty',
-    'Boldness',
-    'Bravery',
-    'Brilliance',
-    'Calm',
-    'Candor',
-    'Capable',
-    'Careful',
-    'Certainty',
-    'Challenge',
-    'Charity',
-    'Cleanliness',
-    'Clear',
-    'Clever',
-    'Comfort',
-    'Commitment',
-    'Common Sense',
-    'Communication',
-    'Community',
-    'Compassion',
-    'Competence',
-    'Concentration',
-    'Confidence',
-    'Connection',
-    'Consciousness',
-    'Consistency',
-    'Contentment',
-    'Contribution',
-    'Control',
-    'Conviction',
-    'Cooperation',
-    'Courage',
-    'Courtesy',
-    'Creation',
-    'Creativity',
-    'Credibility',
-    'Curiosity',
-    'Creation',
-    'Creativity',
-    'Credibility',
-    'Curiosity',
-    'Decisive',
-    'Decisiveness',
-    'Dedication',
-    'Dependability',
-    'Determination',
-    'Development',
-    'Devotion',
-    'Dignity',
-    'Discipline',
-    'Discovery',
-    'Drive',
-    'Effectiveness',
-    'Efficiency',
-    'Empathy',
-    'Empower',
-    'Endurance',
-    'Energy',
-    'Enjoyment',
-    'Enthusiasm',
-    'Equity',
-    'Ethical',
-    'Excellence',
-    'Experience',
-    'Exploration',
-    'Expressive',
-    'Fairness',
-    'Family',
-    'Famous',
-    'Fearless',
-    'Feelings',
-    'Ferocious',
-    'Fidelity',
-    'Focus',
-    'Foresight',
-    'Fortitude',
-    'Freedom',
-    'Friendship',
-    'Fun',
-    'Generosity',
-    'Genius',
-    'Giving',
-    'Goodness',
-    'Grace',
-    'Gratitude',
-    'Greatness',
-    'Growth',
-    'Happiness',
-    'Hard work',
-    'Harmony',
-    'Health',
-    'Honesty',
-    'Honor',
-    'Hope',
-    'Humility',
-    'Imagination',
-    'Improvement',
-    'Independence',
-    'Individuality',
-    'Innovation',
-    'Inquisitive',
-    'Insightful',
-    'Inspiring',
-    'Integrity',
-    'Intelligence',
-    'Intensity',
-    'Intuitive',
-    'Irreverent',
-    'Joy',
-    'Justice',
-    'Kindness',
-    'Knowledge',
-    'Lawful',
-    'Leadership',
-    'Learning',
-    'Liberty',
-    'Logic',
-    'Love',
-    'Loyalty',
-    'Mastery',
-    'Maturity',
-    'Meaning',
-    'Moderation',
-    'Motivation',
-    'Openness',
-    'Optimism',
-    'Order',
-    'Organization',
-    'Originality',
-    'Passion',
-    'Patience',
-    'Peace',
-    'Performance',
-    'Persistence',
-    'Playfulness',
-    'Poise',
-    'Potential',
-    'Power',
-    'Present',
-    'Productivity',
-    'Professionalism',
-    'Prosperity',
-    'Purpose',
-    'Quality',
-    'Realistic',
-    'Reason',
-    'Recognition',
-    'Recreation',
-    'Reflective',
-    'Respect',
-    'Responsibility',
-    'Restraint',
-    'Results-oriented',
-    'Rigor',
-    'Risk',
-    'Satisfaction',
-    'Security',
-    'Self-reliance',
-    'Selfless',
-    'Sensitivity',
-    'Serenity',
-    'Service',
-    'Sharing',
-    'Significance',
-    'Silence',
-    'Simplicity',
-    'Sincerity',
-    'Skill',
-    'Skillfulness',
-    'Smart',
-    'Solitude',
-    'Spirit',
-    'Spirituality',
-    'Spontaneous',
-    'Stability',
-    'Status',
-    'Stewardship',
-    'Strength',
-    'Structure',
-    'Success',
-    'Support',
-    'Surprise',
-    'Sustainability',
-    'Talent',
-    'Teamwork',
-    'Temperance',
-    'Thankful',
-    'Thorough',
-    'Thoughtful',
-    'Timeliness',
-    'Tolerance',
-    'Toughness',
-    'Traditional',
-    'Tranquility',
-    'Transparency',
-    'Trust',
-    'Trustworthy',
-    'Truth',
-    'Understanding',
-    'Uniqueness',
-    'Unity',
-    'Valor',
-    'Victory',
-    'Vigor',
-    'Vision',
-    'Vitality',
-    'Wealth',
-    'Welcoming',
-    'Winning',
-    'Wisdom',
-    'Wonder',
-  ];
+import TextField from '@material-ui/core/TextField';
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -253,10 +25,14 @@ const chips = [
     },
     chip: {
       margin: theme.spacing(0.5),
+    },
+    deleteChip: {
+      margin: theme.spacing(0.5),
+      height: "100%",
     }
   }));
 
-function AdminEdits_Array( {page_names, page_id, html_id, default_value, current_selection, handleAddFunction, handleDeleteFunction} ) {
+function AdminEdits_Array( {page_names, page_id, html_id, default_value, current_selection, max_selected, handleAddFunction, handleDeleteFunction} ) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch ();
     const classes = useStyles();
@@ -266,7 +42,9 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     const [date, setDate] = useState(new Date());
     const [editDate, setEditDate] = useState(false);
     const current_selection_sorted = current_selection.sort((a,b) => (a.manifesto_text > b.manifesto_text) ? 1 : ((b.manifesto_text > a.manifesto_text) ? -1 : 0));
-    const [sortedOptions, setSortedOptions] = useState(default_value.sort());
+    const [deleteIndex, setDeleteIndex] = useState(-1);
+    const [addChip, setAddChip] = useState(false);
+    const [newChipValue, setNewChipValue] = useState("");
 
     // getCurrentValue
     const getCurrentValue = () => {
@@ -276,7 +54,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
             if (adminEditFormReducer.pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) {
                 // return object {value: html_content, id: id}
                 return {
-                    value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content,
+                    value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content.split(','),
                     id: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).id
                 };
             }
@@ -293,7 +71,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
             if (adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id && row.html_type === 'array')) {
                 // return object {value: html_content, id: id}
                 return {
-                    value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content,
+                    value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content.split(','),
                     id: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).id
                 };
             }
@@ -307,19 +85,29 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     const initialValue = editDate ? getValueOnDate() : getCurrentValue();
     
     const [edit, setEdit] = useState(false);
-    const [value, setValue] = useState(initialValue.value);
+    const [sortedOptions, setSortedOptions] = useState(initialValue.value.sort());
     const [confirmDelete, setConfirmDelete] = useState(false);
 
 
     // once adminEdiForm reducer is populated, update value useState
     useEffect(() => {
-        setValue(initialValue.value);
+        setSortedOptions(initialValue.value.sort());
     }, [adminEditFormReducer, editDate]);
 
+    const addChangeToLocalList = () => {
+        const newArray = [...sortedOptions, newChipValue];
+        setSortedOptions(newArray.sort());
+        setNewChipValue("");
+    } // end addChangeToLocalList
 
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    }; // end handleChange
+    const deleteChangeFromLocalList = (valueIn) => {
+        const removeIndex = sortedOptions.indexOf(valueIn);
+        const newArray = [...sortedOptions];
+        if (removeIndex > -1) {
+            newArray.splice(removeIndex, 1);
+        }
+        setSortedOptions(newArray);
+    } // end deleteChangeFromLocalList
 
     // save change to the database
     const saveChangesToDb = () => {
@@ -331,7 +119,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                     page_name: page_names[page_id], // get page name from page_names constant using page_id 
                     html_id: html_id,
                     html_type: 'array',
-                    html_content: value
+                    html_content: sortedOptions.toString()
                 } 
             });
         }
@@ -388,13 +176,12 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     return (
         <>{
             user.role !== "admin" ?
-            // user case
+            // customer case
             <>
             <Paper component="ul" className={classes.root}>
-                {/* .pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) */}
                 {
                     current_selection_sorted.length > 0 ?
-                    // chips in user the relevant reducer
+                    // chips from the relevant reducer
                     current_selection_sorted.map((data, index) => {
                             return (
                                 <li key={index}>
@@ -412,21 +199,35 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 }
                 {
                     // other chips
-                    sortedOptions
-                        .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
-                        .map((data, index) => {
-                            return (
-                                <li key={index}>
-                                <Chip
-                                label={data}
-                                className={classes.chip}
-                                clickable
-                                onClick={() => handleAddFunction(data)}
-                                color="primary"
-                                />
-                                </li>
-                            )
-                        })
+                    current_selection_sorted.length >= max_selected ?
+                        sortedOptions
+                            .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                            .map((data, index) => {
+                                return (
+                                    <li key={index}>
+                                    <Chip
+                                    label={data}
+                                    className={classes.chip}
+                                    color="primary"
+                                    />
+                                    </li>
+                                )
+                            }) :
+                        sortedOptions
+                            .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                            .map((data, index) => {
+                                return (
+                                    <li key={index}>
+                                    <Chip
+                                    label={data}
+                                    className={classes.chip}
+                                    clickable
+                                    onClick={() => handleAddFunction(data)}
+                                    color="primary"
+                                    />
+                                    </li>
+                                )
+                            })
                 }
             </Paper>
             </> :
@@ -435,13 +236,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 edit ?
                 // edit mode
                 <>
-                    <TextField
-                        label="Editing value"
-                        multiline
-                        value={value}
-                        onChange={handleChange}
-                    />
-                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setValue(initialValue.value);}}/>
+                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setSortedOptions(initialValue.value.sort());}}/>
                     <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
                     <ScheduleIcon onClick={() => setEditDate(!editDate)}/>
                     {
@@ -467,25 +262,79 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                         </> :
                         <></>
                     }
+                    <Paper component="ul" className={classes.root}>
+                        {
+                            addChip ?
+                            <>
+                                <TextField
+                                    id="add_chip"
+                                    label="addValue"
+                                    value={newChipValue}
+                                    onChange={() => setNewChipValue(event.target.value)}
+                                />
+                                <CancelOutlinedIcon onClick={() => setAddChip(false)}/>
+                                <CheckIcon onClick={() => {addChangeToLocalList(); setAddChip(false);}}/>
+                            </> :
+                            <Chip
+                                label={<AddCircleOutlineIcon />}
+                                clickable
+                                onClick={() => setAddChip(true)}
+                                className={classes.chip}
+                                color="primary"
+                            />
+                        }
+                        {
+                            // other chips
+                            sortedOptions
+                                .map((data, index) => {
+                                    if (deleteIndex === index) {
+                                        return (
+                                            <li key={index}>
+                                                <Chip
+                                                label={<>
+                                                    {data}
+                                                    <br/>
+                                                    DELETE?
+                                                    <CancelOutlinedIcon onClick={() => setDeleteIndex(-1)}/>
+                                                    <CheckIcon onClick={() => {deleteChangeFromLocalList(data); setDeleteIndex(-1);}}/>
+                                                </>}
+                                                className={classes.deleteChip}
+                                                color="primary"
+                                                />
+                                            </li>
+                                        )
+                                    } else {
+                                        return (
+                                            <li key={index}>
+                                                <Chip
+                                                label={<>{data}<DeleteIcon onClick={() => setDeleteIndex(index)}/></>}
+                                                className={classes.chip}
+                                                color="primary"
+                                                />
+                                            </li>
+                                        )
+                                    }
+                                })
+                        }
+                    </Paper>
                 </> :
                 // display mode (edit is false)
                 <>
                     <EditIcon onClick={() => setEdit(true)}/>
                     <Paper component="ul" className={classes.root}>
-                        {/* .pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) */}
                         {
                             current_selection_sorted.length > 0 ?
                             // chips in user the relevant reducer
                             current_selection_sorted.map((data, index) => {
                                     return (
                                         <li key={index}>
-                                        <Chip
-                                        label={data.manifesto_text}
-                                        className={classes.chip}
-                                        clickable
-                                        onClick={() => handleDeleteFunction(data.id)}
-                                        color="secondary"
-                                        />
+                                            <Chip
+                                            label={data.manifesto_text}
+                                            className={classes.chip}
+                                            clickable
+                                            onClick={() => handleDeleteFunction(data.id)}
+                                            color="secondary"
+                                            />
                                         </li>
                                     )
                                 }) :
@@ -493,6 +342,20 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                         }
                         {
                             // other chips
+                            current_selection_sorted.length >= max_selected ?
+                            sortedOptions
+                                .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                                .map((data, index) => {
+                                    return (
+                                        <li key={index}>
+                                        <Chip
+                                        label={data}
+                                        className={classes.chip}
+                                        color="primary"
+                                        />
+                                        </li>
+                                    )
+                                }) :
                             sortedOptions
                                 .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
                                 .map((data, index) => {

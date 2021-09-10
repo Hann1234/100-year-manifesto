@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
   const uId = req.user.id;
   const qText = `
     SELECT * FROM "core_values" 
-    WHERE "user_id" = $1;
+    WHERE "user_id" = $1
+    ORDER BY "id" ASC;
     `;
 
   pool.query( qText, [uId])

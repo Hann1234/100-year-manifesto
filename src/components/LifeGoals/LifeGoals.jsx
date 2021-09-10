@@ -50,11 +50,14 @@ function LifeGoals() {
   }, []);
 
   const addLifeGoal = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
       type: "ADD_LIFE_GOAL",
       payload: { manifestoText: manifestoText },
     });
     setManifestoText("");
+  }
   };
 
   const startEdit = (itemToEdit) => {
@@ -192,6 +195,21 @@ function LifeGoals() {
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
                 />
+               {lifeGoal.length >= 10 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addLifeGoal()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -204,6 +222,7 @@ function LifeGoals() {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
             <br />

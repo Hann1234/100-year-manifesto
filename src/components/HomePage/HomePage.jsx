@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
 
@@ -15,22 +15,6 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     gridTemplateColumns: "repeat(12, 1fr)",
     gridGap: theme.spacing(3),
-  },
-  paper: {
-    height: "100vh",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-  },
-  paper2: {
-    height: "10vh",
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
   },
   divider: {
     margin: theme.spacing(2, 0),
@@ -46,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   circle: {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    // padding: 24,
+    marginRight: 20,
+    marginTop: 23,
+    // height: 48,
+    // width: 48,
   },
 }));
 
@@ -69,55 +58,49 @@ function HomePage() {
   return (
       <Grid container spacing={3} xs={12}>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>
-            this is where the manifesto goes I do not know if we thought about
-            this but almost all of our pages are going to follw a vary spacific
-            grid layout so it should be atop priority to get that layout figured
-            out so we can all have it for our pages
-          </Paper>
+        <AutoScale>
+              <Manifesto />
+            </AutoScale>
         </Grid>
-        <Grid item align="center" xs={8}>
-          <div>
+        <Grid container item xs={8}>
+          <Grid item align="center" xs={12}>
             <h1>Welcome, {user.name}! Start your journey here!</h1>
-          </div >
-          <Grid container item xs={12} onClick={() => history.push("/intro")}>
-            <Grid item xs={3}></Grid>
-            <Grid item justify="center" xs={1}>
-              <Avatar justify="center" className={classes.circle}>1</Avatar>
-            </Grid>
-            <Grid item xs={8}>
+          </Grid >
+          <Grid container item align="center" justify = "center" xs={12} onClick={() => history.push("/intro")}>
+              <Avatar className={classes.circle}>1</Avatar>
               <h1>Intro: Your 100 Year Manifesto</h1>
-            </Grid>
           </Grid>
-          <div onClick={() => history.push("missionStatement")}>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("missionStatement")}>
             <Avatar className={classes.circle}>2</Avatar> 
             <h1>Mission Statement</h1>
-          </div>
-          <div onClick={() => history.push("/mantras")}>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/mantras")}>
             <Avatar className={classes.circle}>3</Avatar> 
             <h1>Words to Live By</h1>
-          </div>
-          <div onClick={() => history.push("/coreValues")}>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/coreValues")}>
             <Avatar className={classes.circle}>4</Avatar> 
             <h1>Core Values</h1>
-          </div>
-          <div onClick={() => history.push("/forGood")}>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/forGood")}>
           <Avatar className={classes.circle}>5</Avatar> 
             <h1>For Good</h1>
-          </div>
-          <div onClick={() => history.push("/lifeGoals")}>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/lifeGoals")}>
           <Avatar className={classes.circle}>6</Avatar> 
             <h1>Life Goals</h1>
-          </div>
-          <div onClick={() => history.push("/guidingPrinciples")}>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/guidingPrinciples")}>
           <Avatar className={classes.circle}>7</Avatar> 
             <h1>Guiding Principles</h1>
-          </div>
-          <div onClick={() => history.push("/nextSteps")}>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/nextSteps")}>
           <Avatar className={classes.circle}>8</Avatar> 
             <h1>Next Steps</h1>
-          </div>
+          </Grid>
+          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/nextSteps")}>
           <button className={classes.button} onClick={() => history.push("/intro")}>START</button>
+          </Grid>
         </Grid>
         <Grid item xs={8}>
           {additionalQuestions.map((answer) => {
