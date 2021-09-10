@@ -167,7 +167,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
-            user.role !== "admin" ?
+            user.role !== "admin" && user.role !== "superadmin" ?
             // customer case
             <>
             <Paper component="ul" className={classes.root}>
@@ -223,7 +223,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 }
             </Paper>
             </> :
-            // admin case
+            // admin and superadmin case
             <>{
                 edit ?
                 // edit mode

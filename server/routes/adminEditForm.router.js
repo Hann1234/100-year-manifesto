@@ -49,7 +49,7 @@ const router = express.Router();
  router.get('/edit_on_date/:page_id', rejectUnauthenticated, (req, res) => {
   console.log("in GET admin_edit_form table on date");
 
-  if (req.user.role === "admin") {
+  if (req.user.role === "admin" || req.user.role === "superadmin") {
     const edit_date = decodeURIComponent(req.query.edit_date);
     const html_id = decodeURIComponent(req.query.html_id);
     console.log('edit_date', edit_date);
@@ -98,7 +98,7 @@ const router = express.Router();
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log("in POST admin_edit_form table");
   
-  if (req.user.role === "admin") {
+  if (req.user.role === "admin" || req.user.role === "superadmin") {
 
     const postQueryText = `
       INSERT INTO "admin_edit_form" ("user_id", "page_id", "page_name", "html_id", "html_type", "html_content")
@@ -126,7 +126,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log("in DELETE admin_edit_form table");
   
-  if (req.user.role === "admin") {
+  if (req.user.role === "admin" || req.user.role === "superadmin") {
 
     const deleteQueryText = `
       DELETE FROM "admin_edit_form"

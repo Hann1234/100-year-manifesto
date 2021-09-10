@@ -1,40 +1,29 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import AdminEdits from '../AdminEdits/AdminEdits';
 
 function AdminPage() {
   const dispatch = useDispatch ();
-  const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
-  const page_id = 9;
+  const user = useSelector((store) => store.user);
+  const userList = useSelector((store) => store.userList);
   
   // component is not listed in the progress bar
   dispatch({ type: "SET_NEXT_BUTTON", payload: -1 });
 
   useEffect(() => {
-      dispatch({ type: 'FETCH_USER' });
-      dispatch({ type: 'FETCH_PAGE_EDITS', payload: {page_id: page_id} });
+      dispatch({ type: 'ADMIN_FETCH_USERS' });
   }, []);
 
-  const deleteCoreValue = (id) => {
-    dispatch({
-        type: 'DELETE_CORE_VALUE', 
-        payload: id
-    });
-  };
-
-  const addCoreValue = (manifestoText) => {
-    dispatch({
-        type: 'ADD_CORE_VALUE', 
-        payload: {
-            manifestoText: manifestoText
-        }});
-  };
-
+  console.log("userList", userList);
   return (
-    <div className="container">
-      <div>
-      </div>
-    </div>
+    <section className="container">
+      {
+        user.role !== "admin" && user.role !== "superadmin" ?
+        // if a customer somehow gets to this page (shouldn't be possible), don't render
+        <></> :
+        // admin and superadmin view
+        <></>
+      }
+    </section>
   );
 }
 

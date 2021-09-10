@@ -138,10 +138,10 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
     console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
-            user.role !== "admin" ?
+            user.role !== "admin" && user.role !== "superadmin" ?
             // customer case
             <>{value}</> :
-            // admin case
+            // admin && superadmin case
             <>{
                 edit ?
                 // edit mode
