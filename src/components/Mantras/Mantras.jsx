@@ -47,10 +47,13 @@ function Mantras(props) {
   }, []);
 
   const addMantra = () => {
-    if(manifestoText === ""){}
-    else{
-    dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
-    setManifestoText("");
+    if (manifestoText === "") {
+    } else {
+      dispatch({
+        type: "ADD_MANTRA",
+        payload: { manifestoText: manifestoText },
+      });
+      setManifestoText("");
     }
   };
 
@@ -136,7 +139,7 @@ function Mantras(props) {
                 </section>
               </Grid>
             </Grid>
-<br />
+            <br />
             <Grid item xs={12}>
               <section className="BottomText">
                 <h3>
@@ -180,7 +183,8 @@ function Mantras(props) {
                       <AdminEdits
                         page_id={page_id}
                         html_id={"bottom5"}
-                        default_value={`Live. Laugh. Love.`}/>
+                        default_value={`Live. Laugh. Love.`}
+                      />
                     </p>
                   </Grid>
                   <Grid item xs={4}>
@@ -188,7 +192,8 @@ function Mantras(props) {
                       <AdminEdits
                         page_id={page_id}
                         html_id={"bottom6"}
-                        default_value={`Embrace the uncertainty`}/>
+                        default_value={`Embrace the uncertainty`}
+                      />
                     </p>
                   </Grid>
                   <Grid item xs={4}>
@@ -196,7 +201,8 @@ function Mantras(props) {
                       <AdminEdits
                         page_id={page_id}
                         html_id={"bottom7"}
-                        default_value={`Love unconditionally`}/>
+                        default_value={`Love unconditionally`}
+                      />
                     </p>
                   </Grid>
                   <Grid item xs={4}>
@@ -204,7 +210,8 @@ function Mantras(props) {
                       <AdminEdits
                         page_id={page_id}
                         html_id={"bottom8"}
-                        default_value={`Simplify. Simplify.`}/>
+                        default_value={`Simplify. Simplify.`}
+                      />
                     </p>
                   </Grid>
                 </Grid>
@@ -228,34 +235,34 @@ function Mantras(props) {
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
                 />
-                {mantras.length >= 10 ?
-                <Button
-                disabled
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addMantra()}
-                >
-                  ADD
-                </Button>
-                :
-                <Button
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addMantra()}
-                >
-                  ADD
-                </Button>
-}
+                {mantras.length >= 10 ? (
+                  <Button
+                    disabled
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addMantra()}
+                  >
+                    ADD
+                  </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addMantra()}
+                  >
+                    ADD
+                  </Button>
+                )}
               </section>
             </Grid>
             <br />
