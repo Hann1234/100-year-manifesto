@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
@@ -60,6 +61,7 @@ function Intro() {
   const [name, setName] = useState('');
   const dispatch = useDispatch ();
   const classes = useStyles();
+  const history = useHistory();
 
   useEffect(() => {
     //need to retrieve video, image, and page details

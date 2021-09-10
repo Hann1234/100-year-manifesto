@@ -54,14 +54,14 @@ function HomePage() {
 
   return (
       <Grid container spacing={3} xs={12}>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <div className="manifestoPadding">
             <AutoScale>
                 <Manifesto />
             </AutoScale>
           </div>
         </Grid>
-        <Grid container item xs={8} className="scrollableDiv">
+        <Grid container item xs={7} className="scrollableDiv">
           <Grid item align="center" xs={12}>
             <h1>Welcome, {user.name}! Start your journey here!</h1>
           </Grid >
