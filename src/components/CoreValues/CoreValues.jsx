@@ -334,6 +334,8 @@ function CoreValues() {
   };
 
   const addCoreValue = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
         type: 'ADD_CORE_VALUE', 
         payload: {
@@ -341,7 +343,7 @@ function CoreValues() {
         }});
     
     setManifestoText('');
-
+      }
   };
 
 
@@ -481,6 +483,21 @@ const handleDeleteCoreValue = (id) => {
                   variant="outlined"
                   onChange={(event) => setManifestoText(event.target.value)}
                 />
+                {coreValues.length >= 6 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addCoreValue()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -493,6 +510,7 @@ const handleDeleteCoreValue = (id) => {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
             <br />
@@ -556,7 +574,7 @@ const handleDeleteCoreValue = (id) => {
               })}
             </Grid>
                 <Paper component="ul" className={classes.root}>
-                  <AdminEdits page_id={page_id} html_id={"chipsArray"} html_type={'array'} default_value={chips} current_selection={coreValues} handleAddFunction={addCoreValueChip} handleDeleteFunction={deleteCoreValue}/>
+                  <AdminEdits page_id={page_id} html_id={"chipsArray"} html_type={'array'} default_value={chips} current_selection={coreValues} max_selected={6} handleAddFunction={addCoreValueChip} handleDeleteFunction={deleteCoreValue}/>
                 </Paper>
               </Grid>
           </Grid>

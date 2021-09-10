@@ -27,7 +27,7 @@ import DateTimePicker from 'react-datetime-picker';
     }
   }));
 
-function AdminEdits_Array( {page_names, page_id, html_id, default_value, current_selection, handleAddFunction, handleDeleteFunction} ) {
+function AdminEdits_Array( {page_names, page_id, html_id, default_value, current_selection, max_selected, handleAddFunction, handleDeleteFunction} ) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch ();
     const classes = useStyles();
@@ -182,21 +182,35 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 }
                 {
                     // other chips
-                    sortedOptions
-                        .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
-                        .map((data, index) => {
-                            return (
-                                <li key={index}>
-                                <Chip
-                                label={data}
-                                className={classes.chip}
-                                clickable
-                                onClick={() => handleAddFunction(data)}
-                                color="primary"
-                                />
-                                </li>
-                            )
-                        })
+                    current_selection_sorted.length >= max_selected ?
+                        sortedOptions
+                            .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                            .map((data, index) => {
+                                return (
+                                    <li key={index}>
+                                    <Chip
+                                    label={data}
+                                    className={classes.chip}
+                                    color="primary"
+                                    />
+                                    </li>
+                                )
+                            }) :
+                        sortedOptions
+                            .filter(word => current_selection_sorted.filter(choice => choice.manifesto_text === word).length <= 0)
+                            .map((data, index) => {
+                                return (
+                                    <li key={index}>
+                                    <Chip
+                                    label={data}
+                                    className={classes.chip}
+                                        clickable
+                                        onClick={() => handleAddFunction(data)}
+                                    color="primary"
+                                    />
+                                    </li>
+                                )
+                            })
                 }
             </Paper>
             </> :
