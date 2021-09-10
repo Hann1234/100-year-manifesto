@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./LifeGoals.css";
@@ -50,14 +49,14 @@ function LifeGoals() {
   }, []);
 
   const addLifeGoal = () => {
-    if(manifestoText === ""){}
-    else{
-    dispatch({
-      type: "ADD_LIFE_GOAL",
-      payload: { manifestoText: manifestoText },
-    });
-    setManifestoText("");
-  }
+    if (manifestoText === "") {
+    } else {
+      dispatch({
+        type: "ADD_LIFE_GOAL",
+        payload: { manifestoText: manifestoText },
+      });
+      setManifestoText("");
+    }
   };
 
   const startEdit = (itemToEdit) => {
@@ -84,11 +83,13 @@ function LifeGoals() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <AutoScale>
-              <Manifesto />
-            </AutoScale>
+            <div className="manifestoPadding">
+              <AutoScale>
+                  <Manifesto />
+              </AutoScale>
+            </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} className="scrollableDiv">
             <center>
               <h1>
                 <AdminEdits
@@ -108,7 +109,6 @@ function LifeGoals() {
                     lived the life worthy of the calling you received.
                   `}
                 />
-                
               </h3>
             </center>
             <Grid container spacing={1}>
@@ -195,34 +195,34 @@ function LifeGoals() {
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
                 />
-               {lifeGoal.length >= 10 ?
-                <Button
-                disabled
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addLifeGoal()}
-                >
-                  ADD
-                </Button>
-                :
-                <Button
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addLifeGoal()}
-                >
-                  ADD
-                </Button>
-}
+                {lifeGoal.length >= 10 ? (
+                  <Button
+                    disabled
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addLifeGoal()}
+                  >
+                    ADD
+                  </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    style={{
+                      height: "56px",
+                      backgroundColor: "#1c4bd9",
+                      color: "#132411",
+                    }}
+                    variant="contained"
+                    onClick={() => addLifeGoal()}
+                  >
+                    ADD
+                  </Button>
+                )}
               </section>
             </Grid>
             <br />
