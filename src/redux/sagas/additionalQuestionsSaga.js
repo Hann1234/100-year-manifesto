@@ -50,7 +50,7 @@ function* additionalQuestionsSaga() {
   yield takeLatest('ADD_ADDITIONAL_QUESTION', addAdditionalQuestion);
   yield takeLatest('FETCH_ADDITIONAL_QUESTIONS', fetchAdditionalQuestions);
   yield takeLatest('UPDATE_ADDITIONAL_QUESTION', updateAdditionalQuestion);
-  yield takeLatest('DELETE_aADDITIONAL_QUESTION', deleteAdditionalQuestion);
+  yield takeLatest('DELETE_ADDITIONAL_QUESTION', deleteAdditionalQuestion);
 }
 
 export default additionalQuestionsSaga;
