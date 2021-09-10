@@ -11,7 +11,8 @@ const {rejectUnauthenticated,
     const uId = req.user.id;
     const qText = `
       SELECT * FROM "life_goals" 
-      WHERE "user_id" = $1;
+      WHERE "user_id" = $1
+      ORDER BY "id" ASC;
       `;
   
     pool.query( qText, [uId])

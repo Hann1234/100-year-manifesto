@@ -20,7 +20,14 @@ function Manifesto(){
     const forGood = useSelector((store) => store.forGoodReducer.forGood);
     const lifeGoals = useSelector((store) => store.lifeGoalsReducer.lifeGoals);
     const guidingPrinciples = useSelector((store) => store.guidingPrinciplesReducer.guidingPrinciples);
-
+    
+    let half=Math.ceil(guidingPrinciples.length/2);
+    let gpOne = []
+    let gpTwo = [];
+    if(guidingPrinciples.length > 5){
+        gpOne = guidingPrinciples.slice(0,half);
+        gpTwo = guidingPrinciples.slice(-half);
+    } 
     return(
         <div className="manifestoContainer" >
             <Grid className="manifesto" container direction="column">
@@ -34,25 +41,53 @@ function Manifesto(){
                 <Grid className="content" item container direction="row" justifyContent="center">
                     <Grid className="smallColumn">
                         <div className="mission">MISSION: {mission.length !==0 ? mission[0].manifesto_text : "null"}</div>
-                        <div className="mantras smallColumnAutoFill">
-                            <div><Typography>MANTRAS:</Typography></div>
-                            {mantras.length !==0 && mantras.map(mantra => (
-                                <ManifestoSvgElement manifestoText={mantra.manifesto_text} key={mantra.id}/>
-                            ))}
+                        <div className="smallColumnAutoFill dottedBottom">
+                            <div className="smTitle">MANTRAS:</div>
+                            {mantras.length !==0 && mantras.map(mantra => {
+                                let stringArray = mantra.manifesto_text.split(" ");
+                                let firstText ="";
+                                let textArray = [];
+                            
+                                if(mantra.manifesto_text.length >=30 || stringArray.length>4){
+                                    for (let index = 0; index <= stringArray.length-3; index++) {
+                                        firstText += stringArray[index] + " ";
+                                    }
+                                    textArray.push(firstText)
+                                    textArray.push(stringArray[stringArray.length-2] + " " + stringArray[stringArray.length-1]);
+                                }else{
+                                    textArray.push(mantra.manifesto_text);
+                                }
+                                return(
+                                    textArray.map(element => <ManifestoSvgElement manifestoText={element} />)
+                                )
+                            })}
                         </div>
-                        <div className="dotSeparation"> ********** </div>
-                        <div className="coreValues smallColumnAutoFill">
-                            <div>CORE VALUES:</div>
+                        <div className="coreValues smallColumnAutoFill dottedBottom">
+                            <div className="smTitle"> CORE VALUES:</div>
                             {coreValues.length !== 0 ? coreValues.map(value => (
                                 <ManifestoSvgElement manifestoText={value.manifesto_text} key={value.id}/>
                             )):<div className="emptySection"></div>}
                         </div>
-                        <div className="dotSeparation"> ********** </div>
-                        <div className="forGood smallColumnAutoFill">
-                            <div>FOR GOOD:</div>
-                            {forGood.length !== 0 ? forGood.map(text => (
-                                <ManifestoSvgElement manifestoText={text.manifesto_text} key={text.id}/>
-                            )):<div className="emptySection"></div>}
+                        <div className="smallColumnAutoFill">
+                            <div className="smTitle">FOR GOOD:</div>
+                            {forGood.length !== 0 ? forGood.map(text => {
+                                let stringArray = text.manifesto_text.split(" ");
+                                let firstText ="";
+                                let textArray = [];
+                            
+                                if(text.manifesto_text.length >=20 || stringArray.length>4){
+                                    for (let index = 0; index <= stringArray.length-3; index++) {
+                                        firstText += stringArray[index] + " ";
+                                    }
+                                    textArray.push(firstText)
+                                    textArray.push(stringArray[stringArray.length-2] + " " + stringArray[stringArray.length-1]);
+                                }else{
+                                    textArray.push(text.manifesto_text);
+                                }
+                                return(
+                                    textArray.map(element => <ManifestoSvgElement manifestoText={element} />)
+                                )
+                            }):<div className="emptySection"></div>}
                         </div>
                     </Grid>
                     <Grid className="bigColumn" item>
@@ -62,14 +97,33 @@ function Manifesto(){
                                 <div className="lifeGoalItem" key={textItem.id}>{textItem.manifesto_text} </div>
                             ))}
                         </div>
-                        <div className="principlesTitle"><Typography>////////////////////////////Guiding Principles////////////////////////////</Typography></div>
-                        {/* <div className="principles bigColumnAutoFill"> */}
-                            <Grid container spacing={3} direction="column" justifyContent="flex-end">
-                                {guidingPrinciples.length !== 0 && guidingPrinciples.map(textItem => (
-                                    <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
-                                ))}
+                        <div className="principlesTitle blueBar">Guiding Principles</div>
+                        <div className="principles bigColumnAutoFill">
+                            {guidingPrinciples.length !== 0 && guidingPrinciples.length < 6 ? 
+                            <Grid container spacing={3}>
+                                {guidingPrinciples.map(textItem => {
+                                    return(
+                                        <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                    )
+                                })}
                             </Grid>
-                        {/* </div> */}
+                            :<Grid container direction="row" spacing={2}>
+                                <Grid container item  xs={6} spacing={3}>
+                                    {gpOne.map(textItem => {
+                                        return(
+                                            <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                        )
+                                    })}
+                                </Grid>
+                                <Grid container item  xs={6} spacing={3}>
+                                {gpTwo.map(textItem => {
+                                    return(
+                                        <Grid item className="principleItem" key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                    )
+                                })}
+                                 </Grid>
+                            </Grid>}
+                        </div>
                     </Grid>
                 </Grid>
                 <Grid item>

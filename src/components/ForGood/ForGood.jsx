@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import "./ForGood.css";
-import { useHistory } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,7 +40,6 @@ function ForGood() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,11 +47,14 @@ function ForGood() {
   }, []);
 
   const addForGood = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
       type: "ADD_FOR_GOOD",
       payload: { manifestoText: manifestoText },
     });
     setManifestoText("");
+  }
   };
 
   const startEdit = (itemToEdit) => {
@@ -80,16 +81,17 @@ function ForGood() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Paper className={classes.paper}>
-              this is where the manifesto goes I do not know if we thought about
-              this but almost all of our pages are going to follw a vary
-              spacific grid layout so it should be atop priority to get that
-              layout figured out so we can all have it for our pages
-            </Paper>
+            <AutoScale>
+              <Manifesto />
+            </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
               <h1>For Good</h1>
+              <h3>
+                What’s you’re greater good? What causes & organizations are you
+                passionate about? Your “For Good”.
+              </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
@@ -169,17 +171,31 @@ function ForGood() {
             </Grid>
             <Grid item xs={12}>
               <section>
-                <TextareaAutosize
+                <TextField
                   required
-                  style={{ height: "30vh" }}
+                  style={{ height: "10vh" }}
                   id="outlined-required"
                   placeholder="Add For Good"
                   value={manifestoText}
                   multiline={true}
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
-                />
-
+                /> <span> </span>
+                {ForGood.length >= 4 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addForGood()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -192,6 +208,7 @@ function ForGood() {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
 
@@ -200,9 +217,8 @@ function ForGood() {
                 if (ForGood.id === itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
-                      <TextareaAutosize
+                      <TextField
                         required
-                        style={{ height: "30vh" }}
                         id="outlined-required"
                         value={ForGood.manifest_text}
                         multiline={true}
@@ -231,9 +247,8 @@ function ForGood() {
                 if (ForGood.id != itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
-                      <TextareaAutosize
+                      <TextField
                         disabled
-                        style={{ height: "30vh" }}
                         id="outlined-required"
                         value={ForGood.manifesto_text}
                         multiline={true}
@@ -253,6 +268,7 @@ function ForGood() {
                       >
                         Edit
                       </Button>
+                      <span> </span>
                       <Button
                         type="submit"
                         style={{

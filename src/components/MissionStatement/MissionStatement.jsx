@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 //**Clean up unused components!! */
 
 //Material UI styling components
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -14,6 +13,8 @@ import "./MissionStatement.css";
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,18 +23,14 @@ const useStyles = makeStyles((theme) => ({
     gridGap: theme.spacing(3),
   },
   //paper will be for Manifesto display.
-  paper: {
-    height: "100vh",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-    backgroundColor: "#475473",
-  },
 
-  divider: {
-    margin: theme.spacing(2, 0),
+  box: {
+    display: "flex",
+    padding: 8,
+  },
+  bottomBox: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
 }));
 
@@ -59,12 +56,13 @@ function MissionStatement() {
   };
 
   //Need handleSubmit
-  const addMission = (event) => {
-    event.preventDefault();
-    //Need to verify what the dispatch will be for this
+  const addMission = () => {
+    if(missionText === ""){}
+    else{
     dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });
     console.log(`What's the current state of mission?`, missionText);
     setMissionText("");
+    }
   };
 
   const editMission = (id) => {
@@ -86,12 +84,20 @@ function MissionStatement() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid xs={4}>
-            <Paper className={classes.paper}>
-              This is where the 100 Year Manifesto Poster will be displayed
-            </Paper>
+          <AutoScale>
+              <Manifesto />
+            </AutoScale>
           </Grid>
           <Grid item xs={8}>
-            <h1>Mission Statement</h1>
+            <center>
+              <h1>Mission Statement</h1>
+              <h3>
+                      Your 100 Year Manifesto starts with your mission statement.
+                      There is no great gift you can give yourself than a defining
+                      purpose. A mission statement. To live with intentionality
+                      for the cause which you were created.
+                    </h3>
+            </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
                 <div className="videoWrapper">
@@ -104,12 +110,7 @@ function MissionStatement() {
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
-                  <p>
-                    Your 100 Year Manifesto starts with your mission statement.
-                    There is no great gift you can give yourself than a defining
-                    purpose. A mission statement. To live with intentionality
-                    for the cause which you were created.
-                  </p>
+                  
                   <p>
                     Your life is worthy of a noble motive. What is it?
                     Dedicating your life to a cause greater than yourself is a
@@ -151,18 +152,34 @@ function MissionStatement() {
                     variant="outlined"
                     onChange={(evt) => setMissionText(evt.target.value)}
                   />
-                  <Button
-                    type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
-                    variant="contained"
-                    onClick={() => addMission(event)}
-                  >
-                    ADD
-                  </Button>
+                 {missions.length >= 1 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMission()}
+                >
+                  ADD
+                </Button>
+                :
+                <Button
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMission()}
+                >
+                  ADD
+                </Button>
+}
                 </center>
               </form>
             </Grid>

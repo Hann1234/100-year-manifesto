@@ -9,7 +9,8 @@ const router = express.Router();
     const uId = req.user.id;
     const qText = `
       SELECT * FROM "for_good" 
-      WHERE "user_id" = $1;
+      WHERE "user_id" = $1
+      ORDER BY "id" ASC;
       `;
   
     pool.query( qText, [uId])

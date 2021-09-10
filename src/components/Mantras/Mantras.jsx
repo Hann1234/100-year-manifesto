@@ -47,8 +47,11 @@ function Mantras(props) {
   }, []);
 
   const addMantra = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({ type: "ADD_MANTRA", payload: { manifestoText: manifestoText } });
     setManifestoText("");
+    }
   };
 
   const editMantra = (id) => {
@@ -71,7 +74,7 @@ function Mantras(props) {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             <AutoScale>
-              <Manifesto/>
+              <Manifesto />
             </AutoScale>
           </Grid>
           <Grid item xs={8} className="scrollableDiv">
@@ -80,17 +83,19 @@ function Mantras(props) {
                 <AdminEdits
                   page_id={page_id}
                   html_id={"header"}
-                  default_value={"Words To Live By"}
+                  default_value={`Words To Live By`}
                 />
               </h1>
               <h3>
                 <AdminEdits
                   page_id={page_id}
                   html_id={"right_of_vid1"}
-                  default_value={`Having a framework for decisions is critical to living a
-                      life on purpose. Guiding principles set forth through “Words to Live By.”
-                      When life brings uncertainty through events, circumstances, & difficult
-                      moments having a compass to guide your decisions is necessary.`}
+                  default_value={`
+                    Having a framework for decisions is critical to living a
+                    life on purpose. Guiding principles set forth through “Words to Live By.”
+                    When life brings uncertainty through events, circumstances, & difficult
+                    moments having a compass to guide your decisions is necessary.
+                  `}
                 />
               </h3>
             </center>
@@ -111,17 +116,21 @@ function Mantras(props) {
                     <AdminEdits
                       page_id={page_id}
                       html_id={"right_of_vid2"}
-                      default_value={`These are one, two, or three word sentences or phrases.
-                      Simple concepts that really resonate to your core.`}
+                      default_value={`
+                        These are one, two, or three word sentences or phrases.
+                        Simple concepts that really resonate to your core.
+                      `}
                     />
                   </p>
                   <p>
                     <AdminEdits
                       page_id={page_id}
                       html_id={"right_of_vid3"}
-                      default_value={`This framework might include quotes from some of the lessons
-                      you learned growing up, simple mantras you’ve picked up along the way,
-                      or phrases you repeat to yourself throughout the day.`}
+                      default_value={`
+                        This framework might include quotes from some of the lessons
+                        you learned growing up, simple mantras you’ve picked up along the way,
+                        or phrases you repeat to yourself throughout the day.
+                      `}
                     />
                   </p>
                 </section>
@@ -219,6 +228,21 @@ function Mantras(props) {
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
                 />
+                {mantras.length >= 10 ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addMantra()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -231,6 +255,7 @@ function Mantras(props) {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
             <br />
