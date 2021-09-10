@@ -98,7 +98,7 @@ function HomePage() {
           <Avatar className={classes.circle}>8</Avatar> 
             <h1>Next Steps</h1>
           </Grid>
-          <Grid container item xs={12} align="center" justify = "center" onClick={() => history.push("/nextSteps")}>
+          <Grid container item xs={12} align="center" justify = "center">
           <button className={classes.button} onClick={() => history.push("/intro")}>START</button>
           </Grid>
         </Grid>
