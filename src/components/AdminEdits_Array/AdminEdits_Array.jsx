@@ -24,6 +24,10 @@ import DateTimePicker from 'react-datetime-picker';
     },
     chip: {
       margin: theme.spacing(0.5),
+    },
+    deleteChip: {
+      margin: theme.spacing(0.5),
+      height: "100%",
     }
   }));
 
@@ -37,7 +41,8 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     const [date, setDate] = useState(new Date());
     const [editDate, setEditDate] = useState(false);
     const current_selection_sorted = current_selection.sort((a,b) => (a.manifesto_text > b.manifesto_text) ? 1 : ((b.manifesto_text > a.manifesto_text) ? -1 : 0));
-    const [sortedOptions, setSortedOptions] = useState(default_value.sort());
+    const [deleteIndex, setDeleteIndex] = useState(-1);
+
 
     // getCurrentValue
     const getCurrentValue = () => {
@@ -47,7 +52,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
             if (adminEditFormReducer.pageEdits.find(row => row.html_id === html_id && row.html_type === 'array')) {
                 // return object {value: html_content, id: id}
                 return {
-                    value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content,
+                    value: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).html_content.split(','),
                     id: adminEditFormReducer.pageEdits.find(row => row.html_id === html_id).id
                 };
             }
@@ -64,7 +69,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
             if (adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id && row.html_type === 'array')) {
                 // return object {value: html_content, id: id}
                 return {
-                    value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content,
+                    value: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).html_content.split(','),
                     id: adminEditFormReducer.pageEditsOnDate.find(row => row.html_id === html_id).id
                 };
             }
@@ -78,19 +83,23 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     const initialValue = editDate ? getValueOnDate() : getCurrentValue();
     
     const [edit, setEdit] = useState(false);
-    const [value, setValue] = useState(initialValue.value);
+    const [sortedOptions, setSortedOptions] = useState(initialValue.value.sort());
     const [confirmDelete, setConfirmDelete] = useState(false);
 
 
     // once adminEdiForm reducer is populated, update value useState
     useEffect(() => {
-        setValue(initialValue.value);
+        setSortedOptions(initialValue.value.sort());
     }, [adminEditFormReducer, editDate]);
 
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    }; // end handleChange
+    const deleteChangeFromLocalList = (valueIn) => {
+        const removeIndex = sortedOptions.indexOf(valueIn);
+        const newArray = [...sortedOptions];
+        if (removeIndex > -1) {
+            newArray.splice(removeIndex, 1);
+        }
+        setSortedOptions(newArray);
+    } // end deleteChangeFromLocalList
 
     // save change to the database
     const saveChangesToDb = () => {
@@ -102,7 +111,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                     page_name: page_names[page_id], // get page name from page_names constant using page_id 
                     html_id: html_id,
                     html_type: 'array',
-                    html_content: value
+                    html_content: sortedOptions.toString()
                 } 
             });
         }
@@ -220,7 +229,7 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 // edit mode
                 <>
                     
-                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setValue(initialValue.value);}}/>
+                    <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setSortedOptions(initialValue.value.sort());}}/>
                     <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
                     <ScheduleIcon onClick={() => setEditDate(!editDate)}/>
                     {
@@ -256,15 +265,33 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                             // other chips
                             sortedOptions
                                 .map((data, index) => {
-                                    return (
-                                        <li key={index}>
-                                            <Chip
-                                            label={<>{data}<DeleteIcon /></>}
-                                            className={classes.chip}
-                                            color="primary"
-                                            />
-                                        </li>
-                                    )
+                                    if (deleteIndex === index) {
+                                        return (
+                                            <li key={index}>
+                                                <Chip
+                                                label={<>
+                                                    {data}
+                                                    <br/>
+                                                    DELETE?
+                                                    <CancelOutlinedIcon onClick={() => setDeleteIndex(-1)}/>
+                                                    <CheckIcon onClick={() => {deleteChangeFromLocalList(data); setDeleteIndex(-1);}}/>
+                                                </>}
+                                                className={classes.deleteChip}
+                                                color="primary"
+                                                />
+                                            </li>
+                                        )
+                                    } else {
+                                        return (
+                                            <li key={index}>
+                                                <Chip
+                                                label={<>{data}<DeleteIcon onClick={() => setDeleteIndex(index)}/></>}
+                                                className={classes.chip}
+                                                color="primary"
+                                                />
+                                            </li>
+                                        )
+                                    }
                                 })
                         }
                     </Paper>
