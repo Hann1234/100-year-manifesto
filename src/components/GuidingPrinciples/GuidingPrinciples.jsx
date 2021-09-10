@@ -61,6 +61,7 @@ function GuidingPrinciples() {
         source: source,
       },
     });
+    letterCount();
     setSource("");
     setManifestoText("");
   };
@@ -69,6 +70,22 @@ function GuidingPrinciples() {
     setEditSourceText(itemToEdit.source);
     setItemToEdit(itemToEdit.id);
   };
+
+  const letterCount = () => {
+    let count = 0
+    for( const item of guidingPrinciples ) {
+      for(const value of item.manifesto_text){
+        count +=1;
+        console.log('what is this value',count);
+      }
+    }
+  }
+
+  const inputCount = () => {
+    const count = manifestoText.length
+    console.log(count);
+
+  }
 
   const editGuidingPrinciple = (id) => {
     dispatch({
