@@ -1,31 +1,23 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DateTimePicker from 'react-datetime-picker';
-import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import SaveIcon from '@material-ui/icons/Save';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    maxWidth: 752,
-  },
   demo: {
     backgroundColor: theme.palette.background.paper,
   },
@@ -35,13 +27,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AdminPage_AccessCodes() {
-  const accessCodes = useSelector((store) => store.accessCodes.accessCodes);
+  const dispatch = useDispatch ();
   const classes = useStyles();
+  const accessCodes = useSelector((store) => store.accessCodes.accessCodes);
   const [date, setDate] = useState(new Date());
   const [newCode, setNewCode] = useState("");
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
 
+  // function to format sql timestamp into a displayable
   const convertSqlTimestampToJs = (timestampIn) => {
     // Split timestamp into [ Y, M, D, h, m, s ]
     const t = timestampIn.split(/[- TZ.:]/);
@@ -51,12 +45,45 @@ function AdminPage_AccessCodes() {
 
     return d.toString();
   } // end convertSqlTimestampToJs
+
+  // function to format date into a string the database will accept
+  function toIsoString(date) {
+    var tzo = -date.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            var norm = Math.floor(Math.abs(num));
+            return (norm < 10 ? '0' : '') + norm;
+        };
+  
+    return date.getFullYear() +
+        '-' + pad(date.getMonth() + 1) +
+        '-' + pad(date.getDate()) +
+        'T' + pad(date.getHours()) +
+        ':' + pad(date.getMinutes()) +
+        ':' + pad(date.getSeconds()) +
+        dif + pad(tzo / 60) +
+        ':' + pad(tzo % 60);
+  } // end toIsoString
+
+  // save access code to the database
+  const saveCodeToDb = () => {
+    if (newCode !== '') {
+      dispatch({
+        type: 'ADMIN_ADD_ACCESS_CODE',
+        payload: {
+          access_code: newCode,
+          expiration_date: toIsoString(date)
+        } 
+    });
+    }
+} // end saveChangesToDb
   
   console.log("accessCodes", accessCodes);
   return (
     <section className="container">
       <section id={"access-code-section"}>
         <section id={"active-access-code-list-section"}>
+          <Button onClick={saveCodeToDb}>Save to DB<SaveIcon /></Button>
           <div style={{position: "relative", margin: "10px"}}>
             <span style={{paddingRight: "10px"}}>New access code:</span>
             <TextField
