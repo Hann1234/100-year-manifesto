@@ -83,7 +83,7 @@ function Mantras(props) {
                 <AdminEdits
                   page_id={page_id}
                   html_id={"header"}
-                  default_value={"Words To Live By"}
+                  default_value={`Words To Live By`}
                 />
               </h1>
               <h3>

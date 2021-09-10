@@ -16,7 +16,7 @@ const page_names = {
     8: 'next_steps',
 }
 
-function AdminEdits( {page_id, html_id, html_type = 'text', default_value, current_selection, handleAddFunction, handleDeleteFunction}) {
+function AdminEdits( {page_id, html_id, html_type = 'text', default_value, current_selection, max_selected, handleAddFunction, handleDeleteFunction}) {
     return (
         <>{
             html_type === 'text' ?
@@ -24,7 +24,7 @@ function AdminEdits( {page_id, html_id, html_type = 'text', default_value, curre
             html_type === 'video' ?
                 <AdminEdits_Video page_names={page_names} page_id={page_id} html_id={html_id} default_value={default_value}/> :
             html_type === 'array' ?
-                <AdminEdits_Array page_names={page_names} page_id={page_id} html_id={html_id} default_value={default_value} current_selection={current_selection} handleAddFunction={handleAddFunction} handleDeleteFunction={handleDeleteFunction}/> :
+                <AdminEdits_Array page_names={page_names} page_id={page_id} html_id={html_id} default_value={default_value} current_selection={current_selection} max_selected={max_selected} handleAddFunction={handleAddFunction} handleDeleteFunction={handleDeleteFunction}/> :
             <></>
         }</>
     );

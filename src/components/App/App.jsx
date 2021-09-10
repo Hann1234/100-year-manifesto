@@ -15,7 +15,6 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AdminPage from "../AdminPage/AdminPage";
 import InfoPage from "../InfoPage/InfoPage";
-import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 
