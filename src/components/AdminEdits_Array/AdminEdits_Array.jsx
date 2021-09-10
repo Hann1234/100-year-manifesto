@@ -12,6 +12,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import HistoryIcon from '@material-ui/icons/History';
 import DateTimePicker from 'react-datetime-picker';
+import TextField from '@material-ui/core/TextField';
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +43,8 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     const [editDate, setEditDate] = useState(false);
     const current_selection_sorted = current_selection.sort((a,b) => (a.manifesto_text > b.manifesto_text) ? 1 : ((b.manifesto_text > a.manifesto_text) ? -1 : 0));
     const [deleteIndex, setDeleteIndex] = useState(-1);
-
+    const [addChip, setAddChip] = useState(false);
+    const [newChipValue, setNewChipValue] = useState("");
 
     // getCurrentValue
     const getCurrentValue = () => {
@@ -91,6 +93,12 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
     useEffect(() => {
         setSortedOptions(initialValue.value.sort());
     }, [adminEditFormReducer, editDate]);
+
+    const addChangeToLocalList = () => {
+        const newArray = [...sortedOptions, newChipValue];
+        setSortedOptions(newArray.sort());
+        setNewChipValue("");
+    } // end addChangeToLocalList
 
     const deleteChangeFromLocalList = (valueIn) => {
         const removeIndex = sortedOptions.indexOf(valueIn);
@@ -228,7 +236,6 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                 edit ?
                 // edit mode
                 <>
-                    
                     <CancelOutlinedIcon onClick={() => {setEdit(false); setEditDate(false); setSortedOptions(initialValue.value.sort());}}/>
                     <SaveIcon onClick={() => {setEdit(false); saveChangesToDb()}}/>
                     <ScheduleIcon onClick={() => setEditDate(!editDate)}/>
@@ -256,11 +263,26 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
                         <></>
                     }
                     <Paper component="ul" className={classes.root}>
-                        <Chip
-                            label={<AddCircleOutlineIcon />}
-                            className={classes.chip}
-                            color="primary"
-                        ></Chip>
+                        {
+                            addChip ?
+                            <>
+                                <TextField
+                                    id="add_chip"
+                                    label="addValue"
+                                    value={newChipValue}
+                                    onChange={() => setNewChipValue(event.target.value)}
+                                />
+                                <CancelOutlinedIcon onClick={() => setAddChip(false)}/>
+                                <CheckIcon onClick={() => {addChangeToLocalList(); setAddChip(false);}}/>
+                            </> :
+                            <Chip
+                                label={<AddCircleOutlineIcon />}
+                                clickable
+                                onClick={() => setAddChip(true)}
+                                className={classes.chip}
+                                color="primary"
+                            />
+                        }
                         {
                             // other chips
                             sortedOptions
