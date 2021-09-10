@@ -41,11 +41,27 @@ function AdminPage() {
           </div>
           <div>
             <TextField
-                id="selectedUser"
-                label="Selected User"
+                id="selectedUserName"
+                label="Selected User Name"
                 value={selectedUser.name}
                 onChange={() => setSelectedUser({...selectedUser, name: event.target.value})}
             />
+            <TextField
+                id="selectedUserEmail"
+                label="Selected User Email"
+                value={selectedUser.email}
+                onChange={() => setSelectedUser({...selectedUser, email: event.target.value})}
+            />
+            {
+              user.role === "superadmin" ?
+              <TextField
+                  id="selectedUserRole"
+                  label="Selected User Role"
+                  value={selectedUser.role}
+                  onChange={() => setSelectedUser({...selectedUser, role: event.target.value})}
+              /> :
+              <span>Role: {selectedUser.role}</span>
+            }
           </div>
         </>
       }

@@ -105,6 +105,16 @@ CREATE TABLE "admin_edit_form" (
   OIDS=FALSE
 );
 
+CREATE TABLE "access_code" (
+	"id" serial NOT NULL,
+	"user_id" integer NOT NULL,
+	"code" varchar(80),
+	"expiration_date" TIMESTAMP NOT NULL DEFAULT NOW() + 7 * INTERVAL '1 DAY',
+	CONSTRAINT "access_code_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
 ALTER TABLE "mission" ADD CONSTRAINT "mission_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
 
 ALTER TABLE "admin_edit_form" ADD CONSTRAINT "admin_edit_form_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
@@ -123,6 +133,7 @@ ALTER TABLE "track_video" ADD CONSTRAINT "track_video_fk0" FOREIGN KEY ("user_id
 
 ALTER TABLE "additional_questions" ADD CONSTRAINT "additional_questions_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
 
+ALTER TABLE "access_code" ADD CONSTRAINT "access_code_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
 
 -- the number in this queries has to be replaced with the user id that you are currently working on
 insert into  mission(user_id, manifesto_text)
