@@ -25,7 +25,7 @@ function LogOutButton(props) {
       // is passed to it from it's parents through React props
       className={props.className}
       onClick={() => {
-        history.push("/homepage");
+        history.push("/login");
         handleLogOut()
         }
       }
