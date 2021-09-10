@@ -15,7 +15,6 @@ function AdminPage_ManageUsers() {
   return (
     <section className="container">
       <section id={"user-section"}>
-        <h2>Manage Users</h2>
         <section id={"user-list-section"}>
           <h3>User List</h3>
           <Autocomplete

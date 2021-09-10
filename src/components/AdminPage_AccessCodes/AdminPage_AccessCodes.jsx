@@ -17,6 +17,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DateTimePicker from 'react-datetime-picker';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
@@ -36,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 function AdminPage_AccessCodes() {
   const accessCodes = useSelector((store) => store.accessCodes.accessCodes);
   const classes = useStyles();
+  const [date, setDate] = useState(new Date());
+  const [newCode, setNewCode] = useState("");
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
 
@@ -53,12 +56,27 @@ function AdminPage_AccessCodes() {
   return (
     <section className="container">
       <section id={"access-code-section"}>
-        <h2>Manage Access Codes</h2>
         <section id={"active-access-code-list-section"}>
-          <h3>Active Access Codes List</h3>
+          <div style={{position: "relative", margin: "10px"}}>
+            <span style={{paddingRight: "10px"}}>New access code:</span>
+            <TextField
+              style={{position: "absolute", bottom: "0px"}}
+              label="New access code"
+              value={newCode}
+              onChange={() => setNewCode(event.target.value)}
+            />
+          </div>
+          <div style={{position: "relative", margin: "10px"}}>
+            <span style={{paddingRight: "10px"}}>Expiration Date:</span>
+            <DateTimePicker
+              label="Expiration date"
+              value={date}
+              onChange={setDate}
+            />
+          </div>
           <Grid item xs={12} md={6}>
           <Typography variant="h6" className={classes.title}>
-            Avatar with text and icon
+            Active Access Codes List
           </Typography>
           <div className={classes.demo}>
             <List dense={dense}>
