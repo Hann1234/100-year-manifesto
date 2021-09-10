@@ -18,7 +18,11 @@ function* registerUser(action) {
     yield put({ type: 'SET_TO_LOGIN_MODE' });
   } catch (error) {
     console.log('Error with user registration:', error);
-    yield put({ type: 'REGISTRATION_FAILED' });
+    if (error.response.status === 403) {
+      yield put({ type: 'INVALID_ACCESS_CODE' });
+    } else {
+      yield put({ type: 'REGISTRATION_FAILED' });
+    }
   }
 }
 

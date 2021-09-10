@@ -27,6 +27,8 @@ const registrationMessage = (state = '', action) => {
       return 'Choose a email and password!';
     case 'REGISTRATION_FAILED':
       return "Oops! That didn't work. The email might already be taken. Try again!";
+    case 'INVALID_ACCESS_CODE':
+      return "Oops! That didn't work. Invalid access code. Try again!";
     default:
       return state;
   }

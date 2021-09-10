@@ -41,7 +41,7 @@ function ForGood() {
   const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     dispatch({ type: "FETCH_FOR_GOODS" });
   }, []);
@@ -81,11 +81,13 @@ function ForGood() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <AutoScale>
-              <Manifesto />
-            </AutoScale>
+            <div className="manifestoPadding">
+              <AutoScale>
+                  <Manifesto />
+              </AutoScale>
+            </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} className="scrollableDiv">
             <center>
               <h1>For Good</h1>
               <h3>

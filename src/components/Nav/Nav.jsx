@@ -101,16 +101,19 @@ function Nav() {
               >
                 My Manifesto
               </MenuItem>
-              <MenuItem
-                className="navLink"
-                onClick={() => {
-                  resetReducer();
-                  history.push("/about");
-                  handleClose();
-                }}
-              >
-                About
-              </MenuItem>
+              {
+                user.role === 'admin' || user.role === 'superadmin' ?
+                  <MenuItem 
+                    className="navLink"
+                    onClick={() => {
+                      history.push("/admin");
+                      handleClose();
+                    }}
+                  >
+                  Admin
+                  </MenuItem> :
+                  <></>
+              }
               <LogOutButton className="navLink" />
             </Menu>
           </div>
