@@ -6,20 +6,13 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./NextSteps.css";
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    height: "100vh",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    whiteSpace: "wrap",
-    marginBottom: theme.spacing(1),
-    color: "#132411",
-  },
   box: {
     display: "flex",
     padding: 8,
@@ -91,12 +84,9 @@ function NextSteps() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Paper className={classes.paper}>
-              this is where the manifesto goes I do not know if we thought about
-              this but almost all of our pages are going to follw a vary
-              spacific grid layout so it should be atop priority to get that
-              layout figured out so we can all have it for our pages
-            </Paper>
+          <AutoScale>
+              <Manifesto />
+            </AutoScale>
           </Grid>
           <Grid item xs={8}>
             <center>
