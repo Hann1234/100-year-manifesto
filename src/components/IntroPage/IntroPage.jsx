@@ -79,7 +79,7 @@ const editName = (event) => {
             <Manifesto />
           </AutoScale>
       </Grid>
-      <Grid container item align="center" justify = "center" xs={8}>
+      <Grid container item align="center" justify = "center" xs={8} className="scrollableDiv">
         <Grid item xs={12}>
           <h1>Intro: Your 100 Year Manifesto</h1>
             <h3>Welcome to The 100 Year Manifesto.  We are so glad you’re here.</h3>
