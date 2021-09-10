@@ -252,7 +252,7 @@ function GuidingPrinciples() {
                 />
 
                 {(max === true) ?
-                guidingPrinciples.length >= 10 ?
+              
                   <Button
                   disabled
                     type="submit"
@@ -266,21 +266,6 @@ function GuidingPrinciples() {
                   >
                     ADD
                   </Button>
-                  
-                  :
-                  <Button
-                    type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
-                    variant="contained"
-                    onClick={() => addGuidingPrinciple()}
-                  >
-                    ADD
-                  </Button>
-                
                 :
                 guidingPrinciples.length >= 10 ?
                   <Button
