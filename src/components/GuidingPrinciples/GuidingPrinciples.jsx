@@ -62,6 +62,7 @@ function GuidingPrinciples() {
       },
     });
     letterCount();
+    inputCount()
     setSource("");
     setManifestoText("");
   };
@@ -71,20 +72,21 @@ function GuidingPrinciples() {
     setItemToEdit(itemToEdit.id);
   };
 
-  const letterCount = () => {
-    let count = 0
-    for( const item of guidingPrinciples ) {
-      for(const value of item.manifesto_text){
-        count +=1;
-        console.log('what is this value',count);
-      }
+  const handleChange = (value) => {
+    setManifestoText(value)
+    if(letterCount() + manifestoText.length >= 2800){
+      console.log('to much');
     }
   }
-
-  const inputCount = () => {
-    const count = manifestoText.length
-    console.log(count);
-
+  
+  const letterCount = () => {
+    let count = 0;
+    for( const item of guidingPrinciples ) {
+      for(const value of item.manifesto_text){
+        count +=1; 
+      } 
+    }
+    return count;
   }
 
   const editGuidingPrinciple = (id) => {
@@ -231,7 +233,7 @@ function GuidingPrinciples() {
                   style={{ width: "100%" }}
                   value={manifestoText}
                   variant="outlined"
-                  onChange={(event) => setManifestoText(event.target.value)}
+                  onChange={(event) => handleChange(event.target.value)}
                 />
 
                 <TextField
