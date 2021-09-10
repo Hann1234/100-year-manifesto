@@ -50,11 +50,14 @@ function LifeGoals() {
   }, []);
 
   const addLifeGoal = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
       type: "ADD_LIFE_GOAL",
       payload: { manifestoText: manifestoText },
     });
     setManifestoText("");
+  }
   };
 
   const startEdit = (itemToEdit) => {
