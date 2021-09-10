@@ -42,6 +42,7 @@ function GuidingPrinciples() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [editSourceText, setEditSourceText] = useState('');
   const [itemToEdit, setItemToEdit] = useState(0);
+  const [max, setMax] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const page_id = 7;
@@ -54,6 +55,8 @@ function GuidingPrinciples() {
   }, []);
 
   const addGuidingPrinciple = () => {
+    if(manifestoText === ""){}
+    else{
     dispatch({
       type: "ADD_GUIDING_PRINCIPLE",
       payload: {
@@ -61,34 +64,33 @@ function GuidingPrinciples() {
         source: source,
       },
     });
-    letterCount();
-    inputCount()
     setSource("");
     setManifestoText("");
+  }
   };
+
   const startEdit = (itemToEdit) => {
     setEditManifestoText(itemToEdit.manifesto_text);
     setEditSourceText(itemToEdit.source);
     setItemToEdit(itemToEdit.id);
   };
 
-  const handleChange = (value) => {
-    setManifestoText(value)
-    if(letterCount() + manifestoText.length >= 2800){
-      console.log('to much');
-    }
-  }
+ 
   
-  const letterCount = () => {
-    let count = 0;
+  let letterCount = 0;
+    
     for( const item of guidingPrinciples ) {
-      for(const value of item.manifesto_text){
-        count +=1; 
+      letterCount += item.manifesto_text.length; 
       } 
-    }
-    return count;
-  }
-
+      
+      const handleChange = (value) => {
+        setManifestoText(value)
+        if (letterCount + value.length >= 2800){
+          setMax(true)
+        }
+        else setMax(false)
+      }  
+  
   const editGuidingPrinciple = (id) => {
     dispatch({
       type: "UPDATE_GUIDING_PRINCIPLE",
@@ -234,6 +236,7 @@ function GuidingPrinciples() {
                   value={manifestoText}
                   variant="outlined"
                   onChange={(event) => handleChange(event.target.value)}
+                  
                 />
 
                 <TextField
@@ -245,6 +248,22 @@ function GuidingPrinciples() {
                   variant="outlined"
                   onChange={(event) => setSource(event.target.value)}
                 />
+
+                {(max === true) ?
+                <Button
+                disabled
+                  type="submit"
+                  style={{
+                    height: "56px",
+                    backgroundColor: "#1c4bd9",
+                    color: "#132411",
+                  }}
+                  variant="contained"
+                  onClick={() => addGuidingPrinciple()}
+                >
+                  ADD
+                </Button>
+                :
                 <Button
                   type="submit"
                   style={{
@@ -257,6 +276,7 @@ function GuidingPrinciples() {
                 >
                   ADD
                 </Button>
+}
               </section>
             </Grid>
 
