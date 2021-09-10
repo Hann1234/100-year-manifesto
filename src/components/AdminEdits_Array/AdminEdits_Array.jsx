@@ -146,7 +146,6 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
 
     // get database settings
     const pullEditByDate = () => {
-        console.log("date", date);
         dispatch({
             type: 'FETCH_EDIT_ON_DATE',
             payload: {
@@ -172,7 +171,6 @@ function AdminEdits_Array( {page_names, page_id, html_id, default_value, current
         }
     } // end deleteChangeFromDb
 
-    console.log("adminEditFormReducer", adminEditFormReducer);
     return (
         <>{
             user.role !== "admin" && user.role !== "superadmin" ?

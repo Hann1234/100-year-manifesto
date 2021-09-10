@@ -37,7 +37,6 @@ function* addPageEdits(action) {
 // Delete page edits from admin_edit_form
 function* deletePageEdits(action) {
     try {
-        console.log(action);
         yield axios.delete(`/api/adminEditForm/${action.payload.id}`);
         yield put({ type: 'FETCH_EDIT_ON_DATE', payload: action.payload }); // Reload edit
     } catch (error) {
