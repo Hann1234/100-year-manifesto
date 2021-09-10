@@ -66,7 +66,7 @@ function HomePage() {
           <Grid item align="center" xs={12}>
             <h1>Welcome, {user.name}! Start your journey here!</h1>
           </Grid >
-          <Grid container item align="center" justify = "center" xs={12} onClick={() => history.push("/intro")}>
+          <Grid container item align="center" justify = "center" xs={12} onClick={() => {dispatch({ type:"SET_NEXT_BUTTON", payload: 0})}}>
               <Avatar className={classes.circle}>1</Avatar>
               <h1>Intro: Your 100 Year Manifesto</h1>
           </Grid>

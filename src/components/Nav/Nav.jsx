@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -29,6 +29,7 @@ function Nav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   let loginLinkData = {
     path: "/login",
@@ -48,6 +49,10 @@ function Nav() {
     setAnchorEl(null);
   };
 
+  const resetReducer = () => {
+    dispatch({ type: "CLEAR_NEXT_BUTTON"})
+  }
+
   return (
     <div className="nav">
       <link
@@ -55,7 +60,8 @@ function Nav() {
         rel="stylesheet"
         type="text/css"
       />
-      <Link to="/home">
+      <Link to="/home"
+        onClick={resetReducer}>
         <h1 className="nav-title">100 Year Manifesto</h1>
       </Link>
       <ProgressBar />
@@ -87,6 +93,8 @@ function Nav() {
               <MenuItem
                 className="navLink"
                 onClick={() => {
+                  // dispatch({ type:"SET_NEXT_BUTTON", payload: 8})
+                  resetReducer();
                   history.push("/myManifesto");
                   handleClose();
                 }}
@@ -96,6 +104,7 @@ function Nav() {
               <MenuItem
                 className="navLink"
                 onClick={() => {
+                  resetReducer();
                   history.push("/about");
                   handleClose();
                 }}

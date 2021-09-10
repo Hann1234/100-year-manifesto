@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, forwardRef, useRef, useImperativeHandle } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -110,6 +110,8 @@ function ProgressBar() {
     setActiveStep(0);
     setCompleted({});
   };
+
+  // const n
 
   return (
     <div className={classes.root}>
