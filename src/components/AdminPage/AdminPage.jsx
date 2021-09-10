@@ -7,6 +7,7 @@ function AdminPage() {
   const dispatch = useDispatch ();
   const user = useSelector((store) => store.user);
   const userList = useSelector((store) => store.userList.userList);
+  const accessCodes = useSelector((store) => store.accessCodes.accessCodes);
   const [selectedUser, setSelectedUser] = useState(user);
   
   // component is not listed in the progress bar
@@ -14,11 +15,13 @@ function AdminPage() {
 
   useEffect(() => {
       dispatch({ type: 'ADMIN_FETCH_USERS' });
+      dispatch({ type: 'ADMIN_FETCH_ACCESS_CODES' });
   }, []);
 
   console.log("user", user);
   console.log("selectedUser", selectedUser);
   console.log("userList", userList);
+  console.log("accessCodes", accessCodes);
   return (
     <section className="container">
       {

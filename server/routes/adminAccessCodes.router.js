@@ -11,7 +11,7 @@ const {rejectUnauthenticated,
    if (req.user.role === 'admin' || req.user.role === 'superadmin') {
     const qText = `
       SELECT * FROM "access_code"
-      WHERE "code" = "expiration_date" >= NOW()
+      WHERE "expiration_date" >= NOW()
     `;
   
     pool.query(qText)
@@ -106,7 +106,5 @@ const {rejectUnauthenticated,
      res.sendStatus(403);
    }
   });
-
-
 
 module.exports = router;
