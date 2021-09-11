@@ -55,7 +55,7 @@ function Nav() {
         type="text/css"
       />
       <Link to="/home">
-        <h1 className="nav-title">100 Year Manifesto</h1>
+        <h1 className="nav-title" onClick={() => {dispatch({ type: "CLEAR_NEXT_BUTTON"});}}>100 Year Manifesto</h1>
       </Link>
       <ProgressBar />
       <div>
@@ -98,6 +98,7 @@ function Nav() {
                   <MenuItem 
                     className="navLink"
                     onClick={() => {
+                      dispatch({ type: "CLEAR_NEXT_BUTTON"})
                       history.push("/admin");
                       handleClose();
                     }}

@@ -66,39 +66,99 @@ function HomePage() {
         </Grid>
         <Grid container item xs={7} className="scrollableDiv">
           <Grid item align="center" xs={12}>
-            <h1>Welcome, {user.name}! Start your journey here!</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"welcome1"}
+                default_value={`Welcome, `}
+              />
+              {user.name}
+              <AdminEdits
+                page_id={page_id}
+                html_id={"welcome2"}
+                default_value={`! Start your journey here!`}
+              />
+            </h1>
           </Grid >
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 0 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 0 }) : {}}} onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 0 })}>
               <Avatar className={classes.circle}>1</Avatar>
-              <h1>Intro: Your 100 Year Manifesto</h1>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"intro"}
+                  default_value={`Intro: Your 100 Year Manifesto`}
+                />
+              </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 1 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 1 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 1 })}>
             <Avatar className={classes.circle}>2</Avatar> 
-            <h1>Mission Statement</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"mission"}
+                default_value={`Mission Statement`}
+              />
+            </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 2 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 2 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 2 })}>
             <Avatar className={classes.circle}>3</Avatar> 
-            <h1>Words to Live By</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"mantras"}
+                default_value={`Words to Live By`}
+              />
+            </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 3 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 3 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 3 })}>
             <Avatar className={classes.circle}>4</Avatar> 
-            <h1>Core Values</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"core_values"}
+                default_value={`Core Values`}
+              />
+            </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 4 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 4 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 4 })}>
           <Avatar className={classes.circle}>5</Avatar> 
-            <h1>For Good</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"for_good"}
+                default_value={`For Good`}
+              />
+            </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 5 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 5 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 5 })}>
           <Avatar className={classes.circle}>6</Avatar> 
-            <h1>Life Goals</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"life_goals"}
+                default_value={`Life Goals`}
+              />
+            </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 6 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 6 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 6 })}>
           <Avatar className={classes.circle}>7</Avatar> 
-            <h1>Guiding Principles</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"guiding_principles"}
+                default_value={`Guiding Principles`}
+              />
+            </h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 7 })}>
+          <Grid container item xs={12} onClick={() => {user.role === 'customer' ? dispatch({ type: "SET_NEXT_BUTTON", payload: 7 }) : {}}}  onDoubleClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 7 })}>
           <Avatar className={classes.circle}>8</Avatar> 
-            <h1>Next Steps</h1>
+            <h1>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"next_steps"}
+                default_value={`Next Steps`}
+              />
+            </h1>
           </Grid>
           <Grid container item xs={12} align="center" justify = "center">
           <button className={classes.button} onClick={() => history.push("/intro")}>START</button>
