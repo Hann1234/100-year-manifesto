@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Manifesto from '../Manifesto/Manifesto';
-import { useReactToPrint } from 'react-to-print';
 import * as htmlToImage from 'html-to-image';
+import { jsPDF } from "jspdf";
 import { useSelector } from 'react-redux';
 
 function MyManifesto() {
-    const user = useSelector(store => store.user);    
-    const manifestoRef = useRef();
+    const user = useSelector(store => store.user);
 
-    const exportAsPicture = () => {
+    const exportAsPng = () => {
         htmlToImage.toPng(document.getElementById('manifesto'))
         .then(function (dataUrl) {
             let link = document.createElement('a');
@@ -18,16 +17,23 @@ function MyManifesto() {
         });
     }
     
-    const handlePrint = useReactToPrint({
-        content: () => manifestoRef.current,
-    });
+    const exportAsPdf = () => {
+        htmlToImage.toPng(document.getElementById('manifesto'))
+        .then(function (dataUrl) {
+            const pdf = new jsPDF('p', 'in', 'a4');
+            const width = pdf.internal.pageSize.getWidth();
+            const height = pdf.internal.pageSize.getHeight();
+            pdf.addImage(dataUrl, 'PNG', 0, 0, width, height);
+            pdf.save(`${user.name} Manifesto.pdf`);
+        });
+    }
 
     return(
         <center>
-            <div ref={manifestoRef}>
-                <button onClick={handlePrint}>PDF</button>
-                <button onClick={exportAsPicture}>JPG</button>
-                <Manifesto />
+            <div>
+                <button onClick={exportAsPdf}>PDF</button>
+                <button onClick={exportAsPng}>PNG</button>
+                <Manifesto/>
             </div>
         </center>
     )

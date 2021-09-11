@@ -32,7 +32,7 @@ function Manifesto(){
         gpTwo = guidingPrinciples.slice(half);
     } 
     return(
-        <div className="manifestoContainer">
+        <div className="manifestoContainer" id="manifesto">
             <Grid className="manifesto" container direction="column">
                 <Grid item>
                     <div className="blueBar"></div>
