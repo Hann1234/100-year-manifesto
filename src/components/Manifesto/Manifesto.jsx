@@ -2,7 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import userReducer from "../../redux/reducers/user.reducer";
-import './Manifesto.css';
+import './manifesto.css';
 import ManifestoSvgElement from "./ManifestoSvgElement";
 
 function Manifesto(){
