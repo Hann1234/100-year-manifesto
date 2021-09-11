@@ -95,54 +95,93 @@ function MissionStatement() {
           </Grid>
           <Grid item xs={8} className="scrollableDiv">
             <center>
-              <h1>Mission Statement</h1>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"header"}
+                  default_value={`Mission Statement`}
+                />
+              </h1>
               <h3>
-                      Your 100 Year Manifesto starts with your mission statement.
-                      There is no great gift you can give yourself than a defining
-                      purpose. A mission statement. To live with intentionality
-                      for the cause which you were created.
-                    </h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid"}
+                  default_value={`
+                  Your 100 Year Manifesto starts with your mission statement.
+                  There is no great gift you can give yourself than a defining
+                  purpose. A mission statement. To live with intentionality
+                  for the cause which you were created.
+                  `}
+                />
+              </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-                <div className="videoWrapper">
-                  <iframe
-                    width="512"
-                    height="288"
-                    src="https://player.vimeo.com/video/599580839?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a6d13d3de0"
-                  ></iframe>
-                </div>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599580839?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a6d13d3de0"
+                  }
+                />
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
-                  
                   <p>
-                    Your life is worthy of a noble motive. What is it?
-                    Dedicating your life to a cause greater than yourself is a
-                    game-changer. A personal mission statement is a powerful
-                    tool because it provides a path for success. Just as
-                    important, it gives you permission to stay no to the things
-                    that are distractions. What's your cause.
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"right_of_vid1"}
+                      default_value={`
+                      Your life is worthy of a noble motive. What is it?
+                      Dedicating your life to a cause greater than yourself is a
+                      game-changer. A personal mission statement is a powerful
+                      tool because it provides a path for success. Just as
+                      important, it gives you permission to stay no to the things
+                      that are distractions. What's your cause.
+                      `}
+                    />
                   </p>
                 </section>
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <section className="BottomText">
-                <p>For me, my mission: "Help others live better."</p>
                 <p>
-                  My mission in life is to make people happy." Walt Disney's
-                  mission statement.
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom1"}
+                    default_value={`For me, my mission: "Help others live better."`}
+                  />
                 </p>
                 <p>
-                  "To be a teacher. And to be known for inspiring my students to
-                  be more than they thought they could be." Oprah Winfrey's
-                  mission statement.
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom2"}
+                    default_value={`My mission in life is to make people happy." Walt Disney's mission statement.`}
+                  />
                 </p>
                 <p>
-                  Your mission statement. Make it yours. Write it however you
-                  want. Keep it brief. Keep it meaningful. Keep it yours. What
-                  were you born to do? Who are you called to be?
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom3"}
+                    default_value={`
+                    "To be a teacher. And to be known for inspiring my students to
+                    be more than they thought they could be." Oprah Winfrey's
+                    mission statement.
+                    `}
+                  />
+                </p>
+                <p>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom3"}
+                    default_value={`
+                    Your mission statement. Make it yours. Write it however you
+                    want. Keep it brief. Keep it meaningful. Keep it yours. What
+                    were you born to do? Who are you called to be?
+                    `}
+                  />
                 </p>
               </section>
             </Grid>
