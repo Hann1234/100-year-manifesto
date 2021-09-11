@@ -158,7 +158,7 @@ function MissionStatement() {
                   <AdminEdits
                     page_id={page_id}
                     html_id={"bottom2"}
-                    default_value={`My mission in life is to make people happy." Walt Disney's mission statement.`}
+                    default_value={`"My mission in life is to make people happy." Walt Disney's mission statement.`}
                   />
                 </p>
                 <p>
