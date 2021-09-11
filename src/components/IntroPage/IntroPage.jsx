@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Intro() {
   const store = useSelector((store) => store);
+  const user = useSelector((store) => store.user);
   const [name, setName] = useState('');
   const dispatch = useDispatch ();
   const classes = useStyles();
@@ -68,7 +69,8 @@ function Intro() {
   useEffect(() => {
     //need to retrieve video, image, and page details
     dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
-}, [])
+    setName(user.name);
+}, [user])
 
 //Need handleSubmit
 const editName = (event) => {
@@ -86,21 +88,52 @@ const editName = (event) => {
       </Grid>
       <Grid container item align="center" justify = "center" xs={8} className="scrollableDiv">
         <Grid item xs={12}>
-          <h1>Intro: Your 100 Year Manifesto</h1>
-            <h3>Welcome to The 100 Year Manifesto.  We are so glad you’re here.</h3>
-            <h3>Your 100 Year Manifesto is your framework for living.</h3>
-            <h3>For living with intentionality.  For living the life worthy of the calling you received.</h3>
+          <h1>
+            <AdminEdits
+              page_id={page_id}
+              html_id={"header"}
+              default_value={`Intro: Your 100 Year Manifesto`}
+            />
+          </h1>
+          <h3>
+            <AdminEdits
+              page_id={page_id}
+              html_id={"above_vid1"}
+              default_value={`
+              Welcome to The 100 Year Manifesto.  We are so glad you’re here.
+              `}
+            />
+          </h3>
+          <h3>
+            <AdminEdits
+              page_id={page_id}
+              html_id={"above_vid2"}
+              default_value={`
+              Your 100 Year Manifesto is your framework for living.
+              `}
+            />
+          </h3>
+          <h3>
+            <AdminEdits
+              page_id={page_id}
+              html_id={"above_vid3"}
+              default_value={`
+              For living with intentionality.  For living the life worthy of the calling you received.
+              `}
+            />
+          </h3>
         </Grid>
         <Grid container item xs={12}>
           <Grid item xs={6}>
             <Grid item xs={12}>
-              <div className="videoWrapper">
-              <iframe
-                width="512"
-                height="288"
-                src="https://player.vimeo.com/video/599579818?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a0deca7b32"
-              ></iframe>
-              </div>
+              <AdminEdits
+                page_id={page_id}
+                html_type={"video"}
+                html_id={"video"}
+                default_value={
+                  "https://player.vimeo.com/video/599579818?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a0deca7b32"
+                }
+              />
             </Grid>
             <br></br>
             <Grid item xs={12}>
@@ -115,7 +148,13 @@ const editName = (event) => {
                 />
                 <CardContent>
                   <Typography variant="body2" color="textSecondary" component="p">
-                  "To live with intentionality. A framework for living. A commitment to be who you are capable of being. A commitment to live a better life. Your life on purpose. Your business. Your life. For good.”
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"Mick's_bio"}
+                      default_value={`
+                      "To live with intentionality. A framework for living. A commitment to be who you are capable of being. A commitment to live a better life. Your life on purpose. Your business. Your life. For good.”
+                      `}
+                    />
                   </Typography>
                 </CardContent>
                 </Card>
@@ -123,10 +162,27 @@ const editName = (event) => {
           </Grid>
           <Grid container item xs={6} className="rightOfVideo">
             <Grid item xs={12}>
-              <h3>Logistics for the course:</h3>
-              <p>Each section of this course has a short video & a worksheet.
+              <h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"right_of_vid1"}
+                  default_value={`
+                  Logistics for the course:
+                  `}
+                />
+              </h3>
+              <p>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"right_of_vid2"}
+                  default_value={`
+                  Each section of this course has a short video & a worksheet.
                   The video is the content for the section.  The overview and philosophy behind each topic.
-                  The worksheets make the 100 Year Manifesto yours.  Spend some time filling out each worksheet.  Creating your own 100 Year Manifesto.  The deeper you go, the more meaningful the 100 Year Manifesto you create for your life.</p>
+                  The worksheets make the 100 Year Manifesto yours.  Spend some time filling out each worksheet.
+                  Creating your own 100 Year Manifesto.  The deeper you go, the more meaningful the 100 Year Manifesto you create for your life.
+                  `}
+                />
+              </p>
             </Grid>
             <Grid item xs={12} align="center" justify="center">
                 <form onSubmit={editName}>
@@ -148,10 +204,34 @@ const editName = (event) => {
           </Grid>
         </Grid>
         <Grid align="center" item xs={12}>      
-            <h4>Questions? Send us an email at team@100yearmanifesto.com</h4>
-            <h4>When you complete the course, you’ll be able to save and print your own frame worthy 100 Year Manifesto.</h4>
-            <h4>You can also post it on Facebook, Twitter, Instagram, and LinkedIn.  Use the hashtag #my100yearmanifesto</h4>
-            <h4>It’s time to start living your 100 Year Manifesto!</h4>                
+            <h4>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"bottom1"}
+                default_value={`Questions? Send us an email at team@100yearmanifesto.com`}
+              />
+            </h4>
+            <h4>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"bottom2"}
+                default_value={`When you complete the course, you’ll be able to save and print your own frame worthy 100 Year Manifesto.`}
+              />
+            </h4>
+            <h4>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"bottom3"}
+                default_value={`You can also post it on Facebook, Twitter, Instagram, and LinkedIn.  Use the hashtag #my100yearmanifesto`}
+              />
+            </h4>
+            <h4>
+              <AdminEdits
+                page_id={page_id}
+                html_id={"bottom3"}
+                default_value={`It’s time to start living your 100 Year Manifesto!`}
+              />
+            </h4>                
         </Grid>
       </Grid>
     </Grid>
