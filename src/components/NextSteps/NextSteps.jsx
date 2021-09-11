@@ -272,9 +272,9 @@ function NextSteps() {
                 variant="contained"
                 color="primary"
                 style={{ height: 40 }}
-                onClick={() => history.push("/homepage")}
+                onClick={() => history.push("/myManifesto")}
               >
-                Next
+                My Manifesto
               </Button>
             </Box>
           </Grid>

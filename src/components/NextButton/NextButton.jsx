@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps(activeStep) {
+function getSteps() {
   return [
     "Intro: Your 100 Year Manifesto",
     "Mission Statement",
@@ -27,6 +27,7 @@ function getSteps(activeStep) {
     "Core Values",
     "For Good",
     "Life Goals",
+    "Guiding Principles",
     "Next Step",
   ];
 }

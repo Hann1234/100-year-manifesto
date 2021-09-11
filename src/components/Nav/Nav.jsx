@@ -2,15 +2,13 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import LogInButton from "../LoginButton/LoginButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +27,7 @@ function Nav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   let loginLinkData = {
     path: "/login",
@@ -88,6 +87,7 @@ function Nav() {
                 className="navLink"
                 onClick={() => {
                   history.push("/myManifesto");
+                  dispatch({ type: "CLEAR_NEXT_BUTTON"})
                   handleClose();
                 }}
               >

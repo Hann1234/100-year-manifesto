@@ -65,35 +65,35 @@ function HomePage() {
           <Grid item align="center" xs={12}>
             <h1>Welcome, {user.name}! Start your journey here!</h1>
           </Grid >
-          <Grid container item xs={12} onClick={() => history.push("/intro")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 0 })}>
               <Avatar className={classes.circle}>1</Avatar>
               <h1>Intro: Your 100 Year Manifesto</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("missionStatement")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 1 })}>
             <Avatar className={classes.circle}>2</Avatar> 
             <h1>Mission Statement</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("/mantras")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 2 })}>
             <Avatar className={classes.circle}>3</Avatar> 
             <h1>Words to Live By</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("/coreValues")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 3 })}>
             <Avatar className={classes.circle}>4</Avatar> 
             <h1>Core Values</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("/forGood")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 4 })}>
           <Avatar className={classes.circle}>5</Avatar> 
             <h1>For Good</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("/lifeGoals")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 5 })}>
           <Avatar className={classes.circle}>6</Avatar> 
             <h1>Life Goals</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("/guidingPrinciples")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 6 })}>
           <Avatar className={classes.circle}>7</Avatar> 
             <h1>Guiding Principles</h1>
           </Grid>
-          <Grid container item xs={12} onClick={() => history.push("/nextSteps")}>
+          <Grid container item xs={12} onClick={() => dispatch({ type: "SET_NEXT_BUTTON", payload: 7 })}>
           <Avatar className={classes.circle}>8</Avatar> 
             <h1>Next Steps</h1>
           </Grid>
