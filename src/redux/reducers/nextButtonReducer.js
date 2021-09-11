@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 const nextButton = (state = -1, action) => {
   switch (action.type) {
     case "CLEAR_NEXT_BUTTON":
-      return [];
+      return -1;
     case "SET_NEXT_BUTTON":
       return action.payload;
     default:
