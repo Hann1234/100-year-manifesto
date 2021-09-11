@@ -282,7 +282,6 @@ function LifeGoals() {
                       >
                         Edit
                       </Button>
-                      <span> </span>
                       <Button
                         type="submit"
                         style={{

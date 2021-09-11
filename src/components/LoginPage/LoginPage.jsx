@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#475473",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#475473",
   },
 }));
 
@@ -108,7 +109,7 @@ function LoginPage() {
             type="submit"
             fullWidth
             variant="contained"
-            color="secondary"
+            color="primary"
             className={classes.submit}
             name="submit"
             value="Log In"
@@ -120,7 +121,6 @@ function LoginPage() {
               <Link
                 href="#"
                 variant="body2"
-                style={{color: "blue"}}
                 onClick={() => {
                   history.push("/registration");
                 }}
