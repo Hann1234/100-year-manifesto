@@ -1,12 +1,14 @@
 import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import userReducer from "../../redux/reducers/user.reducer";
 import './manifesto.css';
 import ManifestoSvgElement from "./ManifestoSvgElement";
 
 function Manifesto(){
     const dispatch = useDispatch();
+    const history = useHistory();
     useEffect(()=> {
         dispatch({ type: 'FETCH_MISSION'})
         dispatch({ type: 'FETCH_MANTRAS'});
@@ -23,6 +25,11 @@ function Manifesto(){
     const guidingPrinciples = useSelector((store) => store.guidingPrinciplesReducer.guidingPrinciples);
     const user = useSelector(store => store.user);
     
+    const handleClick = () => {
+        dispatch({ type: 'CLEAR_NEXT_BUTTON'});
+        history.push('myManifesto');
+    }
+
     let half=guidingPrinciples.length/2;
     let gpOne = [];
     let gpTwo = [];
@@ -32,7 +39,7 @@ function Manifesto(){
         gpTwo = guidingPrinciples.slice(half);
     } 
     return(
-        <div className="manifestoContainer" id="manifesto">
+        <div className="manifestoContainer" id="manifesto" onClick={handleClick}>
             <Grid className="manifesto" container direction="column">
                 <Grid item>
                     <div className="blueBar"></div>

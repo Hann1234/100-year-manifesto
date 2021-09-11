@@ -18,6 +18,9 @@
   color: #4d5470;
   font-family: 'Roboto Slab', serif;
 }
+.manifesto:hover{
+  cursor: pointer;
+}
 
 .blueBar{
   height: calc(var(--manifestoHeight) * .01818);
@@ -37,9 +40,6 @@
 .userName{
   font-size: 60px;
   margin: -20px 0 0 0;
-}
-.userName:hover{
-  cursor: pointer;
 }
 .smallColumn{
   width: calc(var(--manifestoWidth) * .23);

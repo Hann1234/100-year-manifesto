@@ -77,9 +77,11 @@ const editName = (event) => {
   return (
     <Grid container spacing={3} xs={12}>
       <Grid xs={4}>
-        <AutoScale>
-            <Manifesto />
+        <div className="manifestoPadding">
+          <AutoScale>
+              <Manifesto />
           </AutoScale>
+        </div>
       </Grid>
       <Grid container item align="center" justify = "center" xs={8} className="scrollableDiv">
         <Grid item xs={12}>
