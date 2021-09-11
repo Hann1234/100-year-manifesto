@@ -15,6 +15,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DateTimePicker from 'react-datetime-picker';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import SaveIcon from '@material-ui/icons/Save';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import CheckIcon from '@material-ui/icons/Check';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +34,7 @@ function AdminPage_AccessCodes() {
   const accessCodes = useSelector((store) => store.accessCodes.accessCodes);
   const [date, setDate] = useState(new Date());
   const [newCode, setNewCode] = useState("");
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(-1);
 
   // function to format sql timestamp into a displayable
   const convertSqlTimestampToJs = (timestampIn) => {
@@ -76,14 +77,25 @@ function AdminPage_AccessCodes() {
         } 
     });
     }
-} // end saveChangesToDb
+  } // end saveChangesToDb
+
+  // delete access code from database
+  const deleteAccessCode = (deleteId) => {
+    dispatch({
+      type: 'ADMIN_DELETE_ACCESS_CODE',
+      payload: {
+        id: deleteId
+      } 
+    });
+    setDeleteIndex(-1)
+  } // end deleteAccessCode
   
   console.log("accessCodes", accessCodes);
   return (
     <section className="container">
       <section id={"access-code-section"}>
         <section id={"active-access-code-list-section"}>
-          <Button onClick={saveCodeToDb}>Save to DB<SaveIcon /></Button>
+          <Button onClick={saveCodeToDb}>Save<SaveIcon /></Button>
           <div style={{position: "relative", margin: "10px"}}>
             <span style={{paddingRight: "10px"}}>New access code:</span>
             <TextField
@@ -106,7 +118,7 @@ function AdminPage_AccessCodes() {
             Active Access Codes List
           </Typography>
           <div className={classes.demo}>
-            <List dense={dense}>
+            <List dense={false}>
               {accessCodes.map((element, index) => {
                 return (
                   <ListItem key={index}>
@@ -117,11 +129,18 @@ function AdminPage_AccessCodes() {
                     </ListItemAvatar>
                     <ListItemText
                       primary={element.code}
-                      secondary={convertSqlTimestampToJs(element.expiration_date)}
+                      secondary={"Expires: " + convertSqlTimestampToJs(element.expiration_date)}
                     />
                     <ListItemSecondaryAction>
                       <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
+                        {
+                          deleteIndex === index ?
+                          <>
+                            <CancelOutlinedIcon onClick={() => setDeleteIndex(-1)}/>
+                            <CheckIcon onClick={() => deleteAccessCode(element.id)}/>
+                          </> :
+                          <DeleteIcon onClick={() => setDeleteIndex(index)}/>
+                        }
                       </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>

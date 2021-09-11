@@ -23,6 +23,17 @@ function* fetchForGoods() {
   }
 }
 
+//Get specific user's for goods statement
+function* fetchSpecificUserForGoods(action) {
+  try {
+    const forGoods = yield axios.get(`/api/forGoods/${action.payload.id}`);
+    yield put({type: 'SET_FOR_GOODS', payload: forGoods.data}) //Loads specific user's for goods into reducer
+  } catch (error) {
+    console.log('Error getting specific user for goods:', error);
+    yield put({ type: 'FETCH_USER_FOR_GOODS_ERROR' });
+  }
+}
+
 //Update for goods statement
 function* updateForGood(action) {
   try {
@@ -49,6 +60,7 @@ function* deleteForGood(action) {
 function* forGoodSaga() {
   yield takeLatest('ADD_FOR_GOOD', addForGood);
   yield takeLatest('FETCH_FOR_GOODS', fetchForGoods);
+  yield takeLatest('FETCH_USER_FOR_GOODS', fetchSpecificUserForGoods);
   yield takeLatest('UPDATE_FOR_GOOD', updateForGood);
   yield takeLatest('DELETE_FOR_GOOD', deleteForGood);
 }

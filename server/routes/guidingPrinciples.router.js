@@ -25,6 +25,31 @@ const {rejectUnauthenticated,
   });
 
 /**
+ * GET route for specific user's guiding_principles
+ */
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
+  if (req.user.role === 'admin' || req.user.role === 'superadmin') {
+   const uId = req.params.id;
+   const qText = `
+      SELECT * FROM "guiding_principles" 
+      WHERE "user_id" = $1
+      ORDER BY "id" ASC;
+     `;
+ 
+   pool.query( qText, [uId])
+   .then((response) => { res.send(response.rows);
+   })
+   .catch((error) => {
+     console.log("Error GETting specific users guiding_principles", error);
+     res.sendStatus(500);
+   });
+  } else {
+   console.log("Permission denied GETting specific users guiding_principles", error);
+   res.sendStatus(403);
+  }
+});
+
+/**
  * POST route for guiding_principles
  */
  router.post('/', rejectUnauthenticated, (req, res) => {

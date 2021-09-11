@@ -25,6 +25,31 @@ router.get('/', (req, res) => {
 });
 
 /**
+ * GET route for specific user's coreValues
+ */
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
+  if (req.user.role === 'admin' || req.user.role === 'superadmin') {
+   const uId = req.params.id;
+   const qText = `
+       SELECT * FROM "core_values" 
+       WHERE "user_id" = $1
+       ORDER BY "id" ASC;
+     `;
+ 
+   pool.query( qText, [uId])
+   .then((response) => { res.send(response.rows);
+   })
+   .catch((error) => {
+     console.log("Error GETting specific users coreValues", error);
+     res.sendStatus(500);
+   });
+  } else {
+   console.log("Permission denied GETting specific users coreValues", error);
+   res.sendStatus(403);
+  }
+});
+
+/**
  * POST route adds a coreValues
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
