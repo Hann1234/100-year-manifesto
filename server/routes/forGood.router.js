@@ -1,11 +1,13 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route for for_good
  */
- router.get('/', (req, res) => {
+ router.get('/', rejectUnauthenticated, (req, res) => {
     const uId = req.user.id;
     const qText = `
       SELECT * FROM "for_good" 
@@ -23,9 +25,34 @@ const router = express.Router();
   });
 
 /**
+ * GET route for specific user's For Good
+ */
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
+  if (req.user.role === 'admin' || req.user.role === 'superadmin') {
+   const uId = req.params.id;
+   const qText = `
+       SELECT * FROM "for_good" 
+       WHERE "user_id" = $1
+       ORDER BY "id" ASC;
+     `;
+ 
+   pool.query( qText, [uId])
+   .then((response) => { res.send(response.rows);
+   })
+   .catch((error) => {
+     console.log("Error GETting specific users For Good", error);
+     res.sendStatus(500);
+   });
+  } else {
+   console.log("Permission denied GETting specific users For Good", error);
+   res.sendStatus(403);
+  }
+});
+
+/**
  * POST route for for_good
  */
- router.post('/', (req, res) => {
+ router.post('/', rejectUnauthenticated, (req, res) => {
     const uId = req.user.id;
     const manifestoText = req.body.manifestoText
     const qText = `
@@ -45,7 +72,7 @@ const router = express.Router();
 /**
  * DELETE route for for_good
  */
- router.delete('/:id', (req, res) => {
+ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id
     const uId = req.user.id
     const qText = `
@@ -65,7 +92,7 @@ const router = express.Router();
 /**
  * PUT route for for_good
  */
- router.put('/:id', (req, res) => {
+ router.put('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id
     const uId = req.user.id
     const manifestoText = req.body.manifestoText

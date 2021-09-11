@@ -28,9 +28,13 @@ function NextSteps() {
     (store) => store.additionalQuestionsReducer.additionalQuestions
   );
 
+  const [manifestoTextChallenge, setManifestoTextChallenge] = useState("");
+  const [manifestoTextOpportunity, setManifestoTextOpportunity] = useState("");
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
   const [additionalQuestionToEdit, setAdditionalQuestionToEdit] = useState(0);
+  const [editAdditionalQuestionText, setEditAdditionalQuestionText] = useState(0);
+
 
   const classes = useStyles();
   const history = useHistory();
@@ -42,33 +46,33 @@ function NextSteps() {
     });
 
     //more reset state to useEffect when page is reloaded - test to make sure it works as intended.
+    setManifestoTextChallenge("");
+    setManifestoTextOpportunity("");
     setManifestoText("");
     setEditManifestoText("");
     setAdditionalQuestionToEdit(0);
   }, []);
 
-  const addAdditionalQuestion = () => {
+  const addAdditionalQuestion = (question, answer) => {
     dispatch({
       type: "ADD_ADDITIONAL_QUESTION",
       payload: {
-        manifestoText: manifestoText,
+        question: question,
+        manifestoText: answer,
       },
     });
 
-    // setManifestoText(''); - Moved to useEffect
   };
 
-  const editAdditionalQuestion = (id) => {
+  const editAdditionalQuestion = (id, question) => {
     dispatch({
       type: "UPDATE_ADDITIONAL_QUESTION",
       payload: {
         id: id,
-        manifestoText: editManifestoText,
+        question: question,
+        manifestoText: editAdditionalQuestionText,
       },
     });
-
-    // setEditManifestoText(''); - Moved to useEffect
-    // setAdditionalQuestionToEdit(0);
   };
 
   const deleteAdditionalQuestion = (id) => {
@@ -140,14 +144,14 @@ function NextSteps() {
             </Grid> */}
             <Grid item xs={12} container spacing={2}>
               <section>
+                <div style={{margin: "10px"}}>What is the biggest challenge you face?</div>
                 <TextField
                   required
                   id="outlined-optional"
                   label="Biggest Challenge (Optional)"
-                  value={manifestoText}
+                  value={manifestoTextChallenge}
                   variant="outlined"
-                  defaultValue="What is the biggest challenge you face?"
-                  onChange={(event) => setManifestoText(event.target.value)}
+                  onChange={(event) => setManifestoTextChallenge(event.target.value)}
                 />
                 <Button
                   type="submit"
@@ -157,7 +161,7 @@ function NextSteps() {
                     color: "#132411",
                   }}
                   variant="contained"
-                  onClick={() => addAdditionalQuestion()}
+                  onClick={() => addAdditionalQuestion("What is the biggest challenge you face?", manifestoTextChallenge)}
                 >
                   ADD
                 </Button>
@@ -167,14 +171,14 @@ function NextSteps() {
 
             <Grid item xs={12} container spacing={2}>
               <section>
+                <div style={{margin: "10px"}}>What do you hope the 100 Year Manifesto will help you in your life?</div>
                 <TextField
                   required
                   id="outlined-required"
                   label="100 Year Manifesto Life Opportunity"
-                  value={manifestoText}
+                  value={manifestoTextOpportunity}
                   variant="outlined"
-                  defaultValue="What do you hope the 100 Year Manifesto will help you in your life?"
-                  onChange={(event) => setManifestoText(event.target.value)}
+                  onChange={(event) => setManifestoTextOpportunity(event.target.value)}
                 />
                 <Button
                   type="submit"
@@ -184,7 +188,7 @@ function NextSteps() {
                     color: "#132411",
                   }}
                   variant="contained"
-                  onClick={() => addAdditionalQuestion()}
+                  onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you in your life?", manifestoTextOpportunity)}
                 >
                   ADD
                 </Button>
@@ -195,7 +199,8 @@ function NextSteps() {
               {additionalQuestions.map((question) => {
                 if (question.id === additionalQuestionToEdit) {
                   return (
-                    <Grid key={question.id} item xs={3}>
+                    <Grid key={question.id} item xs={5}>
+                      <div style={{margin: "10px"}}>{question.question}</div>
                       <TextField
                         id="outlined-required"
                         placeholder={additionalQuestions.manifesto_text}
@@ -213,7 +218,7 @@ function NextSteps() {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => editAdditionalQuestion(question.id)}
+                        onClick={() => editAdditionalQuestion(question.id, question.question)}
                       >
                         Save
                       </Button>
@@ -222,8 +227,10 @@ function NextSteps() {
                 }
                 if (question.id != additionalQuestionToEdit) {
                   return (
-                    <Grid key={question.id} item xs={3}>
+                    <Grid key={question.id} item xs={5}>
+                      <div style={{margin: "10px"}}>{question.question}</div>
                       <TextField
+                        style={{width: "100%"}}
                         disabled
                         id="outlined-required"
                         // label="Your Biggest Challenge"
@@ -242,7 +249,7 @@ function NextSteps() {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => setAdditionalQuestionToEdit(question.id)}
+                        onClick={() => {setAdditionalQuestionToEdit(question.id); setEditAdditionalQuestionText(question.manifesto_text);}}
                       >
                         Edit
                       </Button>

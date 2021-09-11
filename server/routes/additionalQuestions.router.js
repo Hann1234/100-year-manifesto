@@ -24,6 +24,30 @@ const {rejectUnauthenticated,
 });
 
 /**
+ * GET route for specific user's additional_questions
+ */
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
+   if (req.user.role === 'admin' || req.user.role === 'superadmin') {
+    const uId = req.params.id;
+    const qText = `
+        SELECT * FROM "additional_questions" 
+        WHERE "user_id" = $1;
+      `;
+  
+    pool.query( qText, [uId])
+    .then((response) => { res.send(response.rows);
+    })
+    .catch((error) => {
+      console.log("Error GETting specific users additionalQuestions", error);
+      res.sendStatus(500);
+    });
+   } else {
+    console.log("Permission denied GETting specific users additionalQuestions", error);
+    res.sendStatus(403);
+   }
+});
+
+/**
  * POST route for additional_questions
  */
  router.post('/', rejectUnauthenticated, (req, res) => {
@@ -73,10 +97,10 @@ const {rejectUnauthenticated,
   const manifestoText = req.body.manifestoText;
   const question = req.body.question;
   const qText = `
-  UPDATE "additional_questions" 
-  SET "question" = $1, 
-  "manifesto_text" = $2
-  WHERE "id" = $3 AND "user_id" = $4; 
+    UPDATE "additional_questions" 
+    SET "question" = $1, 
+    "manifesto_text" = $2
+    WHERE "id" = $3 AND "user_id" = $4; 
     `;
 
   pool.query(qText, [question, manifestoText, id, uId])

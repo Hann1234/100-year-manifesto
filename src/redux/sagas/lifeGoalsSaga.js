@@ -23,6 +23,17 @@ function* fetchLifeGoals() {
   }
 }
 
+//Get specific user's life goals statement
+function* fetchSpecificUserLifeGoals(action) {
+  try {
+    const lifeGoals = yield axios.get(`/api/lifeGoals/${action.payload.id}`);
+    yield put({type: 'SET_LIFE_GOALS', payload: lifeGoals.data}) //Loads specific user's life goals into reducer
+  } catch (error) {
+    console.log('Error getting specific users life goals:', error);
+    yield put({ type: 'FETCH_USER_LIFE_GOALS_ERROR' });
+  }
+}
+
 //Update life goals statement
 function* updateLifeGoal(action) {
   try {
@@ -49,6 +60,7 @@ function* deleteLifeGoal(action) {
 function* lifeGoalsSaga() {
   yield takeLatest('ADD_LIFE_GOAL', addLifeGoal);
   yield takeLatest('FETCH_LIFE_GOALS', fetchLifeGoals);
+  yield takeLatest('FETCH_USER_LIFE_GOALS', fetchSpecificUserLifeGoals);
   yield takeLatest('UPDATE_LIFE_GOAL', updateLifeGoal);
   yield takeLatest('DELETE_LIFE_GOAL', deleteLifeGoal);
 }

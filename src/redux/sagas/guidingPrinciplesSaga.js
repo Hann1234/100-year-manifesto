@@ -23,6 +23,17 @@ function* fetchGuidingPrinciples() {
   }
 }
 
+//Get specific user's guiding principles 
+function* fetchSpecificUserGuidingPrinciples(action) {
+  try {
+    const guidingPrinciples = yield axios.get(`/api/guidingPrinciples/${action.payload.id}`);
+    yield put({type: 'SET_GUIDING_PRINCIPLES', payload: guidingPrinciples.data}) //Loads specific user's guiding principles into reducer
+  } catch (error) {
+    console.log('Error getting specific users guiding principles:', error);
+    yield put({ type: 'FETCH_USER_GUIDING_PRINCIPLES_ERROR' });
+  }
+}
+
 //Update guidingPrinciple
 function* updateGuidingPrinciple(action) {
   try {
@@ -49,6 +60,7 @@ function* deleteGuidingPrinciple(action) {
 function* guidingPrinciplesSaga() {
   yield takeLatest('ADD_GUIDING_PRINCIPLE', addGuidingPrinciple);
   yield takeLatest('FETCH_GUIDING_PRINCIPLES', fetchGuidingPrinciples);
+  yield takeLatest('FETCH_USER_GUIDING_PRINCIPLES', fetchSpecificUserGuidingPrinciples);
   yield takeLatest('UPDATE_GUIDING_PRINCIPLE', updateGuidingPrinciple);
   yield takeLatest('DELETE_GUIDING_PRINCIPLE', deleteGuidingPrinciple);
 }

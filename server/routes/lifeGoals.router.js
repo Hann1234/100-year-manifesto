@@ -25,6 +25,31 @@ const {rejectUnauthenticated,
   });
 
 /**
+ * GET route for specific user's life_goals
+ */
+ router.get('/:id', rejectUnauthenticated, (req, res) => {
+  if (req.user.role === 'admin' || req.user.role === 'superadmin') {
+   const uId = req.params.id;
+   const qText = `
+      SELECT * FROM "life_goals" 
+      WHERE "user_id" = $1
+      ORDER BY "id" ASC;
+     `;
+ 
+   pool.query( qText, [uId])
+   .then((response) => { res.send(response.rows);
+   })
+   .catch((error) => {
+     console.log("Error GETting specific users life_goals", error);
+     res.sendStatus(500);
+   });
+  } else {
+   console.log("Permission denied GETting specific users life_goals", error);
+   res.sendStatus(403);
+  }
+});
+
+/**
  * POST route for life_goals
  */
  router.post('/', rejectUnauthenticated, (req, res) => {

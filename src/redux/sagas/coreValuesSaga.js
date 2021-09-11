@@ -23,6 +23,17 @@ function* fetchCoreValues() {
   }
 }
 
+//Get specific user's core values
+function* fetchSpecificUserCoreValues(action) {
+  try {
+    const coreValues = yield axios.get(`/api/coreValues/${action.payload.id}`);
+    yield put({type: 'SET_CORE_VALUES', payload: coreValues.data}) //Loads specific user's core values into reducer
+  } catch (error) {
+    console.log('Error getting specific users core values:', error);
+    yield put({ type: 'FETCH_USER_CORE_VALUES_ERROR' });
+  }
+}
+
 //Update core value
 function* updateCoreValues(action) {
   try {
@@ -49,6 +60,7 @@ function* deleteCoreValue(action) {
 function* coreValuesSaga() {
   yield takeLatest('ADD_CORE_VALUE', addCoreValue);
   yield takeLatest('FETCH_CORE_VALUES', fetchCoreValues);
+  yield takeLatest('FETCH_USER_CORE_VALUES', fetchSpecificUserCoreValues);
   yield takeLatest('UPDATE_CORE_VALUE', updateCoreValues);
   yield takeLatest('DELETE_CORE_VALUE', deleteCoreValue);
 }

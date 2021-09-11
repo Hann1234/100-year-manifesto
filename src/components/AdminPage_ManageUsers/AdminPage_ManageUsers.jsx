@@ -6,12 +6,19 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
+import AutoScale from "react-auto-scale";
+import Manifesto from "../Manifesto/Manifesto";
+import Grid from "@material-ui/core/Grid";
+
 
 function AdminPage_ManageUsers() {
   const dispatch = useDispatch ();
   const user = useSelector((store) => store.user);
   const userList = useSelector((store) => store.userList.userList);
-  const [selectedUser, setSelectedUser] = useState(user);
+  const additionalQuestions = useSelector(
+    (store) => store.additionalQuestionsReducer.additionalQuestions
+  );
+  const [selectedUser, setSelectedUser] = useState(null);
  
   // update user role in database
   const updateUserRole = () => {
@@ -24,11 +31,60 @@ function AdminPage_ManageUsers() {
     });
   } // end updateUserRole
 
-  console.log("user", user);
-  console.log("selectedUser", selectedUser);
-  console.log("userList", userList);
+  const fetchUserManifesto = (id) => {
+    dispatch({
+      type: 'FETCH_USER_MISSION',
+      payload: {id: id}
+    });
+    dispatch({
+      type: 'FETCH_USER_MANTRAS',
+      payload: {id: id}
+    });
+    dispatch({
+      type: 'FETCH_USER_FOR_GOODS',
+      payload: {id: id}
+    });
+    dispatch({
+      type: 'FETCH_USER_GUIDING_PRINCIPLES',
+      payload: {id: id}
+    });
+    dispatch({
+      type: 'FETCH_USER_CORE_VALUES',
+      payload: {id: id}
+    });
+    dispatch({
+      type: 'FETCH_USER_LIFE_GOALS',
+      payload: {id: id}
+    });
+    dispatch({
+      type: 'FETCH_USER_ADDITIONAL_QUESTIONS',
+      payload: {id: id}
+    });
+  } // end fetchUserManifesto 
+
+  const handleSelectNewUser = (newUser) => {
+    setSelectedUser(newUser);
+    if (newUser !== null) {
+      fetchUserManifesto(newUser.id);
+    }
+  } // end handleSelectNewUser
+
+  console.log("additionalQuestions", additionalQuestions);
   return (
     <section className="container">
+    <Grid container spacing={3} xs={12}>
+      {
+        selectedUser === null ?
+        <></> :
+        <Grid item xs={5}>
+          <div className="manifestoPadding">
+            <AutoScale>
+                <Manifesto admin_page={true} user_name={selectedUser.name}/>
+            </AutoScale>
+          </div>
+        </Grid>
+      }
+        <Grid container item xs={7} className="scrollableDiv">
       <section id={"user-section"}>
         <section id={"user-list-section"}>
           <h3>User List</h3>
@@ -40,7 +96,7 @@ function AdminPage_ManageUsers() {
             renderInput={(params) => <TextField {...params} label="User List" variant="outlined" />}
             getOptionSelected={(option, value) => option.id === value.id}
             value={selectedUser}
-            onChange={(event, newValue) => setSelectedUser(newValue)}
+            onChange={(event, newValue) => handleSelectNewUser(newValue)}
           />
         </section>
         {
@@ -68,9 +124,26 @@ function AdminPage_ManageUsers() {
               </span> :
               <span style={{margin: "15px"}}><b style={{paddingRight: "10px"}}>Role:</b> {selectedUser.role}</span>
             }
+            {
+              additionalQuestions.length > 0 ?
+              <>
+                <h3>Additional Questions</h3>
+                {additionalQuestions.map((question, index) => {
+                  return (
+                    <div key={index} style={{marginBottom: "20px"}}>
+                      <div><b>{question.question}</b></div>
+                      <div><i>{question.manifesto_text}</i></div>
+                    </div>
+                  )
+                })}
+              </> :
+              <></>
+            }
           </section>
         }
       </section>
+      </Grid>
+      </Grid>
     </section>
   );
 }
