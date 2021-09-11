@@ -11,6 +11,7 @@ import NextButton from "../NextButton/NextButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,9 +42,11 @@ function ForGood() {
   const [itemToEdit, setItemToEdit] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const page_id = 5;
  
   useEffect(() => {
     dispatch({ type: "FETCH_FOR_GOODS" });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
   }, []);
 
   const addForGood = () => {

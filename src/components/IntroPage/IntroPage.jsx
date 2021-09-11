@@ -6,6 +6,7 @@ import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -62,9 +63,11 @@ function Intro() {
   const dispatch = useDispatch ();
   const classes = useStyles();
   const history = useHistory();
+  const page_id = 1;
 
   useEffect(() => {
     //need to retrieve video, image, and page details
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
 }, [])
 
 //Need handleSubmit

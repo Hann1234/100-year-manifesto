@@ -7,6 +7,7 @@ import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from '@material-ui/core/Avatar';
 import Grid from "@material-ui/core/Grid";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 import "./HomePage.css";
 
@@ -45,11 +46,13 @@ function HomePage() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
+  const page_id = 0;
 
   useEffect(() => {
     dispatch({
       type: "FETCH_ADDITIONAL_QUESTIONS",
     });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
   }, []);
 
   return (

@@ -15,6 +15,7 @@ import BackButton from "../BackButton/BackButton";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -44,10 +45,12 @@ function MissionStatement() {
   console.log(`What is missions store? `, missions);
 
   const classes = useStyles();
+  const page_id = 2;
 
   useEffect(() => {
     //Need a dispatch to load the static part of page and activate GET to pull in DB data for MissionStatement.
     dispatch({ type: "FETCH_MISSION" });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
   }, []);
 
   //Need handleChange to setMission in input field

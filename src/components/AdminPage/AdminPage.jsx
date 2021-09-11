@@ -15,8 +15,9 @@ function AdminPage() {
   dispatch({ type: "SET_NEXT_BUTTON", payload: -1 });
 
   useEffect(() => {
-      dispatch({ type: 'ADMIN_FETCH_USERS' });
-      dispatch({ type: 'ADMIN_FETCH_ACCESS_CODES' });
+
+    dispatch({ type: 'ADMIN_FETCH_USERS' });
+    dispatch({ type: 'ADMIN_FETCH_ACCESS_CODES' });
   }, []);
 
   return (

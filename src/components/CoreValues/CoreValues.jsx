@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 function CoreValues() {
 
   const coreValues = useSelector((store) => store.coreValuesReducer.coreValues);
-
+ 
   const [manifestoText, setManifestoText] = useState('');
   const [editManifestoText, setEditManifestoText] = useState('');
   const [coreValueToEdit, setCoreValueToEdit] = useState(0);

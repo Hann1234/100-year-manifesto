@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import "./NextSteps.css";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -34,6 +35,7 @@ function NextSteps() {
   const [editManifestoText, setEditManifestoText] = useState("");
   const [additionalQuestionToEdit, setAdditionalQuestionToEdit] = useState(0);
   const [editAdditionalQuestionText, setEditAdditionalQuestionText] = useState(0);
+  const page_id = 8;
 
 
   const classes = useStyles();
@@ -44,6 +46,7 @@ function NextSteps() {
     dispatch({
       type: "FETCH_ADDITIONAL_QUESTIONS",
     });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
 
     //more reset state to useEffect when page is reloaded - test to make sure it works as intended.
     setManifestoTextChallenge("");
