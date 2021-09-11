@@ -76,7 +76,7 @@ function AdminPage_ManageUsers() {
       {
         selectedUser === null ?
         <></> :
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <div className="manifestoPadding">
             <AutoScale>
                 <Manifesto admin_page={true} user_name={selectedUser.name}/>
@@ -84,7 +84,7 @@ function AdminPage_ManageUsers() {
           </div>
         </Grid>
       }
-        <Grid container item xs={7} className="scrollableDiv">
+        <Grid container item xs={8} className="scrollableDiv">
       <section id={"user-section"}>
         <section id={"user-list-section"}>
           <h3>User List</h3>
@@ -107,7 +107,7 @@ function AdminPage_ManageUsers() {
             <span style={{margin: "25px"}}><b style={{paddingRight: "10px"}}>Name:</b>{selectedUser.name}</span>
             <span style={{margin: "25px"}}><b style={{paddingRight: "10px"}}>Email:</b>{selectedUser.email}</span>
             {
-              user.role === "superadmin" ?
+              user.role === "superadmin" && user.id !== selectedUser.id ?
               <span style={{margin: "25px"}}>
                 <b style={{paddingRight: "10px"}}>Role:</b>
                 <Select
