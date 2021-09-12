@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
@@ -28,6 +28,9 @@ function Nav() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const dispatch = useDispatch();
+  useEffect(() => {
+    setAnchorEl(null);
+  }, [user]);
 
   let loginLinkData = {
     path: "/login",
@@ -47,6 +50,12 @@ function Nav() {
     setAnchorEl(null);
   };
 
+  const handleLogOut = () => {
+    setAnchorEl(event.currentTarget);
+    dispatch({ type: "LOGOUT" });
+    handleClose();
+  };
+
   return (
     <div className="nav">
       <link
@@ -55,7 +64,14 @@ function Nav() {
         type="text/css"
       />
       <Link to="/home">
-        <h1 className="nav-title" onClick={() => {dispatch({ type: "CLEAR_NEXT_BUTTON"});}}>100 Year Manifesto</h1>
+        <h1
+          className="nav-title"
+          onClick={() => {
+            dispatch({ type: "CLEAR_NEXT_BUTTON" });
+          }}
+        >
+          100 Year Manifesto
+        </h1>
       </Link>
       <ProgressBar />
       <div>
@@ -87,27 +103,32 @@ function Nav() {
                 className="navLink"
                 onClick={() => {
                   history.push("/myManifesto");
-                  dispatch({ type: "CLEAR_NEXT_BUTTON"})
+                  dispatch({ type: "CLEAR_NEXT_BUTTON" });
                   handleClose();
                 }}
               >
                 My Manifesto
               </MenuItem>
-              {
-                user.role === 'admin' || user.role === 'superadmin' ?
-                  <MenuItem 
-                    className="navLink"
-                    onClick={() => {
-                      dispatch({ type: "CLEAR_NEXT_BUTTON"})
-                      history.push("/admin");
-                      handleClose();
-                    }}
-                  >
+              {user.role === "admin" || user.role === "superadmin" ? (
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    dispatch({ type: "CLEAR_NEXT_BUTTON" });
+                    history.push("/admin");
+                    handleClose();
+                  }}
+                >
                   Admin
-                  </MenuItem> :
-                  <></>
-              }
-              <LogOutButton className="navLink" />
+                </MenuItem>
+              ) : (
+                <></>
+              )}
+              <LogOutButton
+                className="navLink"
+                // onClick={() => {
+                //   handleLogOut();
+                // }}
+              />
             </Menu>
           </div>
         )}

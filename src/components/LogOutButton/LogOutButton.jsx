@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 import MenuItem from "@material-ui/core/MenuItem";
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
 
 function LogOutButton(props) {
   const dispatch = useDispatch();
@@ -9,10 +9,10 @@ function LogOutButton(props) {
   const history = useHistory();
 
   const handleLogOut = () => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(null);
     dispatch({ type: "LOGOUT" });
     handleClose();
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -26,10 +26,9 @@ function LogOutButton(props) {
       className={props.className}
       onClick={() => {
         history.push("/login");
-        handleLogOut()
-        }
-      }
-      
+        dispatch({ type: "CLEAR_NEXT_BUTTON" });
+        handleLogOut();
+      }}
     >
       Log Out
     </MenuItem>
