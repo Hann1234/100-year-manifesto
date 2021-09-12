@@ -1,18 +1,16 @@
 import React, { useEffect, useState, Component } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 //**Clean up unused components!! */
 
 //Material UI styling components
 import { makeStyles } from "@material-ui/core/styles";
-import { CardMedia, TextField, Button } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./MissionStatement.css";
 //Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
-import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
@@ -23,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridGap: theme.spacing(3),
   },
-  //paper will be for Manifesto display.
-
   box: {
     display: "flex",
     padding: 8,
@@ -32,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
   bottomBox: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
+  },
+  button: {
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
   },
 }));
 
@@ -54,17 +59,20 @@ function MissionStatement() {
   }, []);
 
   //Need handleChange to setMission in input field
-  const handleMissionChange = () => {
+  const handleMissionText = () => {
     setMissionText(event.target.value);
   };
 
   //Need handleSubmit
   const addMission = () => {
-    if(missionText === ""){}
-    else{
-    dispatch({ type: "ADD_MISSION", payload: { manifestoText: missionText } });
-    console.log(`What's the current state of mission?`, missionText);
-    setMissionText("");
+    if (missionText === "") {
+    } else {
+      dispatch({
+        type: "ADD_MISSION",
+        payload: { manifestoText: missionText },
+      });
+      console.log(`What's the current state of mission?`, missionText);
+      setMissionText("");
     }
   };
 
@@ -87,11 +95,11 @@ function MissionStatement() {
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
           <Grid xs={4}>
-              <div className="manifestoPadding">
-                <AutoScale>
-                    <Manifesto />
-                </AutoScale>
-              </div>
+            <div className="manifestoPadding">
+              <AutoScale>
+                <Manifesto />
+              </AutoScale>
+            </div>
           </Grid>
           <Grid item xs={8} className="scrollableDiv">
             <center>
@@ -190,44 +198,39 @@ function MissionStatement() {
                 <center>
                   <TextField
                     id="outlined-required"
-                    label="Your Mission Statement "
+                    label="Please Enter Your 1 Mission Statement "
                     style={{ width: "66%" }}
                     value={missionText}
                     variant="outlined"
-                    onChange={(evt) => setMissionText(evt.target.value)}
+                    onChange={(evt) => handleMissionText(evt.target.value)}
                   />
-                 {missions.length >= 1 ?
-                <Button
-                disabled
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addMission()}
-                >
-                  ADD
-                </Button>
-                :
-                <Button
-                  type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
-                  variant="contained"
-                  onClick={() => addMission()}
-                >
-                  ADD
-                </Button>
-}
+                  {missions.length >= 1 ? (
+                    <Button
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() => addMission()}
+                    >
+                      ADD
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      style={{
+                        height: "56px",
+                        backgroundColor: "#1c4bd9",
+                        color: "#132411",
+                      }}
+                      variant="contained"
+                      onClick={() => addMission()}
+                    >
+                      ADD
+                    </Button>
+                  )}
                 </center>
               </form>
             </Grid>
-<br />
+            <br />
             {/* Need to append data from mission DB here */}
             <Grid item xs={12} container spacing={2}>
               {missions.map((mission) => {
@@ -258,7 +261,7 @@ function MissionStatement() {
                         >
                           SAVE
                         </Button>
-                      </center> 
+                      </center>
                     </Grid>
                   );
                 }
@@ -282,7 +285,7 @@ function MissionStatement() {
                           style={{
                             height: "28px",
                             backgroundColor: "#1c4bd9",
-                          color: "#fff",
+                            color: "#fff",
                           }}
                           variant="contained"
                           onClick={() => setEditMissionText(mission.id)}
@@ -315,7 +318,6 @@ function MissionStatement() {
             >
               <BackButton />
               <NextButton />
-              <CompleteButton />
             </Box>
           </Grid>
         </Grid>

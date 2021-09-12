@@ -30,6 +30,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
+  button: {
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
 }));
 
 function Mantras(props) {
@@ -241,11 +250,7 @@ function Mantras(props) {
                   <Button
                     disabled
                     type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
+                    className={classes.button}
                     variant="contained"
                     onClick={() => addMantra()}
                   >
@@ -254,11 +259,7 @@ function Mantras(props) {
                 ) : (
                   <Button
                     type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
+                    className={classes.button}
                     variant="contained"
                     onClick={() => addMantra()}
                   >

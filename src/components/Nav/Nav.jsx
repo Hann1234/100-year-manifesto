@@ -125,9 +125,6 @@ function Nav() {
               )}
               <LogOutButton
                 className="navLink"
-                // onClick={() => {
-                //   handleLogOut();
-                // }}
               />
             </Menu>
           </div>
