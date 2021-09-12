@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Chip from "@material-ui/core/Chip";
@@ -16,6 +16,34 @@ import AdminEdits from "../AdminEdits/AdminEdits";
 import "./CoreValues.css";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -493,7 +521,7 @@ function CoreValues() {
             </center>
             <Grid item xs={12} container spacing={2}>
               <section>
-                <TextField
+                <CssTextField
                   required
                   id="outlined-required"
                   label="Add Core Value"
@@ -530,7 +558,7 @@ function CoreValues() {
                 
                   return (
                     <Grid key={value.id} item xs={3}>
-                      <TextField
+                      <CssTextField
                         disabled
                         id="outlined-required"
                         label="Your Core Value"

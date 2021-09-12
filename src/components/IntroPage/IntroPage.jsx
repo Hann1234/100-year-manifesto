@@ -83,10 +83,6 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: '0 30px',
   },
-  texField: {
-    color: 'white',
-
-  },
 }));
 
 function Intro() {
@@ -222,13 +218,8 @@ const editName = (event) => {
                       id="outlined-required"
                       label="Your Preferred Name"
                       style={{ width: "66%"}}
-                      color="primary"
-                      InputProps={{
-                        className: classes.TextField
-                      }}
                       value={name}
                       variant="outlined"
-                      className={classes.texField}
                       onChange={(event) => setName(event.target.value)}
                       placeholder="Please enter your name"
                     />
