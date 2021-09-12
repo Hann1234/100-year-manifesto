@@ -40,13 +40,34 @@ const useStyles = makeStyles((theme) => ({
   },
 
   buttonRemove: {
-    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    background: "linear-gradient(45deg, #bd2626 30%, #940635 90%)",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
     color: "white",
-    height: 48,
+    height: 28,
     padding: "0 30px",
+    marginLeft: 2
+  },
+  buttonEdit: {
+    background: "linear-gradient(45deg, #1c4bd9 30%, #261385 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    padding: "0 30px",
+    marginLeft: 2
+  },
+  buttonSave: {
+    background: "linear-gradient(45deg, #7bd91c 30%, #12b525 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    padding: "0 30px",
+    marginLeft: 2
   },
 }));
 
@@ -257,12 +278,8 @@ function MissionStatement() {
                         <br />
                         <Button
                           id={mission.id}
+                          className={classes.buttonSave}
                           type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#7bd91c",
-                            color: "#132411",
-                          }}
                           variant="contained"
                           onClick={() => editMission(mission.id)}
                         >
@@ -288,12 +305,8 @@ function MissionStatement() {
                         <br />
                         <Button
                           id={mission.id}
+                          className={classes.buttonEdit}
                           type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#1c4bd9",
-                            color: "#fff",
-                          }}
                           variant="contained"
                           onClick={() => setEditMissionText(mission.id)}
                         >
@@ -301,15 +314,11 @@ function MissionStatement() {
                         </Button>
                         <span> </span>
                         <Button
-                          type="submit"
-                          style={{
-                            height: "28px",
-                            backgroundColor: "#d91c1c",
-                            color: "#132411",
-                          }}
-                          variant="contained"
-                          onClick={() => deleteMission(mission.id)}
-                        >
+                        className={classes.buttonRemove}
+                        type="submit"
+                        variant="contained"
+                        onClick={() => deleteMission(mission.id)}
+                      >
                           Remove
                         </Button>
                       </center>
