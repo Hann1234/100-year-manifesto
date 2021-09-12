@@ -76,7 +76,7 @@ function Intro() {
 const editName = (event) => {
     event.preventDefault();
     //Need to verify what the dispatch will be for this
-    dispatch({ type: "SET_NAME", payload: name });
+    dispatch({ type: "SET_NAME", payload: {name: name} });
     };
 
   return (
