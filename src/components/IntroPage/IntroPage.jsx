@@ -25,6 +25,9 @@ const CssTextField = withStyles({
     '& label.Mui-focused': {
       color: 'white',
     },
+    '& label': {
+      color: 'white',
+    },
     '& .MuiInput-underline:after': {
       borderBottomColor: 'white',
     },
