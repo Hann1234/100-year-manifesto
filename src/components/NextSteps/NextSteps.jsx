@@ -236,7 +236,7 @@ function NextSteps() {
                     color: "#132411",
                   }}
                   variant="contained"
-                  onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you in your life?", manifestoTextOpportunity)}
+                  onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you do in your life?", manifestoTextOpportunity)}
                 >
                   ADD
                 </Button>
