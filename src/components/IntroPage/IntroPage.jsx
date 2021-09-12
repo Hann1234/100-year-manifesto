@@ -4,13 +4,9 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AdminEdits from "../AdminEdits/AdminEdits";
-import { createTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import grey from '@material-ui/core/colors/grey';
-
 import Grid from "@material-ui/core/Grid";
 
 //Card imports
@@ -21,16 +17,30 @@ import Avatar from '@material-ui/core/Avatar';
 import { TextField } from "@material-ui/core";
 import NextButton from "../NextButton/NextButton";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[50],
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
       },
-      // secondary: {
-      // main: cyan[300],
-      // },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
   },
-});
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -205,19 +215,20 @@ const editName = (event) => {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
                 <form onSubmit={editName}>
-                <ThemeProvider theme={theme}>
-                  <TextField
+                  <CssTextField
                       id="outlined-required"
                       label="Your Preferred Name"
                       style={{ width: "66%"}}
                       color="primary"
+                      InputProps={{
+                        className: classes.TextField
+                      }}
                       value={name}
                       variant="outlined"
                       className={classes.texField}
                       onChange={(event) => setName(event.target.value)}
                       placeholder="Please enter your name"
                     />
-                    </ThemeProvider>
                     <button className={classes.button} type="submit">SAVE</button>
                 </form>
                 <br></br>
