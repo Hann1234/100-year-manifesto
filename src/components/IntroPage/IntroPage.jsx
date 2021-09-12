@@ -4,11 +4,10 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Fade from "@material-ui/core/Fade";
 import AdminEdits from "../AdminEdits/AdminEdits";
-
 import Grid from "@material-ui/core/Grid";
 
 //Card imports
@@ -18,6 +17,34 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import { TextField } from "@material-ui/core";
 import NextButton from "../NextButton/NextButton";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -192,13 +219,12 @@ const editName = (event) => {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
                 <form onSubmit={editName}>
-                  <TextField
+                  <CssTextField
                       id="outlined-required"
                       label="Your Preferred Name"
-                      style={{ width: "66%" }}
+                      style={{ width: "66%"}}
                       value={name}
                       variant="outlined"
-                      className="name"
                       onChange={(event) => setName(event.target.value)}
                       placeholder="Please enter your name"
                     />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +13,34 @@ import NextButton from "../NextButton/NextButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -271,10 +299,10 @@ function Mantras(props) {
             </Grid>
             <Grid item xs={12} container spacing={2}>
               <section>
-                <TextField
+                <CssTextField
                   required
                   id="outlined-required"
-                  label="Add Mantra"
+                  label="Add Word to Live By"
                   value={manifestoText}
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
@@ -307,7 +335,7 @@ function Mantras(props) {
                 if (mantra.id === mantraToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
-                      <TextField
+                      <CssTextField
                         id="outlined-required"
                         placeholder={mantra.manifesto_text}
                         variant="outlined"
@@ -330,10 +358,10 @@ function Mantras(props) {
                 if (mantra.id != mantraToEdit) {
                   return (
                     <Grid key={mantra.id} item xs={3}>
-                      <TextField
+                      <CssTextField
                         disabled
                         id="outlined-required"
-                        label="Your Mantras"
+                        label="Your Word to Live By"
                         value={mantra.manifesto_text}
                         variant="outlined"
                         onChange={(evt) => setManifestoText(evt.target.value)}

@@ -10,7 +10,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker';
 
-function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
+function AdminEdits_Text( {page_names, page_id = -1, html_id, default_value} ) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch ();
 
@@ -74,7 +74,7 @@ function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
 
     // save change to the database
     const saveChangesToDb = () => {
-        if (page_id && html_id) { // make sure page_id & html_id are defined before posting
+        if ( page_id >= 0 && html_id) { // make sure page_id & html_id are defined before posting
             dispatch({
                 type: 'ADD_PAGE_EDIT',
                 payload: {
