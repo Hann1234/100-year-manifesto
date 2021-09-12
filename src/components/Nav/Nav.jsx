@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
+import "animate.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,16 +64,18 @@ function Nav() {
         rel="stylesheet"
         type="text/css"
       />
-      <Link to="/home">
-        <h1
-          className="nav-title"
-          onClick={() => {
-            dispatch({ type: "CLEAR_NEXT_BUTTON" });
-          }}
-        >
-          100 Year Manifesto
-        </h1>
-      </Link>
+      <div class="animate__animated animate__fadeInUp animate__delay-850ms">
+        <Link to="/home">
+          <h1
+            className="nav-title"
+            onClick={() => {
+              dispatch({ type: "CLEAR_NEXT_BUTTON" });
+            }}
+          >
+            100 Year Manifesto
+          </h1>
+        </Link>
+      </div>
       <ProgressBar />
       <div>
         {/* If a user is logged in, show these links */}
