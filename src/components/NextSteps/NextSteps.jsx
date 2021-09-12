@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 //styling
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +12,34 @@ import "./NextSteps.css";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -30,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 48,
     padding: "0 30px",
+  },
+  editText: {
+    color: "white",
   },
 }));
 
@@ -190,13 +221,15 @@ function NextSteps() {
             <Grid item xs={12} container spacing={2}>
               <section>
                 <div style={{margin: "10px"}}>
+                  <h3>
                   <AdminEdits
                       page_id={page_id}
                       html_id={"question1"}
                       default_value={`What is the biggest challenge you face?`}
                     />
+                  </h3>
                 </div>
-                <TextField
+                <CssTextField
                   required
                   id="outlined-optional"
                   label="Biggest Challenge"
@@ -219,13 +252,15 @@ function NextSteps() {
             <Grid item xs={12} container spacing={2}>
               <section>
                 <div style={{margin: "10px"}}>
+                  <h3>
                   <AdminEdits
                     page_id={page_id}
                     html_id={"question2"}
                     default_value={`What do you hope the 100 Year Manifesto will help you do in your life?`}
                   />
+                  </h3>
                 </div>
-                <TextField
+                <CssTextField
                   required
                   id="outlined-required"
                   label="Life Opportunity"
@@ -250,7 +285,7 @@ function NextSteps() {
                   return (
                     <Grid key={question.id} item xs={5}>
                       <div style={{margin: "10px"}}>{question.question}</div>
-                      <TextField
+                      <CssTextField
                         id="outlined-required"
                         placeholder={additionalQuestions.manifesto_text}
                         variant="outlined"
@@ -278,7 +313,7 @@ function NextSteps() {
                   return (
                     <Grid key={question.id} item xs={5}>
                       <div style={{margin: "10px"}}>{question.question}</div>
-                      <TextField
+                      <CssTextField
                         style={{width: "100%"}}
                         disabled
                         id="outlined-required"
