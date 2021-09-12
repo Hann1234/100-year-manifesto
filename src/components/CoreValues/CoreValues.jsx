@@ -505,11 +505,7 @@ function CoreValues() {
                   <Button
                     disabled
                     type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
+                    className={classes.button}
                     variant="contained"
                     onClick={() => addCoreValue()}
                   >
@@ -518,11 +514,7 @@ function CoreValues() {
                 ) : (
                   <Button
                     type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
+                    className={classes.button}
                     variant="contained"
                     onClick={() => addCoreValue()}
                   >
