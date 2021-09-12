@@ -7,6 +7,9 @@ import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AdminEdits from "../AdminEdits/AdminEdits";
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import grey from '@material-ui/core/colors/grey';
 
 import Grid from "@material-ui/core/Grid";
 
@@ -17,6 +20,17 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import { TextField } from "@material-ui/core";
 import NextButton from "../NextButton/NextButton";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: grey[50],
+      },
+      // secondary: {
+      // main: cyan[300],
+      // },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,6 +69,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     height: 48,
     padding: '0 30px',
+  },
+  texField: {
+    color: 'white',
+
   },
 }));
 
@@ -187,16 +205,19 @@ const editName = (event) => {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
                 <form onSubmit={editName}>
+                <ThemeProvider theme={theme}>
                   <TextField
                       id="outlined-required"
                       label="Your Preferred Name"
-                      style={{ width: "66%" }}
+                      style={{ width: "66%"}}
+                      color="primary"
                       value={name}
                       variant="outlined"
-                      className="name"
+                      className={classes.texField}
                       onChange={(event) => setName(event.target.value)}
                       placeholder="Please enter your name"
                     />
+                    </ThemeProvider>
                     <button className={classes.button} type="submit">SAVE</button>
                 </form>
                 <br></br>
