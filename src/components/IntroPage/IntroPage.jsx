@@ -6,6 +6,7 @@ import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Fade from "@material-ui/core/Fade";
 import AdminEdits from "../AdminEdits/AdminEdits";
 import Grid from "@material-ui/core/Grid";
 
@@ -108,12 +109,16 @@ const editName = (event) => {
     };
 
   return (
+    
     <Grid container spacing={3} xs={12}>
-      <Grid xs={4}>
-        <AutoScale>
+      <Grid item xs={4}>
+        <div className="manifestoPadding">
+          <AutoScale>
             <Manifesto />
           </AutoScale>
+        </div>
       </Grid>
+      <Fade in={true} timeout={800}>
       <Grid container item align="center" justify = "center" xs={8} className="scrollableDiv">
         <Grid item xs={12}>
           <h1>
@@ -262,7 +267,8 @@ const editName = (event) => {
             </h4>                
         </Grid>
       </Grid>
-    </Grid>
+      </Fade>
+      </Grid>
   );
 }
 

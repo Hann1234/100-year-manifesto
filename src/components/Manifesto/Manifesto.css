@@ -18,6 +18,9 @@
   color: #4d5470;
   font-family: 'Roboto Slab', serif;
 }
+.manifesto:hover{
+  cursor: pointer;
+}
 
 .blueBar{
   height: calc(var(--manifestoHeight) * .01818);
@@ -37,9 +40,6 @@
 .userName{
   font-size: 60px;
   margin: -20px 0 0 0;
-}
-.userName:hover{
-  cursor: pointer;
 }
 .smallColumn{
   width: calc(var(--manifestoWidth) * .23);
@@ -71,10 +71,11 @@
 }
 .bigColumn{
   width: calc(var(--manifestoWidth) * .6818);
+  height: calc(var(--manifestoHeight) * .8);
   text-align: center;
 }
 .bigColumnAutoFill{
-  min-height: 30%;
+  min-height: calc(var(--manifestoHeight) * .3);
 }
 .lifeGoalsTitle{
   color:#e7e7e7;
@@ -90,11 +91,6 @@
 .principlesTitle{
   color:#e7e7e7;
   margin-top: 8px;
-}
-
-.principleItem{
-  text-align: left;
-  font-size: 10px;
 }
 .pi10{
   font-size: 10px;

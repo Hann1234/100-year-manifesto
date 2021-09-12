@@ -12,6 +12,7 @@ import Box from "@material-ui/core/Box";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+import Fade from "@material-ui/core/Fade";
 
 import "./CoreValues.css";
 import BackButton from "../BackButton/BackButton";
@@ -432,13 +433,14 @@ function CoreValues() {
     <section>
       {/* Prototype Grid layout */}
       <Grid container spacing={3}>
-        <Grid xs={4}>
+        <Grid item xs={4}>
           <div className="manifestoPadding">
             <AutoScale>
               <Manifesto />
             </AutoScale>
           </div>
         </Grid>
+        <Fade in={true} timeout={800}>
         <Grid container item xs={8} className="scrollableDiv">
           <center>
             <h1>
@@ -607,6 +609,7 @@ function CoreValues() {
             </Paper>
           </Grid>
         </Grid>
+        </Fade>
       </Grid>
     </section>
   );

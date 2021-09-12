@@ -1,7 +1,11 @@
-import React, { useRef } from "react";
-import Manifesto from "../Manifesto/Manifesto";
-import { useReactToPrint } from "react-to-print";
+import React from 'react';
+import Manifesto from '../Manifesto/Manifesto';
+import * as htmlToImage from 'html-to-image';
+import { jsPDF } from "jspdf";
+import { useSelector } from 'react-redux';
 import { makeStyles } from "@material-ui/core";
+import Fade from "@material-ui/core/Fade";
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -16,20 +20,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MyManifesto() {
-  const manifestoRef = useRef();
-  const classes = useStyles();
-  const handlePrint = useReactToPrint({
-    content: () => manifestoRef.current,
-  });
+    const user = useSelector(store => store.user);
+    const classes = useStyles();
 
-  return (
-    <center>
-      <div ref={manifestoRef}>
-        <Manifesto />
-        <button onClick={handlePrint}>Print</button>
-      </div>
-    </center>
-  );
+    const exportAsPng = () => {
+        htmlToImage.toPng(document.getElementById('manifesto'))
+        .then(function (dataUrl) {
+            let link = document.createElement('a');
+            link.download = `${user.name} Manifesto.png`;
+            link.href = dataUrl;
+            link.click();
+        });
+    }
+    
+    const exportAsPdf = () => {
+        htmlToImage.toPng(document.getElementById('manifesto'))
+        .then(function (dataUrl) {
+            const pdf = new jsPDF('p', 'in', 'a4');
+            const width = pdf.internal.pageSize.getWidth();
+            const height = pdf.internal.pageSize.getHeight();
+            pdf.addImage(dataUrl, 'PNG', 0, 0, width, height);
+            pdf.save(`${user.name} Manifesto.pdf`);
+        });
+    }
+
+    return(
+        <Fade in={true} timeout={800}>
+            <center>
+                <div>
+                    <button onClick={exportAsPdf}>PDF</button>
+                    <button onClick={exportAsPng}>PNG</button>
+                    <Manifesto/>
+                </div>
+            </center>
+        </Fade>
+    )
 }
 
 export default MyManifesto;

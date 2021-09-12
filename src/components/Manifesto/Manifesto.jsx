@@ -1,12 +1,13 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import userReducer from "../../redux/reducers/user.reducer";
-import './Manifesto.css';
+import { useHistory } from "react-router";
+import './manifesto.css';
 import ManifestoSvgElement from "./ManifestoSvgElement";
 
 function Manifesto( {admin_page = false, user_name = ""} ){
     const dispatch = useDispatch();
+    const history = useHistory();
     useEffect(()=> {
         if (!admin_page) {
             dispatch({ type: 'FETCH_MISSION'})
@@ -25,6 +26,11 @@ function Manifesto( {admin_page = false, user_name = ""} ){
     const guidingPrinciples = useSelector((store) => store.guidingPrinciplesReducer.guidingPrinciples);
     const user = useSelector(store => store.user);
     
+    const handleClick = () => {
+        dispatch({ type: 'CLEAR_NEXT_BUTTON'});
+        history.push('myManifesto');
+    }
+
     let half=guidingPrinciples.length/2;
     let gpOne = [];
     let gpTwo = [];
@@ -34,7 +40,7 @@ function Manifesto( {admin_page = false, user_name = ""} ){
         gpTwo = guidingPrinciples.slice(half);
     } 
     return(
-        <div className="manifestoContainer">
+        <div className="manifestoContainer" id="manifesto" onClick={handleClick}>
             <Grid className="manifesto" container direction="column">
                 <Grid item>
                     <div className="blueBar"></div>
@@ -43,11 +49,11 @@ function Manifesto( {admin_page = false, user_name = ""} ){
                     <div className="hundredYear">100 YEAR MANIFESTO</div>
                     <div className="userName">{user_name === "" ? user.name : user_name}</div>
                 </Grid>
-                <Grid className="content" item container direction="row" justifyContent="space-around">
+                <Grid className="content" item container direction="row" justifyContent="space-evenly">
                     <Grid className="smallColumn">
                         <div className="mission">MISSION: {mission.length !==0 && mission[0].manifesto_text}</div>
                         <div className="smallColumnAutoFill dottedBottom">
-                            <div className="smTitle">MANTRAS:</div>
+                            <div className="smTitle">WORDS TO LIVE BY:</div>
                             {mantras.length !==0 && mantras.map(mantra => {
                                 let stringArray = mantra.manifesto_text.split(" ");
                                 let firstText ="";
@@ -95,39 +101,41 @@ function Manifesto( {admin_page = false, user_name = ""} ){
                             }):<div className="emptySection"></div>}
                         </div>
                     </Grid>
-                    <Grid className="bigColumn" item>
-                        <div className="lifeGoalsTitle blueBar">LIFE GOALS</div>
-                        <div className="lifeGoals bigColumnAutoFill">
-                            {lifeGoals.length !== 0 && lifeGoals.map(textItem => (
-                                <div className="lifeGoalItem" key={textItem.id}>{textItem.manifesto_text} </div>
-                            ))}
-                        </div>
-                        <div className="principlesTitle blueBar">Guiding Principles</div>
-                        <div className="principles bigColumnAutoFill">
-                            {guidingPrinciples.length !== 0 && guidingPrinciples.length < 6 ? 
-                            <Grid container spacing={1}>
-                                {guidingPrinciples.map(textItem => {
-                                    return(
-                                        <Grid item xs={12} className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
-                                    )
-                                })}
+                    <Grid className="bigColumn" item xs={8} container direction="column" justifyContent="flex-start">
+                        <div>
+                            <Grid className="lifeGoalsTitle blueBar">LIFE GOALS</Grid>
+                            <Grid className="lifeGoals bigColumnAutoFill">
+                                {lifeGoals.length !== 0 && lifeGoals.map(textItem => (
+                                    <Grid className="lifeGoalItem" key={textItem.id}>{textItem.manifesto_text} </Grid>
+                                ))}
                             </Grid>
-                            :<Grid container direction="row" spacing={1}>
-                                <Grid container item container xs={6} spacing={2} justifyContent="space-around" direction="column">
-                                    {gpOne.map(textItem => {
+                        </div>
+                        <div>
+                            <Grid item className="principlesTitle blueBar">Guiding Principles</Grid>
+                            <Grid container className="principles bigColumnAutoFill" spacing={1}>
+                                {guidingPrinciples.length !== 0 && guidingPrinciples.length < 6 ? 
+                                    guidingPrinciples.map(textItem => {
                                         return(
-                                            <Grid item  className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                            <Grid item xs={12} className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
                                         )
-                                    })}
-                                </Grid>
-                                <Grid container item  xs={6} spacing={2} justifyContent="space-around" direction="column">
-                                {gpTwo.map(textItem => {
-                                    return(
-                                        <Grid item  className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
-                                    )
-                                })}
-                                 </Grid>
-                            </Grid>}
+                                    })
+                                :<Grid container item xs={12} direction="row" spacing={3}>
+                                    <Grid container item container xs={6} spacing={2} justifyContent="space-between"  direction="column">
+                                        {gpOne.map(textItem => {
+                                            return(
+                                                <Grid item className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                            )
+                                        })}
+                                    </Grid>
+                                    <Grid container item  xs={6} spacing={2} justifyContent="space-between" direction="column">
+                                        {gpTwo.map(textItem => {
+                                            return(
+                                                <Grid item  className={gpFontSize(textItem.manifesto_text)} key={textItem.id}>{textItem.manifesto_text}<br/> {textItem.source}</Grid>
+                                            )
+                                        })}
+                                    </Grid>
+                                </Grid>}
+                            </Grid>
                         </div>
                     </Grid>
                 </Grid>
@@ -141,10 +149,10 @@ function Manifesto( {admin_page = false, user_name = ""} ){
 
 function gpFontSize(text){
     let fontSizeClass = ""
-    text.length<=50 ? fontSizeClass="pi16": null;
-    text.length>50 && text.length <= 100 ? fontSizeClass="pi14": null;
-    text.length>100 && text.length <= 200 ? fontSizeClass="pi12": null;
-    text.length>200 ? fontSizeClass="pi10": null;
+    text.length<=80 ? fontSizeClass="pi16": null;
+    text.length>80 && text.length <= 150 ? fontSizeClass="pi14": null;
+    text.length>150 && text.length <= 250 ? fontSizeClass="pi12": null;
+    text.length>250 ? fontSizeClass="pi10": null;
     return fontSizeClass
 }
 

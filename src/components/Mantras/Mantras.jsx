@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Fade from "@material-ui/core/Fade";
 import "./Mantras.css";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import BackButton from "../BackButton/BackButton";
@@ -150,6 +151,7 @@ function Mantras(props) {
                 </AutoScale>
               </div>
           </Grid>
+          <Fade in={true} timeout={800}>
           <Grid item xs={8} className="scrollableDiv">
             <center>
               <h1>
@@ -397,6 +399,7 @@ function Mantras(props) {
               <NextButton />
             </Box>
           </Grid>
+          </Fade>
         </Grid>
       </div>
     </section>
