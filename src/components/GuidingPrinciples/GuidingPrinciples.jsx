@@ -13,6 +13,7 @@ import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -164,6 +165,7 @@ function GuidingPrinciples() {
               </AutoScale>
             </div>
           </Grid>
+          <Fade in={true} timeout={800}>
           <Grid item xs={8} className="scrollableDiv">
             <center>
               <h1>
@@ -411,6 +413,7 @@ function GuidingPrinciples() {
               <CompleteButton />
             </Box>
           </Grid>
+          </Fade>
         </Grid>
       </div>
     </section>

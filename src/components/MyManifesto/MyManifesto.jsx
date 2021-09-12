@@ -4,6 +4,7 @@ import * as htmlToImage from 'html-to-image';
 import { jsPDF } from "jspdf";
 import { useSelector } from 'react-redux';
 import { makeStyles } from "@material-ui/core";
+import Fade from "@material-ui/core/Fade";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,13 +45,15 @@ function MyManifesto() {
     }
 
     return(
-        <center>
-            <div>
-                <button onClick={exportAsPdf}>PDF</button>
-                <button onClick={exportAsPng}>PNG</button>
-                <Manifesto/>
-            </div>
-        </center>
+        <Fade in={true} timeout={800}>
+            <center>
+                <div>
+                    <button onClick={exportAsPdf}>PDF</button>
+                    <button onClick={exportAsPng}>PNG</button>
+                    <Manifesto/>
+                </div>
+            </center>
+        </Fade>
     )
 }
 

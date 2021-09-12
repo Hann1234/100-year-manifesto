@@ -8,6 +8,7 @@ import { TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./MissionStatement.css";
+import Fade from "@material-ui/core/Fade";
 //Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
@@ -126,13 +127,14 @@ function MissionStatement() {
       <div>
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
-          <Grid xs={4}>
+          <Grid item xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
                 <Manifesto />
               </AutoScale>
             </div>
           </Grid>
+          <Fade in={true} timeout={800}>
           <Grid item xs={8} className="scrollableDiv">
             <center>
               <h1>
@@ -166,7 +168,7 @@ function MissionStatement() {
                   }
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid  container item xs={6}>
                 <section className="rightOfVideo">
                   <p>
                     <AdminEdits
@@ -337,6 +339,7 @@ function MissionStatement() {
               <NextButton />
             </Box>
           </Grid>
+          </Fade>
         </Grid>
       </div>
     </section>
