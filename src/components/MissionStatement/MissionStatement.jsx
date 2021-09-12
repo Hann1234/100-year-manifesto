@@ -38,6 +38,16 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: "0 30px",
   },
+
+  buttonRemove: {
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
 }));
 
 function MissionStatement() {
@@ -205,9 +215,15 @@ function MissionStatement() {
                     onChange={(evt) => handleMissionText(evt.target.value)}
                   />
                   {missions.length >= 1 ? (
-                    <h2 style={{ color: "White" }}>
-                      Please remove a Mission Statement to add a new one.
-                    </h2>
+                    <Button
+                    disabled
+                    type="submit"
+                    className={classes.button}
+                    variant="contained"
+                    onClick={() => addMission()}
+                  >
+                    ADD
+                  </Button>
                   ) : (
                     <Button
                       type="submit"
