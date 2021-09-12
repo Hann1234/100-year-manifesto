@@ -577,20 +577,20 @@ function CoreValues() {
                       >
                         Remove
                       </Button>
-                      <Grid>
-                        <Box
-                          component="span"
-                          m={1} //margin
-                          className={`${classes.bottomBox} ${classes.box}`}
-                        >
-                          <BackButton />
-                          <NextButton />
-                        </Box>
-                      </Grid>
                     </Grid>
                   );
                 }
               })}
+            </Grid>
+            <Grid>
+              <Box
+                component="span"
+                m={1} //margin
+                className={`${classes.bottomBox} ${classes.box}`}
+              >
+                <BackButton />
+                <NextButton />
+              </Box>
             </Grid>
             <Paper component="ul" className={classes.root}>
               <AdminEdits
