@@ -86,6 +86,17 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: "0 30px",
   },
+  buttonRemove: {
+    background: "linear-gradient(45deg, #bd2626 30%, #940635 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    width: 100,
+    padding: "0 30px",
+    marginLeft: 2
+  },
 }));
 
 function CoreValues() {
@@ -494,11 +505,7 @@ function CoreValues() {
                   <Button
                     disabled
                     type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
+                    className={classes.button}
                     variant="contained"
                     onClick={() => addCoreValue()}
                   >
@@ -507,11 +514,7 @@ function CoreValues() {
                 ) : (
                   <Button
                     type="submit"
-                    style={{
-                      height: "56px",
-                      backgroundColor: "#1c4bd9",
-                      color: "#132411",
-                    }}
+                    className={classes.button}
                     variant="contained"
                     onClick={() => addCoreValue()}
                   >
@@ -523,34 +526,8 @@ function CoreValues() {
             <br />
             <Grid item xs={12} container spacing={2}>
               {coreValues.map((value) => {
-                if (value.id === coreValueToEdit) {
-                  return (
-                    <Grid key={value.id} item xs={3}>
-                      <TextField
-                        id="outlined-required"
-                        placeholder={value.manifesto_text}
-                        variant="outlined"
-                        onChange={(event) =>
-                          setEditManifestoText(event.target.value)
-                        }
-                      />
-                      <Button
-                        id={value.id}
-                        type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#7bd91c",
-                          color: "#132411",
-                        }}
-                        variant="contained"
-                        onClick={() => editCoreValue(value.id)}
-                      >
-                        Save
-                      </Button>
-                    </Grid>
-                  );
-                }
-                if (value.id != coreValueToEdit) {
+                
+                
                   return (
                     <Grid key={value.id} item xs={3}>
                       <TextField
@@ -567,11 +544,7 @@ function CoreValues() {
 
                       <Button
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#d91c1c",
-                          color: "#132411",
-                        }}
+                        className={classes.buttonRemove}
                         variant="contained"
                         onClick={() => deleteCoreValue(value.id)}
                       >
@@ -579,7 +552,7 @@ function CoreValues() {
                       </Button>
                     </Grid>
                   );
-                }
+                
               })}
             </Grid>
             <Grid>

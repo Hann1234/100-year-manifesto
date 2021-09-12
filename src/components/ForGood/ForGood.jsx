@@ -32,6 +32,46 @@ const useStyles = makeStyles((theme) => ({
   textfield: {
     height: "30vh",
   },
+  button: {
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
+  buttonRemove: {
+    background: "linear-gradient(45deg, #bd2626 30%, #940635 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    width: 100,
+    padding: "0 30px",
+    marginLeft: 2
+  },
+  buttonEdit: {
+    background: "linear-gradient(45deg, #1c4bd9 30%, #261385 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    padding: "0 30px",
+    marginLeft: 2
+  },
+  buttonSave: {
+    background: "linear-gradient(45deg, #7bd91c 30%, #12b525 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    padding: "0 30px",
+    marginLeft: 2
+  },
 }));
 
 function ForGood() {
@@ -267,11 +307,7 @@ function ForGood() {
                 <Button
                 disabled
                   type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
+                  className={classes.button}
                   variant="contained"
                   onClick={() => addForGood()}
                 >
@@ -280,11 +316,7 @@ function ForGood() {
                 :
                 <Button
                   type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
+                  className={classes.button}
                   variant="contained"
                   onClick={() => addForGood()}
                 >
@@ -311,13 +343,8 @@ function ForGood() {
                       />
                       <Button
                         id={ForGood.id}
-                        style={{ width: 450 }}
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#7bd91c",
-                          color: "#132411",
-                        }}
+                        className={classes.buttonSave}
                         variant="contained"
                         onClick={() => editForGood(ForGood.id)}
                       >
@@ -340,11 +367,7 @@ function ForGood() {
                       <Button
                         id={ForGood.id}
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#1c4bd9",
-                          color: "#fff",
-                        }}
+                        className={classes.buttonEdit}
                         variant="contained"
                         onClick={() => startEdit(ForGood)}
                       >
@@ -353,11 +376,7 @@ function ForGood() {
                       <span> </span>
                       <Button
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#d91c1c",
-                          color: "#132411",
-                        }}
+                        className={classes.buttonRemove}
                         variant="contained"
                         onClick={() => deleteForGood(ForGood.id)}
                       >

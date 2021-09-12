@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
     color: "white",
-    height: 48,
+    height: 36,
     padding: "0 30px",
+    marginLeft: 2
   },
   completed: {
     display: "inline-block",
