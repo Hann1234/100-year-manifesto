@@ -108,7 +108,7 @@ CREATE TABLE "admin_edit_form" (
 CREATE TABLE "access_code" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
-	"code" varchar(80),
+	"code" varchar(123) NOT NULL,
 	"expiration_date" TIMESTAMP NOT NULL DEFAULT NOW() + 7 * INTERVAL '1 DAY',
 	CONSTRAINT "access_code_pk" PRIMARY KEY ("id")
 ) WITH (

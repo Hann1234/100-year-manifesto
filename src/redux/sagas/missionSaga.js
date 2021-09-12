@@ -24,6 +24,17 @@ function* fetchMission() {
   }
 }
 
+//Get specific user's mission statement
+function* fetchSpecificUserMission(action) {
+  try {
+    const mission = yield axios.get(`/api/missionStatement/${action.payload.id}`);
+    yield put({type: 'SET_MISSION', payload: mission.data}) //Loads specific user's mission into reducer
+  } catch (error) {
+    console.log('Error getting specific users mission:', error);
+    yield put({ type: 'FETCH_USER_MISSION_ERROR' });
+  }
+}
+
 //Update mission statement
 function* updateMission(action) {
   try {
@@ -50,6 +61,7 @@ function* deleteMission(action) {
 function* missionSaga() {
   yield takeLatest('ADD_MISSION', addMission);
   yield takeLatest('FETCH_MISSION', fetchMission);
+  yield takeLatest('FETCH_USER_MISSION', fetchSpecificUserMission);
   yield takeLatest('UPDATE_MISSION', updateMission);
   yield takeLatest('DELETE_MISSION', deleteMission);
 }

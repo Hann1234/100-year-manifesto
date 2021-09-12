@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import LogInButton from "../LoginButton/LoginButton";
+import "animate.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +28,10 @@ function Nav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setAnchorEl(null);
+  }, [user]);
 
   let loginLinkData = {
     path: "/login",
@@ -48,6 +51,12 @@ function Nav() {
     setAnchorEl(null);
   };
 
+  const handleLogOut = () => {
+    setAnchorEl(event.currentTarget);
+    dispatch({ type: "LOGOUT" });
+    handleClose();
+  };
+
   return (
     <div className="nav">
       <link
@@ -55,9 +64,18 @@ function Nav() {
         rel="stylesheet"
         type="text/css"
       />
-      <Link to="/home">
-        <h1 className="nav-title">100 Year Manifesto</h1>
-      </Link>
+      <div class="animate__animated animate__fadeInUp animate__delay-850ms">
+        <Link to="/home">
+          <h1
+            className="nav-title"
+            onClick={() => {
+              dispatch({ type: "CLEAR_NEXT_BUTTON" });
+            }}
+          >
+            100 Year Manifesto
+          </h1>
+        </Link>
+      </div>
       <ProgressBar />
       <div>
         {/* If a user is logged in, show these links */}
@@ -88,25 +106,29 @@ function Nav() {
                 className="navLink"
                 onClick={() => {
                   history.push("/myManifesto");
+                  dispatch({ type: "CLEAR_NEXT_BUTTON" });
                   handleClose();
                 }}
               >
                 My Manifesto
               </MenuItem>
-              {
-                user.role === 'admin' || user.role === 'superadmin' ?
-                  <MenuItem 
-                    className="navLink"
-                    onClick={() => {
-                      history.push("/admin");
-                      handleClose();
-                    }}
-                  >
+              {user.role === "admin" || user.role === "superadmin" ? (
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    dispatch({ type: "CLEAR_NEXT_BUTTON" });
+                    history.push("/admin");
+                    handleClose();
+                  }}
+                >
                   Admin
-                  </MenuItem> :
-                  <></>
-              }
-              <LogOutButton className="navLink" />
+                </MenuItem>
+              ) : (
+                <></>
+              )}
+              <LogOutButton
+                className="navLink"
+              />
             </Menu>
           </div>
         )}

@@ -23,6 +23,17 @@ function* fetchAdditionalQuestions() {
   }
 }
 
+//Get additionalQuestions statement
+function* fetchSpecificUserAdditionalQuestions(action) {
+  try {
+    const additionalQuestions = yield axios.get(`/api/additionalQuestions/${action.payload.id}`);
+    yield put({type: 'SET_ADDITIONAL_QUESTIONS', payload: additionalQuestions.data}) //Loads specific user's additional questions into reducer
+  } catch (error) {
+    console.log('Error getting additional questions for a specific user:', error);
+    yield put({ type: 'FETCH_USER_ADDITIONAL_QUESTIONS_ERROR' });
+  }
+}
+
 //Update additionalQuestion statement
 function* updateAdditionalQuestion(action) {
   try {
@@ -49,6 +60,7 @@ function* deleteAdditionalQuestion(action) {
 function* additionalQuestionsSaga() {
   yield takeLatest('ADD_ADDITIONAL_QUESTION', addAdditionalQuestion);
   yield takeLatest('FETCH_ADDITIONAL_QUESTIONS', fetchAdditionalQuestions);
+  yield takeLatest('FETCH_USER_ADDITIONAL_QUESTIONS', fetchSpecificUserAdditionalQuestions);
   yield takeLatest('UPDATE_ADDITIONAL_QUESTION', updateAdditionalQuestion);
   yield takeLatest('DELETE_ADDITIONAL_QUESTION', deleteAdditionalQuestion);
 }

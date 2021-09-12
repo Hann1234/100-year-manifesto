@@ -8,7 +8,14 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   button: {
-    marginRight: theme.spacing(1),
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 36,
+    padding: "0 30px",
+    marginLeft: 2
   },
   completed: {
     display: "inline-block",
@@ -19,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps(activeStep) {
+function getSteps() {
   return [
     "Intro: Your 100 Year Manifesto",
     "Mission Statement",
@@ -27,6 +34,7 @@ function getSteps(activeStep) {
     "Core Values",
     "For Good",
     "Life Goals",
+    "Guiding Principles",
     "Next Step",
   ];
 }
@@ -71,10 +79,6 @@ function NextButton() {
         color="primary"
         onClick={handleNext}
         className={classes.button}
-        style={{
-          backgroundColor: "#1c4bd9",
-          color: "#132411",
-        }}
       >
         Next
       </Button>

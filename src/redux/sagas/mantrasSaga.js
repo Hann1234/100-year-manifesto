@@ -23,6 +23,17 @@ function* fetchMantras() {
   }
 }
 
+//Get specific user's mantras statement
+function* fetchSpecificUserMantras(action) {
+  try {
+    const mantras = yield axios.get(`/api/mantras/${action.payload.id}`);
+    yield put({type: 'SET_MANTRAS', payload: mantras.data}) //Loads specific user's mantras into reducer
+  } catch (error) {
+    console.log('Error getting specific users mantras:', error);
+    yield put({ type: 'FETCH_USER_MANTRAS_ERROR' });
+  }
+}
+
 //Update mantra statement
 function* updateMantra(action) {
   console.log(action.payload);
@@ -50,6 +61,7 @@ function* deleteMantra(action) {
 function* mantrasSaga() {
   yield takeLatest('ADD_MANTRA', addMantra);
   yield takeLatest('FETCH_MANTRAS', fetchMantras);
+  yield takeLatest('FETCH_USER_MANTRAS', fetchSpecificUserMantras);
   yield takeLatest('UPDATE_MANTRA', updateMantra);
   yield takeLatest('DELETE_MANTRA', deleteMantra);
 }

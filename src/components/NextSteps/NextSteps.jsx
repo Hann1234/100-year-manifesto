@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import "./NextSteps.css";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
+import AdminEdits from "../AdminEdits/AdminEdits";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -21,6 +22,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
+  button: {
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
 }));
 
 function NextSteps() {
@@ -28,9 +38,14 @@ function NextSteps() {
     (store) => store.additionalQuestionsReducer.additionalQuestions
   );
 
+  const [manifestoTextChallenge, setManifestoTextChallenge] = useState("");
+  const [manifestoTextOpportunity, setManifestoTextOpportunity] = useState("");
   const [manifestoText, setManifestoText] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
   const [additionalQuestionToEdit, setAdditionalQuestionToEdit] = useState(0);
+  const [editAdditionalQuestionText, setEditAdditionalQuestionText] = useState(0);
+  const page_id = 8;
+
 
   const classes = useStyles();
   const history = useHistory();
@@ -40,35 +55,36 @@ function NextSteps() {
     dispatch({
       type: "FETCH_ADDITIONAL_QUESTIONS",
     });
+    dispatch({ type: "FETCH_PAGE_EDITS", payload: { page_id: page_id } });
 
     //more reset state to useEffect when page is reloaded - test to make sure it works as intended.
+    setManifestoTextChallenge("");
+    setManifestoTextOpportunity("");
     setManifestoText("");
     setEditManifestoText("");
     setAdditionalQuestionToEdit(0);
   }, []);
 
-  const addAdditionalQuestion = () => {
+  const addAdditionalQuestion = (question, answer) => {
     dispatch({
       type: "ADD_ADDITIONAL_QUESTION",
       payload: {
-        manifestoText: manifestoText,
+        question: question,
+        manifestoText: answer,
       },
     });
 
-    // setManifestoText(''); - Moved to useEffect
   };
 
-  const editAdditionalQuestion = (id) => {
+  const editAdditionalQuestion = (id, question) => {
     dispatch({
       type: "UPDATE_ADDITIONAL_QUESTION",
       payload: {
         id: id,
-        manifestoText: editManifestoText,
+        question: question,
+        manifestoText: editAdditionalQuestionText,
       },
     });
-
-    // setEditManifestoText(''); - Moved to useEffect
-    // setAdditionalQuestionToEdit(0);
   };
 
   const deleteAdditionalQuestion = (id) => {
@@ -92,27 +108,54 @@ function NextSteps() {
           </Grid>
           <Grid item xs={8} className="scrollableDiv">
             <center>
-              <h1>Next Steps</h1>
+              <h1>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"header"}
+                  default_value={`Next Steps`}
+                />
+              </h1>
               <h3>
-                There is no greater gift you can give yourself than a defining
-                purpose to live with intentionality for which you were designed
-                to impact the world.
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid1"}
+                  default_value={`
+                  There is no greater gift you can give yourself than a defining
+                  purpose to live with intentionality for which you were designed
+                  to impact the world.
+                  `}
+                />
               </h3>
               <h3>
-                After listening to the video about how 1 commitment changed
-                Mick’s life, commit to living your 100 Year Manifesto.
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid2"}
+                  default_value={`
+                  After listening to the video about how one commitment changed
+                  Mick’s life, commit to living your 100 Year Manifesto.
+                  `}
+                />
               </h3>
-              <h3>Live your life on purpose. Live your 100 Year Manifesto.</h3>
+              <h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid3"}
+                  default_value={`
+                  Live your life on purpose. Live your 100 Year Manifesto.
+                  `}
+                />
+                </h3>
             </center>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-                <div className="videoWrapper">
-                  <iframe
-                    width="512"
-                    height="288"
-                    src="https://player.vimeo.com/video/599581279?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=13b057a783"
-                  ></iframe>
-                </div>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599581279?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=13b057a783"
+                  }
+                />
               </Grid>
               <Grid item xs={6}>
                 <section className="rightOfVideo">
@@ -124,8 +167,14 @@ function NextSteps() {
               <center>
                 <section>
                   <h3>
-                    Tell us a little more about you as some final thoughts
-                    reflecting on your 100 Year Manifesto journey!
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"bottom1"}
+                      default_value={`
+                      Tell us a little more about you as some final thoughts
+                      reflecting on your 100 Year Manifesto journey!
+                      `}
+                    />
                   </h3>
                   <p></p>
                 </section>
@@ -140,24 +189,26 @@ function NextSteps() {
             </Grid> */}
             <Grid item xs={12} container spacing={2}>
               <section>
+                <div style={{margin: "10px"}}>
+                  <AdminEdits
+                      page_id={page_id}
+                      html_id={"question1"}
+                      default_value={`What is the biggest challenge you face?`}
+                    />
+                </div>
                 <TextField
                   required
                   id="outlined-optional"
-                  label="Biggest Challenge (Optional)"
-                  value={manifestoText}
+                  label="Biggest Challenge"
+                  value={manifestoTextChallenge}
                   variant="outlined"
-                  defaultValue="What is the biggest challenge you face?"
-                  onChange={(event) => setManifestoText(event.target.value)}
+                  onChange={(event) => setManifestoTextChallenge(event.target.value)}
                 />
                 <Button
                   type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
+                  className={classes.button}
                   variant="contained"
-                  onClick={() => addAdditionalQuestion()}
+                  onClick={() => addAdditionalQuestion("What is the biggest challenge you face?", manifestoTextChallenge)}
                 >
                   ADD
                 </Button>
@@ -167,24 +218,26 @@ function NextSteps() {
 
             <Grid item xs={12} container spacing={2}>
               <section>
+                <div style={{margin: "10px"}}>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"question2"}
+                    default_value={`What do you hope the 100 Year Manifesto will help you do in your life?`}
+                  />
+                </div>
                 <TextField
                   required
                   id="outlined-required"
-                  label="100 Year Manifesto Life Opportunity"
-                  value={manifestoText}
+                  label="Life Opportunity"
+                  value={manifestoTextOpportunity}
                   variant="outlined"
-                  defaultValue="What do you hope the 100 Year Manifesto will help you in your life?"
-                  onChange={(event) => setManifestoText(event.target.value)}
+                  onChange={(event) => setManifestoTextOpportunity(event.target.value)}
                 />
                 <Button
                   type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
+                  className={classes.button}
                   variant="contained"
-                  onClick={() => addAdditionalQuestion()}
+                  onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you do in your life?", manifestoTextOpportunity)}
                 >
                   ADD
                 </Button>
@@ -195,7 +248,8 @@ function NextSteps() {
               {additionalQuestions.map((question) => {
                 if (question.id === additionalQuestionToEdit) {
                   return (
-                    <Grid key={question.id} item xs={3}>
+                    <Grid key={question.id} item xs={5}>
+                      <div style={{margin: "10px"}}>{question.question}</div>
                       <TextField
                         id="outlined-required"
                         placeholder={additionalQuestions.manifesto_text}
@@ -213,7 +267,7 @@ function NextSteps() {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => editAdditionalQuestion(question.id)}
+                        onClick={() => editAdditionalQuestion(question.id, question.question)}
                       >
                         Save
                       </Button>
@@ -222,8 +276,10 @@ function NextSteps() {
                 }
                 if (question.id != additionalQuestionToEdit) {
                   return (
-                    <Grid key={question.id} item xs={3}>
+                    <Grid key={question.id} item xs={5}>
+                      <div style={{margin: "10px"}}>{question.question}</div>
                       <TextField
+                        style={{width: "100%"}}
                         disabled
                         id="outlined-required"
                         // label="Your Biggest Challenge"
@@ -242,7 +298,7 @@ function NextSteps() {
                           color: "#132411",
                         }}
                         variant="contained"
-                        onClick={() => setAdditionalQuestionToEdit(question.id)}
+                        onClick={() => {setAdditionalQuestionToEdit(question.id); setEditAdditionalQuestionText(question.manifesto_text);}}
                       >
                         Edit
                       </Button>
@@ -271,10 +327,10 @@ function NextSteps() {
               <Button
                 variant="contained"
                 color="primary"
-                style={{ height: 40 }}
-                onClick={() => history.push("/homepage")}
+                className={classes.button}
+                onClick={() => history.push("/myManifesto")}
               >
-                Next
+                My Manifesto
               </Button>
             </Box>
           </Grid>

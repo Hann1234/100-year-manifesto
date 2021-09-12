@@ -24,8 +24,20 @@ function* fetchUser() {
   }
 }
 
+// change user name
+function* changeName(action) {
+  try {
+    yield axios.put(`/api/changeName`, action.payload);
+    yield put({ type: 'FETCH_USER'}); //Reloads user
+  } catch (error) {
+    console.log('Error changing user name:', error);
+    yield put({ type: 'SET_NAME_ERROR' });
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('SET_NAME', changeName);
 }
 
 export default userSaga;

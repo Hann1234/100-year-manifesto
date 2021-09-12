@@ -9,6 +9,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const changeNameRouter = require('./routes/changeName.router');
 const missionStatementRouter = require('./routes/missionStatement.router');
 const mantrasRouter = require('./routes/mantras.router');
 const coreValuesRouter = require('./routes/coreValues.router');
@@ -34,6 +35,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/changeName', changeNameRouter);
 app.use('/api/missionStatement', missionStatementRouter );
 app.use('/api/mantras', mantrasRouter );
 app.use('/api/coreValues', coreValuesRouter );

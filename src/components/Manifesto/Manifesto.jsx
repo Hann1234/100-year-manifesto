@@ -5,16 +5,18 @@ import { useHistory } from "react-router";
 import './manifesto.css';
 import ManifestoSvgElement from "./ManifestoSvgElement";
 
-function Manifesto(){
+function Manifesto( {admin_page = false, user_name = ""} ){
     const dispatch = useDispatch();
     const history = useHistory();
     useEffect(()=> {
-        dispatch({ type: 'FETCH_MISSION'})
-        dispatch({ type: 'FETCH_MANTRAS'});
-        dispatch({ type: 'FETCH_FOR_GOODS'});
-        dispatch({ type: 'FETCH_GUIDING_PRINCIPLES'});
-        dispatch({ type: 'FETCH_CORE_VALUES'});
-        dispatch({ type: 'FETCH_LIFE_GOALS'});
+        if (!admin_page) {
+            dispatch({ type: 'FETCH_MISSION'})
+            dispatch({ type: 'FETCH_MANTRAS'});
+            dispatch({ type: 'FETCH_FOR_GOODS'});
+            dispatch({ type: 'FETCH_GUIDING_PRINCIPLES'});
+            dispatch({ type: 'FETCH_CORE_VALUES'});
+            dispatch({ type: 'FETCH_LIFE_GOALS'});
+        }
       },[]);
     const mission = useSelector((store) => store.missionReducer.mission);
     const mantras = useSelector((store) => store.mantrasReducer.mantras);
@@ -45,7 +47,7 @@ function Manifesto(){
                 </Grid>
                 <Grid item className="titleSection">
                     <div className="hundredYear">100 YEAR MANIFESTO</div>
-                    <div className="userName">{user.name}</div>
+                    <div className="userName">{user_name === "" ? user.name : user_name}</div>
                 </Grid>
                 <Grid className="content" item container direction="row" justifyContent="space-around">
                     <Grid className="smallColumn">
