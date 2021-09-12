@@ -16,7 +16,7 @@ const page_names = {
     8: 'next_steps',
 }
 
-function AdminEdits( {page_id, html_id, html_type = 'text', default_value, current_selection, max_selected, handleAddFunction, handleDeleteFunction}) {
+function AdminEdits( {page_id =-1, html_id, html_type = 'text', default_value, current_selection, max_selected, handleAddFunction, handleDeleteFunction}) {
     return (
         <>{
             html_type === 'text' ?

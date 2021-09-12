@@ -165,12 +165,7 @@ function Mantras(props) {
                 <AdminEdits
                   page_id={page_id}
                   html_id={"right_of_vid1"}
-                  default_value={`
-                    Having a framework for decisions is critical to living a
-                    life on purpose. Guiding principles set forth through “Words to Live By.”
-                    When life brings uncertainty through events, circumstances, & difficult
-                    moments having a compass to guide your decisions is necessary.
-                  `}
+                  default_value={`Having a framework for decisions is critical to living a life on purpose. Guiding principles set forth through “Words to Live By.” When life brings uncertainty through events, circumstances, & difficult moments having a compass to guide your decisions is necessary.`}
                 />
               </h3>
             </center>

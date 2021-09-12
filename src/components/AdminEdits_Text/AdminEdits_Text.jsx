@@ -10,7 +10,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import TextField from '@material-ui/core/TextField';
 import DateTimePicker from 'react-datetime-picker';
 
-function AdminEdits_Text( {page_names, page_id = -1, html_id, default_value} ) {
+function AdminEdits_Text( {page_names, page_id, html_id, default_value} ) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch ();
 
@@ -121,7 +121,7 @@ function AdminEdits_Text( {page_names, page_id = -1, html_id, default_value} ) {
 
     // delete change from the database
     const deleteChangeFromDb = () => {
-        if (initialValue.id >= 0 && page_id) { // make sure id & page_id are defined before deleting
+        if (initialValue.id >= 0 && page_id >= 0) { // make sure id & page_id are defined before deleting
             dispatch({
                 type: 'DELETE_PAGE_EDIT',
                 payload: {

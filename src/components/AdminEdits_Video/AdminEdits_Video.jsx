@@ -74,7 +74,7 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
 
     // save change to the database
     const saveChangesToDb = () => {
-        if (page_id && html_id) { // make sure page_id & html_id are defined before posting
+        if (page_id  >= 0 && html_id) { // make sure page_id & html_id are defined before posting
             dispatch({
                 type: 'ADD_PAGE_EDIT',
                 payload: {
@@ -121,7 +121,7 @@ function AdminEdits_Video( {page_names, page_id, html_id, default_value} ) {
 
     // delete change from the database
     const deleteChangeFromDb = () => {
-        if (initialValue.id >= 0 && page_id) { // make sure id & page_id are defined before deleting
+        if (initialValue.id >= 0 && page_id  >= 0 ) { // make sure id & page_id are defined before deleting
             dispatch({
                 type: 'DELETE_PAGE_EDIT',
                 payload: {
