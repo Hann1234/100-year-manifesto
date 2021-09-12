@@ -205,22 +205,13 @@ function MissionStatement() {
                     onChange={(evt) => handleMissionText(evt.target.value)}
                   />
                   {missions.length >= 1 ? (
-                    <Button
-                      type="submit"
-                      className={classes.button}
-                      variant="contained"
-                      onClick={() => addMission()}
-                    >
-                      ADD
-                    </Button>
+                    <h2 style={{ color: "White" }}>
+                      Please remove a Mission Statement to add a new one.
+                    </h2>
                   ) : (
                     <Button
                       type="submit"
-                      style={{
-                        height: "56px",
-                        backgroundColor: "#1c4bd9",
-                        color: "#132411",
-                      }}
+                      className={classes.button}
                       variant="contained"
                       onClick={() => addMission()}
                     >
