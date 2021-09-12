@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //styling
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +13,34 @@ import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -270,7 +298,7 @@ function GuidingPrinciples() {
             </Grid>
             <Grid item xs={12} container spacing={2}>
               <section>
-                <TextField
+                <CssTextField
                   required
                   id="outlined-required"
                   label="Add Guiding Principle"
@@ -281,7 +309,7 @@ function GuidingPrinciples() {
                   
                 />
 
-                <TextField
+                <CssTextField
                   required
                   id="outlined-required"
                   label="Source"
@@ -333,7 +361,7 @@ function GuidingPrinciples() {
                 if (principle.id === itemToEdit) {
                   return (
                     <Grid key={principle.id} item xs={6}>
-                      <TextField
+                      <CssTextField
                         id="outlined-required"
                         style={{ width: "100%" }}
                         placeholder={principle.manifesto_text}
@@ -342,7 +370,7 @@ function GuidingPrinciples() {
                           setEditManifestoText(event.target.value)
                         }
                       />
-                      <TextField
+                      <CssTextField
                         id="outlined-required"
                         style={{ width: "50%" }}
                         placeholder={principle.source}
@@ -364,14 +392,14 @@ function GuidingPrinciples() {
                 if (principle.id != itemToEdit) {
                   return (
                     <Grid key={principle.id} item xs={6}>
-                      <TextField
+                      <CssTextField
                         disabled
                         id="outlined-required"
                         style={{ width: "100%" }}
                         value={principle.manifesto_text}
                         variant="outlined"
                       />
-                      <TextField
+                      <CssTextField
                         disabled
                         id="outlined-required"
                         style={{ width: "50%" }}
