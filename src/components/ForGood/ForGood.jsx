@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -11,6 +11,34 @@ import NextButton from "../NextButton/NextButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -293,7 +321,7 @@ function ForGood() {
             </Grid>
             <Grid item xs={12}>
               <section>
-                <TextField
+                <CssTextField
                   required
                   style={{ height: "10vh" }}
                   id="outlined-required"
@@ -331,7 +359,7 @@ function ForGood() {
                 if (ForGood.id === itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
-                      <TextField
+                      <CssTextField
                         required
                         id="outlined-required"
                         value={ForGood.manifest_text}
@@ -356,7 +384,7 @@ function ForGood() {
                 if (ForGood.id != itemToEdit) {
                   return (
                     <Grid key={ForGood.id} item xs={3}>
-                      <TextField
+                      <CssTextField
                         disabled
                         id="outlined-required"
                         value={ForGood.manifesto_text}
