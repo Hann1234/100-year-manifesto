@@ -367,7 +367,6 @@ function Mantras(props) {
             >
               <BackButton />
               <NextButton />
-              <CompleteButton />
             </Box>
           </Grid>
         </Grid>
