@@ -16,6 +16,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import { TextField } from "@material-ui/core";
+import NextButton from "../NextButton/NextButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -199,7 +200,8 @@ const editName = (event) => {
                     <button className={classes.button} type="submit">SAVE</button>
                 </form>
                 <br></br>
-                <button className={classes.button} onClick={() => history.push("/missionStatement")}>NEXT</button>
+                <NextButton/>
+                {/* <button className={classes.button} onClick={() => history.push("/missionStatement")}>NEXT</button> */}
             </Grid>
           </Grid>
         </Grid>

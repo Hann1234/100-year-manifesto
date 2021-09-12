@@ -7,7 +7,13 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   button: {
-    marginRight: theme.spacing(1),
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
   },
   completed: {
     display: "inline-block",
@@ -58,10 +64,6 @@ function BackButton() {
         disabled={activeStep === 0}
         onClick={handleBack}
         className={classes.button}
-        style={{
-          backgroundColor: "#132411",
-          color: "#1c4bd9",
-        }}
       >
         Back
       </Button>

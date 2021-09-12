@@ -22,6 +22,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
+  button: {
+    background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
 }));
 
 function NextSteps() {
@@ -197,11 +206,7 @@ function NextSteps() {
                 />
                 <Button
                   type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
+                  className={classes.button}
                   variant="contained"
                   onClick={() => addAdditionalQuestion("What is the biggest challenge you face?", manifestoTextChallenge)}
                 >
@@ -230,11 +235,7 @@ function NextSteps() {
                 />
                 <Button
                   type="submit"
-                  style={{
-                    height: "56px",
-                    backgroundColor: "#1c4bd9",
-                    color: "#132411",
-                  }}
+                  className={classes.button}
                   variant="contained"
                   onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you do in your life?", manifestoTextOpportunity)}
                 >
@@ -326,7 +327,7 @@ function NextSteps() {
               <Button
                 variant="contained"
                 color="primary"
-                style={{ height: 40 }}
+                className={classes.button}
                 onClick={() => history.push("/myManifesto")}
               >
                 My Manifesto
