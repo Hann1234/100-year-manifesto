@@ -9,7 +9,6 @@ import Box from "@material-ui/core/Box";
 import "./GuidingPrinciples.css";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
-import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";

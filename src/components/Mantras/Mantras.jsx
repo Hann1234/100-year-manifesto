@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Fade from "@material-ui/core/Fade";
 import "./Mantras.css";
-import CompleteButton from "../CompleteButton/CompleteButton";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
 import AutoScale from "react-auto-scale";
