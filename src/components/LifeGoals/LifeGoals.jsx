@@ -257,7 +257,7 @@ function LifeGoals() {
                   required
                   style={{ width: "48%" }}
                   id="outlined-required"
-                  label="Add lifeGoal"
+                  label="Add Life Goal"
                   value={manifestoText}
                   variant="outlined"
                   onChange={(evt) => setManifestoText(evt.target.value)}
