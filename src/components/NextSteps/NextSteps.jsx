@@ -103,8 +103,6 @@ function NextSteps() {
 
   const [manifestoTextChallenge, setManifestoTextChallenge] = useState("");
   const [manifestoTextOpportunity, setManifestoTextOpportunity] = useState("");
-  const [manifestoText, setManifestoText] = useState("");
-  const [editManifestoText, setEditManifestoText] = useState("");
   const [additionalQuestionToEdit, setAdditionalQuestionToEdit] = useState(0);
   const [editAdditionalQuestionText, setEditAdditionalQuestionText] = useState(0);
   const page_id = 8;
@@ -123,8 +121,6 @@ function NextSteps() {
     //more reset state to useEffect when page is reloaded - test to make sure it works as intended.
     setManifestoTextChallenge("");
     setManifestoTextOpportunity("");
-    setManifestoText("");
-    setEditManifestoText("");
     setAdditionalQuestionToEdit(0);
   }, []);
 
@@ -148,6 +144,7 @@ function NextSteps() {
         manifestoText: editAdditionalQuestionText,
       },
     });
+    setAdditionalQuestionToEdit(0);
   };
 
   const deleteAdditionalQuestion = (id) => {
@@ -248,64 +245,72 @@ function NextSteps() {
             </center>
             </Grid> */}
             <Grid item xs={12} container align="center" justify="center" spacing={2}>
-              <section>
-                <div style={{margin: "10px"}}>
-                  <h3>
-                  <AdminEdits
-                      page_id={page_id}
-                      html_id={"question1"}
-                      default_value={`What is the biggest challenge you face?`}
-                    />
-                  </h3>
-                </div>
-                <CssTextField
-                  required
-                  id="outlined-optional"
-                  label="Biggest Challenge"
-                  value={manifestoTextChallenge}
-                  variant="outlined"
-                  onChange={(event) => setManifestoTextChallenge(event.target.value)}
-                />
-                <Button
-                  type="submit"
-                  className={classes.button}
-                  variant="contained"
-                  onClick={() => addAdditionalQuestion("What is the biggest challenge you face?", manifestoTextChallenge)}
-                >
-                  ADD
-                </Button>
-              </section>
+              {
+                additionalQuestions.find(row => row.question === `What is the biggest challenge you face?`) === undefined ?
+                <section>
+                  <div style={{margin: "10px"}}>
+                    <h3>
+                    <AdminEdits
+                        page_id={page_id}
+                        html_id={"question1"}
+                        default_value={`What is the biggest challenge you face?`}
+                      />
+                    </h3>
+                  </div>
+                  <CssTextField
+                    required
+                    id="outlined-optional"
+                    label="Biggest Challenge"
+                    value={manifestoTextChallenge}
+                    variant="outlined"
+                    onChange={(event) => setManifestoTextChallenge(event.target.value)}
+                  />
+                  <Button
+                    type="submit"
+                    className={classes.button}
+                    variant="contained"
+                    onClick={() => addAdditionalQuestion("What is the biggest challenge you face?", manifestoTextChallenge)}
+                  >
+                    ADD
+                  </Button>
+                </section> :
+                <></>
+              }
             </Grid>
             <br />
 
             <Grid item align="center" justify="center" xs={12} container spacing={2}>
-              <section>
-                <div style={{margin: "10px"}}>
-                  <h3>
-                  <AdminEdits
-                    page_id={page_id}
-                    html_id={"question2"}
-                    default_value={`What do you hope the 100 Year Manifesto will help you do in your life?`}
+              {
+                additionalQuestions.find(row => row.question === `What do you hope the 100 Year Manifesto will help you do in your life?`) === undefined ?
+                <section>
+                  <div style={{margin: "10px"}}>
+                    <h3>
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"question2"}
+                      default_value={`What do you hope the 100 Year Manifesto will help you do in your life?`}
+                    />
+                    </h3>
+                  </div>
+                  <CssTextField
+                    required
+                    id="outlined-required"
+                    label="Life Opportunity"
+                    value={manifestoTextOpportunity}
+                    variant="outlined"
+                    onChange={(event) => setManifestoTextOpportunity(event.target.value)}
                   />
-                  </h3>
-                </div>
-                <CssTextField
-                  required
-                  id="outlined-required"
-                  label="Life Opportunity"
-                  value={manifestoTextOpportunity}
-                  variant="outlined"
-                  onChange={(event) => setManifestoTextOpportunity(event.target.value)}
-                />
-                <Button
-                  type="submit"
-                  className={classes.button}
-                  variant="contained"
-                  onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you do in your life?", manifestoTextOpportunity)}
-                >
-                  ADD
-                </Button>
-              </section>
+                  <Button
+                    type="submit"
+                    className={classes.button}
+                    variant="contained"
+                    onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you do in your life?", manifestoTextOpportunity)}
+                  >
+                    ADD
+                  </Button>
+                </section> :
+                <></>
+              }
             </Grid>
 
             <Grid item xs={12} container align="center" spacing={2}>
@@ -354,7 +359,7 @@ function NextSteps() {
                         value={question.manifesto_text}
                         variant="outlined"
                         onChange={(event) =>
-                          setManifestoText(event.target.value)
+                          setEditAdditionalQuestionText(event.target.value)
                         }
                       />
                       <Button
