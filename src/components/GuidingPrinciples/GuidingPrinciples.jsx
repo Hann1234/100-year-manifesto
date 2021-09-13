@@ -226,7 +226,7 @@ function GuidingPrinciples() {
                 />
               </Grid>
               <Grid item xs={6}>
-                <section className="rightOfVideo2">
+                <section className="rightOfVideo">
                   <p>
                     <AdminEdits
                       page_id={page_id}
