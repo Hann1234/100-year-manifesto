@@ -130,7 +130,7 @@ function NextSteps() {
     <section>
       <div>
         {/* Prototype Grid layout */}
-        <Grid container spacing={3}>
+        <Grid container align="center" spacing={3}>
           <Grid item xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
@@ -139,8 +139,7 @@ function NextSteps() {
             </div>
           </Grid>
           <Fade in={true} timeout={800}>
-          <Grid item xs={8} className="scrollableDiv">
-            <center>
+          <Grid item xs={8} align="center" className="scrollableDiv">
               <h1>
                 <AdminEdits
                   page_id={page_id}
@@ -178,8 +177,7 @@ function NextSteps() {
                   `}
                 />
                 </h3>
-            </center>
-            <Grid container spacing={1}>
+            <Grid container align="center" spacing={1}>
               <Grid item xs={6}>
                 <AdminEdits
                   page_id={page_id}
@@ -190,14 +188,13 @@ function NextSteps() {
                   }
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item align="center" xs={6}>
                 <section className="rightOfVideo">
                   {/* add color and font options here as stretch goal */}
                 </section>
               </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <center>
+            <Grid item align="center" xs={12}>
                 <section>
                   <h3>
                     <AdminEdits
@@ -211,7 +208,6 @@ function NextSteps() {
                   </h3>
                   <p></p>
                 </section>
-              </center>
             </Grid>
             {/* <Grid item xs={12}>
             <center>
@@ -220,7 +216,7 @@ function NextSteps() {
               </section>
             </center>
             </Grid> */}
-            <Grid item xs={12} container spacing={2}>
+            <Grid item xs={12} container align="center" justify="center" spacing={2}>
               <section>
                 <div style={{margin: "10px"}}>
                   <h3>
@@ -251,7 +247,7 @@ function NextSteps() {
             </Grid>
             <br />
 
-            <Grid item xs={12} container spacing={2}>
+            <Grid item align="center" justify="center" xs={12} container spacing={2}>
               <section>
                 <div style={{margin: "10px"}}>
                   <h3>
@@ -281,12 +277,16 @@ function NextSteps() {
               </section>
             </Grid>
 
-            <Grid item xs={12} container spacing={2}>
+            <Grid item xs={12} container align="center" spacing={2}>
               {additionalQuestions.map((question) => {
                 if (question.id === additionalQuestionToEdit) {
                   return (
-                    <Grid key={question.id} item xs={5}>
-                      <div style={{margin: "10px"}}>{question.question}</div>
+                    <Grid key={question.id} item align="center" justify="center" xs={12}>
+                      <div style={{margin: "10px"}}>
+                        <h3>
+                          {question.question}
+                        </h3>
+                          </div>
                       <CssTextField
                         id="outlined-required"
                         placeholder={additionalQuestions.manifesto_text}
@@ -313,8 +313,12 @@ function NextSteps() {
                 }
                 if (question.id != additionalQuestionToEdit) {
                   return (
-                    <Grid key={question.id} item xs={5}>
-                      <div style={{margin: "10px"}}>{question.question}</div>
+                    <Grid key={question.id} item align="center" justify="center" xs={12}>
+                      <div style={{margin: "10px"}}>
+                        <h3>
+                          {question.question}
+                        </h3>  
+                          </div>
                       <CssTextField
                         style={{width: "100%"}}
                         disabled

@@ -119,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
     background: "linear-gradient(45deg, #bd2626 30%, #940635 90%)",
     border: 0,
     borderRadius: 3,
-    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     color: "white",
     height: 28,
     width: 100,
@@ -442,7 +442,7 @@ function CoreValues() {
         </Grid>
         <Fade in={true} timeout={800}>
         <Grid container item xs={8} className="scrollableDiv">
-          <center>
+          <Grid item align="center" xs={12}>
             <h1>
               <AdminEdits
                 page_id={page_id}
@@ -459,9 +459,9 @@ function CoreValues() {
                   `}
               />
             </h3>
-          </center>
+          </Grid>
           <Grid container spacing={1}>
-            <Grid item xs={6}>
+            <Grid item align="center" xs={6}>
               <AdminEdits
                 page_id={page_id}
                 html_type={"video"}
@@ -471,7 +471,7 @@ function CoreValues() {
                 }
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid align="center" item xs={6}>
               <p>
                 <AdminEdits
                   page_id={page_id}
