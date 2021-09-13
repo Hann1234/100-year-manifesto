@@ -298,7 +298,7 @@ function GuidingPrinciples() {
               </center>
             </Grid>
             <Grid item xs={12} container spacing={2}>
-              <section>
+              <Grid item xs={6}>
                 <CssTextField
                   required
                   id="outlined-required"
@@ -309,17 +309,20 @@ function GuidingPrinciples() {
                   onChange={(event) => handleChange(event.target.value)}
                   
                 />
-
+              </Grid>
+              <Grid item xs={4}>
                 <CssTextField
                   required
                   id="outlined-required"
                   label="Source"
-                  style={{ width: "50%" }}
+                  style={{ width: "100%" }}
                   value={source}
                   variant="outlined"
                   onChange={(event) => setSource(event.target.value)}
                 />
-
+                </Grid>
+                <Grid item xs={2}>
+                <span>
                 {(max === true) ?
                 
                   <Button
@@ -351,8 +354,9 @@ function GuidingPrinciples() {
                   >
                     ADD
                   </Button> 
-}
-              </section>
+                }
+              </span>
+            </Grid>
             </Grid>
 
             <br />
