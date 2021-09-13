@@ -260,7 +260,7 @@ function MissionStatement() {
                 <center>
                   <CssTextField
                     id="outlined-required"
-                    label="Please Enter Your 1 Mission Statement "
+                    label="Please Enter Your Mission Statement "
                     style={{ width: "66%" }}
                     value={missionText}
                     variant="outlined"
