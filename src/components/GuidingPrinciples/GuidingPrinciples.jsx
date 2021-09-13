@@ -438,7 +438,6 @@ function GuidingPrinciples() {
             >
               <BackButton />
               <NextButton />
-              <CompleteButton />
             </Box>
           </Grid>
           </Fade>

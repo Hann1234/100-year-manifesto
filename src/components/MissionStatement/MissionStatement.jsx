@@ -3,46 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 //**Clean up unused components!! */
 
 //Material UI styling components
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./MissionStatement.css";
-import Fade from "@material-ui/core/Fade";
 //Import Button components for Stepper Bar in Nav bar.
 import NextButton from "../NextButton/NextButton";
 import BackButton from "../BackButton/BackButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
-
-const CssTextField = withStyles({
-  root: {
-    '& .MuiInputBase-root': {
-      color: 'white',
-    },
-    '& label.Mui-focused': {
-      color: 'white',
-    },
-    '& label': {
-      color: 'white',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
-      },
-      '&:hover fieldset': {
-        borderColor: 'white',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
-      },
-    },
-  },
-})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -155,14 +126,13 @@ function MissionStatement() {
       <div>
         {/* Prototype Grid layout */}
         <Grid container spacing={3}>
-          <Grid item xs={4}>
+          <Grid xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
                 <Manifesto />
               </AutoScale>
             </div>
           </Grid>
-          <Fade in={true} timeout={800}>
           <Grid item xs={8} className="scrollableDiv">
             <center>
               <h1>
@@ -196,7 +166,7 @@ function MissionStatement() {
                   }
                 />
               </Grid>
-              <Grid  container item xs={6}>
+              <Grid item xs={6}>
                 <section className="rightOfVideo">
                   <p>
                     <AdminEdits
@@ -258,7 +228,7 @@ function MissionStatement() {
             <Grid item xs={12}>
               <form onSubmit={addMission}>
                 <center>
-                  <CssTextField
+                  <TextField
                     id="outlined-required"
                     label="Please Enter Your 1 Mission Statement "
                     style={{ width: "66%" }}
@@ -297,7 +267,7 @@ function MissionStatement() {
                   return (
                     <Grid key={mission.id} item xs={12}>
                       <center>
-                        <CssTextField
+                        <TextField
                           id="outlined-required"
                           placeholder={mission.manifesto_text}
                           variant="outlined"
@@ -324,7 +294,7 @@ function MissionStatement() {
                   return (
                     <Grid key={mission.id} item xs={12}>
                       <center>
-                        <CssTextField
+                        <TextField
                           disabled
                           id="outlined-required"
                           label="Your Mission Statements"
@@ -367,7 +337,6 @@ function MissionStatement() {
               <NextButton />
             </Box>
           </Grid>
-          </Fade>
         </Grid>
       </div>
     </section>

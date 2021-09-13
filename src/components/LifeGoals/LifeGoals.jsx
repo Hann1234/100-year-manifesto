@@ -354,7 +354,6 @@ function LifeGoals() {
             >
               <BackButton />
               <NextButton />
-              <CompleteButton />
             </Box>
           </Grid>
           </Fade>
