@@ -442,7 +442,7 @@ function CoreValues() {
         </Grid>
         <Fade in={true} timeout={800}>
         <Grid container item xs={8} className="scrollableDiv">
-          <center>
+          <Grid item align="center" xs={12}>
             <h1>
               <AdminEdits
                 page_id={page_id}
@@ -459,9 +459,9 @@ function CoreValues() {
                   `}
               />
             </h3>
-          </center>
+          </Grid>
           <Grid container spacing={1}>
-            <Grid item xs={6}>
+            <Grid item align="center" xs={6}>
               <AdminEdits
                 page_id={page_id}
                 html_type={"video"}
@@ -471,7 +471,7 @@ function CoreValues() {
                 }
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid align="center" item xs={6}>
               <p>
                 <AdminEdits
                   page_id={page_id}
