@@ -60,6 +60,37 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: "0 30px",
   },
+  buttonRemove: {
+    background: "linear-gradient(45deg, #BD2626 30%, #940635 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    color: "white",
+    height: 28,
+    width: 100,
+    padding: "0 30px",
+    marginLeft: 2
+  },
+  buttonEdit: {
+    background: "linear-gradient(45deg, #1c4bd9 30%, #261385 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    padding: "0 30px",
+    marginLeft: 2
+  },
+  buttonSave: {
+    background: "linear-gradient(45deg, #7bd91c 30%, #12b525 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    color: "white",
+    height: 28,
+    padding: "0 30px",
+    marginLeft: 2
+  },
   editText: {
     color: "white",
   },
@@ -298,11 +329,7 @@ function NextSteps() {
                       <Button
                         id={question.id}
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
-                        }}
+                        className={classes.buttonSave}
                         variant="contained"
                         onClick={() => editAdditionalQuestion(question.id, question.question)}
                       >
@@ -333,11 +360,7 @@ function NextSteps() {
                       <Button
                         id={question.id}
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
-                        }}
+                        className={classes.buttonEdit}
                         variant="contained"
                         onClick={() => {setAdditionalQuestionToEdit(question.id); setEditAdditionalQuestionText(question.manifesto_text);}}
                       >
@@ -345,11 +368,7 @@ function NextSteps() {
                       </Button>
                       <Button
                         type="submit"
-                        style={{
-                          height: "28px",
-                          backgroundColor: "#bec9bc",
-                          color: "#132411",
-                        }}
+                        className={classes.buttonRemove}
                         variant="contained"
                         onClick={() => deleteAdditionalQuestion(question.id)}
                       >

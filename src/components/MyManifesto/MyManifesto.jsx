@@ -5,10 +5,21 @@ import { jsPDF } from "jspdf";
 import { useSelector } from 'react-redux';
 import { makeStyles } from "@material-ui/core";
 import Fade from "@material-ui/core/Fade";
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles((theme) => ({
-  button: {
+    button1: {
+        background: "linear-gradient(45deg, #21CBF3 30%, #2196F3 90%)",
+        border: 0,
+        borderRadius: 3,
+        boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+        color: "white",
+        height: 48,
+        padding: "0 30px",
+    
+      },
+      button: {
     background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
     border: 0,
     borderRadius: 3,
@@ -16,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 48,
     padding: "0 30px",
+
   },
 }));
 
@@ -48,8 +60,11 @@ function MyManifesto() {
         <Fade in={true} timeout={800}>
             <center>
                 <div>
-                    <button onClick={exportAsPdf}>PDF</button>
-                    <button onClick={exportAsPng}>PNG</button>
+                    <Button className={classes.button1}
+                     onClick={exportAsPdf}>PDF</Button>
+                     <span> </span>
+                    <Button className={classes.button}
+                    onClick={exportAsPng}>PNG</Button>
                     <Manifesto/>
                 </div>
             </center>

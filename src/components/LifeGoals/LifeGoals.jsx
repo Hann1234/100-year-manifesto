@@ -6,10 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import "./LifeGoals.css";
-import { useHistory } from "react-router-dom";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
-import CompleteButton from "../CompleteButton/CompleteButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
@@ -354,7 +352,6 @@ function LifeGoals() {
             >
               <BackButton />
               <NextButton />
-              <CompleteButton />
             </Box>
           </Grid>
           </Fade>
