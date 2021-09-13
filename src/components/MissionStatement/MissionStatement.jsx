@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     background: "linear-gradient(45deg, #bd2626 30%, #940635 90%)",
     border: 0,
     borderRadius: 3,
-    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     color: "white",
     height: 28,
     width: 100,
