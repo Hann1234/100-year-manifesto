@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 //**Clean up unused components!! */
 
 //Material UI styling components
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -14,6 +14,34 @@ import BackButton from "../BackButton/BackButton";
 import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import AdminEdits from "../AdminEdits/AdminEdits";
+
+const CssTextField = withStyles({
+  root: {
+    '& .MuiInputBase-root': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& label': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -228,9 +256,9 @@ function MissionStatement() {
             <Grid item xs={12}>
               <form onSubmit={addMission}>
                 <center>
-                  <TextField
+                  <CssTextField
                     id="outlined-required"
-                    label="Please Enter Your 1 Mission Statement "
+                    label="Please Enter Your Mission Statement "
                     style={{ width: "66%" }}
                     value={missionText}
                     variant="outlined"
@@ -267,7 +295,7 @@ function MissionStatement() {
                   return (
                     <Grid key={mission.id} item xs={12}>
                       <center>
-                        <TextField
+                        <CssTextField
                           id="outlined-required"
                           placeholder={mission.manifesto_text}
                           variant="outlined"
@@ -294,7 +322,7 @@ function MissionStatement() {
                   return (
                     <Grid key={mission.id} item xs={12}>
                       <center>
-                        <TextField
+                        <CssTextField
                           disabled
                           id="outlined-required"
                           label="Your Mission Statements"
