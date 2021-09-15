@@ -16,27 +16,27 @@ import Fade from "@material-ui/core/Fade";
 
 const CssTextField = withStyles({
   root: {
-    '& .MuiInputBase-root': {
-      color: 'white',
+    "& .MuiInputBase-root": {
+      color: "white",
     },
-    '& label.Mui-focused': {
-      color: 'white',
+    "& label.Mui-focused": {
+      color: "white",
     },
-    '& label': {
-      color: 'white',
+    "& label": {
+      color: "white",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
       },
-      '&:hover fieldset': {
-        borderColor: 'white',
+      "&:hover fieldset": {
+        borderColor: "white",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
       },
     },
   },
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     width: 100,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   buttonEdit: {
     background: "linear-gradient(45deg, #1c4bd9 30%, #261385 90%)",
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 28,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   buttonSave: {
     background: "linear-gradient(45deg, #7bd91c 30%, #12b525 90%)",
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 28,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   editText: {
     color: "white",
@@ -104,9 +104,9 @@ function NextSteps() {
   const [manifestoTextChallenge, setManifestoTextChallenge] = useState("");
   const [manifestoTextOpportunity, setManifestoTextOpportunity] = useState("");
   const [additionalQuestionToEdit, setAdditionalQuestionToEdit] = useState(0);
-  const [editAdditionalQuestionText, setEditAdditionalQuestionText] = useState(0);
+  const [editAdditionalQuestionText, setEditAdditionalQuestionText] =
+    useState(0);
   const page_id = 8;
-
 
   const classes = useStyles();
   const history = useHistory();
@@ -132,7 +132,6 @@ function NextSteps() {
         manifestoText: answer,
       },
     });
-
   };
 
   const editAdditionalQuestion = (id, question) => {
@@ -162,12 +161,12 @@ function NextSteps() {
           <Grid item xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
-                  <Manifesto />
+                <Manifesto />
               </AutoScale>
             </div>
           </Grid>
           <Fade in={true} timeout={800}>
-          <Grid item xs={8} align="center" className="scrollableDiv">
+            <Grid item xs={8} align="center" className="scrollableDiv">
               <h1>
                 <AdminEdits
                   page_id={page_id}
@@ -204,25 +203,25 @@ function NextSteps() {
                   Live your life on purpose. Live your 100 Year Manifesto.
                   `}
                 />
-                </h3>
-            <Grid container align="center" spacing={1}>
-              <Grid item xs={6}>
-                <AdminEdits
-                  page_id={page_id}
-                  html_type={"video"}
-                  html_id={"video"}
-                  default_value={
-                    "https://player.vimeo.com/video/599581279?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=13b057a783"
-                  }
-                />
+              </h3>
+              <Grid container align="center" spacing={1}>
+                <Grid item xs={6}>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_type={"video"}
+                    html_id={"video"}
+                    default_value={
+                      "https://player.vimeo.com/video/599581279?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=13b057a783"
+                    }
+                  />
+                </Grid>
+                <Grid item align="center" xs={6}>
+                  <section className="rightOfVideo">
+                    {/* add color and font options here as stretch goal */}
+                  </section>
+                </Grid>
               </Grid>
-              <Grid item align="center" xs={6}>
-                <section className="rightOfVideo">
-                  {/* add color and font options here as stretch goal */}
-                </section>
-              </Grid>
-            </Grid>
-            <Grid item align="center" xs={12}>
+              <Grid item align="center" xs={12}>
                 <section>
                   <h3>
                     <AdminEdits
@@ -236,169 +235,222 @@ function NextSteps() {
                   </h3>
                   <p></p>
                 </section>
-            </Grid>
-            {/* <Grid item xs={12}>
+              </Grid>
+              {/* <Grid item xs={12}>
             <center>
               <section>
                 <h3>If you’re not into scriptures, there are quotes. Power phrases. Things your parents said. Things you say. Passages from books.</h3>
               </section>
             </center>
             </Grid> */}
-            <Grid item xs={12} container align="center" justify="center" spacing={2}>
-              {
-                additionalQuestions.find(row => row.question === `What is the biggest challenge you face?`) === undefined ?
-                <section>
-                  <div style={{margin: "10px"}}>
-                    <h3>
-                    <AdminEdits
-                        page_id={page_id}
-                        html_id={"question1"}
-                        default_value={`What is the biggest challenge you face?`}
-                      />
-                    </h3>
-                  </div>
-                  <CssTextField
-                    required
-                    id="outlined-optional"
-                    label="Biggest Challenge"
-                    value={manifestoTextChallenge}
-                    variant="outlined"
-                    onChange={(event) => setManifestoTextChallenge(event.target.value)}
-                  />
-                  <Button
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addAdditionalQuestion("What is the biggest challenge you face?", manifestoTextChallenge)}
-                  >
-                    ADD
-                  </Button>
-                </section> :
-                <></>
-              }
-            </Grid>
-            <br />
-
-            <Grid item align="center" justify="center" xs={12} container spacing={2}>
-              {
-                additionalQuestions.find(row => row.question === `What do you hope the 100 Year Manifesto will help you do in your life?`) === undefined ?
-                <section>
-                  <div style={{margin: "10px"}}>
-                    <h3>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"question2"}
-                      default_value={`What do you hope the 100 Year Manifesto will help you do in your life?`}
-                    />
-                    </h3>
-                  </div>
-                  <CssTextField
-                    required
-                    id="outlined-required"
-                    label="Life Opportunity"
-                    value={manifestoTextOpportunity}
-                    variant="outlined"
-                    onChange={(event) => setManifestoTextOpportunity(event.target.value)}
-                  />
-                  <Button
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addAdditionalQuestion("What do you hope the 100 Year Manifesto will help you do in your life?", manifestoTextOpportunity)}
-                  >
-                    ADD
-                  </Button>
-                </section> :
-                <></>
-              }
-            </Grid>
-
-            <Grid item xs={12} container align="center" spacing={2}>
-              {additionalQuestions.map((question) => {
-                if (question.id === additionalQuestionToEdit) {
-                  return (
-                    <Grid key={question.id} item align="center" justify="center" xs={12}>
-                      <div style={{margin: "10px"}}>
-                        <h3>
-                          {question.question}
-                        </h3>
-                          </div>
-                      <CssTextField
-                        id="outlined-required"
-                        placeholder={additionalQuestions.manifesto_text}
-                        variant="outlined"
-                        onChange={(event) =>
-                          setEditAdditionalQuestionText(event.target.value)
-                        }
-                      />
-                      <Button
-                        id={question.id}
-                        type="submit"
-                        className={classes.buttonSave}
-                        variant="contained"
-                        onClick={() => editAdditionalQuestion(question.id, question.question)}
-                      >
-                        Save
-                      </Button>
-                    </Grid>
-                  );
-                }
-                if (question.id != additionalQuestionToEdit) {
-                  return (
-                    <Grid key={question.id} item align="center" justify="center" xs={12}>
-                      <div style={{margin: "10px"}}>
-                        <h3>
-                          {question.question}
-                        </h3>  
-                          </div>
-                      <CssTextField
-                        style={{width: "100%"}}
-                        disabled
-                        id="outlined-required"
-                        // label="Your Biggest Challenge"
-                        value={question.manifesto_text}
-                        variant="outlined"
-                        onChange={(event) =>
-                          setEditAdditionalQuestionText(event.target.value)
-                        }
-                      />
-                      <Button
-                        id={question.id}
-                        type="submit"
-                        className={classes.buttonEdit}
-                        variant="contained"
-                        onClick={() => {setAdditionalQuestionToEdit(question.id); setEditAdditionalQuestionText(question.manifesto_text);}}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        type="submit"
-                        className={classes.buttonRemove}
-                        variant="contained"
-                        onClick={() => deleteAdditionalQuestion(question.id)}
-                      >
-                        Remove
-                      </Button>
-                    </Grid>
-                  );
-                }
-              })}
-            </Grid>
-            <Box
-              component="span"
-              m={1} //margin
-              className={`${classes.bottomBox} ${classes.box}`}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={() => history.push("/myManifesto")}
+              <Grid
+                item
+                xs={12}
+                container
+                align="center"
+                justify="center"
+                spacing={2}
               >
-                My Manifesto
-              </Button>
-            </Box>
-          </Grid>
+                {additionalQuestions.find(
+                  (row) =>
+                    row.question === `What is the biggest challenge you face?`
+                ) === undefined ? (
+                  <section>
+                    <div style={{ margin: "10px" }}>
+                      <h3>
+                        <AdminEdits
+                          page_id={page_id}
+                          html_id={"question1"}
+                          default_value={`What is the biggest challenge you face?`}
+                        />
+                      </h3>
+                    </div>
+                    <CssTextField
+                      required
+                      id="outlined-optional"
+                      label="Biggest Challenge"
+                      value={manifestoTextChallenge}
+                      variant="outlined"
+                      onChange={(event) =>
+                        setManifestoTextChallenge(event.target.value)
+                      }
+                    />
+                    <Button
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() =>
+                        addAdditionalQuestion(
+                          "What is the biggest challenge you face?",
+                          manifestoTextChallenge
+                        )
+                      }
+                    >
+                      ADD
+                    </Button>
+                  </section>
+                ) : (
+                  <></>
+                )}
+              </Grid>
+              <br />
+
+              <Grid
+                item
+                align="center"
+                justify="center"
+                xs={12}
+                container
+                spacing={2}
+              >
+                {additionalQuestions.find(
+                  (row) =>
+                    row.question ===
+                    `What do you hope the 100 Year Manifesto will help you do in your life?`
+                ) === undefined ? (
+                  <section>
+                    <div style={{ margin: "10px" }}>
+                      <h3>
+                        <AdminEdits
+                          page_id={page_id}
+                          html_id={"question2"}
+                          default_value={`What do you hope the 100 Year Manifesto will help you do in your life?`}
+                        />
+                      </h3>
+                    </div>
+                    <CssTextField
+                      required
+                      id="outlined-required"
+                      label="Life Opportunity"
+                      value={manifestoTextOpportunity}
+                      variant="outlined"
+                      onChange={(event) =>
+                        setManifestoTextOpportunity(event.target.value)
+                      }
+                    />
+                    <Button
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() =>
+                        addAdditionalQuestion(
+                          "What do you hope the 100 Year Manifesto will help you do in your life?",
+                          manifestoTextOpportunity
+                        )
+                      }
+                    >
+                      ADD
+                    </Button>
+                  </section>
+                ) : (
+                  <></>
+                )}
+              </Grid>
+
+              <Grid item xs={12} container align="center" spacing={2}>
+                {additionalQuestions.map((question) => {
+                  if (question.id === additionalQuestionToEdit) {
+                    return (
+                      <Grid
+                        key={question.id}
+                        item
+                        align="center"
+                        justify="center"
+                        xs={12}
+                      >
+                        <div style={{ margin: "10px" }}>
+                          <h3>{question.question}</h3>
+                        </div>
+                        <CssTextField
+                          id="outlined-required"
+                          placeholder={additionalQuestions.manifesto_text}
+                          variant="outlined"
+                          onChange={(event) =>
+                            setEditAdditionalQuestionText(event.target.value)
+                          }
+                        />
+                        <Button
+                          id={question.id}
+                          type="submit"
+                          className={classes.buttonSave}
+                          variant="contained"
+                          onClick={() =>
+                            editAdditionalQuestion(
+                              question.id,
+                              question.question
+                            )
+                          }
+                        >
+                          Save
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                  if (question.id != additionalQuestionToEdit) {
+                    return (
+                      <Grid
+                        key={question.id}
+                        item
+                        align="center"
+                        justify="center"
+                        xs={12}
+                      >
+                        <div style={{ margin: "10px" }}>
+                          <h3>{question.question}</h3>
+                        </div>
+                        <CssTextField
+                          style={{ width: "100%" }}
+                          disabled
+                          id="outlined-required"
+                          // label="Your Biggest Challenge"
+                          value={question.manifesto_text}
+                          variant="outlined"
+                          onChange={(event) =>
+                            setEditAdditionalQuestionText(event.target.value)
+                          }
+                        />
+                        <Button
+                          id={question.id}
+                          type="submit"
+                          className={classes.buttonEdit}
+                          variant="contained"
+                          onClick={() => {
+                            setAdditionalQuestionToEdit(question.id);
+                            setEditAdditionalQuestionText(
+                              question.manifesto_text
+                            );
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          type="submit"
+                          className={classes.buttonRemove}
+                          variant="contained"
+                          onClick={() => deleteAdditionalQuestion(question.id)}
+                        >
+                          Remove
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                })}
+              </Grid>
+              <Box
+                component="span"
+                m={1} //margin
+                className={`${classes.bottomBox} ${classes.box}`}
+              >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => history.push("/myManifesto")}
+                >
+                  My Manifesto
+                </Button>
+              </Box>
+            </Grid>
           </Fade>
         </Grid>
       </div>

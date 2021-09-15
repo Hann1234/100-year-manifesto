@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import "./LifeGoals.css";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
 import AutoScale from "react-auto-scale";
@@ -15,27 +14,27 @@ import Fade from "@material-ui/core/Fade";
 
 const CssTextField = withStyles({
   root: {
-    '& .MuiInputBase-root': {
-      color: 'white',
+    "& .MuiInputBase-root": {
+      color: "white",
     },
-    '& label.Mui-focused': {
-      color: 'white',
+    "& label.Mui-focused": {
+      color: "white",
     },
-    '& label': {
-      color: 'white',
+    "& label": {
+      color: "white",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
       },
-      '&:hover fieldset': {
-        borderColor: 'white',
+      "&:hover fieldset": {
+        borderColor: "white",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
       },
     },
   },
@@ -72,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     width: 100,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   buttonEdit: {
     background: "linear-gradient(45deg, #1c4bd9 30%, #261385 90%)",
@@ -82,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 28,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   buttonSave: {
     background: "linear-gradient(45deg, #7bd91c 30%, #12b525 90%)",
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 28,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   bottomBox: {
     justifyContent: "flex-end",
@@ -151,209 +150,208 @@ function LifeGoals() {
           <Grid item xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
-                  <Manifesto />
+                <Manifesto />
               </AutoScale>
             </div>
           </Grid>
           <Fade in={true} timeout={800}>
-          <Grid item xs={8} className="scrollableDiv">
-            <center>
-              <h1>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"header"}
-                  default_value={"Life Goals"}
-                />
-              </h1>
-              <h3>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"above_vid"}
-                  default_value={`
+            <Grid item xs={8} className="scrollableDiv">
+              <center>
+                <h1>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"header"}
+                    default_value={"Life Goals"}
+                  />
+                </h1>
+                <h3>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"above_vid"}
+                    default_value={`
                     Your life goals. Make them yours. For your whole life. Something
                     to reflect on one day & say, “Well done, you lived your life on
                     purpose.” You achieved the goals you set out to achieve. You
                     lived the life worthy of the calling you received.
                   `}
-                />
-              </h3>
-            </center>
-            <Grid container spacing={1}>
-              <Grid item xs={6}>
-                <AdminEdits
-                  page_id={page_id}
-                  html_type={"video"}
-                  html_id={"video"}
-                  default_value={
-                    "https://player.vimeo.com/video/599580195?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5321e6f5c6"
-                  }
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <section className="rightOfVideo">
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid1"}
-                      default_value={`
+                  />
+                </h3>
+              </center>
+              <Grid container spacing={1}>
+                <Grid item xs={6}>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_type={"video"}
+                    html_id={"video"}
+                    default_value={
+                      "https://player.vimeo.com/video/599580195?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5321e6f5c6"
+                    }
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <section className="rightOfVideo">
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid1"}
+                        default_value={`
                         This is a place for your goals. These goals may or may not
                         be goals you can measure. Think about what you want to
                         accomplish in your life. Think about who you want to be.
                         Think about what you can do.
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid2"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid2"}
+                        default_value={`
                         10 Goals for You. For your life.
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid3"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid3"}
+                        default_value={`
                         For me, they include:
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid4"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid4"}
+                        default_value={`
                         “Be the man, father, & husband God created me to be.“ “Build
                         a business allowing for remote work anywhere in the world.“
                         “Raise healthy boys who love themselves, their family, &
                         their God: who serve others, lead by example, & do their
                         best every single day of their lives.“
                       `}
-                    />
-                  </p>
-                </section>
+                      />
+                    </p>
+                  </section>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <section>
-                <h3>
-                  <AdminEdits
-                    page_id={page_id}
-                    html_id={"bottom"}
-                    default_value={`
+              <Grid item xs={12}>
+                <section>
+                  <h3>
+                    <AdminEdits
+                      page_id={page_id}
+                      html_id={"bottom"}
+                      default_value={`
                       WHAT ARE YOU LIFE GOALS?
                     `}
+                    />
+                  </h3>
+                </section>
+              </Grid>
+              <Grid item xs={12}>
+                <section>
+                  <CssTextField
+                    required
+                    style={{ width: "48%" }}
+                    id="outlined-required"
+                    label="Add Life Goal"
+                    value={manifestoText}
+                    variant="outlined"
+                    onChange={(evt) => setManifestoText(evt.target.value)}
                   />
-                </h3>
-              </section>
+                  {lifeGoal.length >= 10 ? (
+                    <Button
+                      disabled
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() => addLifeGoal()}
+                    >
+                      ADD
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() => addLifeGoal()}
+                    >
+                      ADD
+                    </Button>
+                  )}
+                </section>
+              </Grid>
+              <br />
+              <Grid item xs={12} container spacing={2}>
+                {lifeGoal.map((lifeGoal) => {
+                  if (lifeGoal.id === itemToEdit) {
+                    return (
+                      <Grid key={lifeGoal.id} item xs={6}>
+                        <CssTextField
+                          id="outlined-required"
+                          style={{ width: "100%" }}
+                          placeholder={lifeGoal.manifesto_text}
+                          variant="outlined"
+                          onChange={(evt) =>
+                            setEditManifestoText(evt.target.value)
+                          }
+                        />
+                        <Button
+                          id={lifeGoal.id}
+                          type="submit"
+                          className={classes.buttonSave}
+                          variant="contained"
+                          onClick={() => editLifeGoal(lifeGoal.id)}
+                        >
+                          Save
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                  if (lifeGoal.id != itemToEdit) {
+                    return (
+                      <Grid key={lifeGoal.id} item xs={6}>
+                        <CssTextField
+                          disabled
+                          id="outlined-required"
+                          label="Your Life Goal"
+                          style={{ width: "100%" }}
+                          value={lifeGoal.manifesto_text}
+                          variant="outlined"
+                          onChange={(evt) => setManifestoText(evt.target.value)}
+                        />
+                        <Button
+                          id={lifeGoal.id}
+                          type="submit"
+                          className={classes.buttonEdit}
+                          variant="contained"
+                          onClick={() => startEdit(lifeGoal)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          type="submit"
+                          className={classes.buttonRemove}
+                          variant="contained"
+                          onClick={() => deleteLifeGoal(lifeGoal.id)}
+                        >
+                          Remove
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                })}
+              </Grid>
+              <Box
+                component="span"
+                m={1} //margin
+                className={`${classes.bottomBox} ${classes.box}`}
+              >
+                <BackButton />
+                <NextButton />
+              </Box>
             </Grid>
-            <Grid item xs={12}></Grid>
-            <Grid item xs={12}>
-              <section>
-                <CssTextField
-                  required
-                  style={{ width: "48%" }}
-                  id="outlined-required"
-                  label="Add Life Goal"
-                  value={manifestoText}
-                  variant="outlined"
-                  onChange={(evt) => setManifestoText(evt.target.value)}
-                />
-                {lifeGoal.length >= 10 ? (
-                  <Button
-                    disabled
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addLifeGoal()}
-                  >
-                    ADD
-                  </Button>
-                ) : (
-                  <Button
-                    type="submit"
-                   className={classes.button}
-                    variant="contained"
-                    onClick={() => addLifeGoal()}
-                  >
-                    ADD
-                  </Button>
-                )}
-              </section>
-            </Grid>
-            <br />
-            <Grid item xs={12} container spacing={2}>
-              {lifeGoal.map((lifeGoal) => {
-                if (lifeGoal.id === itemToEdit) {
-                  return (
-                    <Grid key={lifeGoal.id} item xs={6}>
-                      <CssTextField
-                        id="outlined-required"
-                        style={{ width: "100%" }}
-                        placeholder={lifeGoal.manifesto_text}
-                        variant="outlined"
-                        onChange={(evt) =>
-                          setEditManifestoText(evt.target.value)
-                        }
-                      />
-                      <Button
-                        id={lifeGoal.id}
-                        type="submit"
-                        className={classes.buttonSave}
-                        variant="contained"
-                        onClick={() => editLifeGoal(lifeGoal.id)}
-                      >
-                        Save
-                      </Button>
-                    </Grid>
-                  );
-                }
-                if (lifeGoal.id != itemToEdit) {
-                  return (
-                    <Grid key={lifeGoal.id} item xs={6}>
-                      <CssTextField
-                        disabled
-                        id="outlined-required"
-                        label="Your Life Goal"
-                        style={{ width: "100%" }}
-                        value={lifeGoal.manifesto_text}
-                        variant="outlined"
-                        onChange={(evt) => setManifestoText(evt.target.value)}
-                      />
-                      <Button
-                        id={lifeGoal.id}
-                        type="submit"
-                        className={classes.buttonEdit}
-                        variant="contained"
-                        onClick={() => startEdit(lifeGoal)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        type="submit"
-                        className={classes.buttonRemove}
-                        variant="contained"
-                        onClick={() => deleteLifeGoal(lifeGoal.id)}
-                      >
-                        Remove
-                      </Button>
-                    </Grid>
-                  );
-                }
-              })}
-            </Grid>
-            <Box
-              component="span"
-              m={1} //margin
-              className={`${classes.bottomBox} ${classes.box}`}
-            >
-              <BackButton />
-              <NextButton />
-            </Box>
-          </Grid>
           </Fade>
         </Grid>
       </div>

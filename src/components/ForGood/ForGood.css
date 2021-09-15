@@ -1,11 +1,11 @@
 .rightOfVideo2 {
-    max-height: 30vw;
-    max-height: 44vh;
-    padding-left: 2%;
-    padding-right: 2%;
-    background-color: #475473;
-    color: #fff;
-    font-size: 18px;
-    text-align: center;
-    overflow: scroll;    
+  max-height: 30vw;
+  max-height: 44vh;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #475473;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  overflow: scroll;
 }

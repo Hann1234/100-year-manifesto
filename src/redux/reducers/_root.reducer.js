@@ -1,18 +1,18 @@
-import { combineReducers } from 'redux';
-import errors from './errors.reducer';
-import user from './user.reducer';
-import missionReducer from './missionReducer';
-import mantrasReducer from './mantrasReducer';
-import coreValuesReducer from './coreValuesReducer';
-import lifeGoalsReducer from './lifeGoalsReducer';
-import forGoodReducer from './forGoodReducer';
-import guidingPrinciplesReducer from  './guidingPrinciplesReducer';
-import additionalQuestionsReducer from './additionalQuestionsReducer';
-import adminEditFormReducer from './adminEditForm.reducer';
-import userList from './adminEditUsers.reducer';
-import accessCodes from './adminAccessCodes.reducer';
-import nextButtonReducer from './nextButtonReducer';
-import completeButtonReducer from './completeButton.reducer';
+import { combineReducers } from "redux";
+import errors from "./errors.reducer";
+import user from "./user.reducer";
+import missionReducer from "./missionReducer";
+import mantrasReducer from "./mantrasReducer";
+import coreValuesReducer from "./coreValuesReducer";
+import lifeGoalsReducer from "./lifeGoalsReducer";
+import forGoodReducer from "./forGoodReducer";
+import guidingPrinciplesReducer from "./guidingPrinciplesReducer";
+import additionalQuestionsReducer from "./additionalQuestionsReducer";
+import adminEditFormReducer from "./adminEditForm.reducer";
+import userList from "./adminEditUsers.reducer";
+import accessCodes from "./adminAccessCodes.reducer";
+import nextButtonReducer from "./nextButtonReducer";
+import completeButtonReducer from "./completeButton.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.

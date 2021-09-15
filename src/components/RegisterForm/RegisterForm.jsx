@@ -55,7 +55,7 @@ function RegisterForm() {
         name: name,
         username: username,
         password: password,
-        access_code: accessCode
+        access_code: accessCode,
       },
     });
   }; // end registerUser
@@ -67,7 +67,7 @@ function RegisterForm() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{color: "black"}}>
+        <Typography component="h1" variant="h5" style={{ color: "black" }}>
           Sign up
           {errors.registrationMessage && (
             <h3 className="alert" role="alert">
@@ -76,7 +76,7 @@ function RegisterForm() {
           )}
         </Typography>
         <form className={classes.form} noValidate>
-        <Grid container spacing={2}>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

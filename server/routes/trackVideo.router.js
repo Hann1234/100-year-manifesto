@@ -1,14 +1,14 @@
-const express = require('express');
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
-const pool = require('../modules/pool');
+const express = require("express");
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
+const pool = require("../modules/pool");
 const router = express.Router();
 
 /**
  * GET route for track_video table
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log("in GET track_video table");
-  
+router.get("/", rejectUnauthenticated, (req, res) => {
   const getQueryText = `
     SELECT *
     FROM "track_video"
@@ -21,7 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log('GET track_video table failed: ', err);
+      console.log("GET track_video table failed: ", err);
       res.sendStatus(500);
     });
 });
@@ -29,9 +29,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * POST route for track_video table
  */
-router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log("in POST track_video table");
-  
+router.post("/", rejectUnauthenticated, (req, res) => {
   const postQueryText = `
     INSERT INTO "track_video" ("user_id", "title", "last_activity", "complete")
     VALUES ($1, $2, NOW(), false);
@@ -43,7 +41,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log('POST track_video table failed: ', err);
+      console.log("POST track_video table failed: ", err);
       res.sendStatus(500);
     });
 });
@@ -51,9 +49,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 /**
  * DELETE route for track_video table
  */
- router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log("in DELETE track_video table");
-  
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const deleteQueryText = `
     DELETE FROM "track_video"
     WHERE "id" = $1;
@@ -65,7 +61,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log('DELETE track_video table failed: ', err);
+      console.log("DELETE track_video table failed: ", err);
       res.sendStatus(500);
     });
 });
@@ -73,9 +69,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 /**
  * PUT route for track_video table
  */
- router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log("in PUT track_video table");
-  
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   const putQueryText = `
     UPDATE "track_video"
     SET "last_activity" = NOW(), "complete" = $1
@@ -88,11 +82,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       res.send(response.rows);
     })
     .catch((err) => {
-      console.log('PUT track_video table failed: ', err);
+      console.log("PUT track_video table failed: ", err);
       res.sendStatus(500);
     });
 });
-
-
 
 module.exports = router;

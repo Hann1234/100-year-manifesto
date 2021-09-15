@@ -54,7 +54,6 @@ function CompleteButton() {
       },
     });
     handleNext();
-    console.log(`What happens when clicking on complete`, newCompleted);
   };
 
   const completedSteps = () => {
@@ -92,18 +91,16 @@ function CompleteButton() {
             Step {activeStep + 1} already completed
           </Typography>
         ) : (
-          <Button 
-            variant="contained" 
-            color="primary" 
+          <Button
+            variant="contained"
+            color="primary"
             onClick={handleComplete}
             style={{
               backgroundColor: "#1c4bd9",
               color: "#132411",
             }}
-            >
-            {completedSteps() === totalSteps() - 1 
-            ? "Finish" 
-            : "Complete Step"}
+          >
+            {completedSteps() === totalSteps() - 1 ? "Finish" : "Complete Step"}
           </Button>
         ))}
     </div>

@@ -44,7 +44,6 @@ function Nav() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(`Is handleClick for burger menu activating?`, event);
   };
 
   const handleClose = () => {
@@ -126,9 +125,7 @@ function Nav() {
               ) : (
                 <></>
               )}
-              <LogOutButton
-                className="navLink"
-              />
+              <LogOutButton className="navLink" />
             </Menu>
           </div>
         )}

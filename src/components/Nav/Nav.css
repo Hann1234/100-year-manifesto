@@ -19,7 +19,7 @@
   color: #475473;
   padding-left: 10px;
   margin: 0;
-  font-family: 'Oswald Stencil';
+  font-family: "Oswald Stencil";
 }
 
 .navLink {
@@ -36,17 +36,17 @@
   border: none;
   cursor: pointer;
   outline: 0;
-} 
+}
 
 .navLink:hover {
   background-color: #008183;
 }
 
 @font-face {
-  font-family: 'Oswald Stencil';
-  src: local('Oswald Stencil Bold'), local('OswaldStencil-Bold'),
-      url('/src/components/font/OswaldStencil-Bold.woff') format('woff'),
-      url('/src/components/font/OswaldStencil-Bold.woff2') format('woff2');
+  font-family: "Oswald Stencil";
+  src: local("Oswald Stencil Bold"), local("OswaldStencil-Bold"),
+    url("/src/components/font/OswaldStencil-Bold.woff") format("woff"),
+    url("/src/components/font/OswaldStencil-Bold.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
   font-display: swap;

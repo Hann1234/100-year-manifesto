@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 // Stores access codes
 const accessCodes = (state = [], action) => {
   switch (action.type) {
-    case 'ADMIN_SET_ACCESS_CODES':
+    case "ADMIN_SET_ACCESS_CODES":
       return action.payload;
     default:
       return state;
@@ -11,5 +11,5 @@ const accessCodes = (state = [], action) => {
 };
 
 export default combineReducers({
-  accessCodes
+  accessCodes,
 });

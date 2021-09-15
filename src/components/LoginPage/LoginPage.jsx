@@ -66,7 +66,7 @@ function LoginPage() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{color: "black"}}>
+        <Typography component="h1" variant="h5" style={{ color: "black" }}>
           Sign in
           {errors.loginMessage && (
             <h3 className="alert" role="alert">

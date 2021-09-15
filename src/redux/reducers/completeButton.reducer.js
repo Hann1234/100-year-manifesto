@@ -1,18 +1,18 @@
 import { combineReducers } from "redux";
 
 // Stores the "state" of ProgressBar completion
-const completeButton = (state = {0:false}, action) => {
+const completeButton = (state = { 0: false }, action) => {
   switch (action.type) {
     case "CLEAR_NEXT_BUTTON":
       return [];
     case "SET_COMPLETE_BUTTON":
-        // return action.payload;
-      return {...state, [action.payload.property]: action.payload.value};
+      // return action.payload;
+      return { ...state, [action.payload.property]: action.payload.value };
     default:
       return state;
   }
 };
 
 export default combineReducers({
-    completeButton,
+  completeButton,
 });

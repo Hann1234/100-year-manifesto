@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-//Imports for Material UI styling 
+//Imports for Material UI styling
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -54,12 +54,6 @@ function ProgressBar() {
   useEffect(() => {
     setActiveStep(activeStep);
   }, [activeStep]);
-
-  console.log(`What is activeStep store value?`, activeStep);
-  console.log(
-    `What is in completedReducer in ProgressBar.jsx`,
-    completedReducer
-  );
 
   function getStepContent(step) {
     switch (step) {
@@ -138,7 +132,6 @@ function ProgressBar() {
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-
           </div>
         )}
       </div>

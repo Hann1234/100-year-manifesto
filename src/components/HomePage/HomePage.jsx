@@ -6,7 +6,7 @@ import AutoScale from "react-auto-scale";
 import Manifesto from "../Manifesto/Manifesto";
 import { makeStyles } from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import AdminEdits from "../AdminEdits/AdminEdits";
 

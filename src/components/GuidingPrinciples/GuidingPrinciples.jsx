@@ -16,27 +16,27 @@ import Fade from "@material-ui/core/Fade";
 
 const CssTextField = withStyles({
   root: {
-    '& .MuiInputBase-root': {
-      color: 'white',
+    "& .MuiInputBase-root": {
+      color: "white",
     },
-    '& label.Mui-focused': {
-      color: 'white',
+    "& label.Mui-focused": {
+      color: "white",
     },
-    '& label': {
-      color: 'white',
+    "& label": {
+      color: "white",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
       },
-      '&:hover fieldset': {
-        borderColor: 'white',
+      "&:hover fieldset": {
+        borderColor: "white",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
       },
     },
   },
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     width: 100,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   buttonEdit: {
     background: "linear-gradient(45deg, #1c4bd9 30%, #261385 90%)",
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 28,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
   buttonSave: {
     background: "linear-gradient(45deg, #7bd91c 30%, #12b525 90%)",
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 28,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
 }));
 
@@ -108,7 +108,7 @@ function GuidingPrinciples() {
   const [manifestoText, setManifestoText] = useState("");
   const [source, setSource] = useState("");
   const [editManifestoText, setEditManifestoText] = useState("");
-  const [editSourceText, setEditSourceText] = useState('');
+  const [editSourceText, setEditSourceText] = useState("");
   const [itemToEdit, setItemToEdit] = useState(0);
   const [max, setMax] = useState(false);
   const classes = useStyles();
@@ -123,18 +123,18 @@ function GuidingPrinciples() {
   }, []);
 
   const addGuidingPrinciple = () => {
-    if(manifestoText === ""){}
-    else{
-    dispatch({
-      type: "ADD_GUIDING_PRINCIPLE",
-      payload: {
-        manifestoText: manifestoText,
-        source: source,
-      },
-    });
-    setSource("");
-    setManifestoText("");
-  }
+    if (manifestoText === "") {
+    } else {
+      dispatch({
+        type: "ADD_GUIDING_PRINCIPLE",
+        payload: {
+          manifestoText: manifestoText,
+          source: source,
+        },
+      });
+      setSource("");
+      setManifestoText("");
+    }
   };
 
   const startEdit = (itemToEdit) => {
@@ -143,33 +143,31 @@ function GuidingPrinciples() {
     setItemToEdit(itemToEdit.id);
   };
 
- 
-  
   let letterCount = 0;
-    
-    for( const item of guidingPrinciples ) {
-      letterCount += item.manifesto_text.length; 
-      } 
-      
-      const handleChange = (value) => {
-        setManifestoText(value)
-        if (letterCount + value.length >= 2800){
-          setMax(true)
-        }
-        else setMax(false)
-      }  
-  
+
+  for (const item of guidingPrinciples) {
+    letterCount += item.manifesto_text.length;
+  }
+
+  const handleChange = (value) => {
+    setManifestoText(value);
+    if (letterCount + value.length >= 2800) {
+      setMax(true);
+    } else setMax(false);
+  };
+
   const editGuidingPrinciple = (id) => {
     dispatch({
       type: "UPDATE_GUIDING_PRINCIPLE",
       payload: {
         id: id,
-        manifestoText: editManifestoText, source: editSourceText
+        manifestoText: editManifestoText,
+        source: editSourceText,
       },
     });
 
     setEditManifestoText("");
-    setEditSourceText('');
+    setEditSourceText("");
     setItemToEdit(0);
   };
 
@@ -188,261 +186,260 @@ function GuidingPrinciples() {
           <Grid item xs={4}>
             <div className="manifestoPadding">
               <AutoScale>
-                  <Manifesto />
+                <Manifesto />
               </AutoScale>
             </div>
           </Grid>
           <Fade in={true} timeout={800}>
-          <Grid item xs={8} className="scrollableDiv">
-            <center>
-              <h1>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"header"}
-                  default_value={"Guiding Principles"}
-                />
-              </h1>
-              <h3>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"above_vid1"}
-                  default_value={`
+            <Grid item xs={8} className="scrollableDiv">
+              <center>
+                <h1>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"header"}
+                    default_value={"Guiding Principles"}
+                  />
+                </h1>
+                <h3>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"above_vid1"}
+                    default_value={`
                     Living your 100 Year Manifesto requires having Guiding
                     Principles. Meaningful quotes, poetry, song lyrics, or
                     Scriptures that guide your life. What are yours?
                   `}
-                />
-              </h3>
-            </center>
-            <Grid container spacing={1}>
-              <Grid item xs={6}>
-                <AdminEdits
-                  page_id={page_id}
-                  html_type={"video"}
-                  html_id={"video"}
-                  default_value={
-                    "https://player.vimeo.com/video/599579500?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5c7636e390"
-                  }
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <section className="rightOfVideo">
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid1"}
-                      default_value={`
+                  />
+                </h3>
+              </center>
+              <Grid container spacing={1}>
+                <Grid item xs={6}>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_type={"video"}
+                    html_id={"video"}
+                    default_value={
+                      "https://player.vimeo.com/video/599579500?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=5c7636e390"
+                    }
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <section className="rightOfVideo">
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid1"}
+                        default_value={`
                         Different than the Words to Live By, this section is a place
                         for guiding principles, meaningful Scriptures, or passages
                         from your favorite books that significantly guide your life.
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid2"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid2"}
+                        default_value={`
                         This framework might include quotes from famous people, like:
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"right_of_vid3"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"right_of_vid3"}
+                        default_value={`
                         “Do all the good you can. By all the means you can. In all
                         the ways you can. In all the places you can. At all the
                         times you can. To all the people you can. As long as ever
                         you can.” - John Wesley, Theologian
                       `}
-                    />
-                  </p>
-                </section>
+                      />
+                    </p>
+                  </section>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <center>
-                <section className="BottomText">
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"bottom1"}
-                      default_value={`
+              <Grid item xs={12}>
+                <center>
+                  <section className="BottomText">
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom1"}
+                        default_value={`
                         They might include quotes like: “You can never go wrong
                         doing the right thing.”
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"bottom2"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom2"}
+                        default_value={`
                         They might also include a handful of Scriptures, such as:
                         “To whom much is given, much is demanded.” Luke 12:48
                       `}
-                    />
-                  </p>
-                  <p>
-                    <AdminEdits
-                      page_id={page_id}
-                      html_id={"bottom3"}
-                      default_value={`
+                      />
+                    </p>
+                    <p>
+                      <AdminEdits
+                        page_id={page_id}
+                        html_id={"bottom3"}
+                        default_value={`
                         There are quotes. Power phrases. Things your parents said. Things you say. Passages from books. Scriptures.
                       `}
-                    />
-                  </p>
-                </section>
-              </center>
-            </Grid>
-            <Grid item xs={12} container spacing={2}>
-              <Grid item xs={6}>
-                <CssTextField
-                  required
-                  id="outlined-required"
-                  label="Add Guiding Principle"
-                  style={{ width: "100%" }}
-                  value={manifestoText}
-                  variant="outlined"
-                  onChange={(event) => handleChange(event.target.value)}
-                  
-                />
+                      />
+                    </p>
+                  </section>
+                </center>
               </Grid>
-              <Grid item xs={4}>
-                <CssTextField
-                  required
-                  id="outlined-required"
-                  label="Source"
-                  style={{ width: "100%" }}
-                  value={source}
-                  variant="outlined"
-                  onChange={(event) => setSource(event.target.value)}
-                />
+              <Grid item xs={12} container spacing={2}>
+                <Grid item xs={6}>
+                  <CssTextField
+                    required
+                    id="outlined-required"
+                    label="Add Guiding Principle"
+                    style={{ width: "100%" }}
+                    value={manifestoText}
+                    variant="outlined"
+                    onChange={(event) => handleChange(event.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  <CssTextField
+                    required
+                    id="outlined-required"
+                    label="Source"
+                    style={{ width: "100%" }}
+                    value={source}
+                    variant="outlined"
+                    onChange={(event) => setSource(event.target.value)}
+                  />
                 </Grid>
                 <Grid item xs={2}>
-                <span>
-                {(max === true) ?
-                
-                  <Button
-                  disabled
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addGuidingPrinciple()}
-                  >
-                    ADD
-                  </Button>
-                :
-                guidingPrinciples.length >= 10 ?
-                  <Button
-                  disabled
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addGuidingPrinciple()}
-                  >
-                    ADD
-                  </Button>
-                  :
-                  <Button
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addGuidingPrinciple()}
-                  >
-                    ADD
-                  </Button> 
-                }
-              </span>
-            </Grid>
-            </Grid>
-
-            <br />
-
-            <Grid item xs={12} container spacing={2}>
-              {guidingPrinciples.map((principle) => {
-                if (principle.id === itemToEdit) {
-                  return (
-                    <Grid key={principle.id} item xs={6}>
-                      <CssTextField
-                        id="outlined-required"
-                        style={{ width: "100%" }}
-                        placeholder={principle.manifesto_text}
-                        variant="outlined"
-                        onChange={(event) =>
-                          setEditManifestoText(event.target.value)
-                        }
-                      />
-                      <CssTextField
-                        id="outlined-required"
-                        style={{ width: "50%" }}
-                        placeholder={principle.source}
-                        onChange={(event) => setEditSourceText(event.target.value)}
-                        variant="outlined"
-                      />
+                  <span>
+                    {max === true ? (
                       <Button
-                        id={principle.id}
-                        type="submit"
-                        className={classes.buttonSave}
-                        variant="contained"
-                        onClick={() => editGuidingPrinciple(principle.id)}
-                      >
-                        Save
-                      </Button>
-                    </Grid>
-                  );
-                }
-                if (principle.id != itemToEdit) {
-                  return (
-                    <Grid key={principle.id} item xs={6}>
-                      <CssTextField
                         disabled
-                        id="outlined-required"
-                        style={{ width: "100%" }}
-                        value={principle.manifesto_text}
-                        variant="outlined"
-                      />
-                      <CssTextField
+                        type="submit"
+                        className={classes.button}
+                        variant="contained"
+                        onClick={() => addGuidingPrinciple()}
+                      >
+                        ADD
+                      </Button>
+                    ) : guidingPrinciples.length >= 10 ? (
+                      <Button
                         disabled
-                        id="outlined-required"
-                        style={{ width: "50%" }}
-                        value={principle.source}
-                        variant="outlined"
-                      />
-                      <Button
-                        id={principle.id}
                         type="submit"
-                        className={classes.buttonEdit}
+                        className={classes.button}
                         variant="contained"
-                        onClick={() => startEdit (principle)}
+                        onClick={() => addGuidingPrinciple()}
                       >
-                        Edit
+                        ADD
                       </Button>
-                      <span> </span>
+                    ) : (
                       <Button
                         type="submit"
-                        className={classes.buttonRemove}
+                        className={classes.button}
                         variant="contained"
-                        onClick={() => deleteGuidingPrinciple(principle.id)}
+                        onClick={() => addGuidingPrinciple()}
                       >
-                        Remove
+                        ADD
                       </Button>
-                    </Grid>
-                  );
-                }
-              })}
+                    )}
+                  </span>
+                </Grid>
+              </Grid>
+
+              <br />
+
+              <Grid item xs={12} container spacing={2}>
+                {guidingPrinciples.map((principle) => {
+                  if (principle.id === itemToEdit) {
+                    return (
+                      <Grid key={principle.id} item xs={6}>
+                        <CssTextField
+                          id="outlined-required"
+                          style={{ width: "100%" }}
+                          placeholder={principle.manifesto_text}
+                          variant="outlined"
+                          onChange={(event) =>
+                            setEditManifestoText(event.target.value)
+                          }
+                        />
+                        <CssTextField
+                          id="outlined-required"
+                          style={{ width: "50%" }}
+                          placeholder={principle.source}
+                          onChange={(event) =>
+                            setEditSourceText(event.target.value)
+                          }
+                          variant="outlined"
+                        />
+                        <Button
+                          id={principle.id}
+                          type="submit"
+                          className={classes.buttonSave}
+                          variant="contained"
+                          onClick={() => editGuidingPrinciple(principle.id)}
+                        >
+                          Save
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                  if (principle.id != itemToEdit) {
+                    return (
+                      <Grid key={principle.id} item xs={6}>
+                        <CssTextField
+                          disabled
+                          id="outlined-required"
+                          style={{ width: "100%" }}
+                          value={principle.manifesto_text}
+                          variant="outlined"
+                        />
+                        <CssTextField
+                          disabled
+                          id="outlined-required"
+                          style={{ width: "50%" }}
+                          value={principle.source}
+                          variant="outlined"
+                        />
+                        <Button
+                          id={principle.id}
+                          type="submit"
+                          className={classes.buttonEdit}
+                          variant="contained"
+                          onClick={() => startEdit(principle)}
+                        >
+                          Edit
+                        </Button>
+                        <span> </span>
+                        <Button
+                          type="submit"
+                          className={classes.buttonRemove}
+                          variant="contained"
+                          onClick={() => deleteGuidingPrinciple(principle.id)}
+                        >
+                          Remove
+                        </Button>
+                      </Grid>
+                    );
+                  }
+                })}
+              </Grid>
+              <Box
+                component="span"
+                m={1} //margin
+                className={`${classes.bottomBox} ${classes.box}`}
+              >
+                <BackButton />
+                <NextButton />
+              </Box>
             </Grid>
-            <Box
-              component="span"
-              m={1} //margin
-              className={`${classes.bottomBox} ${classes.box}`}
-            >
-              <BackButton />
-              <NextButton />
-            </Box>
-          </Grid>
           </Fade>
         </Grid>
       </div>

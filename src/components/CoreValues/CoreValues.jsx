@@ -15,30 +15,31 @@ import Fade from "@material-ui/core/Fade";
 import "./CoreValues.css";
 import BackButton from "../BackButton/BackButton";
 import NextButton from "../NextButton/NextButton";
+import chips from "./ChipsData";
 
 const CssTextField = withStyles({
   root: {
-    '& .MuiInputBase-root': {
-      color: 'white',
+    "& .MuiInputBase-root": {
+      color: "white",
     },
-    '& label.Mui-focused': {
-      color: 'white',
+    "& label.Mui-focused": {
+      color: "white",
     },
-    '& label': {
-      color: 'white',
+    "& label": {
+      color: "white",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
       },
-      '&:hover fieldset': {
-        borderColor: 'white',
+      "&:hover fieldset": {
+        borderColor: "white",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
       },
     },
   },
@@ -122,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     width: 100,
     padding: "0 30px",
-    marginLeft: 2
+    marginLeft: 2,
   },
 }));
 
@@ -135,231 +136,6 @@ function CoreValues() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const page_id = 4;
-
-  //Chip info
-  const chips = [
-    "Acceptance",
-    "Accomplishment",
-    "Accountability",
-    "Accuracy",
-    "Achievement",
-    "Adaptability",
-    "Alertness",
-    "Altruism",
-    "Ambition",
-    "Amusement",
-    "Assertiveness",
-    "Attentive",
-    "Awareness",
-    "Balance",
-    "Beauty",
-    "Boldness",
-    "Bravery",
-    "Brilliance",
-    "Calm",
-    "Candor",
-    "Capable",
-    "Careful",
-    "Certainty",
-    "Challenge",
-    "Charity",
-    "Cleanliness",
-    "Clear",
-    "Clever",
-    "Comfort",
-    "Commitment",
-    "Common Sense",
-    "Communication",
-    "Community",
-    "Compassion",
-    "Competence",
-    "Concentration",
-    "Confidence",
-    "Connection",
-    "Consciousness",
-    "Consistency",
-    "Contentment",
-    "Contribution",
-    "Control",
-    "Conviction",
-    "Cooperation",
-    "Courage",
-    "Courtesy",
-    "Creation",
-    "Creativity",
-    "Credibility",
-    "Curiosity",
-    "Decisive",
-    "Decisiveness",
-    "Dedication",
-    "Dependability",
-    "Determination",
-    "Development",
-    "Devotion",
-    "Dignity",
-    "Discipline",
-    "Discovery",
-    "Drive",
-    "Effectiveness",
-    "Efficiency",
-    "Empathy",
-    "Empower",
-    "Endurance",
-    "Energy",
-    "Enjoyment",
-    "Enthusiasm",
-    "Equity",
-    "Ethical",
-    "Excellence",
-    "Experience",
-    "Exploration",
-    "Expressive",
-    "Fairness",
-    "Family",
-    "Famous",
-    "Fearless",
-    "Feelings",
-    "Ferocious",
-    "Fidelity",
-    "Focus",
-    "Foresight",
-    "Fortitude",
-    "Freedom",
-    "Friendship",
-    "Fun",
-    "Generosity",
-    "Genius",
-    "Giving",
-    "Goodness",
-    "Grace",
-    "Gratitude",
-    "Greatness",
-    "Growth",
-    "Happiness",
-    "Hard work",
-    "Harmony",
-    "Health",
-    "Honesty",
-    "Honor",
-    "Hope",
-    "Humility",
-    "Imagination",
-    "Improvement",
-    "Independence",
-    "Individuality",
-    "Innovation",
-    "Inquisitive",
-    "Insightful",
-    "Inspiring",
-    "Integrity",
-    "Intelligence",
-    "Intensity",
-    "Intuitive",
-    "Irreverent",
-    "Joy",
-    "Justice",
-    "Kindness",
-    "Knowledge",
-    "Lawful",
-    "Leadership",
-    "Learning",
-    "Liberty",
-    "Logic",
-    "Love",
-    "Loyalty",
-    "Mastery",
-    "Maturity",
-    "Meaning",
-    "Moderation",
-    "Motivation",
-    "Openness",
-    "Optimism",
-    "Order",
-    "Organization",
-    "Originality",
-    "Passion",
-    "Patience",
-    "Peace",
-    "Performance",
-    "Persistence",
-    "Playfulness",
-    "Poise",
-    "Potential",
-    "Power",
-    "Present",
-    "Productivity",
-    "Professionalism",
-    "Prosperity",
-    "Purpose",
-    "Quality",
-    "Realistic",
-    "Reason",
-    "Recognition",
-    "Recreation",
-    "Reflective",
-    "Respect",
-    "Responsibility",
-    "Restraint",
-    "Results-oriented",
-    "Rigor",
-    "Risk",
-    "Satisfaction",
-    "Security",
-    "Self-reliance",
-    "Selfless",
-    "Sensitivity",
-    "Serenity",
-    "Service",
-    "Sharing",
-    "Significance",
-    "Silence",
-    "Simplicity",
-    "Sincerity",
-    "Skill",
-    "Skillfulness",
-    "Smart",
-    "Solitude",
-    "Spirit",
-    "Spirituality",
-    "Spontaneous",
-    "Stability",
-    "Status",
-    "Stewardship",
-    "Strength",
-    "Structure",
-    "Success",
-    "Support",
-    "Surprise",
-    "Sustainability",
-    "Talent",
-    "Teamwork",
-    "Temperance",
-    "Thankful",
-    "Thorough",
-    "Thoughtful",
-    "Timeliness",
-    "Tolerance",
-    "Toughness",
-    "Traditional",
-    "Tranquility",
-    "Transparency",
-    "Trust",
-    "Trustworthy",
-    "Truth",
-    "Understanding",
-    "Uniqueness",
-    "Unity",
-    "Valor",
-    "Victory",
-    "Vigor",
-    "Vision",
-    "Vitality",
-    "Wealth",
-    "Welcoming",
-    "Winning",
-    "Wisdom",
-    "Wonder",
-  ];
 
   useEffect(() => {
     dispatch({
@@ -439,123 +215,121 @@ function CoreValues() {
           </div>
         </Grid>
         <Fade in={true} timeout={800}>
-        <Grid container item xs={8} className="scrollableDiv">
-          <Grid item align="center" xs={12}>
-            <h1>
-              <AdminEdits
-                page_id={page_id}
-                html_id={"header"}
-                default_value={`Core Values`}
-              />
-            </h1>
-            <h3>
-              <AdminEdits
-                page_id={page_id}
-                html_id={"above_vid"}
-                default_value={`
-                    You can’t argue with your core values. They just are. What are yours?
-                  `}
-              />
-            </h3>
-          </Grid>
-          <Grid container spacing={1}>
-            <Grid item align="center" xs={6}>
-              <AdminEdits
-                page_id={page_id}
-                html_type={"video"}
-                html_id={"video"}
-                default_value={
-                  "https://player.vimeo.com/video/599578721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a2b5bd36bf"
-                }
-              />
-            </Grid>
-            <Grid align="center" item xs={6}>
-              <p>
+          <Grid container item xs={8} className="scrollableDiv">
+            <Grid item align="center" xs={12}>
+              <h1>
                 <AdminEdits
                   page_id={page_id}
-                  html_id={"right_of_vid1"}
+                  html_id={"header"}
+                  default_value={`Core Values`}
+                />
+              </h1>
+              <h3>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"above_vid"}
                   default_value={`
+                    You can’t argue with your core values. They just are. What are yours?
+                  `}
+                />
+              </h3>
+            </Grid>
+            <Grid container spacing={1}>
+              <Grid item align="center" xs={6}>
+                <AdminEdits
+                  page_id={page_id}
+                  html_type={"video"}
+                  html_id={"video"}
+                  default_value={
+                    "https://player.vimeo.com/video/599578721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;h=a2b5bd36bf"
+                  }
+                />
+              </Grid>
+              <Grid align="center" item xs={6}>
+                <p>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"right_of_vid1"}
+                    default_value={`
                         Most companies have identified a set of core values.
                         Oftentimes they post them on their walls as a reminder
                         for their employees, their customers, & everyone they encounter.
                         `}
-                />
-              </p>
-              <p>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"right_of_vid2"}
-                  default_value={`
+                  />
+                </p>
+                <p>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"right_of_vid2"}
+                    default_value={`
                         If it makes sense for a business, it definitely makes sense
                         for an individual to have a personal set of core values.
                         Uncompromising, non-negotiables.
                         `}
-                />
-              </p>
-              <p>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"right_of_vid3"}
-                  default_value={`
+                  />
+                </p>
+                <p>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"right_of_vid3"}
+                    default_value={`
                         Our values reveal themselves to us.
                         `}
-                />
-              </p>
+                  />
+                </p>
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <center>
-              <h4>
-                <AdminEdits
-                  page_id={page_id}
-                  html_id={"bottom1"}
-                  default_value={`
+            <Grid item xs={12}>
+              <center>
+                <h4>
+                  <AdminEdits
+                    page_id={page_id}
+                    html_id={"bottom1"}
+                    default_value={`
                         What five core values have revealed themselves to you in the course of your life?
                         Pick 4-5-6 core values. Ones that have revealed themselves to you in your life.
                         The challenge here is this: there may be many core values that resonate with you.
                         For your 100 Year Manifesto, which are the ones that are in your heart of hearts. What are those core values?
                       `}
-                />
-              </h4>
-              {/* What is the "For Good" section renamed as? <button className="nextButton" onClick={() => history.push('/forgood')}>NEXT</button> */}
-            </center>
-            <Grid item xs={12} container spacing={2}>
-              <section>
-                <CssTextField
-                  required
-                  id="outlined-required"
-                  label="Add Core Value"
-                  value={manifestoText}
-                  variant="outlined"
-                  onChange={(event) => setManifestoText(event.target.value)}
-                />
-                {coreValues.length >= 6 ? (
-                  <Button
-                    disabled
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addCoreValue()}
-                  >
-                    ADD
-                  </Button>
-                ) : (
-                  <Button
-                    type="submit"
-                    className={classes.button}
-                    variant="contained"
-                    onClick={() => addCoreValue()}
-                  >
-                    ADD
-                  </Button>
-                )}
-              </section>
-            </Grid>
-            <br />
-            <Grid item xs={12} container spacing={2}>
-              {coreValues.map((value) => {
-                
-                
+                  />
+                </h4>
+                {/* What is the "For Good" section renamed as? <button className="nextButton" onClick={() => history.push('/forgood')}>NEXT</button> */}
+              </center>
+              <Grid item xs={12} container spacing={2}>
+                <section>
+                  <CssTextField
+                    required
+                    id="outlined-required"
+                    label="Add Core Value"
+                    value={manifestoText}
+                    variant="outlined"
+                    onChange={(event) => setManifestoText(event.target.value)}
+                  />
+                  {coreValues.length >= 6 ? (
+                    <Button
+                      disabled
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() => addCoreValue()}
+                    >
+                      ADD
+                    </Button>
+                  ) : (
+                    <Button
+                      type="submit"
+                      className={classes.button}
+                      variant="contained"
+                      onClick={() => addCoreValue()}
+                    >
+                      ADD
+                    </Button>
+                  )}
+                </section>
+              </Grid>
+              <br />
+              <Grid item xs={12} container spacing={2}>
+                {coreValues.map((value) => {
                   return (
                     <Grid key={value.id} item xs={3}>
                       <CssTextField
@@ -580,33 +354,32 @@ function CoreValues() {
                       </Button>
                     </Grid>
                   );
-                
-              })}
+                })}
+              </Grid>
+              <Grid>
+                <Box
+                  component="span"
+                  m={1} //margin
+                  className={`${classes.bottomBox} ${classes.box}`}
+                >
+                  <BackButton />
+                  <NextButton />
+                </Box>
+              </Grid>
+              <Paper component="ul" className={classes.root}>
+                <AdminEdits
+                  page_id={page_id}
+                  html_id={"chipsArray"}
+                  html_type={"array"}
+                  default_value={chips}
+                  current_selection={coreValues}
+                  max_selected={6}
+                  handleAddFunction={addCoreValueChip}
+                  handleDeleteFunction={deleteCoreValue}
+                />
+              </Paper>
             </Grid>
-            <Grid>
-              <Box
-                component="span"
-                m={1} //margin
-                className={`${classes.bottomBox} ${classes.box}`}
-              >
-                <BackButton />
-                <NextButton />
-              </Box>
-            </Grid>
-            <Paper component="ul" className={classes.root}>
-              <AdminEdits
-                page_id={page_id}
-                html_id={"chipsArray"}
-                html_type={"array"}
-                default_value={chips}
-                current_selection={coreValues}
-                max_selected={6}
-                handleAddFunction={addCoreValueChip}
-                handleDeleteFunction={deleteCoreValue}
-              />
-            </Paper>
           </Grid>
-        </Grid>
         </Fade>
       </Grid>
     </section>

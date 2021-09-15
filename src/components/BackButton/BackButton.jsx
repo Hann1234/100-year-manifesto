@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     height: 36,
     padding: "0 30px",
-    marginRight: 2
+    marginRight: 2,
   },
   completed: {
     display: "inline-block",
@@ -62,7 +62,7 @@ function BackButton() {
   return (
     <div>
       <Button
-      variant="contained"
+        variant="contained"
         disabled={activeStep === 0}
         onClick={handleBack}
         className={classes.button}

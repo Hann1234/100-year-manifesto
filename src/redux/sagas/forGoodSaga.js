@@ -1,25 +1,25 @@
-import { put, take, takeLatest } from 'redux-saga/effects';
-import axios from 'axios';
+import { put, take, takeLatest } from "redux-saga/effects";
+import axios from "axios";
 
 // Add for good
 function* addForGood(action) {
   try {
-    yield axios.post('/api/forGoods', action.payload); 
-    yield put({ type: 'FETCH_FOR_GOODS'}); //Loads the for goods into reducer
+    yield axios.post("/api/forGoods", action.payload);
+    yield put({ type: "FETCH_FOR_GOODS" }); //Loads the for goods into reducer
   } catch (error) {
-    console.log('Error adding for good:', error);
-    yield put({ type: 'ADD_FOR_GOOD_ERROR' });
+    console.log("Error adding for good:", error);
+    yield put({ type: "ADD_FOR_GOOD_ERROR" });
   }
 }
 
 //Get for goods statement
 function* fetchForGoods() {
   try {
-    const forGoods = yield axios.get('/api/forGoods');
-    yield put({type: 'SET_FOR_GOODS', payload: forGoods.data}) //Loads for goods into reducer
+    const forGoods = yield axios.get("/api/forGoods");
+    yield put({ type: "SET_FOR_GOODS", payload: forGoods.data }); //Loads for goods into reducer
   } catch (error) {
-    console.log('Error getting for goods:', error);
-    yield put({ type: 'FETCH_FOR_GOODS_ERROR' });
+    console.log("Error getting for goods:", error);
+    yield put({ type: "FETCH_FOR_GOODS_ERROR" });
   }
 }
 
@@ -27,10 +27,10 @@ function* fetchForGoods() {
 function* fetchSpecificUserForGoods(action) {
   try {
     const forGoods = yield axios.get(`/api/forGoods/${action.payload.id}`);
-    yield put({type: 'SET_FOR_GOODS', payload: forGoods.data}) //Loads specific user's for goods into reducer
+    yield put({ type: "SET_FOR_GOODS", payload: forGoods.data }); //Loads specific user's for goods into reducer
   } catch (error) {
-    console.log('Error getting specific user for goods:', error);
-    yield put({ type: 'FETCH_USER_FOR_GOODS_ERROR' });
+    console.log("Error getting specific user for goods:", error);
+    yield put({ type: "FETCH_USER_FOR_GOODS_ERROR" });
   }
 }
 
@@ -38,31 +38,30 @@ function* fetchSpecificUserForGoods(action) {
 function* updateForGood(action) {
   try {
     yield axios.put(`/api/forGoods/${action.payload.id}`, action.payload);
-    yield put({ type: 'FETCH_FOR_GOODS'}); //Reloads for goods
+    yield put({ type: "FETCH_FOR_GOODS" }); //Reloads for goods
   } catch (error) {
-    console.log('Error updating for good:', error);
-    yield put({ type: 'UPDATE_FOR_GOOD_ERROR' });
+    console.log("Error updating for good:", error);
+    yield put({ type: "UPDATE_FOR_GOOD_ERROR" });
   }
 }
 
 //Delete mission statement
 function* deleteForGood(action) {
   try {
-    console.log(action);
     yield axios.delete(`/api/forGoods/${action.payload}`);
-    yield put({ type: 'FETCH_FOR_GOODS'}); //Reloads for goods
+    yield put({ type: "FETCH_FOR_GOODS" }); //Reloads for goods
   } catch (error) {
-    console.log('Error deleting for good:', error);
-    yield put({ type: 'DELETE_FOR_GOOD_ERROR' });
+    console.log("Error deleting for good:", error);
+    yield put({ type: "DELETE_FOR_GOOD_ERROR" });
   }
 }
 
 function* forGoodSaga() {
-  yield takeLatest('ADD_FOR_GOOD', addForGood);
-  yield takeLatest('FETCH_FOR_GOODS', fetchForGoods);
-  yield takeLatest('FETCH_USER_FOR_GOODS', fetchSpecificUserForGoods);
-  yield takeLatest('UPDATE_FOR_GOOD', updateForGood);
-  yield takeLatest('DELETE_FOR_GOOD', deleteForGood);
+  yield takeLatest("ADD_FOR_GOOD", addForGood);
+  yield takeLatest("FETCH_FOR_GOODS", fetchForGoods);
+  yield takeLatest("FETCH_USER_FOR_GOODS", fetchSpecificUserForGoods);
+  yield takeLatest("UPDATE_FOR_GOOD", updateForGood);
+  yield takeLatest("DELETE_FOR_GOOD", deleteForGood);
 }
 
 export default forGoodSaga;

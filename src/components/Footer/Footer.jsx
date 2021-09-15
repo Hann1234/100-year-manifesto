@@ -1,7 +1,7 @@
-import React from 'react';
-import './Footer.css';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import React from "react";
+import "./Footer.css";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -13,10 +13,7 @@ function Footer() {
     <footer>
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
-        <Link
-          color="inherit"
-          href="https://www.100yearmanifesto.com/"
-        >
+        <Link color="inherit" href="https://www.100yearmanifesto.com/">
           100 Year Manifesto
         </Link>{" "}
         {new Date().getFullYear()}
@@ -27,4 +24,3 @@ function Footer() {
 }
 
 export default Footer;
-

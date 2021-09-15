@@ -14,25 +14,23 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AdminPage from "../AdminPage/AdminPage";
-import InfoPage from "../InfoPage/InfoPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 
 //Project specific routes
 
-import HomePage from '../HomePage/HomePage';
-import IntroPage from '../IntroPage/IntroPage';
-import MissionStatement from '../MissionStatement/MissionStatement';
-import Mantras from '../Mantras/Mantras';
-import CoreValues from '../CoreValues/CoreValues';
-import ForGood from '../ForGood/ForGood';
-import LifeGoals from '../LifeGoals/LifeGoals';
-import GuidingPrinciples from '../GuidingPrinciples/GuidingPrinciples';
-import NextSteps from '../NextSteps/NextSteps';
-import './App.css';
+import HomePage from "../HomePage/HomePage";
+import IntroPage from "../IntroPage/IntroPage";
+import MissionStatement from "../MissionStatement/MissionStatement";
+import Mantras from "../Mantras/Mantras";
+import CoreValues from "../CoreValues/CoreValues";
+import ForGood from "../ForGood/ForGood";
+import LifeGoals from "../LifeGoals/LifeGoals";
+import GuidingPrinciples from "../GuidingPrinciples/GuidingPrinciples";
+import NextSteps from "../NextSteps/NextSteps";
+import "./App.css";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import MyManifesto from "../MyManifesto/MyManifesto";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -50,18 +48,18 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
-          
+
           {/* Visiting localhost:3000/admin will show the admin page. */}
           <ProtectedRoute
             // shows AdminPage if logged in as an admin or superadmin
             exact
             path="/admin"
           >
-            {
-              user.role === 'admin' || user.role === 'superadmin' ?
-              <AdminPage /> :
+            {user.role === "admin" || user.role === "superadmin" ? (
+              <AdminPage />
+            ) : (
               <Redirect to="/login" />
-            }
+            )}
           </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -81,15 +79,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows missionStatement else shows LoginPage
             exact
             path="/missionStatement"
           >
@@ -97,7 +87,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows mantras else shows LoginPage
             exact
             path="/mantras"
           >
@@ -105,7 +95,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows coreValues else shows LoginPage
             exact
             path="/coreValues"
           >
@@ -113,7 +103,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows forGood else shows LoginPage
             exact
             path="/forGood"
           >
@@ -121,17 +111,15 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows lifeGoals else shows LoginPage
             exact
-
             path="/lifeGoals"
-
           >
             <LifeGoals />
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows guidingPrinciples else shows LoginPage
             exact
             path="/guidingPrinciples"
           >
@@ -139,7 +127,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows nextSteps else shows LoginPage
             exact
             path="/nextSteps"
           >
@@ -147,7 +135,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows myManifesto else shows LoginPage
             exact
             path="/myManifesto"
           >
